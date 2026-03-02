@@ -59,11 +59,17 @@ SUPABASE_KEY="eyJ0eXxxxxxxxxxxxxxx"
 
 #### Create your virtual environment (Python 3.11 or above), install requirements and run
 ```bash
+# With requirements.txt
 python3.11 -m venv pytg # to create virtual env
 source pytg/bin/activate # for linux users
 source pytg/Scripts/activate # fro windosw users
 pip install -r requirements.txt
 python app.py
+
+# Or with uv
+pip install uv
+uv sync
+uv run app.py
 ```
 #### Make necessary changes and commit those changes
 
