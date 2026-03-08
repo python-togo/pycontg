@@ -26,3 +26,14 @@ QRCODE
 env
 test.py
 pycontg25
+*cache*
+*.bak
+*.tmp
+*.swp
+*.swo
+*.idea
+.vscode
+*.iml
+test.py
+test*
+*.sublime-project

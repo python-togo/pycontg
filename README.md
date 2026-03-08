@@ -59,11 +59,19 @@ SUPABASE_KEY="eyJ0eXxxxxxxxxxxxxxx"
 
 #### Create your virtual environment (Python 3.11 or above), install requirements and run
 ```bash
-python3.11 -m venv pytg # to create virtual env
-source pytg/bin/activate # for linux users
-source pytg/Scripts/activate # fro windosw users
+python -m venv venv
+source venv/bin/activate # for linux and macOS
+venv\Scripts\activate # for windows
 pip install -r requirements.txt
-python app.py
+uvicorn app.main:app --reload
+
+or
+
+fastapi run app.main:app --reload
+
+or 
+
+fastapi dev
 ```
 #### Make necessary changes and commit those changes
 

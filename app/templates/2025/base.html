@@ -19,14 +19,14 @@
     <meta name="apple-mobile-web-app-title" content="PyCon Togo 2025">
     <meta name="msapplication-TileColor" content="#000000">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="msapplication-TileImage" content="{{ url_for('static', filename='images/favicon.ico') }}">
+    <meta name="msapplication-TileImage" content="{{ url_for('static', path='images/favicon.ico') }}">
     <meta name="msapplication-navbutton-color" content="#000000">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="PyCon Togo 2025">
     <meta name="msapplication-navbutton-color" content="#000000">
     <meta name="theme-color" content="#000000">
-    <link rel="shortcut icon" href=" {{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href=" {{ url_for('static', path='images/favicon.ico') }}" type="image/x-icon">
     <title>{% block title %}{% endblock %} </title>
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="../static/css/menu.css">
@@ -72,20 +72,20 @@
                     <li><a class="link" href="{{ url_for('shop_swag')}}">Shop</a></li>
                 </ul>
                 <div id="" class="btn">
-<div id="donate-button"></div>
-<script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
-<script>
-PayPal.Donation.Button({
-env:'production',
-hosted_button_id:'PYDWFGRBP25TL',
-image: {
-src:'https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif',
-alt:'Donate with PayPal button',
-title:'PayPal - The safer, easier way to pay online!',
-}
-}).render('#donate-button');
-</script>
-</div>
+                    <div id="donate-button"></div>
+                    <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+                    <script>
+                        PayPal.Donation.Button({
+                            env: 'production',
+                            hosted_button_id: 'PYDWFGRBP25TL',
+                            image: {
+                                src: 'https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif',
+                                alt: 'Donate with PayPal button',
+                                title: 'PayPal - The safer, easier way to pay online!',
+                            }
+                        }).render('#donate-button');
+                    </script>
+                </div>
 
             </div>
 
@@ -144,7 +144,9 @@ title:'PayPal - The safer, easier way to pay online!',
                             </svg>
                         </a>
                     </div>
-                    <div style="margin-top: 15px;"><a href="https://www.paypal.com/donate/?hosted_button_id=A6547S7YGMZ4A" target="_blank"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" alt=""></a></div>
+                    <div style="margin-top: 15px;"><a
+                            href="https://www.paypal.com/donate/?hosted_button_id=A6547S7YGMZ4A" target="_blank"><img
+                                src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" alt=""></a></div>
                 </div>
 
                 <!-- Column 2 - Quick Links -->
@@ -208,7 +210,8 @@ title:'PayPal - The safer, easier way to pay online!',
             </div>
 
             <div class="copyright">
-                © {{ year }} <a href="https://www.pytogo.org/" target="_blank">The Python Software Community Togo.</a> All rights
+                © {{ year }} <a href="https://www.pytogo.org/" target="_blank">The Python Software Community Togo.</a>
+                All rights
                 reserved. Python and the Python logo are trademarks of the Python
                 Software
                 Foundation.
@@ -221,10 +224,11 @@ title:'PayPal - The safer, easier way to pay online!',
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-L483GG33RG"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-L483GG33RG');
+    gtag('config', 'G-L483GG33RG');
 </script>
+
 </html>

@@ -1,7 +1,9 @@
-from models import SponsorTier
-from config import supabase
+from app.schemas.models import SponsorTier
+from app.database.config import supabase
+from app.utils.logger import setup_logger
 
 
+logger = setup_logger()
 
 community_supporter = SponsorTier(
     name="Community Supporter",
@@ -103,10 +105,11 @@ in_kind_sponsor = SponsorTier(
     ],
 )
 
+
 def create_sponsor_tiers():
     existing_tiers = supabase.table("sponsortiers").select("*").execute()
     if existing_tiers.data:
-        print("Sponsor tiers already exist. Skipping creation.")
+        logger.info("Sponsor tiers already exist. Skipping creation.")
         return
 
     sponsor_tiers = [
@@ -120,9 +123,8 @@ def create_sponsor_tiers():
 
     for tier in sponsor_tiers:
         supabase.table("sponsortiers").insert(tier.dict()).execute()
-        print(tier)
-    print("Sponsor tiers created successfully.")
-
+        logger.info(tier)
+    logger.info("Sponsor tiers created successfully.")
 
 
 if __name__ == "__main__":

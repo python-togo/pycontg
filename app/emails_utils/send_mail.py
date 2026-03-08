@@ -3,14 +3,16 @@ from email.mime.base import MIMEBase
 from email.utils import formataddr
 import os
 from dotenv import load_dotenv
-import smtplib, ssl
+import smtplib
+import ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from email_template import render_email_template
+
+from app.emails_utils.email_templates import render_email_template
 
 load_dotenv()
 
-sender_email =  os.environ.get("SENDER_EMAIL")
+sender_email = os.environ.get("SENDER_EMAIL")
 receiver_email = "wachioubouraima56@gmail.com"
 password = os.environ.get("SENDER_EMAIL_PASSWORD")
 smtp_server = os.environ.get("SMTP_SERVER")
@@ -20,7 +22,7 @@ smtp_server_port = os.environ.get("SMTP_SERVER_PORT")
 def send_email_with_or_without_attachment(body, subject, sender_email=sender_email, receiver_email=receiver_email, password=password, smtp_server=smtp_server, smtp_server_port=smtp_server_port, filename=None):
     msg = MIMEMultipart()
     msg['Subject'] = subject
-    msg['From'] =  formataddr(('PyCon Togo Team', sender_email))
+    msg['From'] = formataddr(('PyCon Togo Team', sender_email))
     msg['To'] = receiver_email
 
     msg.attach(MIMEText(body, 'html'))
@@ -33,7 +35,8 @@ def send_email_with_or_without_attachment(body, subject, sender_email=sender_ema
             part = MIMEBase("application", "octet-stream")
             part.set_payload(attachment.read())
             encoders.encode_base64(part)
-            part.add_header('Content-Disposition', f'attachment; filename={os.path.basename(filename)}')
+            part.add_header('Content-Disposition',
+                            f'attachment; filename={os.path.basename(filename)}')
             msg.attach(part)
 
     context = ssl.create_default_context()
@@ -87,7 +90,7 @@ if __name__ == "__main__":
         </p>
 
         """},
-        
+
         {
         "subject": "[English Version] Welcome to the 30-Day Python Challenge",
         "body": f"""\
@@ -129,7 +132,7 @@ if __name__ == "__main__":
         For help or support, reach out at <a href="mailto:support@pycon.tg">support@pycon.tg</a>.
         </p>
         """
-        }
+    }
     ]
     for msg in msgs:
         # Render the email body using the template
@@ -137,7 +140,7 @@ if __name__ == "__main__":
             first_name="Omo Wass",
             first_paragraph="We’re happy to inform you that your talk titled <span class='highlight'>Brett Cannon on Python, humans... and packaging</span> has been accepted for PyCon Togo 2025. Congratulations, and thank you for your support!",
             message=msg['body']
-      )
+        )
         subject = "Test Email"
         filename = "requirements.txt"  # Change this to your file path if needed
         send_email_with_or_without_attachment(body, msg['subject'])

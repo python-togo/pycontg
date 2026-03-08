@@ -1,5 +1,4 @@
 
-import uuid
 import qrcode
 import os
 import cloudinary
@@ -12,7 +11,10 @@ from email.message import EmailMessage
 from email.utils import formataddr
 import smtplib
 from dotenv import load_dotenv
-from email_templates import render_email_template
+from app.emails_utils.email_templates import render_email_template
+from app.utils.logger import setup_logger
+
+logger = setup_logger()
 
 load_dotenv()
 
@@ -30,12 +32,9 @@ SMTP_SERVER = os.environ.get("SMTP_SERVER")
 SMTP_SERVER_PORT = os.environ.get("SMTP_SERVER_PORT")
 
 
-FONT_PATH = "static/font/Roboto-VariableFont_wdth,wght.ttf" 
+FONT_PATH = "static/font/Roboto-VariableFont_wdth,wght.ttf"
 font_title = ImageFont.truetype(FONT_PATH, 50)
 font_text = ImageFont.truetype(FONT_PATH, 30)
-
-from PIL import Image, ImageDraw, ImageFont
-import qrcode
 
 
 def generate_ticket_image(data, name, ref, organization, country_city="Togo/Lomé"):
@@ -44,13 +43,15 @@ def generate_ticket_image(data, name, ref, organization, country_city="Togo/Lom�
     img = Image.new("RGB", (width, height), bg_color)
     draw = ImageDraw.Draw(img)
 
-    draw.text((width//2 - 250, 30), "Ticket - PyCon Togo 2025", fill="black", font=font_title)
+    draw.text((width//2 - 250, 30), "Ticket - PyCon Togo 2025",
+              fill="black", font=font_title)
     draw.text((50, 120), f"Name : {name}", fill="black", font=font_text)
     draw.text((50, 180), f"Reference : {ref}", fill="black", font=font_text)
-    draw.text((50, 240), f"Country/City : {country_city}", fill="black", font=font_text)
+    draw.text(
+        (50, 240), f"Country/City : {country_city}", fill="black", font=font_text)
     if organization:
-        draw.text((50, 300), f"Company/Community : {organization}", fill="black", font=font_text)
-
+        draw.text(
+            (50, 300), f"Company/Community : {organization}", fill="black", font=font_text)
 
     qr = qrcode.make(data).resize((230, 230))
     img.paste(qr, (900, 150))
@@ -82,7 +83,8 @@ def generate_ticket_image(data, name, ref, organization, country_city="Togo/Lom�
         new_size = (int(logo.width * ratio), int(logo.height * ratio))
         resized_logos.append(logo.resize(new_size, Image.LANCZOS))
 
-    total_width = sum(logo.width for logo in resized_logos) + (len(resized_logos) - 1) * 40
+    total_width = sum(logo.width for logo in resized_logos) + \
+        (len(resized_logos) - 1) * 40
     start_x = (width - total_width) // 2
     y_position = 460
 
@@ -99,18 +101,21 @@ def upload_ticket_to_cloudinary(pil_img, filename):
     buffer = BytesIO()
     pil_img.save(buffer, format="PNG")
     buffer.seek(0)
-    result = cloudinary.uploader.upload(buffer, public_id=f"tickets/{filename}", folder="pycon2025", resource_type="image")
+    result = cloudinary.uploader.upload(
+        buffer, public_id=f"tickets/{filename}", folder="pycon2025", resource_type="image")
     return result["secure_url"]
 
 
 def send_ticket_email(participant_name, participant_email, participant_id, organization="", country_city="Togo/Lomé"):
     msg = EmailMessage()
-    ticket_url = ticket_system(data=participant_id, name=participant_name, organization=organization, country_city=country_city)
+    ticket_url = ticket_system(data=participant_id, name=participant_name,
+                               organization=organization, country_city=country_city)
     msg['Subject'] = "🎫 Your Ticket | Votre ticket pour le PyCon Togo 2025"
     msg['From'] = formataddr(('PyCon Togo Organizing Team', SENDER_EMAIL))
     msg['To'] = participant_email
 
-    msg.set_content("Votre client mail ne supporte pas HTML. Cliquez sur le lien pour télécharger votre ticket.")
+    msg.set_content(
+        "Votre client mail ne supporte pas HTML. Cliquez sur le lien pour télécharger votre ticket.")
     message = f"""
         
     <h2>Bonjour {participant_name},</h2>
@@ -136,17 +141,20 @@ def send_ticket_email(participant_name, participant_email, participant_id, organ
     with smtplib.SMTP_SSL(SMTP_SERVER, SMTP_SERVER_PORT) as server:
         server.login(SENDER_EMAIL, SENDER_EMAIL_PASSWORD)
         server.send_message(msg)
-  
+
 
 def ticket_system(data=None, name=None, organization=None, country_city="Togo/Lomé"):
     ref = generate_ticket_reference(data)
-    ticket_img = generate_ticket_image(data, name, ref, organization, country_city)
+    ticket_img = generate_ticket_image(
+        data, name, ref, organization, country_city)
     ticket_url = upload_ticket_to_cloudinary(ticket_img, ref)
     return ticket_url
 
+
 def generate_ticket_reference(participant_id):
-    short_part = str(participant_id).split("-")[0][:6].upper()  
+    short_part = str(participant_id).split("-")[0][:6].upper()
     return f"PYCONTG-2025-{short_part}"
+
 
 if __name__ == "__main__":
     data = "5c663cb9-5b6c-4ff6-a2cf-0c87f2f5127c"  # Example participant ID
@@ -156,4 +164,4 @@ if __name__ == "__main__":
     participant_email = "ibrahim@pytogo.org"
 
     send_ticket_email(name, participant_email, data, organization)
-    print("Ticket email sent successfully!")
+    logger.info("Ticket email sent successfully!")

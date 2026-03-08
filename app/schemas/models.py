@@ -3,11 +3,11 @@ from typing import List
 from uuid import UUID
 
 
-
-
 class User(BaseModel):
-    username: str = Field(..., title="Username", description="Username of the user")
-    email: str = Field(..., title="Email", description="Email address of the user")
+    username: str = Field(..., title="Username",
+                          description="Username of the user")
+    email: str = Field(..., title="Email",
+                       description="Email address of the user")
     is_active: bool = Field(
         True, title="Is Active", description="Indicates if the user is active"
     )
@@ -17,21 +17,6 @@ class User(BaseModel):
     is_verified: bool = Field(
         False, title="Is Verified", description="Indicates if the user is verified"
     )
-
-
-# class Speacker(BaseModel):
-#     first_name: str = Field(
-#         ..., title="First Name", description="First name of the speaker"
-#     )
-#     last_name: str = Field(
-#         ..., title="Last Name", description="Last name of the speaker"
-#     )
-#     proposal_id: int = Field(
-#         ..., title="Proposal ID", description="ID of the proposal"
-#     )
-#     image: str = Field(
-#         None, title="Image", description="Image of the speaker (URL or path)"
-#     )
 
 
 class Proposal(BaseModel):
@@ -44,9 +29,12 @@ class Proposal(BaseModel):
     last_name: str = Field(
         ..., title="Last Name", description="Last name of the speaker"
     )
-    email: str = Field(..., title="Email", description="Email address of the speaker")
-    phone: str = Field(None, title="Phone", description="Phone number of the speaker")
-    title: str = Field(..., title="Talk Title", description="Title of the talk")
+    email: str = Field(..., title="Email",
+                       description="Email address of the speaker")
+    phone: str = Field(None, title="Phone",
+                       description="Phone number of the speaker")
+    title: str = Field(..., title="Talk Title",
+                       description="Title of the talk")
     level: str = Field(
         ...,
         title="Talk Level",
@@ -78,13 +66,12 @@ class Proposal(BaseModel):
     accepted: bool = Field(
         False, title="Accepted", description="Indicates if the proposal is accepted"
     )
-   
-    
 
 
 class SponsorInquiry(BaseModel):
     company: str = Field(..., title="Name", description="Name of the sponsor")
-    email: str = Field(..., title="Email", description="Email address of the sponsor")
+    email: str = Field(..., title="Email",
+                       description="Email address of the sponsor")
     website: str = Field(
         ..., title="Company URL", description="URL of the sponsor's company"
     )
@@ -94,11 +81,13 @@ class SponsorInquiry(BaseModel):
     title: str = Field(
         ..., title="Contact Title", description="Title of the contact person"
     )
-    phone: str = Field(None, title="Phone", description="Phone number of the sponsor")
+    phone: str = Field(None, title="Phone",
+                       description="Phone number of the sponsor")
     level: str = Field(
         ..., title="Sponsorship Level", description="Level of sponsorship"
     )
-    message: str = Field(..., title="Message", description="Message from the sponsor")
+    message: str = Field(..., title="Message",
+                         description="Message from the sponsor")
     paid: bool = Field(
         False, title="Paid", description="Indicates if the sponsorship is paid"
     )
@@ -111,8 +100,10 @@ class VolunteerInquiry(BaseModel):
     last_name: str = Field(
         ..., title="Last Name", description="Last name of the volunteer"
     )
-    email: str = Field(..., title="Email", description="Email address of the volunteer")
-    phone: str = Field(None, title="Phone", description="Phone number of the volunteer")
+    email: str = Field(..., title="Email",
+                       description="Email address of the volunteer")
+    phone: str = Field(None, title="Phone",
+                       description="Phone number of the volunteer")
     country_city: str = Field(
         ..., title="Country/City", description="Country or city of the volunteer"
     )

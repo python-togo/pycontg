@@ -1,12 +1,12 @@
-from config import supabase
-from migration import create_sponsor_tiers
+from app.database.config import supabase
+from app.database.migration import create_sponsor_tiers
+from app.utils.logger import setup_logger
 
-
-
+logger = setup_logger()
 
 
 swags = [
-         {
+    {
         "name": "Black PyCon Togo 2025 T-Shirt",
         "description": "Proudly represent the Python Togo community with our official t-shirt. Made from high-quality cotton.",
         "price": 3000,
@@ -16,7 +16,7 @@ swags = [
             "static/images/swags/unisex-lightweight-t-shirt-black-front-688a5d3c5ed2a.png",
         ],
     },
-        {
+    {
         "name": "White Python Togo T-Shirt",
         "description": "Proudly represent the Python Togo community with our official t-shirt. Made from high-quality cotton.",
         "price": 3000,
@@ -24,7 +24,7 @@ swags = [
         "originalPrice": 5000,
         "images": [
             "static/images/swags/1pythontogo.png",
-     
+
             "static/images/swags/tshirt5.png",
         ],
     },
@@ -36,12 +36,12 @@ swags = [
         "originalPrice": 5000,
         "images": [
             "static/images/swags/2pythontogo.png",
-     
+
             "static/images/swags/tshirt5.png",
         ],
     },
-   
-     {
+
+    {
         "name": "Red Python Togo 2025 T-Shirt",
         "description": "Proudly represent the Python Togo community with our official t-shirt. Made from high-quality cotton.",
         "price": 3000,
@@ -58,7 +58,7 @@ swags = [
             "static/images/swags/tshirt5.png",
         ],
     },
-      {
+    {
         "name": "White PyCon Togo 2025 T-Shirt",
         "description": "Proudly represent the Python Togo community with our official t-shirt. Made from high-quality cotton.",
         "price": 3000,
@@ -112,7 +112,7 @@ swags = [
             "static/images/swags/stickers2.png",
         ],
     },
-     {
+    {
         "name": "PyCon Togo 2025 Stickers",
         "description": "Decorate your laptop, phone, and more with our PyCon Togo 2025 stickers. Durable and waterproof.",
         "price": 1000,
@@ -124,7 +124,7 @@ swags = [
             "static/images/swags/stickers2.png",
         ],
     },
-         {
+    {
         "name": "PyCon Togo 2025 Stickers",
         "description": "Decorate your laptop, phone, and more with our PyCon Togo 2025 stickers. Durable and waterproof.",
         "price": 1000,
@@ -176,8 +176,8 @@ swags = [
         "originalPrice": 3500,
         "images": [
             "static/images/swags/cap.png",
-            
-            ],
+
+        ],
     },
     {
         "name": "Python Togo Cap",
@@ -196,7 +196,7 @@ swags = [
             "static/images/swags/cap6.png",
         ],
     },
-        {
+    {
         "name": "Red PyCon Togo 2025 Cap",
         "description": "Complete your tech look with our exclusive Red PyCon Togo 2025  cap. Adjustable and comfortable.",
         "price": "SOLD OUT",
@@ -214,6 +214,7 @@ swags = [
 def get_swags():
     return swags
 
+
 def get_sponsorteirs():
     """
     Fetch all sponsor tiers from the database.
@@ -222,31 +223,34 @@ def get_sponsorteirs():
     response = supabase.table("sponsortiers").select("*").execute()
     data = response.data
     if len(data) == 0:
-        print("No sponsor tiers found.")
+        logger.info("No sponsor tiers found.")
         return []
 
     for tier in data:
         tier["amount_cfa"] = int(tier["amount_cfa"])
         tier["amount_usd"] = int(float(tier["amount_usd"]))
         tier["availability"] = int(tier["availability"])
-    
+
     return data
+
 
 def get_sponsortirtbytitle(title):
     """
     Fetch a specific sponsor tier by its title.
     """
     create_sponsor_tiers()
-    response = supabase.table("sponsortiers").select("*").eq("title", title).execute()
+    response = supabase.table("sponsortiers").select(
+        "*").eq("title", title).execute()
     data = response.data
     if len(data) == 0:
-        print(f"No sponsor tier found with title: {title}")
+        logger.info(f"No sponsor tier found with title: {title}")
         return None
     data[0]["amount_cfa"] = int(data[0]["amount_cfa"])
     data[0]["amount_usd"] = int(float(data[0]["amount_usd"]))
     data[0]["availability"] = int(data[0]["availability"])
-    
+
     return data[0]
+
 
 def get_something_email(table, email):
     """
@@ -255,9 +259,10 @@ def get_something_email(table, email):
     response = supabase.table(table).select("*").eq("email", email).execute()
     data = response.data
     if len(data) == 0:
-        print(f"No entry found with email: {email}")
+        logger.info(f"No entry found with email: {email}")
         return None
     return data[0]
+
 
 def get_something_by_field(table, field, value):
     """
@@ -266,18 +271,21 @@ def get_something_by_field(table, field, value):
     response = supabase.table(table).select("*").eq(field, value).execute()
     data = response.data
     if len(data) == 0:
-        print(f"No entry found with {field}: {value}")
+        logger.info(f"No entry found with {field}: {value}")
         return None
     return data
+
 
 def get_something_by_email_firstname_lastname(table, email, firstname, lastname):
     """
     Fetch a specific entry by email, first name, and last name from a given table.
     """
-    response = supabase.table(table).select("*").eq("email", email).eq("firstname", firstname).eq("lastname", lastname).execute()
+    response = supabase.table(table).select(
+        "*").eq("email", email).eq("firstname", firstname).eq("lastname", lastname).execute()
     data = response.data
     if len(data) == 0:
-        print(f"No entry found with email: {email}, firstname: {firstname}, lastname: {lastname}")
+        logger.info(
+            f"No entry found with email: {email}, firstname: {firstname}, lastname: {lastname}")
         return None
     return data[0]
 
@@ -288,11 +296,12 @@ def insert_something(table, data):
     """
     response = supabase.table(table).insert(data).execute()
     if response:
-        print("Data inserted successfully.")
+        logger.info("Data inserted successfully.")
         return True
     else:
-        print(f"Failed to insert data: {response.error}")
+        logger.error(f"Failed to insert data: {response.error}")
         return False
+
 
 def update_something(table, email, data):
     """
@@ -300,11 +309,12 @@ def update_something(table, email, data):
     """
     response = supabase.table(table).update(data).eq("email", email).execute()
     if response.status_code == 200:
-        print("Data updated successfully.")
+        logger.info("Data updated successfully.")
         return True
     else:
-        print(f"Failed to update data: {response.error}")
+        logger.error(f"Failed to update data: {response.error}")
         return False
+
 
 def get_everything(table):
     """
@@ -316,6 +326,7 @@ def get_everything(table):
         return {"message": "No entries found"}
     return data
 
+
 def get_everything_where(table, field, value):
     """
     Get everything in a particular table where a specific field matches a value
@@ -326,7 +337,7 @@ def get_everything_where(table, field, value):
         return {"message": "No entries found"}
     return data
 
+
 if __name__ == "__main__":
     tiers = get_sponsorteirs()
-    print(tiers)
-  
+    logger.info(tiers)
