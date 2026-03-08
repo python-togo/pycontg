@@ -4,12 +4,15 @@ from email.utils import formataddr
 import smtplib
 from dotenv import load_dotenv
 
-from datas import get_something_by_field
-from email_templates import attendees, render_email_attendees, render_sponsor_email, render_speaker_email
+from app.database.datas import get_something_by_field
+from app.emails_utils.email_templates import (
+    attendees,
+    render_email_attendees,
+    render_sponsor_email,
+    render_speaker_email,
+)
 
 load_dotenv()
-
-
 
 
 SENDER_EMAIL = os.environ.get("SENDER_EMAIL")
@@ -26,15 +29,13 @@ def send_email(subject, body, email_to):
     msg['From'] = formataddr(('PyCon Togo Organizing Team', SENDER_EMAIL))
     msg['To'] = email_to
 
-   
     full_message = body
     msg.add_alternative(full_message, subtype='html')
 
-    
     with smtplib.SMTP_SSL(SMTP_SERVER, SMTP_SERVER_PORT) as server:
         server.login(SENDER_EMAIL, SENDER_EMAIL_PASSWORD)
         server.send_message(msg)
-   
+
 
 def send_sponsor_email(first_name="Pythonista", email_to="sponsor@example.com"):
     message, subject = render_sponsor_email(first_name=first_name)
