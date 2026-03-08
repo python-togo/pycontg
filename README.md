@@ -1,4 +1,4 @@
-# pycontg25
+# PyCon Togo
 
 ### How to contriute
 
