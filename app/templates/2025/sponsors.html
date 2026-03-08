@@ -3,8 +3,8 @@
 Sponsors - PyCon Togo 2025
 {% endblock %}
 {% block style %}
-<script src="../static/js/sponsors.js" defer></script>
-<link rel="stylesheet" href="../static/css/sponsors.css">
+<script src="{{ url_for('static', path='js/sponsors.js') }}" defer></script>
+<link rel="stylesheet" href="{{ url_for('static', path='css/sponsors.css') }}">
 
 
 {% endblock %}

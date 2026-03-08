@@ -1,0 +1,457 @@
+/* Call for Speakers Page Styles */
+
+/* Form Wrapper */
+.cfs-form-section {
+    background: linear-gradient(135deg, rgba(0, 255, 127, 0.05) 0%, rgba(0, 255, 127, 0.02) 100%);
+    padding: 60px 20px;
+}
+
+.cfs-form-wrapper {
+    max-width: 750px;
+    background: white;
+    border-radius: 16px;
+    padding: 50px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.form-header h2 {
+    font-size: 32px;
+    color: var(--text);
+    margin-bottom: 12px;
+}
+
+.form-header p {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Form Structure */
+.cfs-form {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.form-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.form-fieldset legend {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #f0f0f0;
+    display: block;
+    width: 100%;
+}
+
+.fieldset-note {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+/* Form Layout */
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--green);
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(0, 255, 127, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.form-group select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 18px;
+    padding-right: 38px;
+}
+
+.form-group small {
+    font-size: 13px;
+    color: #999;
+    margin-top: 6px;
+    display: block;
+}
+
+/* Input Placeholder Styling */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #bbb;
+}
+
+/* Help Text */
+.form-group small {
+    font-style: italic;
+    letter-spacing: 0.3px;
+}
+
+/* Submit Button */
+.btn-lg {
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.btn-primary {
+    background-color: var(--green);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #00dd99;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 255, 127, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-primary:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Success Message */
+.form-success {
+    text-align: center;
+    padding: 40px 20px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #f0fff7 0%, #e8fff0 100%);
+    border: 1px solid #a8f5d0;
+}
+
+.success-check {
+    font-size: 64px;
+    margin-bottom: 20px;
+    animation: bounce 0.6s ease-out;
+}
+
+@keyframes bounce {
+    0% {
+        transform: scale(0.3) translateY(-10px);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.form-success h3 {
+    font-size: 28px;
+    color: var(--text);
+    margin-bottom: 12px;
+}
+
+.form-success p {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.form-success .btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 24px;
+    background-color: var(--green);
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.form-success .btn:hover {
+    background-color: #00dd99;
+    transform: translateY(-2px);
+}
+
+/* Timeline Section */
+.cfs-timeline {
+    margin-top: 80px;
+}
+
+.cfs-timeline h2 {
+    font-size: 28px;
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.timeline-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.timeline-item {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    border-left: 4px solid var(--green);
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.timeline-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.timeline-marker {
+    font-size: 32px;
+    flex-shrink: 0;
+}
+
+.timeline-content h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+}
+
+.timeline-content p {
+    font-size: 14px;
+    color: #999;
+}
+
+/* FAQ Section */
+.cfs-faq h2 {
+    font-size: 28px;
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.faq-item {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    border-left: 4px solid var(--green);
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.faq-item h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 12px;
+}
+
+.faq-item p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Benefits Section */
+.cfs-intro {
+    margin: 40px 0;
+}
+
+.cfs-intro h2 {
+    font-size: 28px;
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.cfs-benefits {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.benefit-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    border-color: var(--green);
+}
+
+.benefit-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.benefit-card p {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .cfs-form-wrapper {
+        padding: 30px 20px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline-items {
+        grid-template-columns: 1fr;
+    }
+
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cfs-benefits {
+        grid-template-columns: 1fr;
+    }
+
+    .form-header h2 {
+        font-size: 24px;
+    }
+
+    .form-fieldset legend {
+        font-size: 18px;
+    }
+
+    .btn-lg {
+        padding: 14px 24px;
+        font-size: 15px;
+    }
+
+    .success-check {
+        font-size: 48px;
+    }
+
+    .form-success h3 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cfs-form-wrapper {
+        padding: 20px 15px;
+        border-radius: 12px;
+    }
+
+    .form-header h2 {
+        font-size: 20px;
+    }
+
+    .form-fieldset legend {
+        font-size: 16px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+
+    .timeline-item {
+        padding: 15px;
+    }
+
+    .timeline-marker {
+        font-size: 28px;
+    }
+
+    .faq-item {
+        padding: 20px;
+    }
+
+    .btn-lg {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}
+
+/* Hidden class for JS */
+.hidden {
+    display: none !important;
+}

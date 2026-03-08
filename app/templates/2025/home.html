@@ -7,9 +7,9 @@ Home - PyCon Togo 2025
 
 {% block style %}
 
-<script src="../static/js/main.js" defer></script>
-<script src="../static/js/home.js" defer></script>
-<script src="../static/js/currencyconverter.js" defer></script>
+<script src="{{ url_for('static', path='js/main.js') }}" defer></script>
+<script src="{{ url_for('static', path='js/home.js') }}" defer></script>
+<script src="{{ url_for('static', path='js/currencyconverter.js') }}" defer></script>
 
 
 
@@ -75,13 +75,13 @@ Home - PyCon Togo 2025
             <div class="partner-logo pytogo_logo">
 
                <a href="https://www.pytogo.org/" target="_blank">
-                   <img src="../static/images/pythontogo.png" alt="Pythontogo Logo">
+                   <img src="{{ url_for('static', path='images/pythontogo.png') }}" alt="Pythontogo Logo">
                </a>
             </div>
                <div class="partner-logo psf_logo">
 
                 <a href="https://www.python.org/psf/" target="_blank">
-                    <img src="../static/images/parteners/psf-logo.png" alt="PSF Logo">
+                    <img src="{{ url_for('static', path='images/parteners/psf-logo.png') }}" alt="PSF Logo">
                 </a>
             </div>
         

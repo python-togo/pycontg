@@ -1,0 +1,44 @@
+/* About page anchors respect sticky navbar */
+#about-us,
+#about-coc,
+#about-health {
+    scroll-margin-top: calc(var(--nav-h) + 20px);
+}
+
+.health-proof-grid {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.health-proof-item {
+    margin: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: #f7f8f9;
+}
+
+.health-proof-item img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    display: block;
+}
+
+.health-proof-item figcaption {
+    padding: 10px 12px;
+    font-size: 13px;
+    color: var(--text-mid);
+}
+
+@media (max-width: 760px) {
+    .health-proof-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .health-proof-item img {
+        height: 220px;
+    }
+}

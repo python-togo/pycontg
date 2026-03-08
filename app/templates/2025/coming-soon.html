@@ -6,9 +6,9 @@ Coming soon - PyCon Togo 2025
 {% endblock %}
 
 {% block style %}
-<script src="../static/js/main.js" defer></script>
-<script src="../static/js/home.js" defer></script>
-<link rel="stylesheet" href="../static/css/coming-soon.css">
+<script src="{{ url_for('static', path='js/main.js') }}" defer></script>
+<script src="{{ url_for('static', path='js/home.js') }}" defer></script>
+<link rel="stylesheet" href="{{ url_for('static', path='css/coming-soon.css') }}">
 
 {% endblock %}
 

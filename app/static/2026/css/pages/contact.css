@@ -1,0 +1,4 @@
+/* Contact page specific spacing */
+.contact-layout {
+    scroll-margin-top: calc(var(--nav-h) + 20px);
+}

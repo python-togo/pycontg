@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="page active" id="page-partners">
+    <section class="page-hero">
+        <div class="container">
+            <span class="eyebrow reveal" data-i18n-en="Sponsors & Partners"
+                data-i18n-fr="Sponsors & partenaires">Sponsors & partenaires</span>
+            <h1 class="reveal reveal-d1" data-i18n-html-en="Our Sponsors<br /><em>& Partners</em>"
+                data-i18n-html-fr="Nos sponsors<br /><em>et partenaires</em>">Nos sponsors<br /><em>et partenaires</em>
+            </h1>
+            <p class="page-hero-sub reveal reveal-d2"
+                data-i18n-en="Driving the Python revolution in Africa. We are proud to collaborate with industry leaders to amplify the local developer ecosystem and bridge the digital gap."
+                data-i18n-fr="À l'avant-garde de la révolution Python en Afrique. Nous sommes fiers de collaborer avec des leaders du secteur pour renforcer l'écosystème local des développeurs et réduire la fracture numérique.">
+                À l'avant-garde de la révolution Python en Afrique. Nous sommes fiers de collaborer avec des leaders du
+                secteur pour renforcer l'écosystème local des développeurs et réduire la fracture numérique.
+            </p>
+        </div>
+    </section>
+
+    <section class="section partners-directory">
+        <div class="container">
+            {% set partners = partner_sections if partner_sections is defined else {} %}
+            {% set sponsors = partners.get('sponsors', []) %}
+            {% set partnership = partners.get('partnership_partners', []) %}
+            {% set community = partners.get('community_partners', []) %}
+            {% set python_community = partners.get('python_community_partners', []) %}
+            {% set media = partners.get('media_partners', []) %}
+            {% set other = partners.get('other_partners', []) %}
+
+            {% set s_headline = sponsors | selectattr('package_tier', 'equalto', 'headline') | list %}
+            {% set s_platinum = sponsors | selectattr('package_tier', 'equalto', 'platinum') | list %}
+            {% set s_gold = sponsors | selectattr('package_tier', 'equalto', 'gold') | list %}
+            {% set s_silver = sponsors | selectattr('package_tier', 'equalto', 'silver') | list %}
+            {% set s_bronze = sponsors | selectattr('package_tier', 'equalto', 'bronze') | list %}
+            {% set s_heart = sponsors | selectattr('package_tier', 'equalto', 'heart') | list %}
+            {% set s_custom = sponsors | selectattr('package_tier', 'equalto', 'custom') | list %}
+            {% set s_untyped = sponsors | rejectattr('package_tier') | list %}
+
+            {% macro render_tier_block(tier_key, tier_title_en, tier_title_fr, tier_items) -%}
+            {% if tier_items %}
+            <div class="tier-block tier-{{ tier_key }} reveal reveal-d1">
+                <h4 class="tier-title" data-i18n-en="{{ tier_title_en }}" data-i18n-fr="{{ tier_title_fr }}">{{
+                    tier_title_fr }}</h4>
+                <div class="partner-grid">
+                    {% for item in tier_items %}
+                    {{ partner_card(item) }}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            {%- endmacro %}
+
+            {% macro partner_card(item) -%}
+            <article class="partner-card">
+                {% if item.website_url %}
+                <a class="partner-logo-box partner-logo-link" href="{{ item.website_url }}" target="_blank"
+                    rel="noopener noreferrer" aria-label="{{ item.name }}">
+                    {% if item.logo_url %}
+                    <img src="{{ item.logo_url }}" alt="{{ item.name }}" loading="lazy" />
+                    {% else %}
+                    <span class="partner-logo-fallback">{{ item.name if item.name else 'Partner' }}</span>
+                    {% endif %}
+                </a>
+                {% else %}
+                <div class="partner-logo-box">
+                    {% if item.logo_url %}
+                    <img src="{{ item.logo_url }}" alt="{{ item.name }}" loading="lazy" />
+                    {% else %}
+                    <span class="partner-logo-fallback">{{ item.name if item.name else 'Partner' }}</span>
+                    {% endif %}
+                </div>
+                {% endif %}
+                <h4>{{ item.name }}</h4>
+                {% if item.description %}
+                <p class="partner-description">{{ item.description | truncate(100, True, '...') }}</p>
+                {% endif %}
+                {% if item.website_url %}
+                <a class="partner-link" href="{{ item.website_url }}" target="_blank" rel="noopener noreferrer"
+                    data-i18n-en="See more" data-i18n-fr="Voir plus">Voir plus</a>
+                {% endif %}
+            </article>
+            {%- endmacro %}
+
+            {% if sponsors %}
+            <div class="section-head section-head--sponsors reveal">
+                <h3 data-i18n-en="Sponsors" data-i18n-fr="Sponsors">Sponsors</h3>
+
+            </div>
+            {{ render_tier_block('headline', 'Headline', 'Headline', s_headline) }}
+            {{ render_tier_block('platinum', 'Platinum', 'Platinum', s_platinum) }}
+            {{ render_tier_block('gold', 'Gold', 'Gold', s_gold) }}
+            {{ render_tier_block('silver', 'Silver', 'Silver', s_silver) }}
+            {{ render_tier_block('bronze', 'Bronze', 'Bronze', s_bronze) }}
+            {{ render_tier_block('heart', 'Heart', 'Heart', s_heart) }}
+            {{ render_tier_block('custom', 'Custom', 'Custom', s_custom) }}
+            {{ render_tier_block('sponsors', 'Sponsors', 'Sponsors', s_untyped) }}
+            {% endif %}
+
+            {% if partnership %}
+            <div class="section-head section-head--partnership reveal" style="margin-bottom: 30px;">
+                <h3 data-i18n-en="Partners" data-i18n-fr="Partenaires">Partenaires</h3>
+
+            </div>
+            <div class="partner-grid reveal reveal-d1">
+                {% for item in partnership %}
+                {{ partner_card(item) }}
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if python_community %}
+            <div class="section-head section-head--python reveal">
+                <h3 data-i18n-en="Python Community Partners" data-i18n-fr="Partenaires communaute Python">Partenaires
+                    communaute Python</h3>
+
+            </div>
+            <div class="partner-grid reveal reveal-d1">
+                {% for item in python_community %}
+                {{ partner_card(item) }}
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if community %}
+            <div class="section-head section-head--community reveal">
+                <h3 data-i18n-en="Community Partners" data-i18n-fr="Partenaires communautaires">Partenaires
+                    communautaires</h3>
+
+            </div>
+            <div class="partner-grid reveal reveal-d1">
+                {% for item in community %}
+                {{ partner_card(item) }}
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if media %}
+            <div class="section-head section-head--media reveal">
+                <h3 data-i18n-en="Media Partners" data-i18n-fr="Partenaires media">Partenaires media</h3>
+
+            </div>
+            <div class="partner-grid reveal reveal-d1">
+                {% for item in media %}
+                {{ partner_card(item) }}
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if other %}
+            <div class="section-head section-head--other reveal">
+                <h3 data-i18n-en="Other Partners" data-i18n-fr="Autres partenaires">Autres partenaires</h3>
+            </div>
+            <div class="partner-grid reveal reveal-d1">
+                {% for item in other %}
+                {{ partner_card(item) }}
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if not sponsors and not partnership and not community and not python_community and not media and not
+            other %}
+            <div class="partners-empty reveal">
+                <p data-i18n-en="No partners available for now."
+                    data-i18n-fr="Aucun partenaire disponible pour le moment.">
+                    Aucun partenaire disponible pour le moment.
+                </p>
+            </div>
+            {% endif %}
+
+            <div class="directory-cta reveal" style="margin-top: 30px;">
+                <a class="btn btn-primary" href="/sponsors" data-i18n-en="Submit a sponsor request"
+                    data-i18n-fr="Envoyer une demande sponsor">Envoyer une demande sponsor</a>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

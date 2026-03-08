@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block style %}
-<link rel="stylesheet" href="../static/css/sponsor.css">
+<link rel="stylesheet" href="{{ url_for('static', path='css/sponsor.css') }}">
 
-<script src="../static/js/sponsor.js" defer></script>
-<script src="../static/js/currencyconverter.js" defer></script>
+<script src="{{ url_for('static', path='js/sponsor.js') }}" defer></script>
+<script src="{{ url_for('static', path='js/currencyconverter.js') }}" defer></script>
 
 
 

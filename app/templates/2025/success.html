@@ -3,8 +3,8 @@
 Success
 {% endblock %}
 {% block style %}
-<script src="../static/js/sponsor.js" defer></script>
-<link rel="stylesheet" href="../static/css/success.css">
+<script src="{{ url_for('static', path='js/sponsor.js') }}" defer></script>
+<link rel="stylesheet" href="{{ url_for('static', path='css/success.css') }}">
 
 
 {% endblock %}

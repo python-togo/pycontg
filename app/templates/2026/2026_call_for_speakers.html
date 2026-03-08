@@ -1,0 +1,253 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="page active" id="page-call-for-speakers">
+    <section class="page-hero">
+        <div class="container">
+            <span class="eyebrow reveal" data-i18n-en="Share Your Knowledge" data-i18n-fr="Partagez Votre Savoir">Partagez Votre Savoir</span>
+            <h1 class="reveal reveal-d1" data-i18n-en="Call for Speakers" data-i18n-fr="Appel à Speakers">Appel à Speakers</h1>
+            <p class="page-hero-sub reveal reveal-d2" data-i18n-en="We want to hear from you. Share your expertise and inspire our community." data-i18n-fr="Nous voulons vous entendre. Partagez votre expertise et inspirez notre communauté.">Nous voulons vous entendre. Partagez votre expertise et inspirez notre communauté.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="cfs-intro reveal">
+                <h2 data-i18n-en="Why Submit a Talk?" data-i18n-fr="Pourquoi soumettre un talk ?">Pourquoi soumettre un talk ?</h2>
+                <div class="cfs-benefits">
+                    <div class="benefit-card reveal reveal-d1">
+                        <div class="benefit-icon">01</div>
+                        <p data-i18n-en="Reach an engaged audience of Python developers, students, and tech professionals" data-i18n-fr="Atteignez un public engagé de développeurs Python, d'étudiants et de professionnels de la tech">Atteignez un public engagé de développeurs Python, d'étudiants et de professionnels de la tech</p>
+                    </div>
+                    <div class="benefit-card reveal reveal-d2">
+                        <div class="benefit-icon">02</div>
+                        <p data-i18n-en="Build your professional network with fellow speakers and community members" data-i18n-fr="Construisez votre réseau professionnel avec d'autres speakers et membres de la communauté">Construisez votre réseau professionnel avec d'autres speakers et membres de la communauté</p>
+                    </div>
+                    <div class="benefit-card reveal reveal-d3">
+                        <div class="benefit-icon">03</div>
+                        <p data-i18n-en="Contribute to the growth of the Python community in Togo and West Africa" data-i18n-fr="Contribuez à la croissance de la communauté Python au Togo et en Afrique de l'Ouest">Contribuez à la croissance de la communauté Python au Togo et en Afrique de l'Ouest</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section cfs-form-section">
+        <div class="container">
+            <div class="cfs-form-wrapper">
+                <div class="form-header reveal">
+                    <h2 data-i18n-en="Submit Your Talk" data-i18n-fr="Soumettez Votre Talk">Soumettez Votre Talk</h2>
+                    <p data-i18n-en="Fill in your information below. All fields are required unless marked optional." data-i18n-fr="Remplissez vos informations ci-dessous. Tous les champs sont obligatoires sauf s'ils sont marqués comme optionnels.">Remplissez vos informations ci-dessous. Tous les champs sont obligatoires sauf s'ils sont marqués comme optionnels.</p>
+                </div>
+
+                <form id="speaker-form" class="cfs-form reveal reveal-d1" onsubmit="handleSpeakerSubmit(event)">
+                    <!-- About You Section -->
+                    <fieldset class="form-fieldset">
+                        <legend data-i18n-en="About You" data-i18n-fr="À Propos de Vous">À Propos de Vous</legend>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label data-i18n-en="Full Name" data-i18n-fr="Nom Complet">Nom Complet *</label>
+                                <input type="text" name="fullname" placeholder="Kofi Mensah" required maxlength="100" />
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n-en="Email Address" data-i18n-fr="Adresse Email">Adresse Email *</label>
+                                <input type="email" name="email" placeholder="kofi@exemple.com" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label data-i18n-en="Short Bio" data-i18n-fr="Courte Biographie">Courte Biographie *</label>
+                            <textarea name="bio" placeholder="Parlez-nous de vous (50-150 mots)" rows="4" required></textarea>
+                            <small data-i18n-en="What's your background, expertise, and passion for Python?" data-i18n-fr="Quel est votre parcours, votre expertise et votre passion pour Python ?">Quel est votre parcours, votre expertise et votre passion pour Python ?</small>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label data-i18n-en="Location / Country" data-i18n-fr="Localisation / Pays">Localisation / Pays *</label>
+                                <input type="text" name="location" placeholder="Togo / Bénin / France / etc." required maxlength="50" />
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n-en="Years of Experience" data-i18n-fr="Années d'Expérience">Années d'Expérience *</label>
+                                <select name="experience" required>
+                                    <option value="">-- Sélectionnez --</option>
+                                    <option data-i18n-en="Beginner (0-2 years)" data-i18n-fr="Débutant (0-2 ans)" value="beginner">Débutant (0-2 ans)</option>
+                                    <option data-i18n-en="Intermediate (2-5 years)" data-i18n-fr="Intermédiaire (2-5 ans)" value="intermediate">Intermédiaire (2-5 ans)</option>
+                                    <option data-i18n-en="Advanced (5+ years)" data-i18n-fr="Avancé (5+ ans)" value="advanced">Avancé (5+ ans)</option>
+                                </select>
+                                <small data-i18n-en="How long have you worked with Python?" data-i18n-fr="Depuis combien de temps travaillez-vous avec Python ?">Depuis combien de temps travaillez-vous avec Python ?</small>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Your Presentation Section -->
+                    <fieldset class="form-fieldset">
+                        <legend data-i18n-en="Your Presentation" data-i18n-fr="Votre Présentation">Votre Présentation</legend>
+
+                        <div class="form-group">
+                            <label data-i18n-en="Presentation Title" data-i18n-fr="Titre de la Présentation">Titre de la Présentation *</label>
+                            <input type="text" name="talk_title" placeholder="Comment Construire Votre Première API Django" required maxlength="150" />
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label data-i18n-en="Format" data-i18n-fr="Format">Format *</label>
+                                <select name="format" required>
+                                    <option value="">-- Sélectionnez --</option>
+                                    <option data-i18n-en="Workshop (Hands-on, 3-4 hours)" data-i18n-fr="Workshop (Pratique, 3-4 heures)" value="workshop">Workshop (Pratique, 3-4 heures)</option>
+                                    <option data-i18n-en="Keynote (Inspiring opening talk, 45 min)" data-i18n-fr="Keynote (Talk d'ouverture inspirant, 45 min)" value="keynote">Keynote (Talk d'ouverture inspirant, 45 min)</option>
+                                    <option data-i18n-en="Standard Talk (Technical presentation, 30-45 min)" data-i18n-fr="Talk Standard (Présentation technique, 30-45 min)" value="talk">Talk Standard (Présentation technique, 30-45 min)</option>
+                                    <option data-i18n-en="Panel Discussion (Multiple speakers, 45 min)" data-i18n-fr="Panel Discussion (Plusieurs speakers, 45 min)" value="panel">Panel Discussion (Plusieurs speakers, 45 min)</option>
+                                    <option data-i18n-en="Lightning Talk (Quick session, 10-15 min)" data-i18n-fr="Lightning Talk (Session rapide, 10-15 min)" value="lightning">Lightning Talk (Session rapide, 10-15 min)</option>
+                                </select>
+                                <small data-i18n-en="What type of presentation are you proposing?" data-i18n-fr="Quel type de présentation proposez-vous ?">Quel type de présentation proposez-vous ?</small>
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n-en="Target Audience Level" data-i18n-fr="Niveau du Public Cible">Niveau du Public Cible *</label>
+                                <select name="level" required>
+                                    <option value="">-- Sélectionnez --</option>
+                                    <option data-i18n-en="Beginner" data-i18n-fr="Débutant" value="beginner">Débutant</option>
+                                    <option data-i18n-en="Intermediate" data-i18n-fr="Intermédiaire" value="intermediate">Intermédiaire</option>
+                                    <option data-i18n-en="Advanced" data-i18n-fr="Avancé" value="advanced">Avancé</option>
+                                    <option data-i18n-en="All Levels" data-i18n-fr="Tous les Niveaux" value="all">Tous les Niveaux</option>
+                                </select>
+                                <small data-i18n-en="Who is this presentation for?" data-i18n-fr="Pour qui est cette présentation ?">Pour qui est cette présentation ?</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label data-i18n-en="Presentation Description" data-i18n-fr="Description de la Présentation">Description de la Présentation *</label>
+                            <textarea name="description" placeholder="Décrivez votre talk en détail (200-500 mots)..." rows="6" required minlength="50"></textarea>
+                            <small data-i18n-en="Help the program committee understand your presentation idea" data-i18n-fr="Aidez le comité de sélection à comprendre votre idée de présentation">Aidez le comité de sélection à comprendre votre idée de présentation</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label data-i18n-en="Topics/Tags" data-i18n-fr="Sujets/Tags">Sujets/Tags *</label>
+                            <input type="text" name="topics" placeholder="ex. Django, Data Science, Développement Web, DevOps..." required maxlength="200" />
+                            <small data-i18n-en="What are the main topics covered? (Separate with commas)" data-i18n-fr="Quels sont les sujets principaux ? (Séparez par des virgules)">Quels sont les sujets principaux ? (Séparez par des virgules)</small>
+                        </div>
+                    </fieldset>
+
+                    <!-- Your Links Section -->
+                    <fieldset class="form-fieldset">
+                        <legend data-i18n-en="Your Links" data-i18n-fr="Vos Liens">Vos Liens</legend>
+                        <p class="fieldset-note" data-i18n-en="All links in this section are optional but help us learn more about you." data-i18n-fr="Tous les liens de cette section sont optionnels mais nous aident à mieux vous connaître.">Tous les liens de cette section sont optionnels mais nous aident à mieux vous connaître.</p>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label data-i18n-en="LinkedIn Profile" data-i18n-fr="Profil LinkedIn">Profil LinkedIn</label>
+                                <input type="url" name="linkedin" placeholder="https://linkedin.com/in/nonutilisateur" />
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n-en="GitHub Profile" data-i18n-fr="Profil GitHub">Profil GitHub</label>
+                                <input type="url" name="github" placeholder="https://github.com/nonutilisateur" />
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label data-i18n-en="Personal Website / Portfolio" data-i18n-fr="Site Personnel / Portfolio">Site Personnel / Portfolio</label>
+                                <input type="url" name="portfolio" placeholder="https://votresite.com" />
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n-en="Twitter/X Profile" data-i18n-fr="Profil Twitter/X">Profil Twitter/X</label>
+                                <input type="url" name="twitter" placeholder="https://twitter.com/nonutilisateur" />
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <button type="submit" class="btn btn-primary btn-lg" id="speaker-submit-btn" data-i18n-en="Submit My Talk →" data-i18n-fr="Soumettre Mon Talk →">Soumettre Mon Talk →</button>
+                </form>
+
+                <div id="speaker-success" class="form-success hidden" style="display: none;">
+                    <div class="success-check">✓</div>
+                    <h3 data-i18n-en="Thank You!" data-i18n-fr="Merci !">Merci !</h3>
+                    <p data-i18n-en="Your talk proposal has been received. The program committee will review your submission and contact you soon." data-i18n-fr="Votre proposition de talk a été reçue. Le comité de sélection examinera votre soumission et vous contactera bientôt.">Votre proposition de talk a été reçue. Le comité de sélection examinera votre soumission et vous contactera bientôt.</p>
+                    <a class="btn btn-primary" href="/" data-i18n-en="Back to Home" data-i18n-fr="Retour à l'Accueil">Retour à l'Accueil</a>
+                </div>
+            </div>
+
+            <!-- Timeline Section -->
+            <div class="cfs-timeline reveal" style="margin-top: 60px;">
+                <h2 data-i18n-en="Important Dates" data-i18n-fr="Dates Importantes">Dates Importantes</h2>
+                <div class="timeline-items">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4 data-i18n-en="Submission Deadline" data-i18n-fr="Date limite">Date limite</h4>
+                            <p data-i18n-en="May 31, 2026" data-i18n-fr="31 mai 2026">31 mai 2026</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4 data-i18n-en="Notification Date" data-i18n-fr="Date de notification">Date de notification</h4>
+                            <p data-i18n-en="June 15, 2026" data-i18n-fr="15 juin 2026">15 juin 2026</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4 data-i18n-en="Speaker Confirmation" data-i18n-fr="Confirmation des speakers">Confirmation des speakers</h4>
+                            <p data-i18n-en="Until June 30, 2026" data-i18n-fr="Avant le 30 juin 2026">Avant le 30 juin 2026</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section cfs-faq" style="background-color: #f8f9fa;">
+        <div class="container">
+            <h2 class="reveal" data-i18n-en="Frequently Asked Questions" data-i18n-fr="Questions Fréquemment Posées">Questions Fréquemment Posées</h2>
+            
+            <div class="faq-grid reveal reveal-d1">
+                <div class="faq-item">
+                    <h4 data-i18n-en="Can I submit multiple talks?" data-i18n-fr="Puis-je soumettre plusieurs talks ?">Puis-je soumettre plusieurs talks ?</h4>
+                    <p data-i18n-en="Yes! You can submit up to 3 talk proposals. However, we'll likely select only one." data-i18n-fr="Oui ! Vous pouvez soumettre jusqu'à 3 propositions. Cependant, nous sélectionnerons probablement une seule.">Oui ! Vous pouvez soumettre jusqu'à 3 propositions. Cependant, nous sélectionnerons probablement une seule.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 data-i18n-en="Is the talk in English or French?" data-i18n-fr="Le talk doit-il être en anglais ou en français ?">Le talk doit-il être en anglais ou en français ?</h4>
+                    <p data-i18n-en="Talks can be in English or French. Please specify your preferred language in your submission." data-i18n-fr="Les talks peuvent être en anglais ou en français. Veuillez spécifier votre langue préférée.">Les talks peuvent être en anglais ou en français. Veuillez spécifier votre langue préférée.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 data-i18n-en="Will travel be provided?" data-i18n-fr="Le voyage sera-t-il pris en charge ?">Le voyage sera-t-il pris en charge ?</h4>
+                    <p data-i18n-en="International speakers may be supported. We'll discuss this individually with selected keynote speakers." data-i18n-fr="Les speakers internationaux peuvent être soutenus. Nous en discuterons individuellement avec les speakers sélectionnés.">Les speakers internationaux peuvent être soutenus. Nous en discuterons individuellement avec les speakers sélectionnés.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 data-i18n-en="What if I'm new to public speaking?" data-i18n-fr="Et si je suis nouveau dans les présentations publiques ?">Et si je suis nouveau dans les présentations publiques ?</h4>
+                    <p data-i18n-en="No experience needed! We welcome first-time speakers. The PyCon Togo team will support you." data-i18n-fr="Aucune expérience nécessaire ! Nous accueillons les nouveaux speakers. L'équipe de PyCon Togo vous accompagnera.">Aucune expérience nécessaire ! Nous accueillons les nouveaux speakers. L'équipe de PyCon Togo vous accompagnera.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 data-i18n-en="Is there a speaker fee?" data-i18n-fr="Y a-t-il une rémunération pour les speakers ?">Y a-t-il une rémunération pour les speakers ?</h4>
+                    <p data-i18n-en="Selected speakers receive free tickets and participate in social events at no cost." data-i18n-fr="Les speakers sélectionnés reçoivent des tickets gratuits et participent aux événements sociaux gratuitement.">Les speakers sélectionnés reçoivent des tickets gratuits et participent aux événements sociaux gratuitement.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 data-i18n-en="Contact & Questions" data-i18n-fr="Contact & Questions">Contact & Questions</h4>
+                    <p data-i18n-en="Email us at speakers@pytogo.org with any questions about the submission process." data-i18n-fr="Envoyez-nous un email à speakers@pytogo.org pour toute question sur le processus de soumission.">Envoyez-nous un email à speakers@pytogo.org pour toute question sur le processus de soumission.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+function handleSpeakerSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('speaker-submit-btn');
+  const form = document.getElementById('speaker-form');
+  const success = document.getElementById('speaker-success');
+
+  btn.textContent = 'Envoi en cours...';
+  btn.disabled = true;
+
+  // Simulate submission delay
+  setTimeout(() => {
+    form.style.display = 'none';
+    success.style.display = 'block';
+    window.scrollTo({ top: success.offsetTop - 100, behavior: 'smooth' });
+  }, 1500);
+}
+</script>
+
+{% endblock %}

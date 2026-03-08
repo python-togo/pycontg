@@ -1,32 +1,32 @@
 import typing
+
+from app.schemas.models import ContactFormPayload
 if not hasattr(typing, "_ClassVar") and hasattr(typing, "ClassVar"):
     typing._ClassVar = typing.ClassVar
 
-
-import os
 from fastapi import FastAPI, HTTPException, Request
-from app.routers.router_2025 import router as router_2025
+from app.routers.router_2025 import router_2025
 from app.routers.router_2026 import router as router_2026
-from dotenv import load_dotenv
 from fastapi import FastAPI, Request, HTTPException, status
 from fastapi.templating import Jinja2Templates
-from fastapi.responses import HTMLResponse, RedirectResponse, Response
+from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse, Response
 from fastapi.staticfiles import StaticFiles
 from datetime import datetime,  timezone
 from pathlib import Path
+from app.core.settings import settings
+import httpx
 
-load_dotenv()
 
-
-ENV = os.getenv("ENV", "dev")
+ENV = settings.env
 
 app = FastAPI(
-    title="PyCon Tog0 Official Website",
-    description="The official website for PyCon Tog0, the premier Python conference in Togo. Join us for an unforgettable experience filled with inspiring talks, hands-on workshops, and vibrant community engagement. Whether you're a seasoned developer or just starting your Python journey, PyCon Tog0 offers something for everyone. Stay tuned for updates on speakers, schedules, and registration details as we prepare to bring the Python community together in Togo!",
-    version="1.1.0",
-    openapi_url="/openapi.json" if ENV == "dev" or ENV == "local" else None,
-    docs_url="/docs" if ENV == "dev" or ENV == "local" else None,
-    redoc_url="/redoc" if ENV == "dev" or ENV == "local" else None,
+    title=settings.name,
+    description="The official website for PyCon Togo, the premier Python conference in Togo. Join us for an unforgettable experience filled with inspiring talks, hands-on workshops, and vibrant community engagement. Whether you're a seasoned developer or just starting your Python journey, PyCon Togo offers something for everyone. Stay tuned for updates on speakers, schedules, and registration details as we prepare to bring the Python community together in Togo!",
+    version=settings.version,
+    openapi_url="/openapi.json" if ENV in ["dev",
+                                           "local", "development"] else None,
+    docs_url="/docs" if ENV in ["dev", "local", "development"] else None,
+    redoc_url="/redoc" if ENV in ["dev", "local", "development"] else None,
 )
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -87,6 +87,88 @@ async def http_exception_handler(request: Request, exc: HTTPException):
             status_code=status_code,
             media_type="text/plain",
         )
+
+
+@app.get("/talents")
+def talents(request: Request):
+    return template.TemplateResponse(
+        request=request,
+        name="talents.html",
+        context={
+            "year": year,
+        },
+    )
+
+
+@app.post("/contact/send")
+async def send_contact_message(payload: ContactFormPayload):
+    normalized_payload = {
+        "name": payload.name.strip(),
+        "email": str(payload.email).strip(),
+        "subject": payload.subject.strip() or "General inquiry",
+        "message": payload.message.strip(),
+    }
+
+    target_url = (
+        f"{settings.python_togo_api_base_url.rstrip('/')}/contacts/send"
+    )
+    print(
+        f"Prepared contact form payload: {normalized_payload} to be sent to {target_url}")
+    headers = {
+        "Authorization": f"Bearer {settings.python_togo_api_key}",
+        "Content-Type": "application/json",
+    }
+    print(
+        f"Sending contact form data to {target_url} with payload: {normalized_payload}")
+
+    try:
+        async with httpx.AsyncClient(
+            timeout=settings.python_togo_api_timeout_seconds
+        ) as client:
+            response = await client.post(
+                target_url,
+                headers=headers,
+                json=normalized_payload,
+            )
+    except httpx.TimeoutException as exc:
+        raise HTTPException(
+            status_code=status.HTTP_504_GATEWAY_TIMEOUT,
+            detail="The contact service took too long to respond.",
+        ) from exc
+    except httpx.HTTPError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_502_BAD_GATEWAY,
+            detail="Unable to reach the contact service.",
+        ) from exc
+
+    if response.status_code >= 400:
+        error_detail = "Contact submission failed. Please try again later."
+        try:
+            api_error = response.json()
+            if isinstance(api_error, dict):
+                detail_value = api_error.get(
+                    "detail") or api_error.get("message")
+                if detail_value:
+                    error_detail = str(detail_value)
+
+        except ValueError:
+            pass
+
+        raise HTTPException(
+            status_code=response.status_code, detail=error_detail)
+
+    success_message = "Message sent successfully."
+    try:
+        data = response.json()
+        if isinstance(data, dict) and data.get("message"):
+            success_message = str(data["message"])
+    except ValueError:
+        pass
+
+    return JSONResponse(
+        status_code=status.HTTP_201_CREATED,
+        content={"ok": True, "message": success_message},
+    )
 
 
 if __name__ == "__main__":

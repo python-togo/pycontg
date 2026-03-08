@@ -1,0 +1,4 @@
+/* Ticket page specific spacing */
+.tickets-grid {
+    scroll-margin-top: calc(var(--nav-h) + 20px);
+}

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ page_title or 'PyCon Togo 2026 — The Python Conference of Togo' }}</title>
+    <meta name="description"
+        content="{{ page_description or 'PyCon Togo 2026 — The national conference for the Python community in Togo. Lome, Togo.' }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="shortcut icon" href=" {{ url_for('static', path='2026/images/favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', path='2026/css/style.css') }}" />
+    {% if page_css %}
+    <link rel="stylesheet" href="{{ url_for('static', path='2026/css/pages/' ~ page_css) }}" />
+    {% endif %}
+</head>
+
+<body>
+
+    <header id="navbar">
+        <div class="nav-container">
+            <a class="nav-logo" href="/">
+                <img src="{{ url_for('static', path='images/PyContg26_png/7.png') }}" alt="PyCon Togo 2026"
+                    class="logo-img" />
+            </a>
+            <nav class="nav-links" id="nav-links">
+                <a class="nav-link{% if active_page == 'home' %} active{% endif %}" data-i18n-en="Home"
+                    data-i18n-fr="Accueil" href="/">Home</a>
+                <div class="nav-dropdown">
+                    <a class="nav-link nav-dropdown-trigger{% if active_page in ['about', 'team'] %} active{% endif %}"
+                        href="/about">
+                        <span class="nav-dropdown-label" data-i18n-en="About" data-i18n-fr="À Propos">About</span>
+                        <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
+                    </a>
+                    <div class="nav-dropdown-menu" role="menu" aria-label="About submenu">
+                        <a class="nav-dropdown-item" href="/about#about-us" data-i18n-en="About us"
+                            data-i18n-fr="À propos de nous">About us</a>
+                        <a class="nav-dropdown-item" href="/coc" data-i18n-en="Code of Conduct"
+                            data-i18n-fr="Code of Conduct">Code of Conduct</a>
+                        <a class="nav-dropdown-item" href="/health_security" data-i18n-en="Health & Safety Policy"
+                            data-i18n-fr="Politique Santé & Sécurité">Health & Safety Policy</a>
+                        <a class="nav-dropdown-item" href="/team" data-i18n-en="Team" data-i18n-fr="Équipe">Team</a>
+                    </div>
+                </div>
+                <a class="nav-link{% if active_page == 'partners' %} active{% endif %}" data-i18n-en="Sponsors"
+                    data-i18n-fr="Sponsors" href="/partners">Sponsors</a>
+                <a class="nav-link{% if active_page == 'sponsors' %} active{% endif %}" data-i18n-en="Become Sponsor"
+                    data-i18n-fr="Sponsoriser" href="/sponsors">Become Sponsor</a>
+                <a class="nav-link{% if active_page == 'contact' %} active{% endif %}" data-i18n-en="Contact"
+                    data-i18n-fr="Contact" href="/contact">Contact</a>
+            </nav>
+            <div class="nav-actions">
+                <a class="btn btn-ghost" href="/call-for-speakers" data-i18n-en="Call for Speakers"
+                    data-i18n-fr="Appel à Speakers">Call for Speakers</a>
+                <a class="btn btn-primary" href="/tickets" data-i18n-en="Take your ticket"
+                    data-i18n-fr="Prendre votre ticket">Take your ticket</a>
+                <div class="lang-toggle" role="group" aria-label="Language switcher">
+                    <button id="lang-en" type="button" onclick="setLanguage('en')"
+                        aria-label="Switch to English">EN</button>
+                    <button id="lang-fr" type="button" onclick="setLanguage('fr')"
+                        aria-label="Passer en français">FR</button>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="drawer-overlay" id="drawer-overlay" onclick="closeMenu()"></div>
+    <div class="drawer" id="drawer">
+        <div class="drawer-top">
+            <img src="{{ url_for('static', path='images/PyContg26_png/2.png') }}" alt="PyCon Togo" class="logo-img"
+                style="height:36px" />
+            <button class="drawer-close" onclick="closeMenu()">✕</button>
+        </div>
+        <div class="lang-toggle drawer-lang-toggle" role="group" aria-label="Language switcher">
+            <button id="lang-en-mobile" type="button" onclick="setLanguage('en')"
+                aria-label="Switch to English">EN</button>
+            <button id="lang-fr-mobile" type="button" onclick="setLanguage('fr')"
+                aria-label="Passer en français">FR</button>
+        </div>
+        <a class="drawer-link" href="/" onclick="closeMenu()" data-i18n-en="Home" data-i18n-fr="Accueil">Home</a>
+        <a class="drawer-link" href="/about" onclick="closeMenu()" data-i18n-en="About"
+            data-i18n-fr="À Propos">About</a>
+        <a class="drawer-link drawer-sublink" href="/about#about-us" onclick="closeMenu()" data-i18n-en="• About us"
+            data-i18n-fr="• À propos de nous">• About us</a>
+        <a class="drawer-link drawer-sublink" href="/coc" onclick="closeMenu()" data-i18n-en="• Code of Conduct"
+            data-i18n-fr="• Code of Conduct">• Code of Conduct</a>
+        <a class="drawer-link drawer-sublink" href="/health_security" onclick="closeMenu()"
+            data-i18n-en="• Health & Safety Policy" data-i18n-fr="• Politique Santé & Sécurité">• Health & Safety
+            Policy</a>
+        <a class="drawer-link" href="/partners" onclick="closeMenu()" data-i18n-en="Sponsors"
+            data-i18n-fr="Sponsors">Sponsors</a>
+        <a class="drawer-link" href="/sponsors" onclick="closeMenu()" data-i18n-en="Become Sponsor"
+            data-i18n-fr="Sponsoriser">Become Sponsor</a>
+        <a class="drawer-link drawer-sublink" href="/team" onclick="closeMenu()" data-i18n-en="• Team"
+            data-i18n-fr="• Équipe">• Team</a>
+        <a class="drawer-link" href="/contact" onclick="closeMenu()" data-i18n-en="Contact"
+            data-i18n-fr="Contact">Contact</a>
+        <div class="drawer-actions">
+            <a class="btn btn-primary" href="/tickets" onclick="closeMenu()" data-i18n-en="Take your ticket →"
+                data-i18n-fr="Prendre votre ticket →">Take your ticket →</a>
+            <a class="btn btn-ghost" href="/call-for-speakers" onclick="closeMenu()" data-i18n-en="Call for Speakers"
+                data-i18n-fr="Appel à Speakers">Call for Speakers</a>
+        </div>
+    </div>
+
+    {% block content %}{% endblock %}
+
+    <footer>
+        <div class="footer-inner">
+            <div class="container footer-grid">
+                <div class="footer-brand">
+                    <img src="{{ url_for('static', path='images/PyContg26_png/10.png') }}" alt="PyCon Togo 2026"
+                        style="height:130px;filter:brightness(10)" />
+                    <p data-i18n-en="The national conference of the Python community in Togo."
+                        data-i18n-fr="La conférence nationale de la communauté Python du Togo.">La conférence nationale
+                        de la communauté Python du Togo.</p>
+                    <div class="footer-socials">
+                        <a href="https://www.pytogo.org/x" target="_blank" rel="noopener noreferrer"
+                            aria-label="Twitter"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                            </svg></a>
+                        <a href="https://www.pytogo.org/linkedin" target="_blank" rel="noopener noreferrer"
+                            aria-label="LinkedIn"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                            </svg></a>
+                        <a href="https://www.pytogo.org/instagram" target="_blank" rel="noopener noreferrer"
+                            aria-label="Instagram"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.266.069 1.646.069 4.85 0 3.204-.012 3.584-.07 4.85-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.646-.069 4.849-.069zM12 4.08c-3.139 0-3.592.012-4.849.07-1.887.087-2.913 1.12-3 3.002-.057 1.258-.07 1.71-.07 4.849 0 3.138.013 3.592.07 4.849.087 1.879 1.113 2.914 3 3.002 1.257.058 1.71.07 4.849.07 3.14 0 3.593-.012 4.849-.07 1.889-.088 2.914-1.123 3.002-3.002.058-1.257.07-1.71.07-4.849 0-3.139-.012-3.592-.07-4.849-.088-1.882-1.113-2.915-3.002-3.002-1.257-.058-1.71-.07-4.849-.07zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.5-4.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z" />
+                            </svg></a>
+                        <a href="https://www.pytogo.org/github" target="_blank" rel="noopener noreferrer"
+                            aria-label="GitHub"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                            </svg></a>
+                        <a href="https://www.pytogo.org/youtube" target="_blank" rel="noopener noreferrer"
+                            aria-label="YouTube"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.2 0 12 0 12s0 3.8.5 5.8a3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-2 .5-5.8.5-5.8s0-3.8-.5-5.8zM9.6 15.6V8.4L15.9 12 9.6 15.6z" />
+                            </svg></a>
+                        <a rel="me" href="https://www.pytogo.org/mastodon" class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. -->
+                                <path
+                                    d="M433 179.11c0-97.2-63.71-125.7-63.71-125.7-62.52-28.7-228.56-28.4-290.48 0 0 0-63.72 28.5-63.72 125.7 0 115.7-6.6 259.4 105.63 289.1 40.51 10.7 75.32 13 103.33 11.4 50.81-2.8 79.32-18.1 79.32-18.1l-1.7-36.9s-36.31 11.4-77.12 10.1c-40.41-1.4-83-4.4-89.63-54a102.54 102.54 0 0 1-.9-13.9c85.63 20.9 158.65 9.1 178.75 6.7 56.12-6.7 105-41.3 111.23-72.9 9.8-49.8 9-121.5 9-121.5zm-75.12 125.2h-46.63v-114.2c0-49.7-64-51.6-64 6.9v62.5h-46.33V197c0-58.5-64-56.6-64-6.9v114.2H90.19c0-122.1-5.2-147.9 18.41-175 25.9-28.9 79.82-30.8 103.83 6.1l11.6 19.5 11.6-19.5c24.11-37.1 78.12-34.8 103.83-6.1 23.71 27.3 18.4 53 18.4 175z" />
+                            </svg>
+                        </a>
+                        <a href="https://pytogo.org/discord" target="_blank" rel="noopener noreferrer"
+                            aria-label="Discord"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.444.864-.607 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.975 14.975 0 0 0 1.293-2.1.074.074 0 0 0-.041-.104 13.091 13.091 0 0 1-1.864-.882.075.075 0 0 1-.008-.125 10.25 10.25 0 0 0 .372-.294.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.195.373.294a.075.075 0 0 1-.006.125 12.997 12.997 0 0 1-1.873.883.075.075 0 0 0-.041.105c.361.687.772 1.341 1.225 1.966a.079.079 0 0 0 .084.028 19.963 19.963 0 0 0 6.002-3.03.076.076 0 0 0 .032-.054c.5-4.786-.838-8.95-3.535-12.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-.965-2.157-2.156 0-1.193.96-2.157 2.157-2.157 1.198 0 2.172.964 2.157 2.157 0 1.19-.96 2.156-2.157 2.156zm7.975 0c-1.183 0-2.157-.965-2.157-2.156 0-1.193.96-2.157 2.157-2.157 1.198 0 2.172.964 2.157 2.157 0 1.19-.959 2.156-2.157 2.156z" />
+                            </svg></a>
+                        <a href="https://www.pytogo.org/facebook" target="_blank" rel="noopener noreferrer"
+                            aria-label="Facebook"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h5 data-i18n-en="Navigation" data-i18n-fr="Navigation">Navigation</h5>
+                    <a href="/" data-i18n-en="Home" data-i18n-fr="Accueil">Home</a>
+                    <a href="/about" data-i18n-en="About" data-i18n-fr="À Propos">About</a>
+                    <a href="/partners" data-i18n-en="Sponsors" data-i18n-fr="Sponsors">Sponsors</a>
+                    <a href="/team" data-i18n-en="Team" data-i18n-fr="Équipe">Team</a>
+                    <a href="mailto:contact@pytogo.org" data-i18n-en="Contact" data-i18n-fr="Contact">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h5 data-i18n-en="Get Involved" data-i18n-fr="Participer">Get Involved</h5>
+                    <a href="/tickets" data-i18n-en="Ticketing opens soon"
+                        data-i18n-fr="Ouverture billetterie (bientôt)">Ticketing opens soon</a>
+                    <a href="/sponsors" data-i18n-en="Become Sponsor" data-i18n-fr="Sponsoriser">Become Sponsor</a>
+                    <a href="mailto:contact@pytogo.org" data-i18n-en="Volunteer" data-i18n-fr="Bénévolat">Volunteer</a>
+                    <a href="/call-for-speakers" data-i18n-en="Submit a Talk" data-i18n-fr="Proposer un Talk">Submit a
+                        Talk</a>
+                </div>
+                <div class="footer-col">
+                    <h5 data-i18n-en="Contact" data-i18n-fr="Contact">Contact</h5>
+                    <a href="mailto:team@pytogo.org">team@pytogo.org</a>
+                    <span data-i18n-en="{{ event_location }}" data-i18n-fr="{{ event_location }}">{{ event_location
+                        }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <span data-i18n-en="© 2026 The Python Software Community Togo. All rights reserved."
+                    data-i18n-fr="© 2026 The Python Software Community Togo. Tous droits réservés.">© {{ year }} The
+                    Python Software Community Togo. All rights reserved.</span>
+                <span id="site-creators">Made with ❤️ by <a href="https://www.linkedin.com/in/gift-nneji-128172348/"
+                        target="_blank" rel="noopener noreferrer">Gift Chisom</a>, <a
+                        href="https://www.linkedin.com/in/tronka-diabat%C3%A9/" target="_blank"
+                        rel="noopener noreferrer">Tronka Diabate</a> and <a href="https://wasscodeur.github.io"
+                        target="_blank" rel="noopener noreferrer">Wachiou BOURAIMA</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', path='2026/js/script.js') }}"></script>
+</body>
+
+</html>

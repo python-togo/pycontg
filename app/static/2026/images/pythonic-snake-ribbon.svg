@@ -1,0 +1,39 @@
+<svg width="1280" height="180" viewBox="0 0 1280 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="snakeBody" x1="52" y1="0" x2="1210" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4E9C69"/>
+      <stop offset="0.45" stop-color="#616C77"/>
+      <stop offset="1" stop-color="#4E9C69"/>
+    </linearGradient>
+    <filter id="softShadow" x="16" y="-24" width="1248" height="240" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#softShadow)">
+    <path
+      d="M92 88C166 22 246 148 320 88C394 22 474 148 548 88C622 22 702 148 776 88C850 22 930 148 1004 88C1068 34 1130 70 1178 96"
+      stroke="url(#snakeBody)"
+      stroke-width="28"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M92 88C166 22 246 148 320 88C394 22 474 148 548 88C622 22 702 148 776 88C850 22 930 148 1004 88C1068 34 1130 70 1178 96"
+      stroke="#2F5D41"
+      stroke-opacity="0.32"
+      stroke-width="3"
+      stroke-dasharray="3 10"
+      stroke-linecap="round"
+    />
+
+    <ellipse cx="66" cy="88" rx="34" ry="18" fill="#4E9C69"/>
+    <ellipse cx="58" cy="90" rx="10" ry="7" fill="#2F5D41"/>
+    <circle cx="74" cy="83" r="2.4" fill="#0f1f16"/>
+    <path d="M36 92H18" stroke="#C83A3A" stroke-width="2" stroke-linecap="round"/>
+
+    <path d="M1178 96L1232 108" stroke="#4E9C69" stroke-width="16" stroke-linecap="round"/>
+    <path d="M1228 107L1248 112" stroke="#4E9C69" stroke-width="8" stroke-linecap="round"/>
+  </g>
+
+</svg>

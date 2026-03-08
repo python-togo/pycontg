@@ -1,0 +1,474 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-bg-pattern"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow reveal" data-i18n-en="{{ event_name }}" data-i18n-fr="{{ event_name }}">
+        {{ event_name }}
+      </div>
+      <h1 class="hero-title reveal reveal-d1" data-i18n-html-en="More than a <em>Python</em> conference."
+        data-i18n-html-fr="Plus qu'une conférence <em>Python.</em>">More than a <em>Python</em> conference.</h1>
+      <p class="hero-meta reveal reveal-d2" data-i18n-en="{{ event_meta_en }}" data-i18n-fr="{{ event_meta_fr }}">{{
+        event_meta_en }}</p>
+      <p class="hero-sub reveal reveal-d2"
+        data-i18n-en="PyCon Togo is where developers, founders, students, and tech teams meet to learn, build, and collaborate around Python, open source, and real-world innovation."
+        data-i18n-fr="PyCon Togo est l'endroit où développeurs, fondateurs, étudiants et équipes tech se retrouvent pour apprendre, construire et collaborer autour de Python, de l'open source et de l'innovation réelle.">
+        PyCon Togo is where developers, founders, students, and tech teams meet to learn, build, and collaborate
+        around Python, open source, and real-world innovation.</p>
+      <div class="hero-ctas reveal reveal-d3">
+        <a class="btn btn-primary btn-lg btn-cta-sponsor" href="/sponsors" data-i18n-en="Become a Sponsor"
+          data-i18n-fr="Devenir Sponsor">Become a Sponsor</a>
+      </div>
+
+      <div class="hero-year-logo-slot reveal reveal-d3" aria-label="Headline sponsor placement">
+        <span class="hero-year-logo-label" data-i18n-en="Headline sponsor spotlight"
+          data-i18n-fr="Emplacement Headline Sponsor">Headline sponsor spotlight</span>
+        <div class="hero-year-logo-placeholder">
+          <p class="hero-year-logo-copy" data-i18n-en="Reserved space for our Headline Sponsor logo"
+            data-i18n-fr="Espace réservé au logo de notre Headline Sponsor">
+            Reserved space for our Headline Sponsor logo
+          </p>
+          <a class="btn btn-primary" href="/sponsors" data-i18n-en="Want your logo here? Become our Headline Sponsor"
+            data-i18n-fr="Vous voulez votre logo ici ? Devenez Headline Sponsor">
+            Want your logo here? Become our Headline Sponsor
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-ribbon-shell reveal reveal-d4" aria-label="PyCon Togo 2025 highlights">
+        <div class="hero-snake-line" aria-hidden="true">
+          <div class="hero-snake-track">
+            <img class="hero-snake-img" src="{{ url_for('static', path='2026/images/pythonic-snake-ribbon.svg') }}"
+              alt="" />
+            <img class="hero-snake-img" src="{{ url_for('static', path='2026/images/pythonic-snake-ribbon.svg') }}"
+              alt="" />
+            <img class="hero-snake-img" src="{{ url_for('static', path='2026/images/pythonic-snake-ribbon.svg') }}"
+              alt="" />
+            <img class="hero-snake-img" src="{{ url_for('static', path='2026/images/pythonic-snake-ribbon.svg') }}"
+              alt="" />
+            <img class="hero-snake-img" src="{{ url_for('static', path='2026/images/pythonic-snake-ribbon.svg') }}"
+              alt="" />
+            <img class="hero-snake-img" src="{{ url_for('static', path='2026/images/pythonic-snake-ribbon.svg') }}"
+              alt="" />
+          </div>
+        </div>
+        <div class="hero-ribbon-track">
+          <div class="hero-ribbon-group" aria-hidden="true">
+            <figure class="hero-ribbon-card"><img src="https://ik.imagekit.io/pythontogo/images/IMG_9259.jpg"
+                alt="PyCon Togo audience" />
+            </figure>
+            <figure class="hero-ribbon-card"><img src="https://ik.imagekit.io/pythontogo/images/IMG_9293.jpg"
+                alt="Speaker on stage" /></figure>
+            <figure class="hero-ribbon-card"><img src="https://ik.imagekit.io/pythontogo/images/IMG_9310.jpg"
+                alt="Networking moments" />
+            </figure>
+            <figure class="hero-ribbon-card"><img src="https://ik.imagekit.io/pythontogo/images/IMG_9535.jpg"
+                alt="Community energy" />
+            </figure>
+            <figure class="hero-ribbon-card"><img src="https://ik.imagekit.io/pythontogo/images/IMG_9560.jpg"
+                alt="Workshop session" />
+            </figure>
+            <figure class="hero-ribbon-card"><img src="https://ik.imagekit.io/pythontogo/images/IMG_9365.jpg"
+                alt="Participants group photo" /></figure>
+          </div>
+          <div class="hero-ribbon-group" aria-hidden="true">
+            <figure class="hero-ribbon-card"><img src="https://ik.imagekit.io/pythontogo/images/IMG_9369.jpg"
+                alt="PyCon Togo audience" />
+            </figure>
+            <figure class="hero-ribbon-card"><img src="https://ik.imagekit.io/pythontogo/images/IMG_9427.jpg"
+                alt="Speaker on stage" />
+            </figure>
+            <figure class="hero-ribbon-card"><img src="https://ik.imagekit.io/pythontogo/images/wil.jpg"
+                alt="Networking moments" />
+            </figure>
+            <figure class="hero-ribbon-card"><img src="https://ik.imagekit.io/pythontogo/images/IMG_9523.jpg"
+                alt="Workshop session" />
+            </figure>
+            <figure class="hero-ribbon-card"><img src="https://ik.imagekit.io/pythontogo/images/IMG_9544%20(1).jpg"
+                alt="Participants group photo" /></figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-strip">
+    <div class="container">
+      <div class="about-strip-inner">
+        <div class="about-strip-label reveal" data-i18n-en="About" data-i18n-fr="À Propos">À Propos</div>
+        <div class="about-strip-body reveal reveal-d1">
+          <p data-i18n-en="PyCon Togo is the national conference of the Python community in Togo, bringing together professional developers, students, enthusiasts, system administrators, teachers, scientists, statisticians and many others, united by their love of Python."
+            data-i18n-fr="PyCon Togo est la conférence nationale de la communauté Python du Togo, réunissant développeurs professionnels, étudiants, passionnés, administrateurs système, enseignants, scientifiques, statisticiens et bien d'autres, unis par leur amour de Python.">
+            PyCon Togo est <strong>la conférence nationale de la communauté Python du Togo</strong>, réunissant
+            développeurs professionnels, étudiants, passionnés, administrateurs système, enseignants, scientifiques,
+            statisticiens et bien d'autres, unis par leur amour de Python.</p>
+          <p data-i18n-en="PyCon Togo informs and inspires the community through talks, workshops and sessions led by experts, Python language contributors and maintainers of the libraries and frameworks they use daily. The event promotes the values of the Python Ecosystem and collaborative development practices."
+            data-i18n-fr="PyCon Togo informe et inspire la communauté grâce à des présentations, ateliers et sessions animées par des experts, des contributeurs du langage Python et des mainteneurs des bibliothèques et frameworks qu'ils utilisent au quotidien. L'événement promeut les valeurs du Python Ecosystem et les pratiques collaboratives.">
+            PyCon Togo informe et inspire la communauté grâce à des <strong>présentations, ateliers et
+              sessions</strong> animées par des experts, des contributeurs du langage Python et des mainteneurs des
+            bibliothèques et frameworks qu'ils utilisent au quotidien. L'événement promeut les valeurs du
+            <strong>Python Ecosystem</strong> et les pratiques collaboratives.
+          </p>
+          <a class="btn btn-text" href="/about" data-i18n-en="Read more →" data-i18n-fr="Lire la suite →">Lire la suite
+            →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section edition-proof">
+    <div class="container edition-proof-grid">
+      <div class="proof-copy reveal">
+        <span class="eyebrow" data-i18n-en="Edition Proof" data-i18n-fr="Preuve d'édition">Edition Proof</span>
+        <h2 data-i18n-html-en="The first edition was a success.<br /><em>Now we build higher.</em>"
+          data-i18n-html-fr="La première édition a été un succès.<br /><em>Maintenant, on monte plus haut.</em>">
+          The first edition was a success.<br /><em>Now we build higher.</em>
+        </h2>
+        <p data-i18n-en="These moments are from PyCon Togo 2025. In 2026, we keep the same community energy and deliver an even stronger experience for attendees, speakers, and partners."
+          data-i18n-fr="Ces images viennent de PyCon Togo 2025. En 2026, on garde la même énergie communautaire avec une expérience encore plus forte pour les participants, speakers et partenaires.">
+          These moments are from PyCon Togo 2025. In 2026, we keep the same community energy and deliver an even
+          stronger experience for attendees, speakers, and partners.
+        </p>
+        <a class="btn btn-text" href="/about" data-i18n-en="See the 2026 direction →"
+          data-i18n-fr="Voir la direction 2026 →">See the 2026 direction →</a>
+        <a class="btn btn-ghost" href="https://report.pytogo.org/" data-i18n-en="2025 edition report"
+          data-i18n-fr="Rapport édition 2025">2025 edition report</a>
+      </div>
+
+      <div class="proof-masonry reveal reveal-d1" aria-label="PyCon Togo 2025 highlights">
+        <figure class="proof-item tall">
+          <img src="https://res.cloudinary.com/dvg7vky5o/image/upload/v1774629706/IMG_9415_vzud4w.jpg"
+            alt="Community moment from PyCon Togo 2025" />
+          <figcaption>Community</figcaption>
+        </figure>
+        <figure class="proof-item">
+          <img src="https://ik.imagekit.io/pythontogo/images/IMG_9519.jpg" alt="Speaker session at PyCon Togo 2025" />
+          <figcaption>Networking</figcaption>
+        </figure>
+        <figure class="proof-item">
+          <img src="https://res.cloudinary.com/dvg7vky5o/image/upload/v1774629707/IMG_9590_podwrs.jpg"
+            alt="Networking moment at PyCon Togo 2025" />
+          <figcaption>Networking</figcaption>
+        </figure>
+        <figure class="proof-item wide">
+          <img src="https://res.cloudinary.com/dvg7vky5o/image/upload/v1774629706/IMG_9477_etpeax.jpg"
+            alt="Audience at PyCon Togo 2025" />
+          <figcaption>Audience Energy</figcaption>
+        </figure>
+        <figure class="proof-item">
+          <img src="https://ik.imagekit.io/pythontogo/images/IMG_9433.jpg" alt="Workshops and practical sessions" />
+          <figcaption>Panel Discussion</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section whats-on">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow" data-i18n-en="3-Day Program" data-i18n-fr="Programme sur 3 jours">3-Day Program</span>
+        <h2 data-i18n-en="{{ program_heading_en }}" data-i18n-fr="{{ program_heading_fr }}">{{ program_heading_en }}
+        </h2>
+      </div>
+      <div class="features-row">
+        <div class="feature-card reveal">
+          <h3 data-i18n-en="Day 1: Workshop Tracks" data-i18n-fr="Jour 1 : Pistes d'Ateliers">
+            Day 1: Workshop Tracks</h3>
+          <p data-i18n-en="Multiple hands-on workshops covering Django, FastAPI, Python fundamentals, and more. Choose the tracks that match your interests and experience level."
+            data-i18n-fr="Plusieurs ateliers pratiques couvrant Django, FastAPI, les fondamentaux de Python et bien d'autres. Choisissez les pistes qui correspondent à vos intérêts et votre niveau.">
+            Multiple hands-on workshops covering Django, FastAPI, Python fundamentals, and more. Choose the tracks that
+            match your interests and experience level.</p>
+        </div>
+        <div class="feature-card reveal reveal-d1">
+          <h3 data-i18n-en="Day 2: Conference Day" data-i18n-fr="Jour 2 : Journée Conférence">Day 2: Conference Day</h3>
+          <p data-i18n-en="Main talks, technical sessions, ecosystem updates, and community highlights with local and international speakers."
+            data-i18n-fr="Talks principaux, sessions techniques, actualités de l'écosystème et temps forts de la communauté avec des speakers locaux et internationaux.">
+            Main talks, technical sessions, ecosystem updates, and community highlights with local and international
+            speakers.</p>
+        </div>
+        <div class="feature-card reveal reveal-d2">
+          <h3 data-i18n-en="Day 3: Speaker's Dinner" data-i18n-fr="Jour 3 : Dîner des speakers">Day 3: Speaker's
+            Dinner</h3>
+          <p data-i18n-en="An exclusive dinner for invited speakers, partners, and organizers to build stronger relationships for future editions."
+            data-i18n-fr="Un dîner exclusif pour les speakers invités, partenaires et organisateurs afin de renforcer les relations pour les prochaines éditions.">
+            An exclusive dinner for invited speakers, partners, and organizers to build stronger relationships for
+            future editions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section open-source-commitment">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow" data-i18n-en="Community & Collaboration"
+          data-i18n-fr="Communauté & Collaboration">Community & Collaboration</span>
+        <h2 data-i18n-en="Built on collaborative development"
+          data-i18n-fr="Construit sur le développement collaboratif">
+          Built on collaborative development</h2>
+        <p data-i18n-en="PyCon Togo is rooted in sharing knowledge, contributing back, and building sustainable local capacity with open technologies."
+          data-i18n-fr="PyCon Togo est ancré dans le partage des connaissances, la contribution communautaire et le renforcement durable des compétences locales grâce aux technologies ouvertes.">
+          PyCon Togo is rooted in sharing knowledge, contributing back, and building sustainable local capacity with
+          open technologies.
+        </p>
+      </div>
+      <div class="features-row">
+        <div class="feature-card reveal">
+          <h3 data-i18n-en="Python Ecosystem" data-i18n-fr="Écosystème Python">Python Ecosystem</h3>
+          <p data-i18n-en="From Django to data tooling, we highlight practical stacks that teams can adopt immediately."
+            data-i18n-fr="De Django aux outils data, nous mettons en avant des stacks pratiques que les équipes peuvent adopter immédiatement.">
+            From Django to data tooling, we highlight practical stacks that teams can adopt immediately.</p>
+        </div>
+        <div class="feature-card reveal reveal-d1">
+          <h3 data-i18n-en="Collaborative Development" data-i18n-fr="Développement Collaboratif">Collaborative
+            Development</h3>
+          <p data-i18n-en="We promote collaborative standards, community-driven projects, and knowledge sharing."
+            data-i18n-fr="Nous promouvons les standards collaboratifs, les projets menés par la communauté et le partage des connaissances.">
+            We promote collaborative standards, community-driven projects, and knowledge sharing.</p>
+        </div>
+        <div class="feature-card reveal reveal-d2">
+          <h3 data-i18n-en="Edition Reports" data-i18n-fr="Rapports d'édition">Edition Reports</h3>
+          <p data-i18n-en="After each edition, we publish a comprehensive report with insights, stats, and impact metrics. The 2026 report will be available after the event."
+            data-i18n-fr="Après chaque édition, nous publions un rapport complet avec les chiffres, analyses et métriques d'impact. Le rapport 2026 sera disponible après l'événement.">
+            After each edition, we publish a comprehensive report with insights, stats, and impact metrics. The 2026
+            report will be available after the event.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section speakers-reserve" style="display: none;">
+    <!--TODO: Implement speaker reservation functionality -->
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow" data-i18n-en="Speakers Spotlight" data-i18n-fr="Speakers à l'honneur">Speakers
+          Spotlight</span>
+        <h2 data-i18n-en="Reserved space for invited speakers" data-i18n-fr="Espace réservé aux speakers invités">
+          Reserved space for invited speakers</h2>
+        <p data-i18n-en="This area is reserved for speaker photos. International speakers, including invited experts from Europe, will appear here as confirmations arrive."
+          data-i18n-fr="Cette zone est réservée aux photos des speakers. Les speakers internationaux, y compris des experts invités d'Europe, apparaîtront ici au fur et à mesure des confirmations.">
+          This area is reserved for speaker photos. International speakers, including invited experts from Europe,
+          will appear here as confirmations arrive.
+        </p>
+        <a class="btn btn-primary" href="/call-for-speakers" data-i18n-en="Submit your talk / Become a speaker"
+          data-i18n-fr="Soumettre votre talk / Devenir speaker">Submit your talk / Become a speaker</a>
+      </div>
+      <div class="speakers-reserve-grid reveal reveal-d1" aria-label="Reserved speaker photo slots">
+        <article class="speaker-slot-card">
+          <div class="speaker-slot-avatar">Photo</div>
+          <h4>Keynote Speaker Slot</h4>
+          <p>Europe / International</p>
+        </article>
+        <article class="speaker-slot-card">
+          <div class="speaker-slot-avatar">Photo</div>
+          <h4>Django Expert Slot</h4>
+          <p>Backend & Architecture</p>
+        </article>
+        <article class="speaker-slot-card">
+          <div class="speaker-slot-avatar">Photo</div>
+          <h4>AI Speaker Slot</h4>
+          <p>Applied AI with Python</p>
+        </article>
+        <article class="speaker-slot-card">
+          <div class="speaker-slot-avatar">Photo</div>
+          <h4>Community Leader Slot</h4>
+          <p>Future of Python</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sponsor-teaser">
+    <div class="container">
+      <div class="sponsor-teaser-inner">
+        <div class="sponsor-teaser-text reveal">
+          <span class="eyebrow" data-i18n-en="Python Communities" data-i18n-fr="Communautes Python">Communautes
+            Python</span>
+          <h2 data-i18n-html-en="Python Community<br /><em>Partners.</em>"
+            data-i18n-html-fr="Partenaires<br /><em>communaute Python.</em>">Partenaires<br />communaute Python.</h2>
+          <p data-i18n-en="These communities help us mentor, share resources, and connect local developers with the wider ecosystem."
+            data-i18n-fr="Ces communautes nous aident a faire du mentorat, partager des ressources et connecter les developpeurs locaux a l'ecosysteme global.">
+            Ces communautes nous aident a faire du mentorat, partager des ressources et connecter les developpeurs
+            locaux a l'ecosysteme global.
+          </p>
+          {% set home_names = home_partner_names if home_partner_names is defined else ['Python Software Foundation'] %}
+          <div class="sponsor-logos-row home-partner-names" aria-label="Python Community Partners">
+            {% for name in home_names %}
+            <div class="sponsor-logo-pill {% if loop.first %}psf-pill{% endif %}">{{ name }}</div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="sponsor-cta-card reveal reveal-d1">
+          <div class="cta-card-inner">
+            <h3 data-i18n-en="Partners Directory" data-i18n-fr="Repertoire partenaires">Repertoire partenaires</h3>
+            <p data-i18n-en="See all categories in one place: sponsors, community partners, media partners, and Python community partners."
+              data-i18n-fr="Retrouvez toutes les categories dans une seule page : sponsors, partenaires communautaires, partenaires media et partenaires communaute Python.">
+              Retrouvez toutes les categories dans une seule page : sponsors, partenaires communautaires, partenaires
+              media et partenaires communaute Python.
+            </p>
+            <a class="btn btn-primary" href="/partners" data-i18n-en="View all partners →"
+              data-i18n-fr="Voir tous les partenaires →">Voir tous les partenaires →</a>
+            <a class="cta-mail-link" href="/sponsors" data-i18n-en="Need visibility? Submit a sponsor request"
+              data-i18n-fr="Besoin de visibilite ? Envoyez une demande sponsor">Besoin de visibilite ? Envoyez une
+              demande sponsor</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ticket-section section">
+    <div class="container">
+      <div class="ticket-block reveal">
+        <div class="ticket-stub-visual">
+          <div class="stub-left">
+            <div class="stub-logos">
+              <img class="stub-logo-main" src="{{ url_for('static', path='images/PyContg26_png/10.png') }}"
+                alt="PyCon Togo 2026" />
+            </div>
+            <div class="stub-date" data-i18n-en="{{ event_date_range_en }}" data-i18n-fr="{{ event_date_range_fr }}">{{
+              event_date_range_fr }}</div>
+          </div>
+          <div class="stub-perf"></div>
+          <div class="stub-right">
+            <div class="stub-status" data-i18n-en="SPECIMEN" data-i18n-fr="SPÉCIMEN">SPÉCIMEN</div>
+            <div class="stub-mini-date" data-i18n-en="AUG 2026" data-i18n-fr="AOÛT 2026">AOÛT 2026</div>
+          </div>
+        </div>
+        <div class="ticket-info">
+          <span class="eyebrow" data-i18n-en="Ticketing" data-i18n-fr="Billetterie">Billetterie</span>
+          <h2 data-i18n-en="Opening Soon" data-i18n-fr="Ouvert bientôt">Ouvert bientôt</h2>
+          <p data-i18n-en="Ticket sales are not open yet." data-i18n-fr="La billetterie n'est pas encore ouverte.">
+            La billetterie n'est pas encore ouverte.</p>
+          <a class="btn btn-primary btn-lg" href="/tickets" data-i18n-en="Opening soon"
+            data-i18n-fr="Ouverture bientôt">Opening soon</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="legacy-trust">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow" data-i18n-en="They trusted us" data-i18n-fr="Ils nous ont fait confiance">They
+          trusted us</span>
+        <h2 data-i18n-en="Partners & sponsors who trusted us in 2025"
+          data-i18n-fr="Partenaires et sponsors qui nous ont fait confiance en 2025">Partners & sponsors who trusted us
+          in 2025</h2>
+        <p data-i18n-en="Their support made the first PyCon Togo edition possible. We sincerely thank them for believing in our community."
+          data-i18n-fr="Leur soutien a rendu possible la première édition de PyCon Togo. Nous les remercions sincèrement d'avoir cru en notre communauté.">
+          Their support made the first PyCon Togo edition possible. We sincerely thank them for believing in our
+          community.
+        </p>
+      </div>
+
+      <h3 class="legacy-trust-subtitle" data-i18n-en="Sponsors 2025" data-i18n-fr="Sponsors 2025">Sponsors 2025</h3>
+      <div class="legacy-trust-grid" aria-label="Legacy sponsors logos">
+        <figure class="legacy-trust-card">
+          <a class="legacy-logo-slot" href="https://www.python.org/psf/" target="_blank" rel="noopener noreferrer">
+            <img src="{{ url_for('static', path='images/psf-logo.png') }}" alt="Python Software Foundation" />
+          </a>
+          <figcaption>Python Software Foundation</figcaption>
+        </figure>
+        <figure class="legacy-trust-card">
+          <a class="legacy-logo-slot" href="https://afpy.org/" target="_blank" rel="noopener noreferrer">
+            <img src="{{ url_for('static', path='images/afpy.png') }}" alt="AFPy" />
+          </a>
+          <figcaption>AFPy</figcaption>
+        </figure>
+        <figure class="legacy-trust-card">
+          <a class="legacy-logo-slot" href="https://www.djangoproject.com/" target="_blank" rel="noopener noreferrer">
+            <img src="{{ url_for('static', path='images/django-logo-positive.png') }}" alt="Django" />
+          </a>
+          <figcaption>Django</figcaption>
+        </figure>
+
+        <figure class="legacy-trust-card">
+          <a class="legacy-logo-slot" href="https://wearedigijob.com/" target="_blank" rel="noopener noreferrer">
+            <img src="{{ url_for('static', path='images/digijoblogo.png') }}" alt="DigiJOb" />
+          </a>
+          <figcaption>DigiJOb</figcaption>
+        </figure>
+        <figure class="legacy-trust-card">
+          <a class="legacy-logo-slot" href="https://www.tahaga.com/" target="_blank" rel="noopener noreferrer">
+            <img src="{{ url_for('static', path='images/tahaga.png') }}" alt="Tahaga" />
+          </a>
+          <figcaption>Tahaga</figcaption>
+        </figure>
+        <figure class="legacy-trust-card">
+          <a class="legacy-logo-slot" href="https://blackpythondevs.com/" target="_blank" rel="noopener noreferrer">
+            <img src="{{ url_for('static', path='images/bpd_stacked_us5ika.png') }}" alt="Black Python Devs" />
+          </a>
+          <figcaption>Black Python Devs</figcaption>
+        </figure>
+        <figure class="legacy-trust-card">
+          <a class="legacy-logo-slot" href="https://github.com/" target="_blank" rel="noopener noreferrer">
+            <img src="{{ url_for('static', path='images/github-logo.png') }}" alt="GitHub" />
+          </a>
+          <figcaption>GitHub</figcaption>
+        </figure>
+
+      </div>
+
+      <h3 class="legacy-trust-subtitle" data-i18n-en="Partners 2025" data-i18n-fr="Partenaires 2025">Partners 2025</h3>
+      <div class="legacy-trust-grid" aria-label="Legacy partners logos">
+        <figure class="legacy-trust-card">
+          <a class="legacy-logo-slot" href="https://www.ted.com/tedx" target="_blank" rel="noopener noreferrer">
+            <img src="{{ url_for('static', path='images/parteners/tedx.png') }}" alt="TEDx" />
+          </a>
+          <figcaption>TEDx</figcaption>
+        </figure>
+        <figure class="legacy-trust-card">
+          <a class="legacy-logo-slot" href="https://pythonghana.org/" target="_blank" rel="noopener noreferrer">
+            <img src="{{ url_for('static', path='images/parteners/pyghana.png') }}" alt="PyGhana" />
+          </a>
+          <figcaption>PyGhana</figcaption>
+        </figure>
+
+        <figure class="legacy-trust-card">
+          <a class="legacy-logo-slot" href="https://www.youtube.com/@KwekuTech" target="_blank"
+            rel="noopener noreferrer">
+            <img src="{{ url_for('static', path='images/parteners/kwekutech.jpg') }}" alt="Kweku Tech" />
+          </a>
+          <figcaption>Kweku Tech</figcaption>
+        </figure>
+
+        <figure class="legacy-trust-card">
+          <a class="legacy-logo-slot" href="https://www.youtube.com/@msatogo" target="_blank" rel="noopener noreferrer">
+            <img src="{{ url_for('static', path='images/parteners/msftatogo.png') }}" alt="Msa Togo" />
+          </a>
+          <figcaption>Msa Togo</figcaption>
+        </figure>
+        <figure class="legacy-trust-card">
+          <a class="legacy-logo-slot" href="https://www.linkedin.com/company/ijeaf/" target="_blank"
+            rel="noopener noreferrer">
+            <img src="{{ url_for('static', path='images/parteners/ijeaf_qjqsmf.jpg') }}" alt="ijeaf" />
+          </a>
+          <figcaption>IJEAF</figcaption>
+        </figure>
+        <figure class="legacy-trust-card">
+          <a class="legacy-logo-slot" href="https://alldotpy.com/" target="_blank" rel="noopener noreferrer">
+            <img src="{{ url_for('static', path='images/parteners/dotpy.png') }}" alt="AllDotPy" />
+          </a>
+          <figcaption>AllDotPy</figcaption>
+        </figure>
+        <figure class="legacy-trust-card">
+          <a class="legacy-logo-slot" href="https://www.oreilly.com/" target="_blank" rel="noopener noreferrer">
+            <img src="{{ url_for('static', path='images/parteners/oreilly.svg') }}" alt="Oreilly" />
+          </a>
+          <figcaption>Oreilly</figcaption>
+        </figure>
+
+        <figure class="legacy-trust-card">
+          <a class="legacy-logo-slot" href="https://www.gitbook.com/" target="_blank" rel="noopener noreferrer">
+            <img src="{{ url_for('static', path='images/parteners/GitBook.png') }}" alt="GitBook" />
+          </a>
+          <figcaption>GitBook</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}

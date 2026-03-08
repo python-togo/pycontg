@@ -5,8 +5,8 @@ Volunteer for PyCon Togo 2025
 {% endblock %}
 
 {% block style %}
-<script src="../static/js/volunteer.js" defer></script>
-<link rel="stylesheet" href="../static/css/volunteer.css">
+<script src="{{ url_for('static', path='js/volunteer.js') }}" defer></script>
+<link rel="stylesheet" href="{{ url_for('static', path='css/volunteer.css') }}">
 
 
 {% endblock %}

@@ -5,8 +5,8 @@ Call for {{ call_to_action }} is closed
 {% endblock %}
 
 {% block style %}
-<script src="../static/js/main.js" defer></script>
-<link rel="stylesheet" href="../static/css/coming-soon.css">
+<script src="{{ url_for('static', path='js/main.js') }}" defer></script>
+<link rel="stylesheet" href="{{ url_for('static', path='css/coming-soon.css') }}">
 
 {% endblock %}
 

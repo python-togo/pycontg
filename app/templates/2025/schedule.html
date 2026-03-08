@@ -1,11 +1,11 @@
 {% extends "base.html" %} 
 {% block title %}PyCon Togo 2025 - Schedule {% endblock %} 
 {% block style %}
-<script src="../static/js/main.js" defer></script>
-<script src="../static/js/coming-soon.js" defer></script>
-<script src="../static/js/schedule.js" defer></script>
-<link rel="stylesheet" href="../static/css/coming-soon.css" />
-<link rel="stylesheet" href="../static/css/schedule.css" />
+<script src="{{ url_for('static', path='js/main.js') }}" defer></script>
+<script src="{{ url_for('static', path='js/coming-soon.js') }}" defer></script>
+<script src="{{ url_for('static', path='js/schedule.js') }}" defer></script>
+<link rel="stylesheet" href="{{ url_for('static', path='css/coming-soon.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', path='css/schedule.css') }}" />
 {% endblock %} 
 
 {% block content %}

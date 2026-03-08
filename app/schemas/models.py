@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, EmailStr, Field
 from typing import List
 from uuid import UUID
 
@@ -211,3 +211,10 @@ class SponsorTier(BaseModel):
     advantages: List[str] = Field(
         ..., title="Advantages", description="List of advantages for the sponsorship tier"
     )
+
+
+class ContactFormPayload(BaseModel):
+    name: str = Field(..., min_length=2, max_length=100)
+    email: EmailStr
+    subject: str = Field(default="General inquiry", max_length=200)
+    message: str = Field(..., min_length=10, max_length=5000)

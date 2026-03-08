@@ -1,0 +1,264 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="page active" id="page-contact">
+    <section class="page-hero">
+        <div class="container">
+            <span class="eyebrow reveal" data-i18n-en="Contact" data-i18n-fr="Contact">Contact</span>
+            <h1 class="reveal reveal-d1" data-i18n-html-en="Let's talk<br /><em>together.</em>"
+                data-i18n-html-fr="Parlons<br /><em>ensemble.</em>">Parlons<br /><em>ensemble.</em></h1>
+            <p class="page-hero-sub reveal reveal-d2"
+                data-i18n-en="Have a question, partnership idea, or just want to say hello?"
+                data-i18n-fr="Une question, une idée de partenariat, ou simplement envie de dire bonjour ?">Une
+                question, une idée de partenariat, ou simplement envie de dire bonjour ?</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="contact-layout">
+                <div class="contact-form-wrap">
+                    <div class="form-success" id="form-success">
+                        <div class="success-check">✓</div>
+                        <h3 data-i18n-en="Message sent!" data-i18n-fr="Message envoyé !">Message envoyé !</h3>
+                        <p data-i18n-en="We'll get back to you within 48 hours."
+                            data-i18n-fr="Nous vous répondrons dans les 48h.">Nous vous répondrons dans les 48h.</p>
+                    </div>
+                    <form id="contact-form" onsubmit="contactSubmitInline(event)">
+                        <div class="form-row">
+                            <div class="field">
+                                <label data-i18n-en="Full name" data-i18n-fr="Nom complet">Nom complet</label>
+                                <input id="contact-name" name="name" type="text" placeholder="Kofi Mensah" required />
+                            </div>
+                            <div class="field">
+                                <label data-i18n-en="Email address" data-i18n-fr="Adresse email">Adresse email</label>
+                                <input id="contact-email" name="email" type="email" placeholder="kofi@exemple.com"
+                                    required />
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label data-i18n-en="Organization (optional)"
+                                data-i18n-fr="Organisation (optionnel)">Organisation (optionnel)</label>
+                            <input id="contact-organization" name="organization" type="text"
+                                placeholder="Votre entreprise ou université" />
+                        </div>
+                        <div class="field">
+                            <label data-i18n-en="Subject" data-i18n-fr="Sujet">Sujet</label>
+                            <select id="contact-subject" name="subject">
+                                <option value="General question" data-i18n-en="General question"
+                                    data-i18n-fr="Question générale">Question générale</option>
+                                <option value="Partnership / Sponsoring" data-i18n-en="Partnership / Sponsoring"
+                                    data-i18n-fr="Partenariat / Sponsoring">Partenariat / Sponsoring</option>
+                                <option value="Press &amp; Media" data-i18n-en="Press &amp; Media"
+                                    data-i18n-fr="Presse &amp; Médias">Presse &amp; Médias</option>
+                                <option value="Volunteering" data-i18n-en="Volunteering" data-i18n-fr="Bénévolat">
+                                    Bénévolat</option>
+                                <option value="Other" data-i18n-en="Other" data-i18n-fr="Autre">Autre</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label data-i18n-en="Message" data-i18n-fr="Message">Message</label>
+                            <textarea id="contact-message" name="message" rows="5"
+                                placeholder="Dites-nous comment nous pouvons vous aider..." required></textarea>
+                        </div>
+                        <p class="form-error" id="form-error" style="display:none;color:#b42318;margin-bottom:1rem;">
+                        </p>
+                        <button type="submit" class="btn btn-primary btn-lg" id="submit-btn" data-i18n-en="Send →"
+                            data-i18n-fr="Envoyer →">Envoyer →</button>
+                    </form>
+                </div>
+
+                <div class="contact-sidebar">
+                    <div class="contact-card">
+                        <h4 data-i18n-en="Email us" data-i18n-fr="Nous écrire">Nous écrire</h4>
+                        <a href="mailto:contact@pytogo.org" class="contact-email">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                <polyline points="22,6 12,12 2,6" />
+                            </svg>
+                            contact@pytogo.org
+                        </a>
+                    </div>
+                    <div class="contact-card">
+                        <h4 data-i18n-en="Follow us" data-i18n-fr="Suivez-nous">Suivez-nous</h4>
+                        <div class="social-links">
+                            <a href="#" class="social-link">
+                                <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                </svg>
+                                Twitter / X
+                            </a>
+                            <a href="#" class="social-link">
+                                <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                                </svg>
+                                LinkedIn
+                            </a>
+                            <a href="#" class="social-link">
+                                <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                                </svg>
+                                GitHub
+                            </a>
+                            <a href="#" class="social-link">
+                                <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.2 0 12 0 12s0 3.8.5 5.8a3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-2 .5-5.8.5-5.8s0-3.8-.5-5.8zM9.6 15.6V8.4L15.9 12 9.6 15.6z" />
+                                </svg>
+                                YouTube
+                            </a>
+                            <a href="#" class="social-link">
+                                <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M11.19 13.5c-1.8 0-3.2-.9-3.2-2.4V6.8h1.5v4.1c0 .9.7 1.4 1.7 1.4s1.7-.5 1.7-1.4V6.8h1.5v4.3c-.1 1.5-1.5 2.4-3.2 2.4z" />
+                                    <path
+                                        d="M20.9 8.6c0-4.1-2.7-5.3-2.7-5.3C16.8 2.7 14.5 2.5 12 2.5h-.1c-2.5 0-4.8.2-6.2.8 0 0-2.7 1.2-2.7 5.3 0 .9 0 2 .1 3.2.1 2.3.4 4.6 2.9 5.2 1.2.3 2.3.4 3.4.3 1.9-.1 2.9-.8 2.9-.8l-.1-1.6s-1.3.4-2.8.4c-1.4 0-2.8-.4-3-2.1-.1-.4-.1-.8-.1-1.2 0 0 1.3.3 2.9.4.9.1 1.8.1 2.7.1 2.5-.1 4.6-.2 5.1-3 .2-1.1.2-2.2.2-3z" />
+                                </svg>
+                                Mastodon
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-card location-card">
+
+                        <div>
+                            <strong>{{ event_location }}</strong>
+                            <p>{{ event_name }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+    async function contactSubmitInline(event) {
+        event.preventDefault();
+
+        const lang = (
+            (typeof window.currentLang === "string" && window.currentLang) ||
+            localStorage.getItem("pycontg_lang") ||
+            document.documentElement.lang ||
+            "fr"
+        ).toLowerCase().startsWith("en") ? "en" : "fr";
+
+        const texts = {
+            fr: {
+                invalidName: "Veuillez entrer votre nom.",
+                invalidEmail: "Veuillez entrer une adresse email valide.",
+                shortMessage: "Votre message est trop court (minimum 10 caractères).",
+                sending: "Envoi en cours...",
+                sendError: "Impossible d'envoyer le message pour le moment.",
+                genericError: "Une erreur est survenue."
+            },
+            en: {
+                invalidName: "Please enter your name.",
+                invalidEmail: "Please enter a valid email address.",
+                shortMessage: "Your message is too short (minimum 10 characters).",
+                sending: "Sending...",
+                sendError: "Unable to send your message right now.",
+                genericError: "An unexpected error occurred."
+            }
+        };
+
+        const form = document.getElementById("contact-form");
+        const successBox = document.getElementById("form-success");
+        const errorEl = document.getElementById("form-error");
+        const btn = document.getElementById("submit-btn");
+
+        const nameInput = document.getElementById("contact-name");
+        const emailInput = document.getElementById("contact-email");
+        const subjectInput = document.getElementById("contact-subject");
+        const messageInput = document.getElementById("contact-message");
+        const organizationInput = document.getElementById("contact-organization");
+
+        if (!form || !successBox || !btn || !nameInput || !emailInput || !subjectInput || !messageInput) {
+            return;
+        }
+
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const subject = subjectInput.value.trim();
+        const message = messageInput.value.trim();
+        const organization = organizationInput ? organizationInput.value.trim() : "";
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+        if (errorEl) {
+            errorEl.style.display = "none";
+            errorEl.textContent = "";
+        }
+
+        if (!name || typeof name !== "string") {
+            if (errorEl) {
+                errorEl.textContent = texts[lang].invalidName;
+                errorEl.style.display = "block";
+            }
+            return;
+        }
+
+        if (!emailRegex.test(email)) {
+            if (errorEl) {
+                errorEl.textContent = texts[lang].invalidEmail;
+                errorEl.style.display = "block";
+            }
+            return;
+        }
+
+        if (message.length < 10) {
+            if (errorEl) {
+                errorEl.textContent = texts[lang].shortMessage;
+                errorEl.style.display = "block";
+            }
+            return;
+        }
+
+        const originalText = btn.textContent;
+        btn.textContent = texts[lang].sending;
+        btn.disabled = true;
+
+
+        try {
+            const response = await fetch("/contact/send", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    subject,
+                    message,
+                    // organization
+                })
+            });
+
+            let data = null;
+            try {
+                data = await response.json();
+            } catch (err) {
+                data = null;
+            }
+
+            if (!response.ok) {
+                throw new Error(texts[lang].sendError);
+            }
+
+            form.style.display = "none";
+            successBox.classList.add("show");
+            successBox.style.display = "block";
+        } catch (error) {
+            if (errorEl) {
+                errorEl.textContent = error.message || texts[lang].genericError;
+                errorEl.style.display = "block";
+            }
+        } finally {
+            btn.textContent = originalText;
+            btn.disabled = false;
+        }
+    }
+</script>
+{% endblock %}

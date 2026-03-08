@@ -28,9 +28,9 @@
     <meta name="theme-color" content="#000000">
     <link rel="shortcut icon" href=" {{ url_for('static', path='images/favicon.ico') }}" type="image/x-icon">
     <title>{% block title %}{% endblock %} </title>
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="stylesheet" href="../static/css/menu.css">
-    <script src="../static/js/main.js" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/menu.css') }}">
+    <script src="{{ url_for('static', path='js/main.js') }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@17/build/js/utils.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@17/build/js/intlTelInput.min.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@17/build/css/intlTelInput.min.css">
@@ -46,7 +46,7 @@
         <div class="container header-container">
             <div class="logo">
                 <a href="{{ url_for('home_25')}}">
-                    <img src="../static/images/pycontogo.png" alt="PyCon Togo Logo">
+                    <img src="{{ url_for('static', path='images/pycontogo.png') }}" alt="PyCon Togo Logo">
                 </a>
 
 

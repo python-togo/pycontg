@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="page active" id="page-tickets-coming-soon">
+    <section class="page-hero coming-hero">
+        <div class="container">
+            <span class="eyebrow reveal" data-i18n-en="Tickets" data-i18n-fr="Billetterie">Billetterie</span>
+            <h1 class="reveal reveal-d1" data-i18n-en="Not Open Yet" data-i18n-fr="Pas Encore Ouvert">Pas Encore Ouvert
+            </h1>
+            <p class="page-hero-sub reveal reveal-d2"
+                data-i18n-en="Ticket sales are not open yet. We are preparing the launch for PyCon Togo 2026."
+                data-i18n-fr="La billetterie n'est pas encore ouverte. Nous preparons le lancement pour PyCon Togo 2026.">
+                La billetterie n'est pas encore ouverte. Nous preparons le lancement pour PyCon Togo 2026.</p>
+        </div>
+    </section>
+
+    <section class="section coming-wrap">
+        <div class="container">
+            <div class="coming-card reveal reveal-d1">
+                <h2 data-i18n-en="Estimated Opening" data-i18n-fr="Ouverture Estimee">Ouverture Estimee</h2>
+                <p class="coming-window" data-i18n-en="Mid-April 2026" data-i18n-fr="Mi-Avril 2026">Mi-Avril 2026</p>
+                <p data-i18n-en="We will announce ticket categories and pricing very soon."
+                    data-i18n-fr="Nous annoncerons tres bientot les categories de tickets et les tarifs.">Nous
+                    annoncerons tres bientot les categories de tickets et les tarifs.</p>
+
+                <div class="coming-actions">
+                    <a class="btn btn-primary" href="mailto:contact@pycontogo.org" data-i18n-en="Contact the Team"
+                        data-i18n-fr="Contacter l'Equipe">Contacter l'Equipe</a>
+                    <a class="btn btn-ghost" href="/" data-i18n-en="Back to Home"
+                        data-i18n-fr="Retour a l'Accueil">Retour a l'Accueil</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

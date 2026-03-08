@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="page active" id="page-tickets">
+    <section class="page-hero">
+        <div class="container">
+            <span class="eyebrow reveal">Billetterie</span>
+            <h1 class="reveal reveal-d1">Inscriptions<br /><em>bientôt ouvertes.</em></h1>
+            <p class="page-hero-sub reveal reveal-d2">Laissez votre contact pour être notifié dès l'ouverture.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="tickets-grid reveal">
+                <div class="ticket-card-item">
+                    <div class="tcard-top">
+                        <span class="tcard-type">Général</span>
+                        <span class="tcard-badge">Disponible</span>
+                    </div>
+                    <div class="tcard-price">TBD</div>
+                    <p>Accès complet à toutes les conférences, ateliers et sessions de networking.</p>
+                    <ul class="tcard-list">
+                        <li>✓ Accès aux conférences</li>
+                        <li>✓ Accès aux ateliers</li>
+                        <li>✓ Kit conférence</li>
+                        <li>✓ Repas inclus</li>
+                        <li>✓ Certificat de participation</li>
+                    </ul>
+                    <a href="mailto:contact@pytogo.org" class="btn btn-outline">S'inscrire →</a>
+                </div>
+                <div class="ticket-card-item featured">
+                    <div class="tcard-top">
+                        <span class="tcard-type">Étudiant</span>
+                        <span class="tcard-badge badge-green">Tarif Réduit</span>
+                    </div>
+                    <div class="tcard-price">TBD</div>
+                    <p>Tarif spécial pour les étudiants sur présentation d'une carte valide.</p>
+                    <ul class="tcard-list">
+                        <li>✓ Accès aux conférences</li>
+                        <li>✓ Accès aux ateliers</li>
+                        <li>✓ Kit conférence</li>
+                        <li>✓ Repas inclus</li>
+                        <li>✓ Certificat de participation</li>
+                    </ul>
+                    <a href="mailto:contact@pytogo.org" class="btn btn-primary">S'inscrire →</a>
+                </div>
+                <div class="ticket-card-item">
+                    <div class="tcard-top">
+                        <span class="tcard-type">Sponsor / VIP</span>
+                        <span class="tcard-badge badge-gold">Premium</span>
+                    </div>
+                    <div class="tcard-price">Sur Devis</div>
+                    <p>Pour les entreprises souhaitant sponsoriser et bénéficier d'un accès VIP.</p>
+                    <ul class="tcard-list">
+                        <li>✓ Passes multiples</li>
+                        <li>✓ Espace d'exposition</li>
+                        <li>✓ Visibilité de marque</li>
+                        <li>✓ Accès lounge VIP</li>
+                        <li>✓ Support dédié</li>
+                    </ul>
+                    <a href="mailto:contact@pytogo.org" class="btn btn-outline">Nous Contacter →</a>
+                </div>
+            </div>
+
+            <div class="newsletter-block reveal">
+                <p>💡 Les prix définitifs seront annoncés prochainement. Inscrivez-vous pour être averti en
+                    avant-première.</p>
+                <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+                    <input type="email" placeholder="votre@email.com" required />
+                    <button type="submit" class="btn btn-primary">M'avertir</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

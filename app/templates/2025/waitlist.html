@@ -3,8 +3,8 @@
 Waitlist - PyCon Togo 2025
 {% endblock %}
 {% block style %}
-<script src="../static/js/sponsor.js" defer></script>
-<link rel="stylesheet" href="../static/css/waitlist.css">
+<script src="{{ url_for('static', path='js/sponsor.js') }}" defer></script>
+<link rel="stylesheet" href="{{ url_for('static', path='css/waitlist.css') }}">
 
 
 {% endblock %}

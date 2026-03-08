@@ -5,8 +5,8 @@ Call for {{ call_to_action }} is closed
 {% endblock %}
 
 {% block style %}
-<script src="../static/js/main.js" defer></script>
-<link rel="stylesheet" href="../static/css/coming-soon.css">
+<script src="{{ url_for('static', path='js/main.js') }}" defer></script>
+<link rel="stylesheet" href="{{ url_for('static', path='css/coming-soon.css') }}">
 
 {% endblock %}
 
@@ -24,10 +24,11 @@ Call for {{ call_to_action }} is closed
                 social media channels.</p>
 
 
-            
+
             <div class="notification">
                 <h3>Want to support the event?</h3>
-                <p>We are still looking for amazing sponsors to help make PyCon Togo 2025 a success. Join our mission to grow the
+                <p>We are still looking for amazing sponsors to help make PyCon Togo 2025 a success. Join our mission to
+                    grow the
                     Python community in Togo and across Africa.</p>
                 <a href="https://pycontg.pytogo.org/sponsor" class="highlight-btn" target="_blank">Become a Sponsor</a>
             </div>

@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="page active" id="page-about">
+    <section class="page-hero">
+        <div class="container">
+            <span class="eyebrow reveal" data-i18n-en="About" data-i18n-fr="À Propos">À Propos</span>
+            <h1 class="reveal reveal-d1" data-i18n-html-en="The <em>Python conference of Togo.</em>"
+                data-i18n-html-fr="La conférence<br /><em>Python du Togo.</em>">La conférence<br /><em>Python du
+                    Togo.</em></h1>
+            <p class="page-hero-sub reveal reveal-d2"
+                data-i18n-en="Bring together, inspire, advance the Togolese tech community."
+                data-i18n-fr="Rassembler, inspirer, faire avancer la communauté tech togolaise.">Rassembler, inspirer,
+                faire avancer la communauté tech togolaise.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-main reveal" id="about-us">
+                    <h2 data-i18n-en="What is PyCon Togo?" data-i18n-fr="Qu'est-ce que PyCon Togo ?">Qu'est-ce que PyCon
+                        Togo ?</h2>
+                    <p data-i18n-html-en="PyCon Togo is <strong>the national conference of the Python community in Togo</strong>, bringing together professional developers, students, enthusiasts, system administrators, teachers, scientists, statisticians, and many others - united by their love of Python."
+                        data-i18n-html-fr="PyCon Togo est <strong>la conférence nationale de la communauté Python du Togo</strong>, réunissant développeurs professionnels, étudiants, passionnés, administrateurs système, enseignants, scientifiques, statisticiens et bien d'autres - unis par leur amour de Python.">
+                        PyCon Togo est <strong>la conférence nationale de la communauté Python du Togo</strong>,
+                        réunissant développeurs professionnels, étudiants, passionnés, administrateurs système,
+                        enseignants, scientifiques, statisticiens et bien d'autres - unis par leur amour de Python.
+                    </p>
+                    <p data-i18n-html-en="PyCon Togo informs and inspires the Togolese community through <strong>talks, workshops, and sessions</strong> led by experts, Python language contributors, and maintainers of the libraries and frameworks they use daily."
+                        data-i18n-html-fr="PyCon Togo informe et inspire la communauté togolaise grâce à des <strong>présentations, ateliers et sessions</strong> animées par des experts, des contributeurs du langage Python et des mainteneurs des bibliothèques et frameworks qu'ils utilisent au quotidien.">
+                        PyCon Togo informe et inspire la communauté togolaise grâce à des <strong>présentations,
+                            ateliers et sessions</strong> animées par des experts, des contributeurs du langage Python
+                        et des mainteneurs des bibliothèques et frameworks qu'ils utilisent au quotidien.
+                    </p>
+                    <p data-i18n-html-en="The event is a unique opportunity to <strong>meet, learn, and grow</strong> within an inclusive and dynamic tech community rooted in Togo and connected to Africa and the world."
+                        data-i18n-html-fr="L'événement est une opportunité unique de <strong>rencontrer, apprendre et grandir</strong> au sein d'une communauté tech inclusive et dynamique, ancrée au Togo et connectée à l'Afrique et au monde.">
+                        L'événement est une opportunité unique de <strong>rencontrer, apprendre et grandir</strong> au
+                        sein d'une communauté tech inclusive et dynamique, ancrée au Togo et connectée à l'Afrique et au
+                        monde.
+                    </p>
+                    <p data-i18n-en="Like other PyCons worldwide, PyCon Togo promotes an open technical culture: knowledge sharing, contribution, mentorship, and practical use of open source and free software tools to create local value."
+                        data-i18n-fr="Comme les autres PyCon dans le monde, PyCon Togo défend une culture technique ouverte : partage de savoir, contribution, mentorat, et usage d'outils open source et de logiciels libres pour créer de la valeur locale.">
+                        Comme les autres PyCon dans le monde, PyCon Togo défend une culture technique ouverte : partage
+                        de savoir, contribution, mentorat, et usage d'outils open source et de logiciels libres pour
+                        créer de la valeur locale.
+                    </p>
+                </div>
+                <div class="about-sidebar">
+                    <div class="info-card reveal reveal-d1">
+                        <h4 data-i18n-en="Our Mission" data-i18n-fr="Notre Mission">Notre Mission</h4>
+                        <p data-i18n-en="Strengthen local technical skills by making Python accessible, practical, and useful for students, professionals, and entrepreneurs in Togo."
+                            data-i18n-fr="Renforcer les compétences techniques locales en rendant Python accessible, concret et utile pour les étudiants, les professionnels et les entrepreneurs du Togo.">
+                            Renforcer les compétences techniques locales en rendant Python accessible, concret et utile
+                            pour les étudiants, les professionnels et les entrepreneurs du Togo.
+                        </p>
+                    </div>
+                    <div class="info-card reveal reveal-d2">
+                        <h4 data-i18n-en="Our Vision" data-i18n-fr="Notre Vision">Notre Vision</h4>
+                        <p data-i18n-en="Build a sustainable, inclusive, and recognized Python community in Togo, able to create high-impact local solutions and collaborate with the international ecosystem."
+                            data-i18n-fr="Construire une communauté Python togolaise durable, inclusive et reconnue, capable de créer des solutions locales à fort impact et de collaborer avec l'écosystème international.">
+                            Construire une communauté Python togolaise durable, inclusive et reconnue, capable de créer
+                            des solutions locales à fort impact et de collaborer avec l'écosystème international.
+                        </p>
+                    </div>
+                    <div class="info-card reveal reveal-d3">
+                        <h4 data-i18n-en="2026 Edition" data-i18n-fr="Édition 2026">Édition 2026</h4>
+                        <p data-i18n-en="{{ about_date_en }}" data-i18n-fr="{{ about_date_fr }}">{{ about_date_fr }}</p>
+                        <p data-i18n-en="{{ about_location_en }}" data-i18n-fr="{{ about_location_fr }}">{{
+                            about_location_fr }}</p>
+                        <p data-i18n-en="Format: 3 days (beginner workshop, conference day, speakers dinner)."
+                            data-i18n-fr="Format : 3 jours (workshop débutant, journée conférence, dîner speakers).">
+                            Format : 3 jours (workshop débutant, journée conférence, dîner speakers).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-photo-grid reveal">
+                <div class="ap ap1 photo-placeholder tall"><span><img
+                            src="https://ik.imagekit.io/pythontogo/images/IMG_9523.jpg" alt="Conference"></span>
+                    <p data-i18n-en="Conference" data-i18n-fr="Conférence">Conférence</p>
+                </div>
+                <div class="ap ap2 photo-placeholder"><span><img
+                            src="https://ik.imagekit.io/pythontogo/images/IMG_9437.jpg" alt="Workshops"></span>
+                    <p data-i18n-en="Workshops" data-i18n-fr="Ateliers">Ateliers</p>
+                </div>
+                <div class="ap ap3 photo-placeholder"><span><img
+                            src="https://res.cloudinary.com/dvg7vky5o/image/upload/v1774629706/IMG_9477_etpeax.jpg"
+                            alt="Community"></span>
+                    <p data-i18n-en="Community" data-i18n-fr="Communauté">Communauté</p>
+                </div>
+                <div class="ap ap4 photo-placeholder tall"><span><img
+                            src="https://ik.imagekit.io/pythontogo/images/IMG_9419.jpg" alt="Networking"></span>
+                    <p data-i18n-en="Networking" data-i18n-fr="Networking">Networking</p>
+                </div>
+            </div>
+
+            <div class="about-policy-grid">
+                <article class="about-policy-card reveal" id="about-coc">
+                    <h3 data-i18n-en="Code of Conduct" data-i18n-fr="Code de conduite">Code de conduite</h3>
+                    <p data-i18n-en="PyCon Togo is committed to a respectful, inclusive, and harassment-free experience for everyone."
+                        data-i18n-fr="PyCon Togo s'engage pour une expérience respectueuse, inclusive et sans harcèlement pour tous.">
+                        PyCon Togo is committed to a respectful, inclusive, and harassment-free experience for everyone.
+                    </p>
+                    <a class="btn btn-text" href="/coc" data-i18n-en="Read full policy"
+                        data-i18n-fr="Lire la politique complète">Read full policy</a>
+                </article>
+                <article class="about-policy-card reveal reveal-d1" id="about-health">
+                    <h3 data-i18n-en="Health & Safety Policy" data-i18n-fr="Politique Santé & Sécurité">Health & Safety
+                        Policy</h3>
+                    <p data-i18n-en="Health and safety guidance for attendees, speakers, volunteers, and partners will be published here."
+                        data-i18n-fr="Les consignes de santé et sécurité pour les participants, speakers, bénévoles et partenaires seront publiées ici.">
+                        Health and safety guidance for attendees, speakers, volunteers, and partners will be published
+                        here.
+                    </p>
+                    <a class="btn btn-text" href="/health_security" data-i18n-en="Read full policy"
+                        data-i18n-fr="Lire la politique complète">Read full policy</a>
+                </article>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

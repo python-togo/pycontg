@@ -1,0 +1,32 @@
+/* Page-specific home tweaks */
+.hero {
+    scroll-margin-top: var(--nav-h);
+}
+
+.home-partner-names {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.home-partner-names .sponsor-logo-pill {
+    margin: 0;
+    text-align: center;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 1080px) {
+    .home-partner-names {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .home-partner-names {
+        grid-template-columns: 1fr;
+    }
+}
