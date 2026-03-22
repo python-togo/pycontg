@@ -37,3 +37,5 @@ pycontg25
 test.py
 test*
 *.sublime-project
+db.sqlite3
+*.sql
