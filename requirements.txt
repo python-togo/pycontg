@@ -14,4 +14,4 @@ qrcode==8.2
 reportlab==4.4.2
 pillow==11.2.1
 cloudinary==1.44.1
-decouple==3.7.0
+python-decouple==3.8
