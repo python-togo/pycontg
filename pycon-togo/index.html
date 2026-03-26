@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PyCon Togo 2026 — La Conférence Python du Togo</title>
+  <meta name="description" content="PyCon Togo 2026 — La conférence nationale de la communauté Python du Togo. Lomé, Togo.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header id="navbar">
+    <div class="nav-container">
+      <a class="nav-logo" onclick="navigate('home')">
+        <img src="1.png" alt="PyCon Togo 2026" class="logo-img" />
+      </a>
+      <nav class="nav-links" id="nav-links">
+        <a class="nav-link active" data-page="home"     onclick="navigate('home')">Accueil</a>
+        <a class="nav-link"        data-page="about"    onclick="navigate('about')">À Propos</a>
+        <a class="nav-link"        data-page="sponsors" onclick="navigate('sponsors')">Sponsors</a>
+        <a class="nav-link"        data-page="team"     onclick="navigate('team')">Équipe</a>
+        <a class="nav-link"        data-page="contact"  onclick="navigate('contact')">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-ghost" onclick="navigate('sponsors')">Devenir Sponsor</a>
+        <a class="btn btn-primary" onclick="navigate('tickets')">Réserver ma Place</a>
+      </div>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile drawer -->
+  <div class="drawer-overlay" id="drawer-overlay" onclick="closeMenu()"></div>
+  <div class="drawer" id="drawer">
+    <div class="drawer-top">
+      <img src="2.png" alt="PyCon Togo" class="logo-img" style="height:36px" />
+      <button class="drawer-close" onclick="closeMenu()">✕</button>
+    </div>
+    <a class="drawer-link" onclick="navigate('home');closeMenu()">Accueil</a>
+    <a class="drawer-link" onclick="navigate('about');closeMenu()">À Propos</a>
+    <a class="drawer-link" onclick="navigate('sponsors');closeMenu()">Sponsors</a>
+    <a class="drawer-link" onclick="navigate('team');closeMenu()">Équipe</a>
+    <a class="drawer-link" onclick="navigate('contact');closeMenu()">Contact</a>
+    <div class="drawer-actions">
+      <a class="btn btn-primary" onclick="navigate('tickets');closeMenu()">Réserver ma Place →</a>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════
+       PAGE: HOME
+  ═══════════════════════════════ -->
+  <main class="page active" id="page-home">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-bg-pattern"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow reveal">
+          <span class="dot-pulse"></span>
+          Lomé, Togo &nbsp;·&nbsp; 2026
+        </div>
+        <h1 class="hero-title reveal reveal-d1">
+          Plus qu'une<br/>conférence<br/><em>Python.</em>
+        </h1>
+        <p class="hero-sub reveal reveal-d2">
+          PyCon Togo 2026 — la conférence nationale de la communauté Python du Togo. Développeurs, étudiants, enseignants, ingénieurs : bienvenue.
+        </p>
+        <div class="hero-ctas reveal reveal-d3">
+          <button class="btn btn-primary btn-lg" onclick="navigate('tickets')">Réserver ma Place</button>
+          <button class="btn btn-outline-white btn-lg" onclick="navigate('about')">En Savoir Plus</button>
+        </div>
+        <div class="hero-badge reveal reveal-d4">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Date à confirmer · 2026
+        </div>
+      </div>
+
+      <!-- Photo collage right side -->
+      <div class="hero-visual">
+        <div class="collage">
+          <div class="collage-slot c1 photo-placeholder"><span><img src="IMG_9398.jpg"></span></div>
+          <div class="collage-slot c2 photo-placeholder"><span><img src="IMG_9304.jpg"></span></div>
+          <div class="collage-slot c3 photo-placeholder"><span><img src="IMG_9660.jpg"></span></div>
+          <div class="collage-slot c4 photo-placeholder"><span><img src="IMG_9582.jpg"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT STRIP -->
+    <section class="about-strip">
+      <div class="container">
+        <div class="about-strip-inner">
+          <div class="about-strip-label reveal">À Propos</div>
+          <div class="about-strip-body reveal reveal-d1">
+            <p>PyCon Togo est <strong>la conférence nationale de la communauté Python du Togo</strong>, réunissant développeurs professionnels, étudiants, passionnés, administrateurs système, enseignants, scientifiques, statisticiens et bien d'autres — unis par leur amour de Python.</p>
+            <p>PyCon Togo informe et inspire la communauté grâce à des <strong>présentations, ateliers et sessions</strong> animées par des experts, des contributeurs du langage Python et des mainteneurs des bibliothèques et frameworks qu'ils utilisent au quotidien.</p>
+            <button class="btn btn-text" onclick="navigate('about')">Lire la suite →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHOTO MARQUEE -->
+    <section class="marquee-section">
+      <div class="marquee-wrap">
+        <div class="marquee-track">
+          <div class="mq-item photo-placeholder"><span><img src="IMG_9189.jpg"></span></div>
+          <div class="mq-item photo-placeholder"><span><img src="IMG_9259.jpg"></span></div>
+          <div class="mq-item photo-placeholder"><span><img src="IMG_9304.jpg"></span></div>
+          <div class="mq-item photo-placeholder"><span><img src="IMG_9398.jpg"></span></div>
+          <div class="mq-item photo-placeholder"><span><img src="IMG_9507.jpg"></span></div>
+          <div class="mq-item photo-placeholder"><span><img src="IMG_9188.jpg"></span></div>
+          <div class="mq-item photo-placeholder"><span><img src="IMG_9574.jpg"></span></div>
+          <div class="mq-item photo-placeholder"><span><img src="IMG_9582.jpg"></span></div>
+          <!-- duplicated -->
+          <div class="mq-item photo-placeholder"><span><img src="IMG_9474.jpg"></span></div>
+          <div class="mq-item photo-placeholder"><span><img src="IMG_9486.jpg"></span></div>
+          <div class="mq-item photo-placeholder"><span><img src="IMG_9490.jpg"></span></div>
+          <div class="mq-item photo-placeholder"><span><img src="IMG_9647.jpg"></span></div>
+          <div class="mq-item photo-placeholder"><span><img src="IMG_9495.jpg"></span></div>
+          <div class="mq-item photo-placeholder"><span><img src="IMG_9485.jpg"></span></div>
+          <div class="mq-item photo-placeholder"><span><img src="IMG_9485.jpg"></span></div>
+          <div class="mq-item photo-placeholder"><span><img src="IMG_9189.jpg"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT'S ON -->
+    <section class="section whats-on">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">Programme</span>
+          <h2>Ce qui vous attend</h2>
+        </div>
+        <div class="features-row">
+          <div class="feature-card reveal">
+            <div class="feature-icon">🎤</div>
+            <h3>Conférences</h3>
+            <p>Des présentations par des experts Python locaux et internationaux sur les dernières avancées du langage et de son écosystème.</p>
+          </div>
+          <div class="feature-card reveal reveal-d1">
+            <div class="feature-icon">🛠️</div>
+            <h3>Ateliers</h3>
+            <p>Des sessions pratiques pour tous les niveaux — pour approfondir vos compétences Python dans un cadre bienveillant.</p>
+          </div>
+          <div class="feature-card reveal reveal-d2">
+            <div class="feature-icon">🤝</div>
+            <h3>Networking</h3>
+            <p>Rencontrez la communauté, échangez avec des professionnels, des étudiants et des passionnés de tech au Togo et en Afrique.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPONSOR TEASER -->
+    <section class="sponsor-teaser">
+      <div class="container">
+        <div class="sponsor-teaser-inner">
+          <div class="sponsor-teaser-text reveal">
+            <span class="eyebrow">Partenaires</span>
+            <h2>Soutenez la communauté<br/>Python du Togo.</h2>
+            <p>PyCon Togo ne peut exister sans le soutien de ses partenaires. En sponsorisant l'événement, votre organisation contribue au développement de la tech en Afrique de l'Ouest.</p>
+            <div class="sponsor-logos-row">
+              <div class="sponsor-logo-pill psf-pill">Python Software Foundation</div>
+              <div class="sponsor-logo-pill empty-pill">+ Votre Logo</div>
+              <div class="sponsor-logo-pill empty-pill">+ Votre Logo</div>
+            </div>
+          </div>
+          <div class="sponsor-cta-card reveal reveal-d1">
+            <div class="cta-card-inner">
+              <h3>Devenez Sponsor</h3>
+              <p>Visibilité, impact, communauté — découvrez nos offres de partenariat adaptées à tous les budgets.</p>
+              <button class="btn btn-primary" onclick="navigate('sponsors')">Voir les Offres →</button>
+              <a href="mailto:pythontogocommunity@gmail.com" class="cta-mail-link">pythontogocommunity@gmail.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TICKET SECTION -->
+    <section class="ticket-section section">
+      <div class="container">
+        <div class="ticket-block reveal">
+          <div class="ticket-stub-visual">
+            <div class="stub-left">
+              <img src="1.png" alt="PyCon Togo" style="height:32px;filter:brightness(10)" />
+              <div class="stub-title">PyCon Togo 2026</div>
+              <div class="stub-loc">Lomé, Togo 🇹🇬</div>
+            </div>
+            <div class="stub-perf"></div>
+            <div class="stub-right">
+              <div class="stub-year">2026</div>
+              <div class="stub-snake">🐍</div>
+            </div>
+          </div>
+          <div class="ticket-info">
+            <span class="eyebrow">Billets</span>
+            <h2>Réservez votre place</h2>
+            <p>Les places sont limitées. Inscrivez-vous dès maintenant pour rejoindre PyCon Togo 2026 et ne rien manquer des annonces.</p>
+            <button class="btn btn-primary btn-lg" onclick="navigate('tickets')">Réserver ma Place →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main><!-- /page-home -->
+
+
+  <!-- ═══════════════════════════════
+       PAGE: ABOUT
+  ═══════════════════════════════ -->
+  <main class="page" id="page-about">
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow reveal">À Propos</span>
+        <h1 class="reveal reveal-d1">La conférence<br/><em>Python du Togo.</em></h1>
+        <p class="page-hero-sub reveal reveal-d2">Rassembler, inspirer, faire avancer la communauté tech togolaise.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-main reveal">
+            <h2>Qu'est-ce que PyCon Togo ?</h2>
+            <p>PyCon Togo est <strong>la conférence nationale de la communauté Python du Togo</strong>, réunissant développeurs professionnels, étudiants, passionnés, administrateurs système, enseignants, scientifiques, statisticiens et bien d'autres — unis par leur amour de Python.</p>
+            <p>PyCon Togo informe et inspire la communauté togolaise grâce à des <strong>présentations, ateliers et sessions</strong> animées par des experts, des contributeurs du langage Python et des mainteneurs des bibliothèques et frameworks qu'ils utilisent au quotidien.</p>
+            <p>L'événement est une opportunité unique de <strong>rencontrer, apprendre et grandir</strong> au sein d'une communauté tech inclusive et dynamique, ancrée au Togo et connectée à l'Afrique et au monde.</p>
+          </div>
+          <div class="about-sidebar">
+            <div class="info-card reveal reveal-d1">
+              <div class="info-icon">🎯</div>
+              <h4>Notre Mission</h4>
+              <p>Démocratiser l'accès à Python, former les talents locaux et connecter la communauté togolaise à l'écosystème mondial.</p>
+            </div>
+            <div class="info-card reveal reveal-d2">
+              <div class="info-icon">🌍</div>
+              <h4>Notre Vision</h4>
+              <p>Une communauté tech florissante au Togo, où Python est un levier d'innovation et d'autonomisation économique.</p>
+            </div>
+            <div class="info-card reveal reveal-d3">
+              <div class="info-icon">📅</div>
+              <h4>Édition 2026</h4>
+              <p>Lomé, Togo — date exacte à confirmer. Suivez-nous pour les annonces en avant-première.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo grid -->
+        <div class="about-photo-grid reveal">
+          <div class="ap ap1 photo-placeholder tall"><span><img src="IMG_9189.jpg"></span><p>Conférence</p></div>
+          <div class="ap ap2 photo-placeholder"><span><img src="IMG_9574.jpg"></span><p>Ateliers</p></div>
+          <div class="ap ap3 photo-placeholder"><span><img src="IMG_9582.jpg"></span><p>Communauté</p></div>
+          <div class="ap ap4 photo-placeholder tall"><span><img src="IMG_9647.jpg"></span><p>Networking</p></div>
+        </div>
+      </div>
+    </section>
+  </main><!-- /page-about -->
+
+
+  <!-- ═══════════════════════════════
+       PAGE: SPONSORS
+  ═══════════════════════════════ -->
+  <main class="page" id="page-sponsors">
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow reveal">Partenaires</span>
+        <h1 class="reveal reveal-d1">Sponsorisez<br/><em>PyCon Togo 2026.</em></h1>
+        <p class="page-hero-sub reveal reveal-d2">Soutenez la communauté Python du Togo et gagnez en visibilité auprès de la prochaine génération de développeurs africains.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="why-sponsor reveal">
+          <h2>Pourquoi Sponsoriser ?</h2>
+          <div class="why-grid">
+            <div class="why-item">
+              <div class="why-num">01</div>
+              <h3>Visibilité & Impact</h3>
+              <p>Votre marque exposée à des centaines de développeurs, étudiants et décideurs tech au Togo et en Afrique de l'Ouest.</p>
+            </div>
+            <div class="why-item">
+              <div class="why-num">02</div>
+              <h3>Accès aux Talents</h3>
+              <p>Rencontrez directement les meilleurs profils Python du Togo — futurs collaborateurs, stagiaires ou partenaires.</p>
+            </div>
+            <div class="why-item">
+              <div class="why-num">03</div>
+              <h3>Impact Communautaire</h3>
+              <p>Contribuez au développement de l'open source et de l'éducation tech en Afrique.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="current-sponsors reveal">
+          <h2>Partenaires Actuels</h2>
+          <p class="sponsors-note">Les sponsors confirmés apparaîtront ici. Soyez parmi les premiers !</p>
+          <div class="sponsors-wall">
+            <div class="sponsor-wall-slot psf-slot">Python Software Foundation</div>
+            <div class="sponsor-wall-slot open-slot">Votre Logo ici</div>
+            <div class="sponsor-wall-slot open-slot">Votre Logo ici</div>
+            <div class="sponsor-wall-slot open-slot">Votre Logo ici</div>
+          </div>
+        </div>
+
+        <div class="tiers reveal">
+          <h2>Niveaux de Partenariat</h2>
+          <div class="tiers-grid">
+            <div class="tier-card gold">
+              <div class="tier-top">
+                <span class="tier-label">⭐ Or</span>
+                <span class="tier-price">5 000 USD</span>
+              </div>
+              <ul>
+                <li>Logo sur la scène principale</li>
+                <li>Mise en avant homepage</li>
+                <li>Slot 5 min présentation</li>
+                <li>10 passes conférence</li>
+                <li>Stand dédié (6m²)</li>
+                <li>5 posts réseaux sociaux</li>
+                <li>Newsletter feature</li>
+                <li>Tous les supports imprimés</li>
+              </ul>
+              <a href="mailto:pythontogocommunity@gmail.com" class="btn btn-primary">Nous Contacter</a>
+            </div>
+            <div class="tier-card silver">
+              <div class="tier-top">
+                <span class="tier-label">🥈 Argent</span>
+                <span class="tier-price">2 500 USD</span>
+              </div>
+              <ul>
+                <li>Logo site & supports</li>
+                <li>3 passes conférence</li>
+                <li>Table d'exposition partagée</li>
+                <li>2 mentions réseaux sociaux</li>
+                <li>Logo sur les lanyards</li>
+                <li>Mention newsletter</li>
+              </ul>
+              <a href="mailto:pythontogocommunity@gmail.com" class="btn btn-outline">Nous Contacter</a>
+            </div>
+            <div class="tier-card bronze">
+              <div class="tier-top">
+                <span class="tier-label">🥉 Bronze</span>
+                <span class="tier-price">1 000 USD</span>
+              </div>
+              <ul>
+                <li>Logo sur le site</li>
+                <li>2 passes conférence</li>
+                <li>1 mention réseaux sociaux</li>
+                <li>Logo dans le livret</li>
+              </ul>
+              <a href="mailto:pythontogocommunity@gmail.com" class="btn btn-outline">Nous Contacter</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="sponsor-cta-banner reveal">
+          <h3>Prêt à nous rejoindre ?</h3>
+          <p>Contactez-nous pour discuter d'un partenariat adapté à vos objectifs.</p>
+          <a href="mailto:pythontogocommunity@gmail.com" class="btn btn-primary btn-lg">pythontogocommunity@gmail.com</a>
+        </div>
+      </div>
+    </section>
+  </main><!-- /page-sponsors -->
+
+
+  <!-- ═══════════════════════════════
+       PAGE: TEAM
+  ═══════════════════════════════ -->
+  <main class="page" id="page-team">
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow reveal">L'Équipe</span>
+        <h1 class="reveal reveal-d1">Les personnes<br/><em>derrière PyCon.</em></h1>
+        <p class="page-hero-sub reveal reveal-d2">Une équipe de bénévoles passionnés qui rendent PyCon Togo 2026 possible.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="team-grid" id="team-grid"></div>
+      </div>
+    </section>
+  </main><!-- /page-team -->
+
+
+  <!-- ═══════════════════════════════
+       PAGE: CONTACT
+  ═══════════════════════════════ -->
+  <main class="page" id="page-contact">
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow reveal">Contact</span>
+        <h1 class="reveal reveal-d1">Parlons<br/><em>ensemble.</em></h1>
+        <p class="page-hero-sub reveal reveal-d2">Une question, une idée de partenariat, ou simplement envie de dire bonjour ?</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="contact-layout">
+          <div class="contact-form-wrap">
+            <div class="form-success" id="form-success">
+              <div class="success-check">✓</div>
+              <h3>Message envoyé !</h3>
+              <p>Nous vous répondrons dans les 48h.</p>
+            </div>
+            <form id="contact-form" onsubmit="handleSubmit(event)">
+              <div class="form-row">
+                <div class="field">
+                  <label>Nom complet</label>
+                  <input type="text" placeholder="Kofi Mensah" required />
+                </div>
+                <div class="field">
+                  <label>Adresse email</label>
+                  <input type="email" placeholder="kofi@exemple.com" required />
+                </div>
+              </div>
+              <div class="field">
+                <label>Organisation (optionnel)</label>
+                <input type="text" placeholder="Votre entreprise ou université" />
+              </div>
+              <div class="field">
+                <label>Sujet</label>
+                <select>
+                  <option>Question générale</option>
+                  <option>Partenariat / Sponsoring</option>
+                  <option>Presse &amp; Médias</option>
+                  <option>Bénévolat</option>
+                  <option>Autre</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Message</label>
+                <textarea rows="5" placeholder="Dites-nous comment nous pouvons vous aider..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg" id="submit-btn">Envoyer →</button>
+            </form>
+          </div>
+
+          <div class="contact-sidebar">
+            <div class="contact-card">
+              <h4>Nous écrire</h4>
+              <a href="mailto:pythontogocommunity@gmail.com" class="contact-email">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+                pythontogocommunity@gmail.com
+              </a>
+              <a href="mailto:pythontogocommunity@gmail.com" class="contact-email">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+                pythontogocommunity@gmail.com
+              </a>
+            </div>
+            <div class="contact-card">
+              <h4>Suivez-nous</h4>
+              <div class="social-links">
+                <a href="#" class="social-link">
+                  <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                  Twitter / X
+                </a>
+                <a href="#" class="social-link">
+                  <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                  LinkedIn
+                </a>
+                <a href="#" class="social-link">
+                  <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+            <div class="contact-card location-card">
+              <span class="loc-flag">🇹🇬</span>
+              <div>
+                <strong>Lomé, Togo</strong>
+                <p>PyCon Togo 2026</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main><!-- /page-contact -->
+
+
+  <!-- ═══════════════════════════════
+       PAGE: TICKETS
+  ═══════════════════════════════ -->
+  <main class="page" id="page-tickets">
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow reveal">Billets</span>
+        <h1 class="reveal reveal-d1">Réservez<br/><em>votre place.</em></h1>
+        <p class="page-hero-sub reveal reveal-d2">Les places sont limitées. Inscrivez-vous dès maintenant.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="tickets-grid reveal">
+          <div class="ticket-card-item">
+            <div class="tcard-top">
+              <span class="tcard-type">Général</span>
+              <span class="tcard-badge">Disponible</span>
+            </div>
+            <div class="tcard-price">TBD</div>
+            <p>Accès complet à toutes les conférences, ateliers et sessions de networking.</p>
+            <ul class="tcard-list">
+              <li>✓ Accès aux conférences</li>
+              <li>✓ Accès aux ateliers</li>
+              <li>✓ Kit conférence</li>
+              <li>✓ Repas inclus</li>
+              <li>✓ Certificat de participation</li>
+            </ul>
+            <a href="mailto:pythontogocommunity@gmail.com" class="btn btn-outline">S'inscrire →</a>
+          </div>
+          <div class="ticket-card-item featured">
+            <div class="tcard-top">
+              <span class="tcard-type">Étudiant</span>
+              <span class="tcard-badge badge-green">Tarif Réduit</span>
+            </div>
+            <div class="tcard-price">TBD</div>
+            <p>Tarif spécial pour les étudiants sur présentation d'une carte valide.</p>
+            <ul class="tcard-list">
+              <li>✓ Accès aux conférences</li>
+              <li>✓ Accès aux ateliers</li>
+              <li>✓ Kit conférence</li>
+              <li>✓ Repas inclus</li>
+              <li>✓ Certificat de participation</li>
+            </ul>
+            <a href="mailto:pythontogocommunity@gmail.com" class="btn btn-primary">S'inscrire →</a>
+          </div>
+          <div class="ticket-card-item">
+            <div class="tcard-top">
+              <span class="tcard-type">Sponsor / VIP</span>
+              <span class="tcard-badge badge-gold">Premium</span>
+            </div>
+            <div class="tcard-price">Sur Devis</div>
+            <p>Pour les entreprises souhaitant sponsoriser et bénéficier d'un accès VIP.</p>
+            <ul class="tcard-list">
+              <li>✓ Passes multiples</li>
+              <li>✓ Espace d'exposition</li>
+              <li>✓ Visibilité de marque</li>
+              <li>✓ Accès lounge VIP</li>
+              <li>✓ Support dédié</li>
+            </ul>
+            <a href="mailto:pythontogocommunity@gmail.com" class="btn btn-outline">Nous Contacter →</a>
+          </div>
+        </div>
+
+        <div class="newsletter-block reveal">
+          <p>💡 Les prix définitifs seront annoncés prochainement. Inscrivez-vous pour être averti en avant-première.</p>
+          <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+            <input type="email" placeholder="votre@email.com" required />
+            <button type="submit" class="btn btn-primary">M'avertir</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main><!-- /page-tickets -->
+
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <img src="2.png" alt="PyCon Togo 2026" style="height:44px;filter:brightness(10)" />
+          <p>La conférence nationale de la communauté Python du Togo.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Twitter"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="#" aria-label="LinkedIn"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="#" aria-label="GitHub"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Navigation</h5>
+          <a onclick="navigate('home')">Accueil</a>
+          <a onclick="navigate('about')">À Propos</a>
+          <a onclick="navigate('sponsors')">Sponsors</a>
+          <a onclick="navigate('team')">Équipe</a>
+          <a onclick="navigate('contact')">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Participer</h5>
+          <a onclick="navigate('tickets')">Réserver une Place</a>
+          <a onclick="navigate('sponsors')">Devenir Sponsor</a>
+          <a href="mailto:pythontogocommunity@gmail.com">Bénévolat</a>
+          <a href="mailto:pythontogocommunity@gmail.com">Proposer un Talk</a>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <a href="mailto:pythontogocommunity@gmail.com">pythontogocommunity@gmail.com</a>
+          <a href="mailto:pythontogocommunity@gmail.com">pythontogocommunity@gmail.com</a>
+          <span>Lomé, Togo 🇹🇬</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <span>© 2026 PyCon Togo. Tous droits réservés.</span>
+        <span>Fait avec 🐍 au Togo</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
