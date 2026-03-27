@@ -13,7 +13,7 @@ settings = Settings(
     supabase_url=config("SUPABASE_URL"),
     supabase_key=config("SUPABASE_KEY"),
     smtp_server=config("SMTP_SERVER"),
-    smtp_port=config("SMTP_PORT", cast=int),
-    smtp_user=config("SMTP_USERNAME"),
-    smtp_pass=config("SMTP_PASSWORD"),
+    smtp_port=config("SMTP_SERVER_PORT", cast=int),
+    smtp_user=config("SENDER_EMAIL"),
+    smtp_pass=config("SENDER_EMAIL_PASSWORD"),
 )
