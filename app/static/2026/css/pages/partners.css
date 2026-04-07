@@ -1,0 +1,226 @@
+/* Partners Directory 2026 */
+
+.partners-directory {
+    padding-top: 6px;
+}
+
+.partners-directory .section-head {
+    margin: 0 0 14px;
+    padding-top: 14px;
+}
+
+.partners-directory .section-head:not(:first-child) {
+    margin-top: 42px;
+    border-top: 1px solid var(--border);
+}
+
+.partners-directory .section-head h3 {
+    margin: 0;
+    font-size: clamp(22px, 2.4vw, 30px);
+    color: #1a4f37;
+}
+
+.section-head--sponsors h3 {
+    color: #1c6f4a;
+}
+
+.section-head--partnership h3 {
+    color: #5f4aa8;
+}
+
+.section-head--python h3 {
+    color: #0f5a39;
+}
+
+.section-head--community h3 {
+    color: #27618f;
+}
+
+.section-head--media h3 {
+    color: #9a4f0f;
+}
+
+.section-head--other h3 {
+    color: #47636b;
+}
+
+.partner-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.tier-block {
+    margin-top: 18px;
+    padding: 16px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    background: #ffffff;
+    box-shadow: 0 8px 26px rgba(24, 52, 37, 0.06);
+}
+
+.tier-title {
+    margin: 0 0 12px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 13px;
+    font-weight: 800;
+    color: #204f3a;
+}
+
+.tier-headline {
+    border-color: #2b7a50;
+    background: linear-gradient(180deg, #eaf8f1 0%, #ffffff 100%);
+    box-shadow: 0 14px 36px rgba(43, 122, 80, 0.16);
+}
+
+.tier-headline .tier-title {
+    color: #0f5a39;
+    font-size: 15px;
+}
+
+.tier-platinum {
+    border-color: #9ea8b3;
+    background: linear-gradient(180deg, #f3f6f9 0%, #ffffff 100%);
+}
+
+.tier-gold {
+    border-color: #d5a73a;
+    background: linear-gradient(180deg, #fff8e8 0%, #ffffff 100%);
+}
+
+.tier-silver {
+    border-color: #b6c0ca;
+    background: linear-gradient(180deg, #f8fafb 0%, #ffffff 100%);
+}
+
+.tier-bronze {
+    border-color: #b6815d;
+    background: linear-gradient(180deg, #fff3eb 0%, #ffffff 100%);
+}
+
+.tier-heart {
+    border-color: #ca7485;
+    background: linear-gradient(180deg, #fff1f4 0%, #ffffff 100%);
+}
+
+.tier-custom,
+.tier-sponsors {
+    border-color: #7ea591;
+    background: linear-gradient(180deg, #f2faf5 0%, #ffffff 100%);
+}
+
+.partner-card {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: #ffffff;
+    padding: 16px;
+    box-shadow: 0 3px 14px rgba(24, 52, 37, 0.04);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.partner-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 9px 22px rgba(24, 52, 37, 0.1);
+}
+
+.partner-logo-box {
+    height: 94px;
+    border-radius: 10px;
+    border: 1px dashed #cad8cf;
+    background: #f7fbf9;
+    display: grid;
+    place-items: center;
+    margin-bottom: 12px;
+    padding: 10px;
+}
+
+.partner-logo-link {
+    text-decoration: none;
+}
+
+.partner-logo-box img {
+    max-height: 62px;
+    max-width: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+.partner-logo-fallback {
+    min-width: 80%;
+    max-width: 100%;
+    min-height: 54px;
+    border-radius: 10px;
+    background: #e8f4ee;
+    color: #0f5a39;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    font-size: 13px;
+    text-align: center;
+    padding: 8px 10px;
+    line-height: 1.35;
+}
+
+.partner-card h4 {
+    margin: 0 0 8px;
+    font-size: 18px;
+    line-height: 1.25;
+    color: #203329;
+}
+
+.partner-description {
+    margin: 0;
+    color: var(--text-mid);
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.partner-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-weight: 700;
+    color: #166745;
+}
+
+.partner-link:hover {
+    color: #0f5a39;
+}
+
+.partners-empty {
+    margin-top: 12px;
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    background: #fcfdfc;
+}
+
+.partners-empty p {
+    margin: 0;
+    color: var(--text-mid);
+}
+
+.directory-cta {
+    margin-top: 40px;
+}
+
+@media (max-width: 980px) {
+    .partner-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 680px) {
+    .tier-block {
+        padding: 12px;
+    }
+
+    .partner-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .partner-card {
+        padding: 14px;
+    }
+}

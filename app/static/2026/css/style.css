@@ -1552,7 +1552,7 @@ p:last-child {
   position: relative;
   isolation: isolate;
   background:
-    linear-gradient(140deg, #0b7a55 0%, #0a6548 45%, #0a523c 100%);
+    linear-gradient(138deg, #198b63 0%, #0f6f4f 48%, #0f5943 100%);
   border: 1px solid rgba(255, 255, 255, .14);
   border-radius: var(--radius-lg);
   box-shadow: 0 18px 44px rgba(10, 61, 45, .28);
@@ -1566,8 +1566,9 @@ p:last-child {
   inset: 0;
   border-radius: inherit;
   background:
-    radial-gradient(circle at 14% 18%, rgba(255, 255, 255, .16), transparent 44%),
-    radial-gradient(circle at 86% 86%, rgba(255, 255, 255, .1), transparent 40%);
+    radial-gradient(circle at 14% 18%, rgba(255, 255, 255, .2), transparent 44%),
+    radial-gradient(circle at 84% 84%, rgba(255, 212, 59, .16), transparent 42%),
+    linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, 0));
   pointer-events: none;
   z-index: 0;
 }
@@ -1601,13 +1602,20 @@ p:last-child {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: fit-content;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(6, 47, 35, .72);
+  border: 1px solid rgba(255, 255, 255, .34);
+  box-shadow: 0 10px 22px rgba(4, 35, 26, .26);
 }
 
 .stub-logo-main {
-  width: min(100%, 210px);
+  width: min(100%, 228px);
   height: auto;
   display: block;
   object-fit: contain;
+  filter: brightness(0) invert(1) drop-shadow(0 1px 1px rgba(0, 0, 0, .55)) drop-shadow(0 0 6px rgba(0, 0, 0, .35));
 }
 
 .stub-date {
@@ -1640,8 +1648,8 @@ p:last-child {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background: linear-gradient(180deg, rgba(5, 31, 23, .2), rgba(4, 20, 15, .32));
-  border-left: 1px solid rgba(255, 255, 255, .2);
+  background: linear-gradient(180deg, rgba(255, 212, 59, .18), rgba(255, 212, 59, .08));
+  border-left: 1px solid rgba(255, 255, 255, .28);
   position: relative;
   z-index: 1;
 }
@@ -1651,11 +1659,11 @@ p:last-child {
   font-size: 12px;
   letter-spacing: .08em;
   font-weight: 900;
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, .42);
+  color: #f8fffb;
+  border: 1px solid rgba(255, 255, 255, .5);
   padding: 8px 11px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, .1);
+  background: rgba(8, 70, 50, .46);
 }
 
 .stub-mini-date {

@@ -387,6 +387,12 @@ function handleSubmit(e) {
   const succ = document.getElementById("form-success");
 
   btn.textContent = "Envoi en cours...";
+  console.log("Submitting contact form with data:", {
+    name: nameInput.value,
+    email: emailInput.value,
+    subject: subjectInput.value,
+    message: messageInput.value,
+  });
   btn.disabled = true;
 
   setTimeout(() => {

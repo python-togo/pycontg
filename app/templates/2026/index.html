@@ -5,14 +5,13 @@
   <section class="hero">
     <div class="hero-bg-pattern"></div>
     <div class="hero-content">
-      <div class="hero-eyebrow reveal">
-        PyCon Togo 2026
+      <div class="hero-eyebrow reveal" data-i18n-en="{{ event_name }}" data-i18n-fr="{{ event_name }}">
+        {{ event_name }}
       </div>
       <h1 class="hero-title reveal reveal-d1" data-i18n-html-en="More than a <em>Python</em> conference."
         data-i18n-html-fr="Plus qu'une conférence <em>Python.</em>">More than a <em>Python</em> conference.</h1>
-      <p class="hero-meta reveal reveal-d2" data-i18n-en="Lome, Togo · 21-23 August 2026 · 3-day event"
-        data-i18n-fr="Lomé, Togo · 21-23 août 2026 · Événement sur 3 jours">Lome, Togo · 21-23 August 2026
-        · 3-day event</p>
+      <p class="hero-meta reveal reveal-d2" data-i18n-en="{{ event_meta_en }}" data-i18n-fr="{{ event_meta_fr }}">{{
+        event_meta_en }}</p>
       <p class="hero-sub reveal reveal-d2"
         data-i18n-en="PyCon Togo is where developers, founders, students, and tech teams meet to learn, build, and collaborate around Python, open source, and real-world innovation."
         data-i18n-fr="PyCon Togo est l'endroit où développeurs, fondateurs, étudiants et équipes tech se retrouvent pour apprendre, construire et collaborer autour de Python, de l'open source et de l'innovation réelle.">
@@ -170,8 +169,8 @@
     <div class="container">
       <div class="section-header reveal">
         <span class="eyebrow" data-i18n-en="3-Day Program" data-i18n-fr="Programme sur 3 jours">3-Day Program</span>
-        <h2 data-i18n-en="Your Experience from 21 to 23 August" data-i18n-fr="Votre expérience du 21 au 23 août">Your
-          Experience from 21 to 23 August</h2>
+        <h2 data-i18n-en="{{ program_heading_en }}" data-i18n-fr="{{ program_heading_fr }}">{{ program_heading_en }}
+        </h2>
       </div>
       <div class="features-row">
         <div class="feature-card reveal">
@@ -285,32 +284,35 @@
     <div class="container">
       <div class="sponsor-teaser-inner">
         <div class="sponsor-teaser-text reveal">
-          <span class="eyebrow" data-i18n-en="Partners" data-i18n-fr="Partenaires">Partenaires</span>
-          <h2 data-i18n-html-en="Support the<br /><em>Python community in Togo.</em>"
-            data-i18n-html-fr="Soutenez la communauté<br /><em>Python du Togo.</em>">Soutenez la communauté<br />Python
-            du Togo.</h2>
-          <p data-i18n-en="PyCon Togo cannot exist without the support of its partners. By sponsoring the event, your organization contributes to the development of tech in West Africa."
-            data-i18n-fr="PyCon Togo ne peut exister sans le soutien de ses partenaires. En sponsorisant l'événement, votre organisation contribue au développement de la tech en Afrique de l'Ouest.">
-            PyCon Togo ne peut exister sans le soutien de ses partenaires. En sponsorisant l'événement, votre
-            organisation contribue au développement de la tech en Afrique de l'Ouest.</p>
-          <div class="sponsor-logos-row">
-            <div class="sponsor-logo-pill psf-pill">Python Software Foundation</div>
-            <div class="sponsor-logo-pill empty-pill" data-i18n-en="+ Your Logo" data-i18n-fr="+ Votre Logo">+ Votre
-              Logo</div>
-            <div class="sponsor-logo-pill empty-pill" data-i18n-en="+ Your Logo" data-i18n-fr="+ Votre Logo">+ Votre
-              Logo</div>
+          <span class="eyebrow" data-i18n-en="Python Communities" data-i18n-fr="Communautes Python">Communautes
+            Python</span>
+          <h2 data-i18n-html-en="Python Community<br /><em>Partners.</em>"
+            data-i18n-html-fr="Partenaires<br /><em>communaute Python.</em>">Partenaires<br />communaute Python.</h2>
+          <p data-i18n-en="These communities help us mentor, share resources, and connect local developers with the wider ecosystem."
+            data-i18n-fr="Ces communautes nous aident a faire du mentorat, partager des ressources et connecter les developpeurs locaux a l'ecosysteme global.">
+            Ces communautes nous aident a faire du mentorat, partager des ressources et connecter les developpeurs
+            locaux a l'ecosysteme global.
+          </p>
+          {% set home_names = home_partner_names if home_partner_names is defined else ['Python Software Foundation'] %}
+          <div class="sponsor-logos-row home-partner-names" aria-label="Python Community Partners">
+            {% for name in home_names %}
+            <div class="sponsor-logo-pill {% if loop.first %}psf-pill{% endif %}">{{ name }}</div>
+            {% endfor %}
           </div>
         </div>
         <div class="sponsor-cta-card reveal reveal-d1">
           <div class="cta-card-inner">
-            <h3 data-i18n-en="Become a Sponsor" data-i18n-fr="Devenez Sponsor">Devenez Sponsor</h3>
-            <p data-i18n-en="Real visibility, access to a targeted tech audience, measurable community impact: discover our partnership offerings tailored to your business goals."
-              data-i18n-fr="Visibilité réelle, accès à une audience tech ciblée, impact communautaire mesurable: découvrez nos offres de partenariat adaptées à vos objectifs business.">
-              Visibilité réelle, accès à une audience tech ciblée, impact communautaire mesurable: découvrez nos offres
-              de partenariat adaptées à vos objectifs business.</p>
-            <a class="btn btn-primary" href="/sponsors" data-i18n-en="See Offers →"
-              data-i18n-fr="Voir les Offres →">Voir les Offres →</a>
-            <a href="mailto:sponsorship@pycontg.org" class="cta-mail-link">sponsorship@pycontg.org</a>
+            <h3 data-i18n-en="Partners Directory" data-i18n-fr="Repertoire partenaires">Repertoire partenaires</h3>
+            <p data-i18n-en="See all categories in one place: sponsors, community partners, media partners, and Python community partners."
+              data-i18n-fr="Retrouvez toutes les categories dans une seule page : sponsors, partenaires communautaires, partenaires media et partenaires communaute Python.">
+              Retrouvez toutes les categories dans une seule page : sponsors, partenaires communautaires, partenaires
+              media et partenaires communaute Python.
+            </p>
+            <a class="btn btn-primary" href="/partners" data-i18n-en="View all partners →"
+              data-i18n-fr="Voir tous les partenaires →">Voir tous les partenaires →</a>
+            <a class="cta-mail-link" href="/sponsors" data-i18n-en="Need visibility? Submit a sponsor request"
+              data-i18n-fr="Besoin de visibilite ? Envoyez une demande sponsor">Besoin de visibilite ? Envoyez une
+              demande sponsor</a>
           </div>
         </div>
       </div>
@@ -323,10 +325,11 @@
         <div class="ticket-stub-visual">
           <div class="stub-left">
             <div class="stub-logos">
-              <img class="stub-logo-main" src="{{ url_for('static', path='images/PyContg26_png/11.png') }}"
+              <img class="stub-logo-main" src="{{ url_for('static', path='images/PyContg26_png/10.png') }}"
                 alt="PyCon Togo 2026" />
             </div>
-            <div class="stub-date" data-i18n-en="21-23 August 2026" data-i18n-fr="21-23 août 2026">21-23 août 2026</div>
+            <div class="stub-date" data-i18n-en="{{ event_date_range_en }}" data-i18n-fr="{{ event_date_range_fr }}">{{
+              event_date_range_fr }}</div>
           </div>
           <div class="stub-perf"></div>
           <div class="stub-right">
@@ -351,11 +354,13 @@
       <div class="section-header">
         <span class="eyebrow" data-i18n-en="They trusted us" data-i18n-fr="Ils nous ont fait confiance">They
           trusted us</span>
-        <h2 data-i18n-en="First edition partners & sponsors"
-          data-i18n-fr="Partenaires & sponsors de la première édition">First edition partners & sponsors</h2>
-        <p data-i18n-en="These visible cards are reserved for our 2025 sponsors and partners. Replace each slot with the real logo."
-          data-i18n-fr="Ces cartes visibles sont réservées à nos sponsors et partenaires 2025. Remplacez chaque slot par le vrai logo.">
-          These logos come from the 2025 edition and are now served locally from static files.
+        <h2 data-i18n-en="Partners & sponsors who trusted us in 2025"
+          data-i18n-fr="Partenaires et sponsors qui nous ont fait confiance en 2025">Partners & sponsors who trusted us
+          in 2025</h2>
+        <p data-i18n-en="Their support made the first PyCon Togo edition possible. We sincerely thank them for believing in our community."
+          data-i18n-fr="Leur soutien a rendu possible la première édition de PyCon Togo. Nous les remercions sincèrement d'avoir cru en notre communauté.">
+          Their support made the first PyCon Togo edition possible. We sincerely thank them for believing in our
+          community.
         </p>
       </div>
 
@@ -363,7 +368,7 @@
       <div class="legacy-trust-grid" aria-label="Legacy sponsors logos">
         <figure class="legacy-trust-card">
           <a class="legacy-logo-slot" href="https://www.python.org/psf/" target="_blank" rel="noopener noreferrer">
-            <img src="{{ url_for('static', path='images/parteners/psf-logo.png') }}" alt="Python Software Foundation" />
+            <img src="{{ url_for('static', path='images/psf-logo.png') }}" alt="Python Software Foundation" />
           </a>
           <figcaption>Python Software Foundation</figcaption>
         </figure>
@@ -414,12 +419,6 @@
             <img src="{{ url_for('static', path='images/parteners/tedx.png') }}" alt="TEDx" />
           </a>
           <figcaption>TEDx</figcaption>
-        </figure>
-        <figure class="legacy-trust-card">
-          <a class="legacy-logo-slot" href="https://www.pytogo.org" target="_blank" rel="noopener noreferrer">
-            <img src="{{ url_for('static', path='images/Python_Togo_green.png') }}" alt="Python Togo" />
-          </a>
-          <figcaption>Python Togo</figcaption>
         </figure>
         <figure class="legacy-trust-card">
           <a class="legacy-logo-slot" href="https://pythonghana.org/" target="_blank" rel="noopener noreferrer">

@@ -16,4 +16,10 @@ settings = Settings(
     smtp_port=config("SMTP_SERVER_PORT", cast=int),
     smtp_user=config("SENDER_EMAIL"),
     smtp_pass=config("SENDER_EMAIL_PASSWORD"),
+    python_togo_api_base_url=config("PYTHON_TOGO_API_BASE_URL"),
+    python_togo_api_key=config("PYTHON_TOGO_API_KEY"),
+    python_togo_api_timeout_seconds=config(
+        "PYTHON_TOGO_API_TIMEOUT_SECONDS", cast=int, default=12
+    ),
+    python_togo_event_code=config("PYTHON_TOGO_EVENT_CODE"),
 )

@@ -29,14 +29,16 @@ def send_email(to, first_message, second_message, subject, action_url, action_te
     context = ssl.create_default_context()
 
     with SMTP_SSL(host=settings.smtp_server, port=settings.smtp_port, context=context) as server:
+        print(
+            f"Attempting login for: {settings.smtp_user} on {settings.smtp_server}")
         server.login(user=settings.smtp_user, password=settings.smtp_pass)
         server.send_message(msg=msg)
 
 
-def send_email_for_ticket_puchase_confirmation(to, action_url, action_text):
-    subject = subject or f"Confirmation d'achat de billet pour {settings.name}"
-    first_message = f"Merci pour votre achat de billet pour PyCon Togo! {first_message}"
-    second_message = f"Nous sommes ravis de vous compter parmi les participants à PyCon Togo. {second_message}"
+def send_email_for_ticket_puchase_confirmation(to, action_url, action_text, first_name="Cher", last_name="Participant"):
+    subject = f"Confirmation d'achat de billet pour {settings.name}"
+    first_message = f"Merci pour votre achat de billet pour PyCon Togo! {first_name},"
+    second_message = f"Nous sommes ravis de vous compter parmi les participants à PyCon Togo."
 
     try:
         send_email(to=to, first_message=first_message, second_message=second_message,

@@ -26,3 +26,23 @@ class Settings(BaseModel):
                            description="The username for authenticating with the SMTP server")
     smtp_pass: str = Field(..., title="SMTP Password",
                            description="The password for authenticating with the SMTP server")
+    python_togo_api_base_url: str = Field(
+        ...,
+        title="Python Togo API Base URL",
+        description="The base URL for the official Python Togo API",
+    )
+    python_togo_api_key: str = Field(
+        ...,
+        title="Python Togo API Key",
+        description="Bearer token used to authenticate requests to the official Python Togo API",
+    )
+    python_togo_api_timeout_seconds: int = Field(
+        12,
+        title="Python Togo API Timeout",
+        description="Timeout in seconds for outgoing calls to the official Python Togo API",
+    )
+    python_togo_event_code: str = Field(
+        ...,
+        title="Python Togo Event Code",
+        description="Event code used in sponsorship inquiry endpoint path",
+    )

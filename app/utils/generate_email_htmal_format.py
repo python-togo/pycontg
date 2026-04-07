@@ -140,6 +140,139 @@ hmlt_template = """<!DOCTYPE html>
 """
 
 
+def generate_email(org_name="Python Community"):
+    html_content = f"""
+    <!DOCTYPE html>
+    <html>
+
+    <body style="margin:0; padding:0; background:#f4f4f4; font-family:Arial, sans-serif;">
+
+        <table width="100%" cellpadding="0" cellspacing="0" style="padding:20px;">
+            <tr>
+                <td align="center">
+
+                    <table width="600" cellpadding="0" cellspacing="0"
+                        style="background:#ffffff; border-radius:8px; padding:25px;">
+
+                        <!-- Logo -->
+                        <tr>
+                            <td align="center">
+                                <img src="https://res.cloudinary.com/dvg7vky5o/image/upload/v1774223918/5_mvgkea.png"
+                                    alt="PyCon Togo 2026" width="140"
+                                    style="display:block; max-width:100%; height:auto;">
+                            </td>
+                        </tr>
+
+                        <!-- Body -->
+                        <tr>
+                            <td style="font-size:14px; color:#555; line-height:1.6; padding-top:15px;">
+
+                                <p>Dear {org_name} Team,</p>
+
+                                <p>
+                                    My name is <strong>Wachiou Bouraima (Wasiu Ibrahim)</strong>, and I am a member of the
+                                    organizing team of <strong>PyCon Togo 2026</strong>.
+                                </p>
+
+                                <p>
+                                    Following a successful first edition, we are currently preparing our second edition, with
+                                    the ambition of strengthening the Python ecosystem in Togo and across West Africa.
+                                </p>
+
+                                <p>
+                                    In this context, I am reaching out to connect with Python communities around the world and
+                                    learn from teams like yours.
+                                </p>
+
+                                <p>
+                                    I came across <strong>{org_name}</strong> and was impressed by your work in growing your
+                                    local Python community.
+                                </p>
+
+                                <p>
+                                    Your support could greatly help us as we continue building and scaling our conference.
+                                </p>
+
+                                <p>We would especially appreciate:</p>
+
+                                <ul style="padding-left:18px;">
+                                    <li>Insights on organizing and scaling a PyCon event</li>
+                                    <li>Guidance on sponsorship strategies</li>
+                                    <li>Introductions to potential partners or sponsors</li>
+                                    <li>Sharing our initiative within your community</li>
+                                </ul>
+
+                                <p>
+                                    Learn more about our event:<br>
+                                    <a href="https://pycon.pytogo.org"
+                                      style="color:#3776AB; word-break:break-word;">
+                                        https://pycon.pytogo.org
+                                    </a>
+                                </p>
+
+                                <p>
+                                    We would be happy to schedule a short call if you are available.
+                                </p>
+
+                                <p>
+                                    Thank you for your time and for supporting the global Python community.
+                                </p>
+
+                                <p>
+                                    Best regards,<br>
+                                    <strong>Wachiou Bouraima (Wasiu Ibrahim)</strong><br>
+                                    PyCon Togo Organizing Team
+                                </p>
+
+                            </td>
+                        </tr>
+
+                    </table>
+
+                </td>
+            </tr>
+        </table>
+
+    </body>
+
+    </html>
+    """
+    return html_content
+
+
+def generate_plain_text_email(org_name="Python Community"):
+    return f"""
+    Dear {org_name} Team,
+
+    My name is Wachiou Bouraima (Wasiu Ibrahim), and I am a member of the organizing team of PyCon Togo 2026.
+
+    Following a successful first edition, we are currently preparing our second edition, with the ambition of strengthening the Python ecosystem in Togo and across West Africa.
+
+    In this context, I am reaching out to connect with Python communities around the world and learn from teams like yours.
+
+    I came across {org_name} and was impressed by your work in growing your local Python community.
+
+    Your support could greatly help us as we continue building and scaling our conference.
+
+    We would especially appreciate:
+    - Insights on organizing and scaling a PyCon event
+    - Guidance on sponsorship strategies
+    - Introductions to potential partners or sponsors
+    - Sharing our initiative within your community
+
+    Learn more about our event:
+    https://pycon.pytogo.org
+
+    We would be happy to schedule a short call if you are available.
+
+    Thank you for your time and for supporting the global Python community.
+
+    Best regards,
+    Wachiou Bouraima (Wasiu Ibrahim)
+    PyCon Togo Organizing Team
+    """
+
+
 def generate_action_button(action_url, action_text):
     if action_url and action_text:
         return f"""
@@ -164,9 +297,10 @@ def generate_email_content(business_name, message_content, second_message_conten
 
 if __name__ == "__main__":
     # Example usage
-    html_content = generate_email_content(
-        business_name="PyCon Togo",
-        message_content="Merci de vous être inscrit à PyCon Togo ! Nous sommes ravis de vous compter parmi nous.",
-        second_message_content="Restez à l'écoute pour plus d'informations sur les conférenciers, les ateliers et les activités passionnantes à venir.",
+    hmlt_template = generate_email(
+        org_name="Python Community",
+        event="votre événement local",
+        business_name="PyCon Togo"
     )
-    print(html_content)
+
+    print(hmlt_template)
