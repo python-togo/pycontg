@@ -5,8 +5,12 @@
     <section class="page-hero">
         <div class="container">
             <span class="eyebrow reveal" data-i18n-en="Contact" data-i18n-fr="Contact">Contact</span>
-            <h1 class="reveal reveal-d1" data-i18n-html-en="Let's talk<br /><em>together.</em>" data-i18n-html-fr="Parlons<br /><em>ensemble.</em>">Parlons<br /><em>ensemble.</em></h1>
-            <p class="page-hero-sub reveal reveal-d2" data-i18n-en="Have a question, partnership idea, or just want to say hello?" data-i18n-fr="Une question, une idée de partenariat, ou simplement envie de dire bonjour ?">Une question, une idée de partenariat, ou simplement envie de dire bonjour ?</p>
+            <h1 class="reveal reveal-d1" data-i18n-html-en="Let's talk<br /><em>together.</em>"
+                data-i18n-html-fr="Parlons<br /><em>ensemble.</em>">Parlons<br /><em>ensemble.</em></h1>
+            <p class="page-hero-sub reveal reveal-d2"
+                data-i18n-en="Have a question, partnership idea, or just want to say hello?"
+                data-i18n-fr="Une question, une idée de partenariat, ou simplement envie de dire bonjour ?">Une
+                question, une idée de partenariat, ou simplement envie de dire bonjour ?</p>
         </div>
     </section>
     <section class="section">
@@ -16,53 +20,56 @@
                     <div class="form-success" id="form-success">
                         <div class="success-check">✓</div>
                         <h3 data-i18n-en="Message sent!" data-i18n-fr="Message envoyé !">Message envoyé !</h3>
-                        <p data-i18n-en="We'll get back to you within 48 hours." data-i18n-fr="Nous vous répondrons dans les 48h.">Nous vous répondrons dans les 48h.</p>
+                        <p data-i18n-en="We'll get back to you within 48 hours."
+                            data-i18n-fr="Nous vous répondrons dans les 48h.">Nous vous répondrons dans les 48h.</p>
                     </div>
-                    <form id="contact-form" onsubmit="handleSubmit(event)">
+                    <form id="contact-form" onsubmit="contactSubmitInline(event)">
                         <div class="form-row">
                             <div class="field">
                                 <label data-i18n-en="Full name" data-i18n-fr="Nom complet">Nom complet</label>
-                                <input type="text" placeholder="Kofi Mensah" required />
+                                <input id="contact-name" name="name" type="text" placeholder="Kofi Mensah" required />
                             </div>
                             <div class="field">
                                 <label data-i18n-en="Email address" data-i18n-fr="Adresse email">Adresse email</label>
-                                <input type="email" placeholder="kofi@exemple.com" required />
+                                <input id="contact-email" name="email" type="email" placeholder="kofi@exemple.com"
+                                    required />
                             </div>
                         </div>
                         <div class="field">
-                            <label data-i18n-en="Organization (optional)" data-i18n-fr="Organisation (optionnel)">Organisation (optionnel)</label>
-                            <input type="text" placeholder="Votre entreprise ou université" />
+                            <label data-i18n-en="Organization (optional)"
+                                data-i18n-fr="Organisation (optionnel)">Organisation (optionnel)</label>
+                            <input id="contact-organization" name="organization" type="text"
+                                placeholder="Votre entreprise ou université" />
                         </div>
                         <div class="field">
                             <label data-i18n-en="Subject" data-i18n-fr="Sujet">Sujet</label>
-                            <select>
-                                <option data-i18n-en="General question" data-i18n-fr="Question générale">Question générale</option>
-                                <option data-i18n-en="Partnership / Sponsoring" data-i18n-fr="Partenariat / Sponsoring">Partenariat / Sponsoring</option>
-                                <option data-i18n-en="Press & Media" data-i18n-fr="Presse &amp; Médias">Presse &amp; Médias</option>
-                                <option data-i18n-en="Volunteering" data-i18n-fr="Bénévolat">Bénévolat</option>
-                                <option data-i18n-en="Other" data-i18n-fr="Autre">Autre</option>
+                            <select id="contact-subject" name="subject">
+                                <option value="General question" data-i18n-en="General question"
+                                    data-i18n-fr="Question générale">Question générale</option>
+                                <option value="Partnership / Sponsoring" data-i18n-en="Partnership / Sponsoring"
+                                    data-i18n-fr="Partenariat / Sponsoring">Partenariat / Sponsoring</option>
+                                <option value="Press &amp; Media" data-i18n-en="Press &amp; Media"
+                                    data-i18n-fr="Presse &amp; Médias">Presse &amp; Médias</option>
+                                <option value="Volunteering" data-i18n-en="Volunteering" data-i18n-fr="Bénévolat">
+                                    Bénévolat</option>
+                                <option value="Other" data-i18n-en="Other" data-i18n-fr="Autre">Autre</option>
                             </select>
                         </div>
                         <div class="field">
                             <label data-i18n-en="Message" data-i18n-fr="Message">Message</label>
-                            <textarea rows="5" placeholder="Dites-nous comment nous pouvons vous aider..."
-                                required></textarea>
+                            <textarea id="contact-message" name="message" rows="5"
+                                placeholder="Dites-nous comment nous pouvons vous aider..." required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-lg" id="submit-btn" data-i18n-en="Send →" data-i18n-fr="Envoyer →">Envoyer →</button>
+                        <p class="form-error" id="form-error" style="display:none;color:#b42318;margin-bottom:1rem;">
+                        </p>
+                        <button type="submit" class="btn btn-primary btn-lg" id="submit-btn" data-i18n-en="Send →"
+                            data-i18n-fr="Envoyer →">Envoyer →</button>
                     </form>
                 </div>
 
                 <div class="contact-sidebar">
                     <div class="contact-card">
                         <h4 data-i18n-en="Email us" data-i18n-fr="Nous écrire">Nous écrire</h4>
-                        <a href="mailto:contact@pytogo.org" class="contact-email">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                                <polyline points="22,6 12,12 2,6" />
-                            </svg>
-                            contact@pytogo.org
-                        </a>
                         <a href="mailto:contact@pytogo.org" class="contact-email">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2">
@@ -115,10 +122,10 @@
                         </div>
                     </div>
                     <div class="contact-card location-card">
-                        <span class="loc-flag">🇹🇬</span>
+
                         <div>
-                            <strong>Lomé, Togo</strong>
-                            <p>PyCon Togo 2026</p>
+                            <strong>{{ event_location }}</strong>
+                            <p>{{ event_name }}</p>
                         </div>
                     </div>
                 </div>
@@ -126,4 +133,132 @@
         </div>
     </section>
 </main>
+
+<script>
+    async function contactSubmitInline(event) {
+        event.preventDefault();
+
+        const lang = (
+            (typeof window.currentLang === "string" && window.currentLang) ||
+            localStorage.getItem("pycontg_lang") ||
+            document.documentElement.lang ||
+            "fr"
+        ).toLowerCase().startsWith("en") ? "en" : "fr";
+
+        const texts = {
+            fr: {
+                invalidName: "Veuillez entrer votre nom.",
+                invalidEmail: "Veuillez entrer une adresse email valide.",
+                shortMessage: "Votre message est trop court (minimum 10 caractères).",
+                sending: "Envoi en cours...",
+                sendError: "Impossible d'envoyer le message pour le moment.",
+                genericError: "Une erreur est survenue."
+            },
+            en: {
+                invalidName: "Please enter your name.",
+                invalidEmail: "Please enter a valid email address.",
+                shortMessage: "Your message is too short (minimum 10 characters).",
+                sending: "Sending...",
+                sendError: "Unable to send your message right now.",
+                genericError: "An unexpected error occurred."
+            }
+        };
+
+        const form = document.getElementById("contact-form");
+        const successBox = document.getElementById("form-success");
+        const errorEl = document.getElementById("form-error");
+        const btn = document.getElementById("submit-btn");
+
+        const nameInput = document.getElementById("contact-name");
+        const emailInput = document.getElementById("contact-email");
+        const subjectInput = document.getElementById("contact-subject");
+        const messageInput = document.getElementById("contact-message");
+        const organizationInput = document.getElementById("contact-organization");
+
+        if (!form || !successBox || !btn || !nameInput || !emailInput || !subjectInput || !messageInput) {
+            return;
+        }
+
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const subject = subjectInput.value.trim();
+        const message = messageInput.value.trim();
+        const organization = organizationInput ? organizationInput.value.trim() : "";
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+        if (errorEl) {
+            errorEl.style.display = "none";
+            errorEl.textContent = "";
+        }
+
+        if (!name || typeof name !== "string") {
+            if (errorEl) {
+                errorEl.textContent = texts[lang].invalidName;
+                errorEl.style.display = "block";
+            }
+            return;
+        }
+
+        if (!emailRegex.test(email)) {
+            if (errorEl) {
+                errorEl.textContent = texts[lang].invalidEmail;
+                errorEl.style.display = "block";
+            }
+            return;
+        }
+
+        if (message.length < 10) {
+            if (errorEl) {
+                errorEl.textContent = texts[lang].shortMessage;
+                errorEl.style.display = "block";
+            }
+            return;
+        }
+
+        const originalText = btn.textContent;
+        btn.textContent = texts[lang].sending;
+        btn.disabled = true;
+
+
+        try {
+            const response = await fetch("/contact/send", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    subject,
+                    message,
+                    // organization
+                })
+            });
+
+            let data = null;
+            try {
+                data = await response.json();
+            } catch (err) {
+                data = null;
+            }
+
+            if (!response.ok) {
+                throw new Error(texts[lang].sendError);
+            }
+
+            form.style.display = "none";
+            successBox.classList.add("show");
+            successBox.style.display = "block";
+        } catch (error) {
+            if (errorEl) {
+                errorEl.textContent = error.message || texts[lang].genericError;
+                errorEl.style.display = "block";
+            }
+        } finally {
+            btn.textContent = originalText;
+            btn.disabled = false;
+        }
+    }
+</script>
 {% endblock %}

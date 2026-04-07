@@ -45,10 +45,12 @@
                         <a class="nav-dropdown-item" href="/team" data-i18n-en="Team" data-i18n-fr="Équipe">Team</a>
                     </div>
                 </div>
-                <a class="nav-link{% if active_page == 'sponsors' %} active{% endif %}" data-i18n-en="Sponsors"
-                    data-i18n-fr="Sponsors" href="/sponsors">Sponsors</a>
+                <a class="nav-link{% if active_page == 'partners' %} active{% endif %}" data-i18n-en="Sponsors"
+                    data-i18n-fr="Sponsors" href="/partners">Sponsors</a>
+                <a class="nav-link{% if active_page == 'sponsors' %} active{% endif %}" data-i18n-en="Become Sponsor"
+                    data-i18n-fr="Sponsoriser" href="/sponsors">Become Sponsor</a>
                 <a class="nav-link{% if active_page == 'contact' %} active{% endif %}" data-i18n-en="Contact"
-                    data-i18n-fr="Contact" href="mailto:contact@pycontogo.org">Contact</a>
+                    data-i18n-fr="Contact" href="/contact">Contact</a>
             </nav>
             <div class="nav-actions">
                 <a class="btn btn-ghost" href="/call-for-speakers" data-i18n-en="Call for Speakers"
@@ -91,11 +93,13 @@
         <a class="drawer-link drawer-sublink" href="/health_security" onclick="closeMenu()"
             data-i18n-en="• Health & Safety Policy" data-i18n-fr="• Politique Santé & Sécurité">• Health & Safety
             Policy</a>
-        <a class="drawer-link" href="/sponsors" onclick="closeMenu()" data-i18n-en="Sponsors"
+        <a class="drawer-link" href="/partners" onclick="closeMenu()" data-i18n-en="Sponsors"
             data-i18n-fr="Sponsors">Sponsors</a>
+        <a class="drawer-link" href="/sponsors" onclick="closeMenu()" data-i18n-en="Become Sponsor"
+            data-i18n-fr="Sponsoriser">Become Sponsor</a>
         <a class="drawer-link drawer-sublink" href="/team" onclick="closeMenu()" data-i18n-en="• Team"
             data-i18n-fr="• Équipe">• Team</a>
-        <a class="drawer-link" href="mailto:contact@pycontogo.org" onclick="closeMenu()" data-i18n-en="Contact"
+        <a class="drawer-link" href="/contact" onclick="closeMenu()" data-i18n-en="Contact"
             data-i18n-fr="Contact">Contact</a>
         <div class="drawer-actions">
             <a class="btn btn-primary" href="/tickets" onclick="closeMenu()" data-i18n-en="Take your ticket →"
@@ -165,7 +169,7 @@
                     <h5 data-i18n-en="Navigation" data-i18n-fr="Navigation">Navigation</h5>
                     <a href="/" data-i18n-en="Home" data-i18n-fr="Accueil">Home</a>
                     <a href="/about" data-i18n-en="About" data-i18n-fr="À Propos">About</a>
-                    <a href="/sponsors" data-i18n-en="Sponsors" data-i18n-fr="Sponsors">Sponsors</a>
+                    <a href="/partners" data-i18n-en="Sponsors" data-i18n-fr="Sponsors">Sponsors</a>
                     <a href="/team" data-i18n-en="Team" data-i18n-fr="Équipe">Team</a>
                     <a href="mailto:contact@pytogo.org" data-i18n-en="Contact" data-i18n-fr="Contact">Contact</a>
                 </div>
@@ -173,8 +177,7 @@
                     <h5 data-i18n-en="Get Involved" data-i18n-fr="Participer">Get Involved</h5>
                     <a href="/tickets" data-i18n-en="Ticketing opens soon"
                         data-i18n-fr="Ouverture billetterie (bientôt)">Ticketing opens soon</a>
-                    <a href="/sponsors" data-i18n-en="Become a Sponsor" data-i18n-fr="Devenir Sponsor">Become a
-                        Sponsor</a>
+                    <a href="/sponsors" data-i18n-en="Become Sponsor" data-i18n-fr="Sponsoriser">Become Sponsor</a>
                     <a href="mailto:contact@pytogo.org" data-i18n-en="Volunteer" data-i18n-fr="Bénévolat">Volunteer</a>
                     <a href="/call-for-speakers" data-i18n-en="Submit a Talk" data-i18n-fr="Proposer un Talk">Submit a
                         Talk</a>
@@ -182,7 +185,8 @@
                 <div class="footer-col">
                     <h5 data-i18n-en="Contact" data-i18n-fr="Contact">Contact</h5>
                     <a href="mailto:team@pytogo.org">team@pytogo.org</a>
-                    <span data-i18n-en="Lome, Togo" data-i18n-fr="Lomé, Togo">Lome, Togo</span>
+                    <span data-i18n-en="{{ event_location }}" data-i18n-fr="{{ event_location }}">{{ event_location
+                        }}</span>
                 </div>
             </div>
         </div>

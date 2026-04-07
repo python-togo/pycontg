@@ -23,7 +23,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import RedirectResponse
 
 
-router = APIRouter(tags=["2025"])
+router_2025 = APIRouter(tags=["2025"])
 
 
 template = Jinja2Templates(
@@ -103,7 +103,7 @@ educational_supporters = [
 ]
 
 
-@router.get("/")
+@router_2025.get("/")
 def home_25(request: Request):
 
     return template.TemplateResponse(
@@ -119,12 +119,12 @@ def home_25(request: Request):
         },)
 
 
-@router.get("/report")
+@router_2025.get("/report")
 def report_2025():
     return RedirectResponse(url="https://report.pytogo.org/")
 
 
-@router.get("/livestreaming")
+@router_2025.get("/livestreaming")
 def live_page(request: Request):
     now = datetime.now(timezone.utc)
     if now >= LIVE_DATETIME:
@@ -133,7 +133,7 @@ def live_page(request: Request):
         return template.TemplateResponse(request=request, name="livestreaming.html", context={"year": year})
 
 
-@router.get("/shop")
+@router_2025.get("/shop")
 def shop_swag(request: Request):
 
     return template.TemplateResponse(
@@ -146,7 +146,7 @@ def shop_swag(request: Request):
     )
 
 
-@router.get("/register")
+@router_2025.get("/register")
 def register_get(request: Request):
 
     if registration_date > datetime.now(timezone.utc):
@@ -181,7 +181,7 @@ def register_get(request: Request):
     )
 
 
-@router.post("/register")
+@router_2025.post("/register")
 def register(request: Request):
     if registration_date > datetime.now(timezone.utc):
         return template.TemplateResponse(
@@ -207,7 +207,7 @@ def register(request: Request):
         )
 
 
-@router.get("/schedule")
+@router_2025.get("/schedule")
 def schedule(request: Request):
     if datetime.now(timezone.utc) < schedule_release_date:
         return RedirectResponse(url="/2025/coming-soon")
@@ -227,7 +227,7 @@ def schedule(request: Request):
     )
 
 
-@router.get("/health-safety")
+@router_2025.get("/health-safety")
 def health_safety(request: Request):
 
     return template.TemplateResponse(
@@ -239,7 +239,7 @@ def health_safety(request: Request):
     )
 
 
-@router.post("/volunteer")
+@router_2025.post("/volunteer")
 def volunteer_post(request: Request):
     return template.TemplateResponse(
         request=request,
@@ -252,7 +252,7 @@ def volunteer_post(request: Request):
     )
 
 
-@router.get("/volunteer")
+@router_2025.get("/volunteer")
 def volunteer(request: Request):
 
     if datetime.now(timezone.utc) > close_volunteer_date:
@@ -276,12 +276,12 @@ def volunteer(request: Request):
     )
 
 
-@router.get("/waitlist")
+@router_2025.get("/waitlist")
 def waitlist(request: Request):
     return RedirectResponse(url="/2025/register")
 
 
-@router.get("/speakers")
+@router_2025.get("/speakers")
 def speakers(request: Request):
     speaker_release_date = datetime(2025, 7, 10, 16, 0, 0)
     release_speaker_theme_date = datetime(2025, 7, 20, 16, 0, 0)
@@ -315,7 +315,7 @@ def speakers(request: Request):
     )
 
 
-@router.get("/proposal")
+@router_2025.get("/proposal")
 def proposal(request: Request):
     cfp_opening_in_days = datetime(2025, 6, 2, 16, 0, 0)
     cfp_closing_in_days = datetime(2025, 7, 1, 16, 0, 0)
@@ -353,7 +353,7 @@ def proposal(request: Request):
     )
 
 
-@router.post("/proposal")
+@router_2025.post("/proposal")
 def submit_proposal(request: Request):
     return template.TemplateResponse(
         request=request,
@@ -366,12 +366,12 @@ def submit_proposal(request: Request):
     )
 
 
-@router.get("/sponsor")
+@router_2025.get("/sponsor")
 def sponsor(request: Request):
     return RedirectResponse(url="/2025/contact")
 
 
-@router.get("/sponsors")
+@router_2025.get("/sponsors")
 def sponsors(request: Request):
     return template.TemplateResponse(
         request=request,
@@ -390,7 +390,7 @@ def sponsors(request: Request):
     )
 
 
-@router.get("/contact")
+@router_2025.get("/contact")
 def contact(request: Request):
     return template.TemplateResponse(
         request=request,
@@ -402,7 +402,7 @@ def contact(request: Request):
     )
 
 
-@router.get("/about")
+@router_2025.get("/about")
 def about_us(request: Request):
     return template.TemplateResponse(
         request=request,
@@ -414,7 +414,7 @@ def about_us(request: Request):
     )
 
 
-@router.get("/code-of-conduct")
+@router_2025.get("/code-of-conduct")
 def code_of_conduct(request: Request):
     return template.TemplateResponse(
         request=request,
@@ -426,7 +426,7 @@ def code_of_conduct(request: Request):
     )
 
 
-@router.get("/team")
+@router_2025.get("/team")
 def team(request: Request):
     return template.TemplateResponse(
         request=request,
@@ -438,7 +438,7 @@ def team(request: Request):
     )
 
 
-@router.get("/feedback")
+@router_2025.get("/feedback")
 def feedback(request: Request):
     return template.TemplateResponse(
         request=request,
@@ -449,7 +449,7 @@ def feedback(request: Request):
     )
 
 
-@router.get("/staff-feedback")
+@router_2025.get("/staff-feedback")
 def staff_feedback(request: Request):
     return template.TemplateResponse(
         request=request,
