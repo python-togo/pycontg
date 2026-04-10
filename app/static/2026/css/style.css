@@ -976,6 +976,16 @@ p:last-child {
   animation-play-state: paused;
 }
 
+@keyframes heroRibbonScroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 .hero-ribbon-group {
   display: flex;
   gap: 18px;
