@@ -88,18 +88,17 @@
                     <div class="prospectus-actions">
                         <a class="btn btn-primary" data-prospectus-lang="en" target="_blank" rel="noopener noreferrer"
                             download
-                            href="https://drive.google.com/file/d/1ofZz1ra08hOhZVhGscfhkBH7IYte2-hu/view?usp=sharing"
+                            href="https://drive.google.com/file/d/1MxhdOtkcI1SGqr6qMhJiu8qV89jhmILp/view?usp=sharing"
                             data-i18n-en="Prospectus EN" data-i18n-fr="Prospectus EN">Prospectus EN</a>
-                        <a class="btn btn-outline" data-prospectus-lang="fr" target="_blank" rel="noopener noreferrer"
+                        <!-- <a class="btn btn-outline" data-prospectus-lang="fr" target="_blank" rel="noopener noreferrer"
                             download
                             href="https://drive.google.com/file/d/1DCzqBXKz_pzugIkHfKSwK9NZrjhk8ySv/view?usp=sharing"
                             data-i18n-en="Prospectus FR (Local)" data-i18n-fr="Prospectus FR (Local)">Prospectus FR
-                            (Local)</a>
+                            (Local)</a> -->
                         <a class="btn btn-outline" data-prospectus-lang="fr" target="_blank" rel="noopener noreferrer"
                             download
-                            href="https://drive.google.com/file/d/19apF7d0zuULAhfih_uU9Qk7GPMQua0Rc/view?usp=sharing"
-                            data-i18n-en="Prospectus FR (International)"
-                            data-i18n-fr="Prospectus FR (International)">Prospectus FR (International)</a>
+                            href="https://drive.google.com/file/d/1BfJH8YahM3cKc24tJivt8JZ0_3ie849C/view?usp=sharing"
+                            data-i18n-en="Prospectus FR" data-i18n-fr="Prospectus FR (International)">Prospectus Fr</a>
                     </div>
                 </div>
 
@@ -111,14 +110,14 @@
                         Choisissez un pack et nous ouvrons directement le formulaire avec votre sélection.
                     </p>
                     <div class="pack-mobile-actions">
-                        <button type="button" class="btn btn-outline" onclick="selectSponsorTier('heart')"
-                            data-i18n-en="Heart" data-i18n-fr="Heart">Heart</button>
-                        <button type="button" class="btn btn-outline" onclick="selectSponsorTier('bronze')"
-                            data-i18n-en="Bronze" data-i18n-fr="Bronze">Bronze</button>
-                        <button type="button" class="btn btn-outline" onclick="selectSponsorTier('silver')"
-                            data-i18n-en="Silver" data-i18n-fr="Silver">Silver</button>
+                        <button type="button" class="btn btn-outline" onclick="selectSponsorTier('headline')"
+                            data-i18n-en="Headline" data-i18n-fr="Headline">Headline</button>
+                        <button type="button" class="btn btn-outline" onclick="selectSponsorTier('platinum')"
+                            data-i18n-en="Platinum" data-i18n-fr="Platinum">Platinum</button>
                         <button type="button" class="btn btn-outline" onclick="selectSponsorTier('gold')"
                             data-i18n-en="Gold" data-i18n-fr="Gold">Gold</button>
+                        <button type="button" class="btn btn-outline" onclick="selectSponsorTier('silver')"
+                            data-i18n-en="Silver" data-i18n-fr="Silver">Silver</button>
                     </div>
                 </div>
 
@@ -234,167 +233,127 @@
                     <table class="sponsor-pack-table">
                         <thead>
                             <tr>
-                                <th scope="col" data-i18n-en="Benefit" data-i18n-fr="Bénéfice">Bénéfice</th>
-                                <th scope="col" data-i18n-html-en="Heart<br><span>(Any amount)</span>"
-                                    data-i18n-html-fr="Heart<br><span>(Montant libre)</span>">Heart<br><span>(Montant
-                                        libre)</span><br><button type="button" class="pack-choose-btn"
-                                        onclick="selectSponsorTier('heart')" data-i18n-en="Fill form"
-                                        data-i18n-fr="Remplir">Remplir</button></th>
-                                <th scope="col" data-i18n-html-en="Bronze<br><span>500 $</span>"
-                                    data-i18n-html-fr="Bronze<br><span>500 $</span>">Bronze<br><span>500
-                                        $</span><br><button type="button" class="pack-choose-btn"
-                                        onclick="selectSponsorTier('bronze')" data-i18n-en="Fill form"
-                                        data-i18n-fr="Remplir">Remplir</button></th>
-                                <th scope="col" data-i18n-html-en="Silver<br><span>900 $</span>"
-                                    data-i18n-html-fr="Silver<br><span>900 $</span>">Silver<br><span>900
-                                        $</span><br><button type="button" class="pack-choose-btn"
-                                        onclick="selectSponsorTier('silver')" data-i18n-en="Fill form"
-                                        data-i18n-fr="Remplir">Remplir</button></th>
-                                <th scope="col" data-i18n-html-en="Gold<br><span>2000 $</span>"
-                                    data-i18n-html-fr="Gold<br><span>2000 $</span>">Gold<br><span>2000
-                                        $</span><br><button type="button" class="pack-choose-btn"
-                                        onclick="selectSponsorTier('gold')" data-i18n-en="Fill form"
-                                        data-i18n-fr="Remplir">Remplir</button></th>
+                                <th scope="col" data-i18n-en="Plans" data-i18n-fr="Plans">Plans</th>
+                                <th scope="col" data-i18n-html-en="Headline<br><span>$3,999</span>"
+                                    data-i18n-html-fr="Headline<br><span>$3,999</span>">
+                                    Headline<br><span>$3,999</span><br><button type="button" class="pack-choose-btn"
+                                        onclick="selectSponsorTier('headline')" data-i18n-en="Choose"
+                                        data-i18n-fr="Choisir">Choose</button></th>
+                                <th scope="col" data-i18n-html-en="Platinum<br><span>$3,499</span>"
+                                    data-i18n-html-fr="Platinum<br><span>$3,499</span>">
+                                    Platinum<br><span>$3,499</span><br><button type="button" class="pack-choose-btn"
+                                        onclick="selectSponsorTier('platinum')" data-i18n-en="Choose"
+                                        data-i18n-fr="Choisir">Choose</button></th>
+                                <th scope="col" data-i18n-html-en="Gold<br><span>$1,999</span>"
+                                    data-i18n-html-fr="Gold<br><span>$1,999</span>">
+                                    Gold<br><span>$1,999</span><br><button type="button" class="pack-choose-btn"
+                                        onclick="selectSponsorTier('gold')" data-i18n-en="Choose"
+                                        data-i18n-fr="Choisir">Choose</button></th>
+                                <th scope="col" data-i18n-html-en="Silver<br><span>$899</span>"
+                                    data-i18n-html-fr="Silver<br><span>$899</span>">
+                                    Silver<br><span>$899</span><br><button type="button" class="pack-choose-btn"
+                                        onclick="selectSponsorTier('silver')" data-i18n-en="Choose"
+                                        data-i18n-fr="Choisir">Choose</button></th>
+                                <th scope="col" data-i18n-html-en="Bronze<br><span>$499</span>"
+                                    data-i18n-html-fr="Bronze<br><span>$499</span>">
+                                    Bronze<br><span>$499</span><br><button type="button" class="pack-choose-btn"
+                                        onclick="selectSponsorTier('bronze')" data-i18n-en="Choose"
+                                        data-i18n-fr="Choisir">Choose</button></th>
+                                <th scope="col" data-i18n-html-en="Heart<br><span>Any amount</span>"
+                                    data-i18n-html-fr="Heart<br><span>Any amount</span>">Heart<br><span>Any
+                                        amount</span><br><button type="button" class="pack-choose-btn"
+                                        onclick="selectSponsorTier('heart')" data-i18n-en="Choose"
+                                        data-i18n-fr="Choisir">Choose</button></th>
+                                <th scope="col" data-i18n-html-en="In-Kind<br><span>In-kind</span>"
+                                    data-i18n-html-fr="In-Kind<br><span>In-kind</span>">
+                                    In-Kind<br><span>In-kind</span><br><button type="button" class="pack-choose-btn"
+                                        onclick="selectSponsorTier('nature')" data-i18n-en="Choose"
+                                        data-i18n-fr="Choisir">Choose</button></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td data-i18n-html-en="Name and logo on the <strong>&quot;Sponsors&quot; page</strong>"
-                                    data-i18n-html-fr="Nom et logo sur la page <strong>&quot;Sponsors&quot;</strong>">
-                                    Nom et logo sur la page <strong>"Sponsors"</strong></td>
-                                <td>✓</td>
-                                <td>✓</td>
-                                <td>✓</td>
-                                <td>✓</td>
-                            </tr>
-                            <tr>
-                                <td data-i18n-html-en="1,000-character presentation on the <strong>&quot;Sponsors&quot; page</strong>"
-                                    data-i18n-html-fr="Présentation de 1 000 caractères sur la page <strong>&quot;Sponsors&quot;</strong>">
-                                    Présentation de 1 000 caractères sur la page <strong>"Sponsors"</strong></td>
-                                <td>-</td>
-                                <td>✓</td>
-                                <td>✓</td>
-                                <td>✓</td>
-                            </tr>
-                            <tr>
-                                <td data-i18n-html-en="Logo on <strong>the home page</strong>"
-                                    data-i18n-html-fr="Logo sur <strong>la page d'accueil</strong>">Logo sur <strong>la
-                                        page d'accueil</strong></td>
-                                <td>-</td>
-                                <td>✓</td>
-                                <td>✓</td>
-                                <td>✓</td>
-                            </tr>
-                            <tr>
-                                <td data-i18n-html-en="Logo on <strong>posters</strong>"
-                                    data-i18n-html-fr="Logo sur les <strong>affiches</strong>">Logo sur les
-                                    <strong>affiches</strong>
-                                </td>
-                                <td>-</td>
-                                <td>✓</td>
-                                <td>✓</td>
-                                <td>✓</td>
-                            </tr>
-                            <tr>
-                                <td data-i18n-html-en="Company presentation (2 min) <strong>at the plenary session (Saturday)</strong>"
-                                    data-i18n-html-fr="Présentation de l'entreprise (2 min) <strong>en séance plénière (samedi)</strong>">
-                                    Présentation de l'entreprise (2 min) <strong>en séance plénière (samedi)</strong>
-                                </td>
-                                <td>-</td>
-                                <td>✓</td>
-                                <td>✓</td>
-                                <td>✓</td>
-                            </tr>
-                            <tr>
-                                <td data-i18n-html-en="Kakemono <strong>in conference rooms (on Saturday)</strong>"
-                                    data-i18n-html-fr="Kakemono <strong>dans les salles de conférence (samedi)</strong>">
-                                    Kakemono <strong>dans les salles de conférence (samedi)</strong></td>
-                                <td>-</td>
-                                <td>✓</td>
-                                <td>✓</td>
-                                <td>✓</td>
-                            </tr>
-                            <tr>
-                                <td data-i18n-html-en="Banners <strong>in conference rooms (during the 3 days)</strong>"
-                                    data-i18n-html-fr="Bannières <strong>dans les salles de conférence (pendant les 3 jours)</strong>">
-                                    Bannières <strong>dans les salles de conférence (pendant les 3 jours)</strong></td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>✓</td>
-                                <td>✓</td>
-                            </tr>
-                            <tr>
-                                <td data-i18n-html-en="Company presentation (5 min) <strong>in plenary session</strong>"
-                                    data-i18n-html-fr="Présentation de l'entreprise (5 min) <strong>en séance plénière</strong>">
-                                    Présentation de l'entreprise (5 min) <strong>en séance plénière</strong></td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>✓</td>
-                                <td>✓</td>
-                            </tr>
-                            <tr>
-                                <td data-i18n-html-en="<strong>Stand in the lobby (Friday and Saturday)</strong>"
-                                    data-i18n-html-fr="<strong>Stand dans le hall (vendredi et samedi)</strong>">
-                                    <strong>Stand dans le hall (vendredi et samedi)</strong>
-                                </td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>✓</td>
-                            </tr>
-                            <tr>
-                                <td data-i18n-en="Video advertisement(s) shown on screen during breaks"
-                                    data-i18n-fr="Publicité(s) vidéo diffusée(s) à l'écran pendant les pauses">
-                                    Publicité(s) vidéo diffusée(s) à l'écran pendant les pauses</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>✓</td>
-                                <td>✓</td>
-                            </tr>
-                            <tr>
-                                <td data-i18n-en="Recruitment email to participants"
-                                    data-i18n-fr="Email de recrutement envoyé aux participants">Email de recrutement
-                                    envoyé aux participants</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>✓</td>
-                                <td>✓</td>
-                            </tr>
-                            <tr>
-                                <td data-i18n-en="Company promotional gifts in the welcome pack (if provided)"
-                                    data-i18n-fr="Goodies promotionnels de l'entreprise dans le pack d'accueil (si fournis)">
-                                    Goodies promotionnels de l'entreprise dans le pack d'accueil (si fournis)</td>
-                                <td>-</td>
-                                <td>✓</td>
-                                <td>✓</td>
-                                <td>✓</td>
-                            </tr>
-                            <tr>
-                                <td data-i18n-en="Sponsored talk/demo (subject to approval)"
-                                    data-i18n-fr="Talk/demo sponsorisé(e) (sous réserve d'approbation)">Talk/demo
-                                    sponsorisé(e) (sous réserve d'approbation)</td>
-                                <td>2 min</td>
-                                <td>10 min</td>
-                                <td>20 min</td>
-                                <td>40 min</td>
-                            </tr>
-                            <tr>
-                                <td data-i18n-en="Free VIP passes for the conference"
-                                    data-i18n-fr="Pass VIP gratuits pour la conférence">Pass VIP gratuits pour la
-                                    conférence</td>
-                                <td>-</td>
-                                <td>5</td>
-                                <td>7</td>
+                                <td data-i18n-en="Tickets" data-i18n-fr="Billets">Billets</td>
+                                <td>20</td>
+                                <td>15</td>
                                 <td>10</td>
+                                <td>7</td>
+                                <td>5</td>
+                                <td>2</td>
+                                <td data-i18n-en="Depends" data-i18n-fr="Dépend">Dépend</td>
                             </tr>
                             <tr>
-                                <td data-i18n-en="Company name and logo in participants' emails"
-                                    data-i18n-fr="Nom et logo de l'entreprise dans les emails des participants">Nom et
-                                    logo de l'entreprise dans les emails des participants</td>
+                                <td data-i18n-en="Video marketing" data-i18n-fr="Marketing vidéo">Marketing vidéo</td>
+                                <td>Keynotes ×4<br>Clips ×15<br>Logo XL</td>
+                                <td>Keynotes ×2<br>Clips ×12<br>Logo L</td>
+                                <td>Keynotes ×1<br>Clips ×10<br>Logo L</td>
+                                <td>Talks ×4<br>Clips ×5<br>Logo L</td>
+                                <td>Talks ×2<br>Clips ×2<br>Logo S</td>
+                                <td>Talks ×1<br>Logo XS</td>
+                                <td data-i18n-en="On request" data-i18n-fr="Sur demande">Sur demande</td>
+                            </tr>
+                            <tr>
+                                <td data-i18n-en="Brand visibility" data-i18n-fr="Visibilité de la marque">Visibilité de
+                                    la marque</td>
+                                <td>Home page<br>Logo on site<br>Stand XL</td>
+                                <td>Logo on site<br>Program visibility<br>Stand L</td>
+                                <td>1-day visibility<br>Program visibility<br>Stand M</td>
+                                <td>Roll-up ×2<br>Badge cordon<br>Stand S</td>
+                                <td>Roll-up ×1<br>Badge cordon<br>Stand XS</td>
+                                <td>Website logo<br>In-kind mention</td>
+                                <td data-i18n-en="On request" data-i18n-fr="Sur demande">Sur demande</td>
+                            </tr>
+                            <tr>
+                                <td data-i18n-en="Interview" data-i18n-fr="Entretien">Entretien</td>
+                                <td>30 min</td>
+                                <td>25 min</td>
+                                <td>20 min</td>
+                                <td>15 min</td>
+                                <td>10 min</td>
                                 <td>-</td>
-                                <td>✓</td>
-                                <td>✓</td>
-                                <td>✓</td>
+                                <td data-i18n-en="Depends" data-i18n-fr="Dépend">Dépend</td>
+                            </tr>
+                            <tr>
+                                <td data-i18n-en="Workshops" data-i18n-fr="Ateliers">Ateliers</td>
+                                <td>5</td>
+                                <td>4</td>
+                                <td>3</td>
+                                <td>2</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td data-i18n-en="Depends" data-i18n-fr="Dépend">Dépend</td>
+                            </tr>
+                            <tr>
+                                <td data-i18n-en="Social media" data-i18n-fr="Réseaux sociaux">Réseaux sociaux</td>
+                                <td>25 posts</td>
+                                <td>17 posts</td>
+                                <td>12 posts</td>
+                                <td>7 posts</td>
+                                <td>4 posts</td>
+                                <td>2 posts</td>
+                                <td data-i18n-en="Depends" data-i18n-fr="Dépend">Dépend</td>
+                            </tr>
+                            <tr>
+                                <td data-i18n-en="Sponsored content" data-i18n-fr="Contenu sponsorisé">Contenu
+                                    sponsorisé</td>
+                                <td>30 min</td>
+                                <td>20 min</td>
+                                <td>10 min</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td data-i18n-en="Depends" data-i18n-fr="Dépend">Dépend</td>
+                            </tr>
+                            <tr>
+                                <td data-i18n-en="Participant info" data-i18n-fr="Informations des participants">
+                                    Informations des participants</td>
+                                <td>YES</td>
+                                <td>YES</td>
+                                <td>YES</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td data-i18n-en="Depends" data-i18n-fr="Dépend">Dépend</td>
                             </tr>
                         </tbody>
                     </table>
@@ -403,12 +362,18 @@
             </div>
 
             <div class="sponsor-cta-banner reveal">
-                <h3 data-i18n-en="Ready to join us?" data-i18n-fr="Prêt à nous rejoindre ?">Prêt à nous rejoindre ?</h3>
-                <p data-i18n-en="Choose a pack in the table and submit your request in the form."
-                    data-i18n-fr="Choisissez un pack dans le tableau puis envoyez votre demande dans le formulaire.">
-                    Choisissez un pack dans le tableau puis envoyez votre demande dans le formulaire.</p>
-                <a href="#sponsor-form-section" class="btn btn-primary btn-lg" data-i18n-en="Submit request"
-                    data-i18n-fr="Envoyer une demande">Envoyer une demande</a>
+                <h3 data-i18n-en="Ready to sponsor?" data-i18n-fr="Prêt à sponsoriser ?">Prêt à sponsoriser ?</h3>
+                <p data-i18n-en="Download the full prospectus or jump straight to the request form."
+                    data-i18n-fr="Téléchargez le prospectus complet ou passez directement au formulaire de demande.">
+                    Téléchargez le prospectus complet ou passez directement au formulaire de demande.</p>
+                <div class="sponsor-cta-actions">
+                    <a href="https://drive.google.com/file/d/1MxhdOtkcI1SGqr6qMhJiu8qV89jhmILp/view?usp=sharing"
+                        class="btn btn-outline btn-lg" target="_blank" rel="noopener noreferrer"
+                        data-i18n-en="Download full prospectus"
+                        data-i18n-fr="Télécharger le prospectus complet">Télécharger le prospectus complet</a>
+                    <!-- <a href="#sponsor-form-section" class="btn btn-primary btn-lg" data-i18n-en="Become a sponsor"
+                        data-i18n-fr="Devenir sponsor">Devenir sponsor</a> -->
+                </div>
             </div>
         </div>
     </section>

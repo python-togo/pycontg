@@ -24,7 +24,7 @@ where "url you just copied" (without the quotation marks) is the url to this rep
 For example:
 
 ```
-git clone https://github.com/yourusername/pycontg25.git
+git clone https://github.com/yourusername/pycontg.git
 ```
 
 where `yourusername` is your GitHub username. Here you're copying the contents of the LearningHub repository on GitHub to your computer.
