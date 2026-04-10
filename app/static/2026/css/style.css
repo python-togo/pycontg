@@ -948,14 +948,13 @@ p:last-child {
 
 .hero-ribbon-shell {
   --ribbon-motion-duration: 52s;
-  --snake-lane-height: 156px;
-  --snake-lane-gap: 12px;
+  --topic-lane-height: 124px;
   width: 100vw;
   max-width: 100vw;
   margin-top: 30px;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
-  padding-bottom: calc(var(--snake-lane-height) + var(--snake-lane-gap));
+  padding-bottom: calc(var(--topic-lane-height) + 6px);
   border-radius: 0;
   overflow: hidden;
   border-top: 1px solid var(--border);
@@ -963,38 +962,6 @@ p:last-child {
   background: linear-gradient(180deg, #fdfefe 0%, #f8fbf9 100%);
   box-shadow: 0 16px 34px rgba(90, 108, 125, .16);
   position: relative;
-}
-
-.hero-snake-line {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: var(--snake-lane-height);
-  overflow: hidden;
-  z-index: 1;
-  pointer-events: none;
-  border-top: 1px dashed rgba(23, 60, 44, .18);
-  background: linear-gradient(180deg, rgba(244, 250, 247, .25) 0%, rgba(228, 243, 235, .7) 100%);
-}
-
-.hero-snake-track {
-  display: flex;
-  align-items: flex-end;
-  gap: 0;
-  width: max-content;
-  height: 100%;
-  transform: translate3d(0, 0, 0);
-  animation: heroRibbonScroll var(--ribbon-motion-duration) linear infinite;
-  will-change: transform;
-}
-
-.hero-snake-img {
-  height: calc(var(--snake-lane-height) - 20px);
-  width: auto;
-  max-width: none;
-  flex-shrink: 0;
-  filter: drop-shadow(0 8px 10px rgba(0, 0, 0, .24));
 }
 
 .hero-ribbon-track {
@@ -1007,11 +974,6 @@ p:last-child {
 
 .hero-ribbon-shell:hover .hero-ribbon-track {
   animation-play-state: paused;
-}
-
-.hero-ribbon-shell:hover .hero-snake-track {
-  animation-play-state: running;
-  animation-duration: calc(var(--ribbon-motion-duration) * 0.58);
 }
 
 .hero-ribbon-group {
@@ -1036,80 +998,6 @@ p:last-child {
 .hero-ribbon-card::after {
   content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 64%, rgba(0, 0, 0, .16) 100%);
-  pointer-events: none;
-}
-
-.hero-ribbon-card:nth-child(odd) {
-  transform: translateY(0);
-}
-
-.hero-ribbon-card:nth-child(even) {
-  transform: translateY(0);
-}
-
-.hero-ribbon-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 18%;
-  display: block;
-}
-
-@keyframes heroRibbonScroll {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-muted);
-  letter-spacing: .04em;
-}
-
-.hero-visual {
-  display: none !important;
-}
-
-.hero-image-card {
-  width: 100%;
-  max-width: 540px;
-  background: #ffffff;
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 12px;
-  box-shadow: var(--shadow-md);
-  margin: 0;
-  position: relative;
-}
-
-.hero-image-card img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: 12px;
-  display: block;
-}
-
-/* You can replace photo-placeholder with actual <img> tags */
-
-
-/* ═══════════════════════════════════════════════
-   LEGACY TRUST
-═══════════════════════════════════════════════ */
-.legacy-trust {
-  background: linear-gradient(180deg, #f9fcfa 0%, #ffffff 100%);
-  border-top: 1px solid var(--border);
   padding: 78px 0 82px;
 }
 
@@ -2595,16 +2483,6 @@ footer::after {
 
   .hero-ribbon-shell {
     margin-top: 18px;
-    --snake-lane-height: 132px;
-    --snake-lane-gap: 10px;
-  }
-
-  .hero-snake-track {
-    gap: 0;
-  }
-
-  .hero-snake-img {
-    height: calc(var(--snake-lane-height) - 18px);
   }
 
   .hero-ribbon-card {
@@ -2787,16 +2665,6 @@ footer::after {
 
   .hero-ribbon-shell {
     margin-top: 14px;
-    --snake-lane-height: 98px;
-    --snake-lane-gap: 8px;
-  }
-
-  .hero-snake-track {
-    gap: 0;
-  }
-
-  .hero-snake-img {
-    height: calc(var(--snake-lane-height) - 14px);
   }
 
   .hero-ribbon-group {

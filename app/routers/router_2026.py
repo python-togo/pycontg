@@ -37,6 +37,9 @@ PartnerType = Literal[
 PackageTier = Literal[
     "headline",
     "platinum",
+    "or",
+    "argent",
+    "nature",
     "gold",
     "silver",
     "bronze",

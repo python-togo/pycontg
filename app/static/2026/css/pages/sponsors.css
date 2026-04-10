@@ -51,6 +51,17 @@
     min-height: 44px;
 }
 
+.sponsor-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.sponsor-cta-actions .btn {
+    min-width: min(280px, 100%);
+}
+
 .form-entry {
     margin: 0 0 46px;
     padding: 22px;
@@ -86,22 +97,23 @@
 .sponsor-pack-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 900px;
+    min-width: 1180px;
 }
 
 .sponsor-pack-table th,
 .sponsor-pack-table td {
-    padding: 18px 16px;
+    padding: 14px 12px;
     border-bottom: 1px solid var(--border);
     vertical-align: middle;
 }
 
 .sponsor-pack-table thead th {
     background: #f7fbf8;
-    font-size: 18px;
+    font-size: 14px;
     text-align: center;
     color: #162b20;
     white-space: nowrap;
+    font-weight: 600;
 }
 
 .sponsor-pack-table thead th:first-child {
@@ -110,17 +122,17 @@
 
 .sponsor-pack-table thead th span {
     font-size: 13px;
-    font-weight: 600;
-    color: var(--text-mid);
+    font-weight: 500;
+    color: #7a8794;
 }
 
 .pack-choose-btn {
-    margin-top: 12px;
+    margin-top: 8px;
     border: 1px solid #0f6f45;
     background: #eef7f2;
     color: #0f5a39;
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 600;
     border-radius: 999px;
     padding: 7px 12px;
     cursor: pointer;
@@ -132,16 +144,17 @@
 }
 
 .sponsor-pack-table tbody td:first-child {
-    width: 48%;
-    font-weight: 600;
+    width: 30%;
+    font-weight: 500;
     color: #0f2018;
 }
 
 .sponsor-pack-table tbody td:not(:first-child) {
     text-align: center;
-    font-size: 24px;
-    font-weight: 700;
+    font-size: 13px;
+    font-weight: 500;
     color: #173c2c;
+    line-height: 1.35;
 }
 
 .sponsor-pack-table tbody tr:nth-child(odd) {
@@ -232,6 +245,11 @@
 
     .pack-mobile-actions {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .sponsor-cta-actions .btn {
+        width: 100%;
+        min-width: 0;
     }
 
     .sponsor-form-wrap .form-row {
