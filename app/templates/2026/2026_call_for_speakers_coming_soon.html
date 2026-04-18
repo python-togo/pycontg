@@ -1,11 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% set cfp_state = cfp_status if cfp_status is defined else 'upcoming' %}
 <main class="page active" id="page-cfp-coming-soon">
     <section class="page-hero coming-hero">
         <div class="container">
             <span class="eyebrow reveal" data-i18n-en="Call for Speakers" data-i18n-fr="Appel a Speakers">Appel a
                 Speakers</span>
+            {% if cfp_state == 'closed' %}
+            <h1 class="reveal reveal-d1" data-i18n-en="CFP Is Closed" data-i18n-fr="CFP Ferme">CFP Ferme</h1>
+            <p class="page-hero-sub reveal reveal-d2" data-i18n-en="Speaker submissions are closed for this edition."
+                data-i18n-fr="Les soumissions de speakers sont fermees pour cette edition.">
+                Les soumissions de speakers sont fermees pour cette edition.</p>
+            {% else %}
             <h1 class="reveal reveal-d1" data-i18n-en="Not Open Yet" data-i18n-fr="Pas Encore Ouvert">Pas Encore Ouvert
             </h1>
             <p class="page-hero-sub reveal reveal-d2"
@@ -13,22 +20,41 @@
                 data-i18n-fr="Les soumissions de speakers ne sont pas encore ouvertes. Nous preparons le processus pour cette deuxieme edition.">
                 Les soumissions de speakers ne sont pas encore ouvertes. Nous preparons le processus pour cette deuxieme
                 edition.</p>
+            {% endif %}
         </div>
     </section>
 
     <section class="section coming-wrap">
         <div class="container">
             <div class="coming-card reveal reveal-d1">
-                <h2 data-i18n-en="Estimated Opening" data-i18n-fr="Ouverture Estimee">Ouverture Estimee</h2>
-                <p class="coming-window" data-i18n-en="Late April to Early May 2026"
-                    data-i18n-fr="Fin Avril a Debut Mai 2026">Fin Avril a Debut Mai 2026</p>
-                <p data-i18n-en="Thank you for your patience. We are finalizing details to launch a strong call for proposals."
-                    data-i18n-fr="Merci pour votre patience. Nous finalisons les details pour lancer un appel a propositions solide.">
-                    Merci pour votre patience. Nous finalisons les details pour lancer un appel a propositions solide.
+                {% if cfp_state == 'closed' %}
+                <h2 data-i18n-en="CFP Closed At" data-i18n-fr="CFP Ferme Le">CFP Ferme Le</h2>
+                <p class="coming-window" data-i18n-en="{{ cfp_close_at_en }}" data-i18n-fr="{{ cfp_close_at_fr }}">{{
+                    cfp_close_at_fr or cfp_close_at_en or 'Date indisponible' }}</p>
+                <p data-i18n-en="The submission window has ended. Thank you to everyone who submitted a proposal."
+                    data-i18n-fr="La periode de soumission est terminee. Merci a toutes les personnes qui ont soumis une proposition.">
+                    La periode de soumission est terminee. Merci a toutes les personnes qui ont soumis une proposition.
                 </p>
+                {% else %}
+                <h2 data-i18n-en="CFP Opens At" data-i18n-fr="CFP Ouvre Le">CFP Ouvre Le</h2>
+                <p class="coming-window" data-i18n-en="{{ cfp_open_at_en }}" data-i18n-fr="{{ cfp_open_at_fr }}">{{
+                    cfp_open_at_fr or cfp_open_at_en or 'Date indisponible' }}</p>
+                <p data-i18n-en="Thanks for waiting with us. We are finalizing the review timeline and speaker guidelines so submissions open in the best conditions."
+                    data-i18n-fr="Merci pour votre patience. Nous finalisons le calendrier de selection et les consignes speakers pour ouvrir les soumissions dans de bonnes conditions.">
+                    Merci pour votre patience. Nous finalisons le calendrier de selection et les consignes speakers pour
+                    ouvrir les soumissions dans de bonnes conditions.
+                </p>
+                {% endif %}
+
+                {% if cfp_open_at_en and cfp_close_at_en %}
+                <p data-i18n-en="Submission window: {{ cfp_open_at_en }} to {{ cfp_close_at_en }}"
+                    data-i18n-fr="Fenetre de soumission : {{ cfp_open_at_fr }} a {{ cfp_close_at_fr }}">
+                    Fenetre de soumission : {{ cfp_open_at_fr }} a {{ cfp_close_at_fr }}
+                </p>
+                {% endif %}
 
                 <div class="coming-actions">
-                    <a class="btn btn-primary" href="mailto:contact@pycontogo.org" data-i18n-en="Contact the Team"
+                    <a class="btn btn-primary" href="/contact" data-i18n-en="Contact the Team"
                         data-i18n-fr="Contacter l'Equipe">Contacter l'Equipe</a>
                     <a class="btn btn-ghost" href="/" data-i18n-en="Back to Home"
                         data-i18n-fr="Retour a l'Accueil">Retour a l'Accueil</a>

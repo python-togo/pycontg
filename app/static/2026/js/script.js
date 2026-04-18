@@ -141,6 +141,14 @@ function applyLanguage(lang) {
     if (next !== null) el.innerHTML = next;
   });
 
+  // Update translatable placeholders.
+  document.querySelectorAll("[data-i18n-placeholder-en]").forEach(el => {
+    const next = lang === "fr"
+      ? el.getAttribute("data-i18n-placeholder-fr")
+      : el.getAttribute("data-i18n-placeholder-en");
+    if (next !== null) el.setAttribute("placeholder", next);
+  });
+
   // Update language buttons
   const enBtn = document.getElementById("lang-en");
   const frBtn = document.getElementById("lang-fr");
@@ -158,6 +166,11 @@ function applyLanguage(lang) {
 
   // Re-render footer creators so names/links stay correct after language switch.
   renderSiteCreators();
+
+  // Notify page-specific scripts that language has changed.
+  document.dispatchEvent(new CustomEvent("pycontg:language-changed", {
+    detail: { lang }
+  }));
 }
 
 function setLanguage(lang) {
@@ -386,7 +399,7 @@ function handleSubmit(e) {
   const form = document.getElementById("contact-form");
   const succ = document.getElementById("form-success");
 
-  btn.textContent = "Envoi en cours...";
+  btn.textContent = currentLang === "fr" ? "Envoi en cours..." : "Sending...";
   console.log("Submitting contact form with data:", {
     name: nameInput.value,
     email: emailInput.value,
@@ -405,11 +418,11 @@ function handleSubmit(e) {
 function handleNewsletter(e) {
   e.preventDefault();
   const btn = e.target.querySelector("button");
-  btn.textContent = "✓ Inscrit !";
+  btn.textContent = currentLang === "fr" ? "✓ Inscrit !" : "✓ Subscribed!";
   btn.disabled = true;
   e.target.querySelector("input").value = "";
   setTimeout(() => {
-    btn.textContent = "M'avertir";
+    btn.textContent = currentLang === "fr" ? "M'avertir" : "Notify me";
     btn.disabled = false;
   }, 4000);
 }

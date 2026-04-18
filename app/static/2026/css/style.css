@@ -72,6 +72,11 @@ body {
   overflow-x: hidden;
 }
 
+html,
+body {
+  max-width: 100%;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -81,6 +86,17 @@ a {
 img {
   max-width: 100%;
   display: block;
+}
+
+svg,
+video,
+canvas,
+iframe {
+  max-width: 100%;
+}
+
+iframe {
+  width: 100%;
 }
 
 button {
@@ -121,6 +137,25 @@ select {
   max-width: var(--max-w);
   margin: 0 auto;
   padding: 0 28px;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+a,
+span,
+small,
+label,
+button {
+  overflow-wrap: break-word;
+}
+
+input,
+select,
+textarea {
+  max-width: 100%;
 }
 
 .section {
@@ -774,7 +809,7 @@ p:last-child {
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 22px;
-  box-shadow: 0 8px 20px rgba(90, 108, 125, .07);
+  box-shadow: 0 3px 10px rgba(90, 108, 125, .05);
 }
 
 .policy-doc h3 {
@@ -1619,21 +1654,11 @@ p:last-child {
   border: 1px solid #d9dfe5;
   border-radius: var(--radius-lg);
   padding: 28px;
-  border-left: 4px solid #7a8a99;
-  transition: box-shadow .25s, border-color .25s;
+  transition: border-color .25s;
 }
 
 .info-card:hover {
-  box-shadow: 0 10px 24px rgba(0, 0, 0, .08);
   border-color: #c8d0d8;
-}
-
-.info-card:nth-child(2) {
-  border-left-color: #7a8a99;
-}
-
-.info-card:nth-child(3) {
-  border-left-color: #7a8a99;
 }
 
 .info-card h4 {
@@ -1671,7 +1696,7 @@ p:last-child {
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 20px;
-  box-shadow: 0 8px 20px rgba(90, 108, 125, .07);
+  box-shadow: 0 3px 10px rgba(90, 108, 125, .05);
 }
 
 .about-policy-card h3 {
@@ -2727,6 +2752,11 @@ footer::after {
     padding: 0 20px;
   }
 
+  .btn {
+    white-space: normal;
+    text-align: center;
+  }
+
   .form-row {
     grid-template-columns: 1fr;
   }
@@ -2749,6 +2779,10 @@ footer::after {
     text-align: center;
   }
 
+  .footer-bottom-inner span {
+    word-break: break-word;
+  }
+
   .hero-ctas {
     flex-direction: column;
   }
@@ -2764,5 +2798,19 @@ footer::after {
 
   .newsletter-form {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 380px) {
+  .container {
+    padding: 0 14px;
+  }
+
+  .section {
+    padding: 52px 0;
+  }
+
+  .btn {
+    width: 100%;
   }
 }

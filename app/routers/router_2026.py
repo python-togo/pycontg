@@ -1,5 +1,9 @@
 
-from typing import Literal
+from typing import Any, Literal
+import hashlib
+import hmac
+import json
+from threading import Lock
 
 import httpx
 from fastapi import APIRouter, HTTPException, Request
@@ -60,6 +64,53 @@ class SponsorInquiryPayload(BaseModel):
     description: str | None = None
 
 
+class Proposalubmission(BaseModel):
+    agreed_to_code_of_conduct: bool
+    agreed_to_privacy_policy: bool
+    shared_with_sponsors: bool
+    form_data: dict[str, Any]
+
+
+class CfpDraftSavePayload(BaseModel):
+    email: EmailStr
+    password: str
+    confirm_password: str
+    form_data: dict[str, Any]
+
+
+class CfpDraftResumePayload(BaseModel):
+    email: EmailStr
+    password: str
+
+
+def _normalize_email(value: str) -> str:
+    return value.strip().lower()
+
+
+def _draft_key_by_email(email: str) -> str:
+    return email
+
+
+def _password_is_strong(password: str) -> bool:
+    if len(password) < 8:
+        return False
+    has_upper = any(ch.isupper() for ch in password)
+    has_lower = any(ch.islower() for ch in password)
+    has_digit = any(ch.isdigit() for ch in password)
+    has_special = any(not ch.isalnum() for ch in password)
+    return has_upper and has_lower and has_digit and has_special
+
+
+def _hash_password(password: str, salt: str) -> str:
+    derived = hashlib.pbkdf2_hmac(
+        "sha256",
+        password.encode("utf-8"),
+        salt.encode("utf-8"),
+        120_000,
+    )
+    return derived.hex()
+
+
 def _build_api_url(path: str) -> str:
     base = settings.python_togo_api_base_url.rstrip("/")
     if base.endswith("/api/v2"):
@@ -118,17 +169,53 @@ def _extract_event_object(data: object) -> dict:
 
 
 def _parse_date(value: object) -> datetime | None:
-    if not isinstance(value, str):
+    if isinstance(value, datetime):
+        parsed = value
+    elif isinstance(value, str):
+        raw = value.strip()
+        if not raw:
+            return None
+        try:
+            parsed = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+        except ValueError:
+            return None
+    else:
         return None
 
-    raw = value.strip()
-    if not raw:
-        return None
+    if parsed.tzinfo is None:
+        return parsed.replace(tzinfo=timezone.utc)
+    return parsed.astimezone(timezone.utc)
 
-    try:
-        return datetime.fromisoformat(raw.replace("Z", "+00:00"))
-    except ValueError:
+
+def _extract_first_datetime(event: dict, keys: list[str]) -> datetime | None:
+    if not event:
         return None
+    for key in keys:
+        if key in event:
+            parsed = _parse_date(event.get(key))
+            if parsed:
+                return parsed
+    return None
+
+
+def _format_datetime(value: datetime | None, lang: str) -> str:
+    if not value:
+        return ""
+
+    months_en = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December",
+    ]
+    months_fr = [
+        "janvier", "fevrier", "mars", "avril", "mai", "juin",
+        "juillet", "aout", "septembre", "octobre", "novembre", "decembre",
+    ]
+    months = months_fr if lang == "fr" else months_en
+    month = months[value.month - 1]
+
+    if lang == "fr":
+        return f"{value.day} {month} {value.year} {value.strftime('%H:%M')} UTC"
+    return f"{month} {value.day}, {value.year} {value.strftime('%H:%M')} UTC"
 
 
 def _format_date_range(start: datetime | None, end: datetime | None, lang: str) -> str:
@@ -233,6 +320,45 @@ async def _build_event_context() -> dict:
     about_location_en = f"Location: {location_value}" if location_value else ""
     about_location_fr = f"Lieu : {location_value}" if location_value else ""
 
+    cfp_open_at = _extract_first_datetime(event, [
+        "cfp_open_at",
+        "cfp_opening_at",
+        "cfp_opening_date",
+        "cfp_open_date",
+        "cfp_start_at",
+        "cfp_start_date",
+        "proposal_open_at",
+        "proposals_open_at",
+        "call_for_proposals_open_at",
+        "call_for_speakers_open_at",
+        "cfpOpenAt",
+    ])
+    cfp_close_at = _extract_first_datetime(event, [
+        "cfp_close_at",
+        "cfp_closing_at",
+        "cfp_closing_date",
+        "cfp_close_date",
+        "cfp_end_at",
+        "cfp_end_date",
+        "proposal_close_at",
+        "proposals_close_at",
+        "call_for_proposals_close_at",
+        "call_for_speakers_close_at",
+        "cfpCloseAt",
+    ])
+
+    now_utc = datetime.now(timezone.utc)
+    cfp_status = "open"
+    if cfp_open_at and now_utc < cfp_open_at:
+        cfp_status = "upcoming"
+    elif cfp_close_at and now_utc > cfp_close_at:
+        cfp_status = "closed"
+
+    cfp_open_at_en = _format_datetime(cfp_open_at, "en")
+    cfp_open_at_fr = _format_datetime(cfp_open_at, "fr")
+    cfp_close_at_en = _format_datetime(cfp_close_at, "en")
+    cfp_close_at_fr = _format_datetime(cfp_close_at, "fr")
+
     return {
         "event_name": name,
         "event_location": location_value,
@@ -246,7 +372,21 @@ async def _build_event_context() -> dict:
         "about_date_fr": about_date_fr,
         "about_location_en": about_location_en,
         "about_location_fr": about_location_fr,
+        "cfp_status": cfp_status,
+        "cfp_open_at_en": cfp_open_at_en,
+        "cfp_open_at_fr": cfp_open_at_fr,
+        "cfp_close_at_en": cfp_close_at_en,
+        "cfp_close_at_fr": cfp_close_at_fr,
     }
+
+
+async def _assert_cfp_open() -> None:
+    event_context = await _build_event_context()
+    if event_context.get("cfp_status") != "open":
+        raise HTTPException(
+            status_code=403,
+            detail="Call for Speakers is not open at this time.",
+        )
 
 
 async def _render_page_with_event(
@@ -309,6 +449,87 @@ def _group_confirmed_partners(rows: list[dict]) -> dict:
     return grouped
 
 
+def _sort_topics_by_created_at(rows: list[dict]) -> list[dict]:
+    def sort_key(row: dict) -> tuple[bool, datetime | None]:
+        return (_parse_date(row.get("created_at")) is None, _parse_date(row.get("created_at")))
+
+    return sorted(rows, key=sort_key)
+
+
+def _extract_topics(data: object) -> list[dict]:
+    if isinstance(data, list):
+        rows = [row for row in data if isinstance(row, dict)]
+    elif isinstance(data, dict):
+        if isinstance(data.get("data"), list):
+            rows = [row for row in data["data"] if isinstance(row, dict)]
+        elif isinstance(data.get("items"), list):
+            rows = [row for row in data["items"] if isinstance(row, dict)]
+        else:
+            rows = []
+    else:
+        rows = []
+
+    normalized: list[dict] = []
+    for row in rows:
+        topic_id = row.get("id")
+        name_en = (row.get("name_en") or row.get("name") or "").strip()
+        name_fr = (row.get("name_fr") or row.get("name") or name_en).strip()
+        if not topic_id or not name_en:
+            continue
+
+        normalized.append({
+            "id": str(topic_id),
+            "name_en": name_en,
+            "name_fr": name_fr,
+            "description_en": (row.get("description_en") or row.get("description") or "").strip(),
+            "description_fr": (row.get("description_fr") or row.get("description") or "").strip(),
+            "created_at": row.get("created_at") or "",
+            "updated_at": row.get("updated_at") or "",
+        })
+
+    return _sort_topics_by_created_at(normalized)
+
+
+async def _fetch_topics() -> list[dict]:
+    event_code = getattr(settings, "python_togo_event_code", None)
+    if not event_code:
+        return []
+
+    headers = {"Authorization": f"Bearer {settings.python_togo_api_key}"}
+    url = _build_api_url(f"/topics/list/{event_code}")
+
+    try:
+        async with httpx.AsyncClient(timeout=settings.python_togo_api_timeout_seconds) as client:
+            response = await client.get(url, headers=headers)
+        if response.status_code < 400:
+            payload = response.json()
+            return _extract_topics(payload)
+    except Exception:
+        return []
+
+    return []
+
+
+async def _fetch_formats() -> list[dict]:
+    event_code = getattr(settings, "python_togo_event_code", None)
+    if not event_code:
+        return []
+
+    headers = {"Authorization": f"Bearer {settings.python_togo_api_key}"}
+    url = _build_api_url(f"/proposal-formats/list/{event_code}")
+
+    try:
+        async with httpx.AsyncClient(timeout=settings.python_togo_api_timeout_seconds) as client:
+            response = await client.get(url, headers=headers)
+        if response.status_code < 400:
+            payload = response.json()
+            return _extract_topics(payload)
+    except Exception:
+        return []
+
+    return []
+
+
 async def _fetch_partner_sections() -> dict:
     event_code = getattr(settings, "python_togo_event_code", None)
     grouped = {
@@ -323,7 +544,7 @@ async def _fetch_partner_sections() -> dict:
     if not event_code:
         return grouped
 
-    url = _build_api_url(f"/partners-sponsors/all/{event_code}")
+    url = _build_api_url(f"/partners-sponsors/confirmed/all/{event_code}")
     headers = {"Authorization": f"Bearer {settings.python_togo_api_key}"}
 
     try:
@@ -368,12 +589,30 @@ async def home(request: Request):
 
 @router.get("/speakers")
 async def speakers(request: Request):
-    return await _render_page_with_event(
+    event_context = await _build_event_context()
+    if event_context.get("cfp_status") != "open":
+        return render_page(
+            request=request,
+            name="2026_call_for_speakers_coming_soon.html",
+            active_page="speakers",
+            page_css="coming-soon.css",
+            page_title="PyCon Togo 2026 — Call for Speakers",
+            extra_context=event_context,
+        )
+
+    topics = await _fetch_topics()
+    formats = await _fetch_formats()
+    return render_page(
         request=request,
-        name="2026_call_for_speakers_coming_soon.html",
+        name="2026_call_for_speakers.html",
         active_page="speakers",
-        page_css="coming-soon.css",
-        page_title="PyCon Togo 2026 — Call for Speakers (Opening Soon)",
+        page_css="call-for-speakers.css",
+        page_title="PyCon Togo 2026 — Call for Speakers",
+        extra_context={
+            **event_context,
+            "topics": topics,
+            "proposal_formats": formats,
+        },
     )
 
 
@@ -473,6 +712,22 @@ async def health_safety_slug(request: Request):
     return await health_security(request)
 
 
+@router.get("/privacy-policy")
+async def privacy_policy(request: Request):
+    return await _render_page_with_event(
+        request=request,
+        name="2026_privacy_policy.html",
+        active_page="about",
+        page_css="about.css",
+        page_title="PyCon Togo 2026 — Privacy Policy",
+    )
+
+
+@router.get("/privacy_policy")
+async def privacy_policy_slug(request: Request):
+    return await privacy_policy(request)
+
+
 @router.get("/sponsors")
 async def sponsors(request: Request):
     return await _render_page_with_event(
@@ -504,7 +759,7 @@ async def sponsors_inquiry(payload: SponsorInquiryPayload):
     if not event_code:
         raise HTTPException(
             status_code=500,
-            detail="Missing PYTHON_TOGO_EVENT_CODE in server configuration.",
+            detail="Unauthorized.",
         )
 
     url = _build_api_url(f"/partners-sponsors/inquiry/{event_code}")
@@ -515,10 +770,11 @@ async def sponsors_inquiry(payload: SponsorInquiryPayload):
 
     try:
         async with httpx.AsyncClient(timeout=settings.python_togo_api_timeout_seconds) as client:
-            response = await client.post(url, headers=headers, json=payload.dict(exclude_none=True))
+            response = await client.post(url, headers=headers, json=payload)
     except httpx.RequestError as exc:
+        #   TODO  - LOG ERROR
         raise HTTPException(
-            status_code=502, detail=f"Sponsor API unreachable: {exc}") from exc
+            status_code=502, detail=f"unreachable")
 
     if response.status_code >= 400:
         message = "Sponsor API error"
@@ -539,7 +795,7 @@ async def sponsors_inquiry(payload: SponsorInquiryPayload):
     except ValueError:
         data = {"message": "Request accepted"}
 
-    return {"ok": True, "message": "Sponsorship inquiry sent", "data": data}
+    return {"ok": True, "message": "Sponsorship inquiry sent"}
 
 
 @router.get("/cfp")
@@ -550,6 +806,161 @@ async def cfp(request: Request):
 @router.get("/call-for-speakers")
 async def call_for_speakers(request: Request):
     return await speakers(request)
+
+
+@router.post("/submit-proposal")
+async def submit_proposal(payload: Proposalubmission):
+    await _assert_cfp_open()
+
+    proposal_data = payload.form_data
+    url = _build_api_url(
+        f"/proposals/create/{settings.python_togo_event_code}")
+    headers = {
+        "Authorization": f"Bearer {settings.python_togo_api_key}",
+        "Content-Type": "application/json",
+    }
+
+    try:
+        async with httpx.AsyncClient(timeout=settings.python_togo_api_timeout_seconds) as client:
+            response = await client.post(url, headers=headers, json=proposal_data)
+    except httpx.RequestError as exc:
+
+        #  TODO - log errors
+        raise HTTPException(
+            status_code=502, detail=f"Sponsor API unreachable")
+
+    if response.status_code >= 400:
+        message = "Sponsor API error"
+        try:
+            body = response.json()
+            message = body.get("message") or body.get("detail") or message
+        except ValueError:
+            message = response.text or message
+
+        return JSONResponse(
+            status_code=response.status_code,
+            content={"ok": False, "message": message},
+        )
+
+    data = None
+    try:
+        data = response.json()
+    except ValueError:
+        data = {"message": "Request accepted"}
+
+    return {"ok": True, "message": "Sponsorship inquiry sent"}
+
+
+@router.post("/call-for-speakers/drafts/save")
+async def save_cfp_draft(payload: CfpDraftSavePayload):
+    await _assert_cfp_open()
+
+    if payload.password != payload.confirm_password:
+        raise HTTPException(
+            status_code=400, detail="Password confirmation does not match.")
+
+    if not _password_is_strong(payload.password):
+        raise HTTPException(
+            status_code=400,
+            detail="Password must be at least 8 chars with uppercase, lowercase, number, and special character.",
+        )
+
+    email = _normalize_email(str(payload.email))
+    key = _draft_key_by_email(email)
+    hash_password = _hash_password(payload.password, key)
+    url = _build_api_url(
+        f"/proposals/save-draft/{settings.python_togo_event_code}")
+    headers = {
+        "Authorization": f"Bearer {settings.python_togo_api_key}",
+        "Content-Type": "application/json",
+    }
+
+    body = {
+        "email": email,
+        "password_hash": hash_password,
+        "proposal_data": payload.form_data,
+    }
+
+    try:
+        message = ""
+        async with httpx.AsyncClient(timeout=settings.python_togo_api_timeout_seconds) as client:
+            response = await client.post(url, headers=headers, json=body)
+
+        if response.status_code >= 400:
+            message = "Failed to save draft"
+            try:
+                body = response.json()
+                message = body.get("message") or body.get("detail") or message
+            except ValueError:
+                message = response.text or message
+
+            raise HTTPException(
+                status_code=response.status_code, detail=message)
+    except httpx.RequestError as exc:
+        # Log the exception details for debugging purposes
+        raise HTTPException(
+            status_code=502, detail=f"unreachable")
+
+    return {
+        "ok": True,
+        "message": message or "Draft saved successfully",
+        "data": {"email": email},
+    }
+
+
+@router.post("/call-for-speakers/drafts/resume")
+async def resume_cfp_draft(payload: CfpDraftResumePayload):
+    await _assert_cfp_open()
+
+    email = _normalize_email(str(payload.email))
+    key = _draft_key_by_email(email)
+
+    hash_password = _hash_password(payload.password, key)
+    url = _build_api_url(
+        f"/proposals/resume-draft/{settings.python_togo_event_code}")
+    headers = {
+        "Authorization": f"Bearer {settings.python_togo_api_key}",
+        "Content-Type": "application/json",
+    }
+    body = {
+        "email": email,
+        "password": hash_password,
+    }
+    try:
+        message = ""
+        async with httpx.AsyncClient(timeout=settings.python_togo_api_timeout_seconds) as client:
+            response = await client.post(url, headers=headers, json=body)
+
+        if response.status_code >= 400:
+            message = "Failed to resume draft"
+            try:
+                body = response.json()
+                message = body.get("message") or body.get("detail") or message
+            except ValueError:
+                message = response.text or message
+
+            raise HTTPException(
+                status_code=response.status_code, detail=message)
+        response_payload = response.json()
+        proposal_data = response_payload.get("proposal_data")
+
+        if not isinstance(proposal_data, dict):
+            proposal_data = {}
+
+        return {
+            "ok": True,
+            "message": "Draft restored. You can continue your proposal.",
+            "data": {
+                "email": email,
+                "form_data": proposal_data,
+                "proposal_data": proposal_data,
+            },
+            "proposal_data": proposal_data,
+        }
+    except httpx.RequestError as exc:
+        # Log the exception details for debugging purposes
+        raise HTTPException(
+            status_code=502, detail=f"unreachable")
 
 
 @router.get("/volunteers")

@@ -1,0 +1,36 @@
+{
+  "zimmermansarah@example.org": {
+    "email": "zimmermansarah@example.org",
+    "salt": "ec75dabbb14d78521f66b3e2",
+    "password_hash": "36ba706b0b208347f8344dfb1af66b69a800c9f196a96ff5a76a585c8d92a299",
+    "form_data": {
+      "title": "",
+      "description": "",
+      "abstract": null,
+      "topic_id": null,
+      "format": "",
+      "python_percentage": 70,
+      "full_name": "",
+      "email": "",
+      "phone_number": "+228",
+      "organization": null,
+      "bio": null,
+      "country": null,
+      "experience": null,
+      "photo_url": null,
+      "social_media_links": {},
+      "language": "French",
+      "level": null,
+      "needs_equipment": false,
+      "equipment_details": null,
+      "delivery_mode": "onsite",
+      "accept_privacy_code_and_conduct": false,
+      "agree_to_share_with_sponsors": false,
+      "agreed_to_code_of_conduct": false,
+      "agreed_to_privacy_policy": false,
+      "shared_with_sponsors": false,
+      "status": "draft"
+    },
+    "updated_at": "2026-04-17T14:57:19.903542+00:00"
+  }
+}

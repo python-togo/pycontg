@@ -20,6 +20,17 @@
       <div class="hero-ctas reveal reveal-d3">
         <a class="btn btn-primary btn-lg btn-cta-sponsor" href="/sponsors" data-i18n-en="Become a Sponsor"
           data-i18n-fr="Devenir Sponsor">Become a Sponsor</a>
+        {% if cfp_status == 'open' %}
+        <a class="btn btn-ghost btn-lg" href="/call-for-speakers" data-i18n-en="Call for Speakers is Open"
+          data-i18n-fr="Le CFP est Ouvert">Call for Speakers is Open</a>
+        {% elif cfp_status == 'closed' %}
+        <a class="btn btn-ghost btn-lg" href="/call-for-speakers" data-i18n-en="CFP Closed" data-i18n-fr="CFP Ferme">CFP
+          Closed</a>
+        {% else %}
+        <a class="btn btn-ghost btn-lg" href="/call-for-speakers"
+          data-i18n-en="CFP Opens: {{ cfp_open_at_en if cfp_open_at_en else 'Soon' }}"
+          data-i18n-fr="CFP ouvre : {{ cfp_open_at_fr if cfp_open_at_fr else 'Bientot' }}">CFP Opens Soon</a>
+        {% endif %}
       </div>
 
       <div class="hero-year-logo-slot reveal reveal-d3" aria-label="Headline sponsor placement">

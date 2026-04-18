@@ -128,4 +128,5 @@ def create_sponsor_tiers():
 
 
 if __name__ == "__main__":
-    create_sponsor_tiers()
+    # create_sponsor_tiers()
+    pass

@@ -20,6 +20,18 @@
 
 <body>
 
+    {% set cfp_state = cfp_status if cfp_status is defined else 'open' %}
+    {% if cfp_state == 'closed' %}
+    {% set cfp_nav_en = 'CFP Closed' %}
+    {% set cfp_nav_fr = 'CFP Ferme' %}
+    {% elif cfp_state == 'upcoming' %}
+    {% set cfp_nav_en = 'CFP Opens Soon' %}
+    {% set cfp_nav_fr = 'CFP Bientot Ouvert' %}
+    {% else %}
+    {% set cfp_nav_en = 'Call for Speakers' %}
+    {% set cfp_nav_fr = 'Appel a Speakers' %}
+    {% endif %}
+
     <header id="navbar">
         <div class="nav-container">
             <a class="nav-logo" href="/">
@@ -53,8 +65,8 @@
                     data-i18n-fr="Contact" href="/contact">Contact</a>
             </nav>
             <div class="nav-actions">
-                <a class="btn btn-ghost" href="/call-for-speakers" data-i18n-en="Call for Speakers"
-                    data-i18n-fr="Appel à Speakers">Call for Speakers</a>
+                <a class="btn btn-ghost" href="/call-for-speakers" data-i18n-en="{{ cfp_nav_en }}"
+                    data-i18n-fr="{{ cfp_nav_fr }}">{{ cfp_nav_en }}</a>
                 <a class="btn btn-primary" href="/tickets" data-i18n-en="Take your ticket"
                     data-i18n-fr="Prendre votre ticket">Take your ticket</a>
                 <div class="lang-toggle" role="group" aria-label="Language switcher">
@@ -104,8 +116,8 @@
         <div class="drawer-actions">
             <a class="btn btn-primary" href="/tickets" onclick="closeMenu()" data-i18n-en="Take your ticket →"
                 data-i18n-fr="Prendre votre ticket →">Take your ticket →</a>
-            <a class="btn btn-ghost" href="/call-for-speakers" onclick="closeMenu()" data-i18n-en="Call for Speakers"
-                data-i18n-fr="Appel à Speakers">Call for Speakers</a>
+            <a class="btn btn-ghost" href="/call-for-speakers" onclick="closeMenu()" data-i18n-en="{{ cfp_nav_en }}"
+                data-i18n-fr="{{ cfp_nav_fr }}">{{ cfp_nav_en }}</a>
         </div>
     </div>
 
@@ -178,9 +190,16 @@
                     <a href="/tickets" data-i18n-en="Ticketing opens soon"
                         data-i18n-fr="Ouverture billetterie (bientôt)">Ticketing opens soon</a>
                     <a href="/sponsors" data-i18n-en="Become Sponsor" data-i18n-fr="Sponsoriser">Become Sponsor</a>
-                    <a href="mailto:contact@pytogo.org" data-i18n-en="Volunteer" data-i18n-fr="Bénévolat">Volunteer</a>
+                    <a href="/contact" data-i18n-en="Volunteer" data-i18n-fr="Bénévolat">Volunteer</a>
+                    {% if cfp_state == 'closed' %}
+                    <a href="/call-for-speakers" data-i18n-en="CFP closed" data-i18n-fr="CFP ferme">CFP closed</a>
+                    {% elif cfp_state == 'upcoming' %}
+                    <a href="/call-for-speakers" data-i18n-en="CFP opens soon" data-i18n-fr="CFP bientot ouvert">CFP
+                        opens soon</a>
+                    {% else %}
                     <a href="/call-for-speakers" data-i18n-en="Submit a Talk" data-i18n-fr="Proposer un Talk">Submit a
                         Talk</a>
+                    {% endif %}
                 </div>
                 <div class="footer-col">
                     <h5 data-i18n-en="Contact" data-i18n-fr="Contact">Contact</h5>

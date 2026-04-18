@@ -21,6 +21,7 @@ from app.utils.schedule import get_schedule, get_speaker_images, get_event_info
 from fastapi import APIRouter, HTTPException, status, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import RedirectResponse
+from app.core.settings import settings
 
 
 router_2025 = APIRouter(tags=["2025"])
@@ -56,7 +57,10 @@ opening_in = registration_date - datetime.now(timezone.utc)
 
 opening_in_days = opening_in.days
 
-sponsor_tiers = get_sponsorteirs()
+sponsor_tiers = {}
+if settings.env in ['prod', 'production']:
+    sponsor_tiers = get_sponsorteirs()
+
 proposal_opining_date = datetime(
     2025, 6, 3, 16).strftime("%d %B %Y at %H:%M UTC")
 proposal_closing_date = datetime(

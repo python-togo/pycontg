@@ -1,31 +1,46 @@
 {% extends "base.html" %}
 
 {% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.default.min.css">
 <main class="page active" id="page-call-for-speakers">
     <section class="page-hero">
         <div class="container">
-            <span class="eyebrow reveal" data-i18n-en="Share Your Knowledge" data-i18n-fr="Partagez Votre Savoir">Partagez Votre Savoir</span>
-            <h1 class="reveal reveal-d1" data-i18n-en="Call for Speakers" data-i18n-fr="Appel à Speakers">Appel à Speakers</h1>
-            <p class="page-hero-sub reveal reveal-d2" data-i18n-en="We want to hear from you. Share your expertise and inspire our community." data-i18n-fr="Nous voulons vous entendre. Partagez votre expertise et inspirez notre communauté.">Nous voulons vous entendre. Partagez votre expertise et inspirez notre communauté.</p>
+            <span class="eyebrow reveal" data-i18n-en="Share Your Knowledge"
+                data-i18n-fr="Partagez Votre Savoir">Partagez Votre Savoir</span>
+            <h1 class="reveal reveal-d1" data-i18n-en="Call for Speakers" data-i18n-fr="Appel à Speakers">Appel à
+                Speakers</h1>
+            <p class="page-hero-sub reveal reveal-d2"
+                data-i18n-en="We want to hear from you. Share your expertise and inspire our community."
+                data-i18n-fr="Nous voulons vous entendre. Partagez votre expertise et inspirez notre communauté.">Nous
+                voulons vous entendre. Partagez votre expertise et inspirez notre communauté.</p>
         </div>
     </section>
 
     <section class="section">
         <div class="container">
             <div class="cfs-intro reveal">
-                <h2 data-i18n-en="Why Submit a Talk?" data-i18n-fr="Pourquoi soumettre un talk ?">Pourquoi soumettre un talk ?</h2>
+                <h2 data-i18n-en="Why Submit a Talk?" data-i18n-fr="Pourquoi soumettre un talk ?">Pourquoi soumettre un
+                    talk ?</h2>
                 <div class="cfs-benefits">
                     <div class="benefit-card reveal reveal-d1">
                         <div class="benefit-icon">01</div>
-                        <p data-i18n-en="Reach an engaged audience of Python developers, students, and tech professionals" data-i18n-fr="Atteignez un public engagé de développeurs Python, d'étudiants et de professionnels de la tech">Atteignez un public engagé de développeurs Python, d'étudiants et de professionnels de la tech</p>
+                        <p data-i18n-en="Reach an engaged audience of Python developers, students, and tech professionals"
+                            data-i18n-fr="Atteignez un public engagé de développeurs Python, d'étudiants et de professionnels de la tech">
+                            Atteignez un public engagé de développeurs Python, d'étudiants et de professionnels de la
+                            tech</p>
                     </div>
                     <div class="benefit-card reveal reveal-d2">
                         <div class="benefit-icon">02</div>
-                        <p data-i18n-en="Build your professional network with fellow speakers and community members" data-i18n-fr="Construisez votre réseau professionnel avec d'autres speakers et membres de la communauté">Construisez votre réseau professionnel avec d'autres speakers et membres de la communauté</p>
+                        <p data-i18n-en="Build your professional network with fellow speakers and community members"
+                            data-i18n-fr="Construisez votre réseau professionnel avec d'autres speakers et membres de la communauté">
+                            Construisez votre réseau professionnel avec d'autres speakers et membres de la communauté
+                        </p>
                     </div>
                     <div class="benefit-card reveal reveal-d3">
                         <div class="benefit-icon">03</div>
-                        <p data-i18n-en="Contribute to the growth of the Python community in Togo and West Africa" data-i18n-fr="Contribuez à la croissance de la communauté Python au Togo et en Afrique de l'Ouest">Contribuez à la croissance de la communauté Python au Togo et en Afrique de l'Ouest</p>
+                        <p data-i18n-en="Selected speakers receive complimentary VIP access for all 3 days of the event"
+                            data-i18n-fr="Les speakers sélectionnés reçoivent un accès VIP gratuit pour les 3 jours de l'événement">
+                            Les speakers sélectionnés reçoivent un accès VIP gratuit pour les 3 jours de l'événement</p>
                     </div>
                 </div>
             </div>
@@ -37,7 +52,22 @@
             <div class="cfs-form-wrapper">
                 <div class="form-header reveal">
                     <h2 data-i18n-en="Submit Your Talk" data-i18n-fr="Soumettez Votre Talk">Soumettez Votre Talk</h2>
-                    <p data-i18n-en="Fill in your information below. All fields are required unless marked optional." data-i18n-fr="Remplissez vos informations ci-dessous. Tous les champs sont obligatoires sauf s'ils sont marqués comme optionnels.">Remplissez vos informations ci-dessous. Tous les champs sont obligatoires sauf s'ils sont marqués comme optionnels.</p>
+                    <p data-i18n-en="Fill in your information below. All fields are required unless marked optional."
+                        data-i18n-fr="Remplissez vos informations ci-dessous. Tous les champs sont obligatoires sauf s'ils sont marqués comme optionnels.">
+                        Remplissez vos informations ci-dessous. Tous les champs sont obligatoires sauf s'ils sont
+                        marqués comme optionnels.</p>
+                </div>
+
+                <div class="draft-links-row draft-links-row-top">
+                    <button type="button" class="draft-inline-link" data-draft-action="save"
+                        data-i18n-en="Save my progress and resume later"
+                        data-i18n-fr="Enregistrer ma progression et reprendre plus tard">Enregistrer ma progression et
+                        reprendre plus tard</button>
+                    <span aria-hidden="true">|</span>
+                    <button type="button" class="draft-inline-link" data-draft-action="resume"
+                        data-i18n-en="Resume a previously saved form"
+                        data-i18n-fr="Reprendre un formulaire déjà enregistré">Reprendre un formulaire déjà
+                        enregistré</button>
                 </div>
 
                 <form id="speaker-form" class="cfs-form reveal reveal-d1" onsubmit="handleSpeakerSubmit(event)">
@@ -47,123 +77,476 @@
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label data-i18n-en="Full Name" data-i18n-fr="Nom Complet">Nom Complet *</label>
-                                <input type="text" name="fullname" placeholder="Kofi Mensah" required maxlength="100" />
+                                <label data-i18n-en="Full Name *" data-i18n-fr="Nom Complet *">Nom Complet <span
+                                        class="required-star">*</span></label>
+                                <input type="text" name="fullname" placeholder="Kofi Mensah"
+                                    data-i18n-placeholder-en="Kofi Mensah" data-i18n-placeholder-fr="Kofi Mensah"
+                                    required maxlength="100" />
                             </div>
                             <div class="form-group">
-                                <label data-i18n-en="Email Address" data-i18n-fr="Adresse Email">Adresse Email *</label>
-                                <input type="email" name="email" placeholder="kofi@exemple.com" required />
+                                <label data-i18n-en="Email Address *" data-i18n-fr="Adresse Email *">Adresse Email <span
+                                        class="required-star">*</span></label>
+                                <input type="email" name="email" placeholder="kofi@exemple.com"
+                                    data-i18n-placeholder-en="kofi@example.com"
+                                    data-i18n-placeholder-fr="kofi@exemple.com" required />
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label data-i18n-en="Short Bio" data-i18n-fr="Courte Biographie">Courte Biographie *</label>
-                            <textarea name="bio" placeholder="Parlez-nous de vous (50-150 mots)" rows="4" required></textarea>
-                            <small data-i18n-en="What's your background, expertise, and passion for Python?" data-i18n-fr="Quel est votre parcours, votre expertise et votre passion pour Python ?">Quel est votre parcours, votre expertise et votre passion pour Python ?</small>
+                            <label data-i18n-en="Phone Number (WhatsApp if possible) - Optional"
+                                data-i18n-fr="Numéro de Téléphone (WhatsApp si possible) - Optionnel">Numéro de
+                                Téléphone (WhatsApp si possible) - Optionnel</label>
+                            <div class="phone-input-group">
+                                <select id="phone-country-flag" class="phone-country-flag"
+                                    title="Select country for phone code">
+                                    <option value="" data-i18n-en="Select country" data-i18n-fr="Sélectionner le pays">
+                                        🌍</option>
+                                </select>
+                                <input type="tel" name="phone_number" class="phone-input" placeholder="90 00 00 00"
+                                    data-i18n-placeholder-en="90 00 00 00" data-i18n-placeholder-fr="90 00 00 00" />
+                            </div>
+                            <small data-i18n-en="Select your country flag, then enter just the number"
+                                data-i18n-fr="Sélectionnez le drapeau de votre pays, puis entrez juste le numéro">Sélectionnez
+                                le drapeau de votre pays, puis entrez juste le numéro</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label data-i18n-en="Short Bio *" data-i18n-fr="Courte Biographie *">Courte Biographie <span
+                                    class="required-star">*</span></label>
+                            <textarea name="bio" placeholder="Parlez-nous de vous (50-150 mots)"
+                                data-i18n-placeholder-en="Tell us about yourself (50-150 words)"
+                                data-i18n-placeholder-fr="Parlez-nous de vous (50-150 mots)" rows="4"
+                                required></textarea>
+                            <small data-i18n-en="What's your background, expertise, and passion for Python?"
+                                data-i18n-fr="Quel est votre parcours, votre expertise et votre passion pour Python ?">Quel
+                                est votre parcours, votre expertise et votre passion pour Python ?</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label data-i18n-en="Organization / Company (Optional)"
+                                data-i18n-fr="Organisation / Entreprise (Optionnel)">Organisation / Entreprise
+                                (Optionnel)</label>
+                            <input type="text" name="organization" placeholder="Python Togo"
+                                data-i18n-placeholder-en="Python Togo" data-i18n-placeholder-fr="Python Togo"
+                                maxlength="255" />
+                            <small data-i18n-en="Share your current organization or company if relevant."
+                                data-i18n-fr="Indiquez votre organisation ou entreprise actuelle si pertinent.">Indiquez
+                                votre organisation ou entreprise actuelle si pertinent.</small>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label data-i18n-en="Location / Country" data-i18n-fr="Localisation / Pays">Localisation / Pays *</label>
-                                <input type="text" name="location" placeholder="Togo / Bénin / France / etc." required maxlength="50" />
+                                <label data-i18n-en="Country *" data-i18n-fr="Pays *">Pays <span
+                                        class="required-star">*</span></label>
+                                <select id="country-select" name="country" required>
+                                    <option value="" data-i18n-en="-- Select your country --"
+                                        data-i18n-fr="-- Sélectionnez votre pays --">-- Sélectionnez votre pays --
+                                    </option>
+                                </select>
+                                <small data-i18n-en="This field is required - search and select your country"
+                                    data-i18n-fr="Ce champ est obligatoire - recherchez et sélectionnez votre pays">Ce
+                                    champ est obligatoire - recherchez et sélectionnez votre pays</small>
                             </div>
                             <div class="form-group">
-                                <label data-i18n-en="Years of Experience" data-i18n-fr="Années d'Expérience">Années d'Expérience *</label>
+                                <label data-i18n-en="Years of Experience *" data-i18n-fr="Années d'Expérience *">Années
+                                    d'Expérience <span class="required-star">*</span></label>
                                 <select name="experience" required>
-                                    <option value="">-- Sélectionnez --</option>
-                                    <option data-i18n-en="Beginner (0-2 years)" data-i18n-fr="Débutant (0-2 ans)" value="beginner">Débutant (0-2 ans)</option>
-                                    <option data-i18n-en="Intermediate (2-5 years)" data-i18n-fr="Intermédiaire (2-5 ans)" value="intermediate">Intermédiaire (2-5 ans)</option>
-                                    <option data-i18n-en="Advanced (5+ years)" data-i18n-fr="Avancé (5+ ans)" value="advanced">Avancé (5+ ans)</option>
+                                    <option value="" data-i18n-en="-- Select --" data-i18n-fr="-- Sélectionnez --">--
+                                        Sélectionnez --</option>
+                                    <option data-i18n-en="Beginner (0-2 years)" data-i18n-fr="Débutant (0-2 ans)"
+                                        value="beginner">Débutant (0-2 ans)</option>
+                                    <option data-i18n-en="Intermediate (2-5 years)"
+                                        data-i18n-fr="Intermédiaire (2-5 ans)" value="intermediate">Intermédiaire (2-5
+                                        ans)</option>
+                                    <option data-i18n-en="Advanced (5+ years)" data-i18n-fr="Avancé (5+ ans)"
+                                        value="advanced">Avancé (5+ ans)</option>
                                 </select>
-                                <small data-i18n-en="How long have you worked with Python?" data-i18n-fr="Depuis combien de temps travaillez-vous avec Python ?">Depuis combien de temps travaillez-vous avec Python ?</small>
+                                <small data-i18n-en="How long have you worked with Python?"
+                                    data-i18n-fr="Depuis combien de temps travaillez-vous avec Python ?">Depuis combien
+                                    de temps travaillez-vous avec Python ?</small>
                             </div>
                         </div>
                     </fieldset>
 
                     <!-- Your Presentation Section -->
                     <fieldset class="form-fieldset">
-                        <legend data-i18n-en="Your Presentation" data-i18n-fr="Votre Présentation">Votre Présentation</legend>
+                        <legend data-i18n-en="Your Presentation" data-i18n-fr="Votre Présentation">Votre Présentation
+                        </legend>
 
                         <div class="form-group">
-                            <label data-i18n-en="Presentation Title" data-i18n-fr="Titre de la Présentation">Titre de la Présentation *</label>
-                            <input type="text" name="talk_title" placeholder="Comment Construire Votre Première API Django" required maxlength="150" />
+                            <label data-i18n-en="Presentation Title *" data-i18n-fr="Titre de la Présentation *">Titre
+                                de la Présentation <span class="required-star">*</span></label>
+                            <input type="text" name="talk_title"
+                                placeholder="Comment Construire Votre Première API Django"
+                                data-i18n-placeholder-en="How to Build Your First Django API"
+                                data-i18n-placeholder-fr="Comment Construire Votre Première API Django" required
+                                maxlength="150" />
+                        </div>
+
+                        <div class="form-group">
+                            <label data-i18n-en="Abstract *" data-i18n-fr="Abstract *">Abstract <span
+                                    class="required-star">*</span></label>
+                            <textarea name="abstract" placeholder="Resume your talk in a few clear paragraphs"
+                                data-i18n-placeholder-en="Summarize your talk in a few clear paragraphs"
+                                data-i18n-placeholder-fr="Résumez votre talk en quelques paragraphes clairs" rows="4"
+                                required minlength="30"></textarea>
+                            <small data-i18n-en="Give a short and clear summary of your talk idea."
+                                data-i18n-fr="Donnez un résumé court et clair de votre idée de talk.">Donnez un résumé
+                                court et clair de votre idée de talk.</small>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label data-i18n-en="Format" data-i18n-fr="Format">Format *</label>
-                                <select name="format" required>
-                                    <option value="">-- Sélectionnez --</option>
-                                    <option data-i18n-en="Workshop (Hands-on, 3-4 hours)" data-i18n-fr="Workshop (Pratique, 3-4 heures)" value="workshop">Workshop (Pratique, 3-4 heures)</option>
-                                    <option data-i18n-en="Keynote (Inspiring opening talk, 45 min)" data-i18n-fr="Keynote (Talk d'ouverture inspirant, 45 min)" value="keynote">Keynote (Talk d'ouverture inspirant, 45 min)</option>
-                                    <option data-i18n-en="Standard Talk (Technical presentation, 30-45 min)" data-i18n-fr="Talk Standard (Présentation technique, 30-45 min)" value="talk">Talk Standard (Présentation technique, 30-45 min)</option>
-                                    <option data-i18n-en="Panel Discussion (Multiple speakers, 45 min)" data-i18n-fr="Panel Discussion (Plusieurs speakers, 45 min)" value="panel">Panel Discussion (Plusieurs speakers, 45 min)</option>
-                                    <option data-i18n-en="Lightning Talk (Quick session, 10-15 min)" data-i18n-fr="Lightning Talk (Session rapide, 10-15 min)" value="lightning">Lightning Talk (Session rapide, 10-15 min)</option>
+                                <label data-i18n-en="Format *" data-i18n-fr="Format *">Format <span
+                                        class="required-star">*</span></label>
+                                <select id="format-select" name="format" required>
+                                    <option value="" data-i18n-en="-- Select --" data-i18n-fr="-- Sélectionnez --">--
+                                        Sélectionnez --</option>
+                                    {% if proposal_formats %}
+                                    {% for proposal_format in proposal_formats %}
+                                    <option value="{{ proposal_format.name_en }}"
+                                        data-format-id="{{ proposal_format.id }}"
+                                        data-format-name-en="{{ proposal_format.name_en }}"
+                                        data-format-name-fr="{{ proposal_format.name_fr }}"
+                                        data-format-description-en="{{ proposal_format.description_en }}"
+                                        data-format-description-fr="{{ proposal_format.description_fr }}">{{
+                                        proposal_format.name_en }}</option>
+                                    {% endfor %}
+                                    {% else %}
+                                    <option value="" disabled data-i18n-en="No formats available"
+                                        data-i18n-fr="Aucun format disponible">Aucun format disponible</option>
+                                    {% endif %}
                                 </select>
-                                <small data-i18n-en="What type of presentation are you proposing?" data-i18n-fr="Quel type de présentation proposez-vous ?">Quel type de présentation proposez-vous ?</small>
+                                <small data-i18n-en="What type of presentation are you proposing?"
+                                    data-i18n-fr="Quel type de présentation proposez-vous ?">Quel type de présentation
+                                    proposez-vous ?</small>
                             </div>
                             <div class="form-group">
-                                <label data-i18n-en="Target Audience Level" data-i18n-fr="Niveau du Public Cible">Niveau du Public Cible *</label>
+                                <label data-i18n-en="Target Audience Level *"
+                                    data-i18n-fr="Niveau du Public Cible *">Niveau du Public Cible <span
+                                        class="required-star">*</span></label>
                                 <select name="level" required>
-                                    <option value="">-- Sélectionnez --</option>
-                                    <option data-i18n-en="Beginner" data-i18n-fr="Débutant" value="beginner">Débutant</option>
-                                    <option data-i18n-en="Intermediate" data-i18n-fr="Intermédiaire" value="intermediate">Intermédiaire</option>
-                                    <option data-i18n-en="Advanced" data-i18n-fr="Avancé" value="advanced">Avancé</option>
-                                    <option data-i18n-en="All Levels" data-i18n-fr="Tous les Niveaux" value="all">Tous les Niveaux</option>
+                                    <option value="" data-i18n-en="-- Select --" data-i18n-fr="-- Sélectionnez --">--
+                                        Sélectionnez --</option>
+                                    <option data-i18n-en="Beginner" data-i18n-fr="Débutant" value="beginner">Débutant
+                                    </option>
+                                    <option data-i18n-en="Intermediate" data-i18n-fr="Intermédiaire"
+                                        value="intermediate">Intermédiaire</option>
+                                    <option data-i18n-en="Advanced" data-i18n-fr="Avancé" value="advanced">Avancé
+                                    </option>
+                                    <option data-i18n-en="All Levels" data-i18n-fr="Tous les Niveaux" value="all">Tous
+                                        les Niveaux</option>
                                 </select>
-                                <small data-i18n-en="Who is this presentation for?" data-i18n-fr="Pour qui est cette présentation ?">Pour qui est cette présentation ?</small>
+                                <small data-i18n-en="Who is this presentation for?"
+                                    data-i18n-fr="Pour qui est cette présentation ?">Pour qui est cette présentation
+                                    ?</small>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label data-i18n-en="Presentation Description" data-i18n-fr="Description de la Présentation">Description de la Présentation *</label>
-                            <textarea name="description" placeholder="Décrivez votre talk en détail (200-500 mots)..." rows="6" required minlength="50"></textarea>
-                            <small data-i18n-en="Help the program committee understand your presentation idea" data-i18n-fr="Aidez le comité de sélection à comprendre votre idée de présentation">Aidez le comité de sélection à comprendre votre idée de présentation</small>
+                            <label data-i18n-en="Delivery Mode *" data-i18n-fr="Mode de livraison *">Mode de livraison
+                                <span class="required-star">*</span></label>
+                            <select name="delivery_mode" required>
+                                <option value="" data-i18n-en="-- Select --" data-i18n-fr="-- Sélectionnez --">--
+                                    Sélectionnez --</option>
+                                <option value="online" data-i18n-en="Online" data-i18n-fr="En ligne">En ligne</option>
+                                <option value="onsite" data-i18n-en="On-site" data-i18n-fr="Présentiel">Présentiel
+                                </option>
+                            </select>
+                            <small
+                                data-i18n-en="Tell us whether your talk is designed for online delivery or on-site presentation."
+                                data-i18n-fr="Indiquez si votre talk est prévu pour une diffusion en ligne ou une présentation en présentiel.">Indiquez
+                                si votre talk est prévu pour une diffusion en ligne ou une présentation en
+                                présentiel.</small>
                         </div>
 
                         <div class="form-group">
-                            <label data-i18n-en="Topics/Tags" data-i18n-fr="Sujets/Tags">Sujets/Tags *</label>
-                            <input type="text" name="topics" placeholder="ex. Django, Data Science, Développement Web, DevOps..." required maxlength="200" />
-                            <small data-i18n-en="What are the main topics covered? (Separate with commas)" data-i18n-fr="Quels sont les sujets principaux ? (Séparez par des virgules)">Quels sont les sujets principaux ? (Séparez par des virgules)</small>
+                            <label data-i18n-en="Presentation Description *"
+                                data-i18n-fr="Description de la Présentation *">Description de la Présentation <span
+                                    class="required-star">*</span></label>
+                            <textarea name="description" placeholder="Décrivez votre talk en détail (200-500 mots)..."
+                                data-i18n-placeholder-en="Describe your talk in detail (200-500 words)..."
+                                data-i18n-placeholder-fr="Décrivez votre talk en détail (200-500 mots)..." rows="6"
+                                required minlength="50"></textarea>
+                            <small data-i18n-en="Help the program committee understand your presentation idea"
+                                data-i18n-fr="Aidez le comité de sélection à comprendre votre idée de présentation">Aidez
+                                le comité de sélection à comprendre votre idée de présentation</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label data-i18n-en="Python Content (%) *" data-i18n-fr="Contenu Python (%) *">Contenu
+                                Python (%) <span class="required-star">*</span></label>
+                            <select id="python-percentage" name="python_percentage" required>
+                                <option value="" data-i18n-en="-- Select percentage --"
+                                    data-i18n-fr="-- Sélectionnez un pourcentage --">-- Sélectionnez un pourcentage --
+                                </option>
+                                <option value="10">10%</option>
+                                <option value="20">20%</option>
+                                <option value="30">30%</option>
+                                <option value="40">40%</option>
+                                <option value="50">50%</option>
+                                <option value="60">60%</option>
+                                <option value="70">70%</option>
+                                <option value="80">80%</option>
+                                <option value="90">90%</option>
+                                <option value="100" selected>100%</option>
+                            </select>
+                            <small
+                                data-i18n-en="Estimate how much of your talk is directly about Python (language, tooling, ecosystem)."
+                                data-i18n-fr="Estimez la part de votre talk directement liée à Python (langage, outillage, écosystème).">Estimez
+                                la part de votre talk directement liée à Python (langage, outillage,
+                                écosystème).</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label data-i18n-en="Talk Topics *" data-i18n-fr="Topics du Talk *">Topics du Talk <span
+                                    class="required-star">*</span></label>
+                            <select id="topic-select" name="topic" required>
+                                <option value="" data-i18n-en="-- Select one topic --"
+                                    data-i18n-fr="-- Sélectionnez un topic --">-- Sélectionnez un topic --</option>
+                                {% if topics %}
+                                {% for topic in topics %}
+                                <option value="{{ topic.id }}" data-topic-name-en="{{ topic.name_en }}"
+                                    data-topic-name-fr="{{ topic.name_fr }}"
+                                    data-topic-description-en="{{ topic.description_en }}"
+                                    data-topic-description-fr="{{ topic.description_fr }}">{{ topic.name_en }}</option>
+                                {% endfor %}
+                                {% else %}
+                                <option value="" disabled data-i18n-en="No topics available"
+                                    data-i18n-fr="Aucun topic disponible">Aucun topic disponible</option>
+                                {% endif %}
+                            </select>
+                            <small data-i18n-en="Open the dropdown and select one topic that best matches your talk."
+                                data-i18n-fr="Ouvrez le menu déroulant et sélectionnez un topic qui correspond le mieux à votre talk.">Ouvrez
+                                le menu déroulant et sélectionnez un topic qui correspond le mieux à votre talk.</small>
                         </div>
                     </fieldset>
 
                     <!-- Your Links Section -->
                     <fieldset class="form-fieldset">
                         <legend data-i18n-en="Your Links" data-i18n-fr="Vos Liens">Vos Liens</legend>
-                        <p class="fieldset-note" data-i18n-en="All links in this section are optional but help us learn more about you." data-i18n-fr="Tous les liens de cette section sont optionnels mais nous aident à mieux vous connaître.">Tous les liens de cette section sont optionnels mais nous aident à mieux vous connaître.</p>
+                        <p class="fieldset-note"
+                            data-i18n-en="All links in this section are optional but help us learn more about you."
+                            data-i18n-fr="Tous les liens de cette section sont optionnels mais nous aident à mieux vous connaître.">
+                            Tous les liens de cette section sont optionnels mais nous aident à mieux vous connaître.</p>
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label data-i18n-en="LinkedIn Profile" data-i18n-fr="Profil LinkedIn">Profil LinkedIn</label>
-                                <input type="url" name="linkedin" placeholder="https://linkedin.com/in/nonutilisateur" />
+                                <label data-i18n-en="LinkedIn Username" data-i18n-fr="Nom d'utilisateur LinkedIn">Nom
+                                    d'utilisateur LinkedIn</label>
+                                <input type="text" name="linkedin" placeholder="username"
+                                    data-i18n-placeholder-en="username" data-i18n-placeholder-fr="nomutilisateur" />
                             </div>
                             <div class="form-group">
-                                <label data-i18n-en="GitHub Profile" data-i18n-fr="Profil GitHub">Profil GitHub</label>
-                                <input type="url" name="github" placeholder="https://github.com/nonutilisateur" />
+                                <label data-i18n-en="GitHub Username" data-i18n-fr="Nom d'utilisateur GitHub">Nom
+                                    d'utilisateur GitHub</label>
+                                <input type="text" name="github" placeholder="username"
+                                    data-i18n-placeholder-en="username" data-i18n-placeholder-fr="nomutilisateur" />
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label data-i18n-en="Personal Website / Portfolio" data-i18n-fr="Site Personnel / Portfolio">Site Personnel / Portfolio</label>
-                                <input type="url" name="portfolio" placeholder="https://votresite.com" />
+                                <label data-i18n-en="Personal Website / Portfolio (URL)"
+                                    data-i18n-fr="Site Personnel / Portfolio (URL)">Site Personnel / Portfolio
+                                    (URL)</label>
+                                <input type="url" name="portfolio" placeholder="https://votresite.com"
+                                    data-i18n-placeholder-en="https://yourwebsite.com"
+                                    data-i18n-placeholder-fr="https://votresite.com" />
                             </div>
                             <div class="form-group">
-                                <label data-i18n-en="Twitter/X Profile" data-i18n-fr="Profil Twitter/X">Profil Twitter/X</label>
-                                <input type="url" name="twitter" placeholder="https://twitter.com/nonutilisateur" />
+                                <label data-i18n-en="Twitter/X Username" data-i18n-fr="Nom d'utilisateur Twitter/X">Nom
+                                    d'utilisateur Twitter/X</label>
+                                <input type="text" name="twitter" placeholder="username"
+                                    data-i18n-placeholder-en="username" data-i18n-placeholder-fr="nomutilisateur" />
                             </div>
                         </div>
                     </fieldset>
 
-                    <button type="submit" class="btn btn-primary btn-lg" id="speaker-submit-btn" data-i18n-en="Submit My Talk →" data-i18n-fr="Soumettre Mon Talk →">Soumettre Mon Talk →</button>
+                    <div class="ai-disclaimer">
+                        <h4 data-i18n-en="Submission Authenticity Notice"
+                            data-i18n-fr="Note sur l'authenticité des soumissions">Note sur l'authenticité des
+                            soumissions</h4>
+                        <p data-i18n-en="Proposals fully generated by AI have a lower chance of being selected. We strongly encourage original proposals based on your own experience, lessons, and perspective."
+                            data-i18n-fr="Les propositions entièrement générées par IA auront moins de chances d'être sélectionnées. Nous encourageons fortement des propositions originales basées sur votre propre expérience, vos apprentissages et votre perspective.">
+                            Les propositions entièrement générées par IA auront moins de chances d'être sélectionnées.
+                            Nous encourageons fortement des propositions originales basées sur votre propre expérience,
+                            vos apprentissages et votre perspective.</p>
+                    </div>
+
+                    <div class="form-consent">
+                        <label class="consent-check">
+                            <input type="checkbox" id="speaker-consent" name="speaker_consent" required />
+                            <span
+                                data-i18n-en="I agree to the Code of Conduct and the Privacy Policy before submitting my talk. *"
+                                data-i18n-fr="J'accepte le Code de conduite et la politique de confidentialité avant de soumettre mon talk. *">J'accepte
+                                le Code de conduite et la politique de confidentialité avant de soumettre mon talk.
+                                <span class="required-star">*</span></span>
+                        </label>
+                        <p class="consent-note">
+                            <a href="/coc" target="_blank" rel="noopener noreferrer"
+                                data-i18n-en="Read the Code of Conduct" data-i18n-fr="Lire le Code de conduite">Lire le
+                                Code de conduite</a>
+                            <span aria-hidden="true">·</span>
+                            <a href="/privacy-policy" target="_blank" rel="noopener noreferrer"
+                                data-i18n-en="Read the Privacy Policy"
+                                data-i18n-fr="Lire la politique de confidentialité">Lire la politique de
+                                confidentialité</a>
+                        </p>
+                    </div>
+
+                    <div class="form-consent optional-consent">
+                        <label class="consent-check">
+                            <input type="checkbox" id="speaker-sponsor-sharing" name="speaker_sponsor_sharing" />
+                            <span
+                                data-i18n-en="I agree that my contact details and proposal may be shared with sponsors and partners for event-related opportunities. (Optional)"
+                                data-i18n-fr="J'accepte que mes coordonnées et ma proposition puissent être partagées avec les sponsors et partenaires pour des opportunités liées à l'événement. (Optionnel)">J'accepte
+                                que mes coordonnées et ma proposition puissent être partagées avec les sponsors et
+                                partenaires pour des opportunités liées à l'événement. (Optionnel)</span>
+                        </label>
+                        <p class="consent-note"
+                            data-i18n-en="Optional. Leave unchecked if you do not want any sharing with sponsors or partners."
+                            data-i18n-fr="Optionnel. Laissez décoché si vous ne souhaitez aucun partage avec les sponsors ou partenaires.">
+                            Optionnel. Laissez décoché si vous ne souhaitez aucun partage avec les sponsors ou
+                            partenaires.</p>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg" id="speaker-submit-btn"
+                        data-i18n-en="Submit My Talk" data-i18n-fr="Soumettre Mon Talk" data-loading-en="Sending..."
+                        data-loading-fr="Envoi en cours...">Soumettre Mon Talk</button>
                 </form>
+
+                <div class="draft-links-row draft-links-row-bottom">
+                    <button type="button" class="draft-inline-link" data-draft-action="save"
+                        data-i18n-en="Save my progress and resume later"
+                        data-i18n-fr="Enregistrer ma progression et reprendre plus tard">Enregistrer ma progression et
+                        reprendre plus tard</button>
+                    <span aria-hidden="true">|</span>
+                    <button type="button" class="draft-inline-link" data-draft-action="resume"
+                        data-i18n-en="Resume a previously saved form"
+                        data-i18n-fr="Reprendre un formulaire déjà enregistré">Reprendre un formulaire déjà
+                        enregistré</button>
+                </div>
+
+                <section id="save-draft-panel" class="draft-panel hidden" aria-live="polite">
+                    <h3 data-i18n-en="Resume Later" data-i18n-fr="Reprendre Plus Tard">Reprendre Plus Tard</h3>
+                    <p data-i18n-en="To save this form and continue later, enter your email and password."
+                        data-i18n-fr="Pour enregistrer ce formulaire et continuer plus tard, entrez votre email et mot de passe.">
+                        Pour enregistrer ce formulaire et continuer plus tard, entrez votre email et mot de passe.</p>
+                    <form id="save-draft-form">
+                        <div class="form-row">
+                            <div class="form-group full-span">
+                                <label data-i18n-en="Your Email" data-i18n-fr="Votre Email">Votre Email</label>
+                                <input type="email" id="save-draft-email" placeholder="you@example.com"
+                                    data-i18n-placeholder-en="you@example.com"
+                                    data-i18n-placeholder-fr="vous@exemple.com" required />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label data-i18n-en="Your Password" data-i18n-fr="Votre Mot de Passe">Votre Mot de
+                                    Passe</label>
+                                <input type="password" id="save-draft-password" placeholder="Choose a strong password"
+                                    data-i18n-placeholder-en="Choose a strong password"
+                                    data-i18n-placeholder-fr="Choisissez un mot de passe robuste" required />
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n-en="Confirm Password"
+                                    data-i18n-fr="Confirmer le Mot de Passe">Confirmer le Mot de Passe</label>
+                                <input type="password" id="save-draft-password-confirm"
+                                    placeholder="Confirm your password" data-i18n-placeholder-en="Confirm your password"
+                                    data-i18n-placeholder-fr="Confirmez votre mot de passe" required />
+                            </div>
+                        </div>
+                        <div class="password-rules">
+                            <strong data-i18n-en="Password must contain:"
+                                data-i18n-fr="Le mot de passe doit contenir :">Le mot de passe doit contenir :</strong>
+                            <ul>
+                                <li data-i18n-en="At least 8 characters" data-i18n-fr="Au moins 8 caractères">Au moins
+                                    8 caractères</li>
+                                <li data-i18n-en="1 uppercase letter" data-i18n-fr="1 lettre majuscule">1 lettre
+                                    majuscule</li>
+                                <li data-i18n-en="1 lowercase letter" data-i18n-fr="1 lettre minuscule">1 lettre
+                                    minuscule</li>
+                                <li data-i18n-en="1 number" data-i18n-fr="1 chiffre">1 chiffre</li>
+                                <li data-i18n-en="1 special character" data-i18n-fr="1 caractère spécial">1 caractère
+                                    spécial</li>
+                            </ul>
+                        </div>
+                        <div class="draft-actions">
+                            <button type="submit" class="btn btn-primary draft-btn" id="save-draft-btn"
+                                data-i18n-en="Save" data-i18n-fr="Enregistrer">Enregistrer</button>
+                        </div>
+                    </form>
+                    <small
+                        data-i18n-en="We use this email to help you resume your proposal later and send reminders if needed."
+                        data-i18n-fr="Nous utilisons cet email pour vous permettre de reprendre votre proposition plus tard et envoyer des rappels si nécessaire.">Nous
+                        utilisons cet email pour vous permettre de reprendre votre proposition plus tard et envoyer des
+                        rappels si nécessaire.</small>
+                </section>
+
+                <section id="resume-draft-panel" class="draft-panel hidden" aria-live="polite">
+                    <h3 data-i18n-en="Identity Check" data-i18n-fr="Vérification d'Identité">Vérification d'Identité
+                    </h3>
+                    <p data-i18n-en="Please enter your email and password to continue this form."
+                        data-i18n-fr="Veuillez entrer votre email et mot de passe pour continuer ce formulaire.">
+                        Veuillez entrer votre email et mot de passe pour continuer ce formulaire.</p>
+                    <form id="resume-draft-form">
+                        <div class="form-row">
+                            <div class="form-group full-span">
+                                <label data-i18n-en="Your Email" data-i18n-fr="Votre Email">Votre Email</label>
+                                <input type="email" id="resume-draft-email" placeholder="you@example.com"
+                                    data-i18n-placeholder-en="you@example.com"
+                                    data-i18n-placeholder-fr="vous@exemple.com" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n-en="Your Password" data-i18n-fr="Votre Mot de Passe">Votre Mot de
+                                Passe</label>
+                            <input type="password" id="resume-draft-password" placeholder="Enter your password"
+                                data-i18n-placeholder-en="Enter your password"
+                                data-i18n-placeholder-fr="Entrez votre mot de passe" required />
+                        </div>
+                        <div class="draft-actions">
+                            <button type="submit" class="btn btn-primary draft-btn" id="load-draft-btn"
+                                data-i18n-en="Resume this form" data-i18n-fr="Reprendre ce formulaire">Reprendre ce
+                                formulaire</button>
+                            <a class="draft-inline-link" href="mailto:team@pytogo.org"
+                                data-i18n-en="Need assistance with this form?"
+                                data-i18n-fr="Besoin d'aide avec ce formulaire ?">Besoin d'aide avec ce formulaire ?</a>
+                        </div>
+                    </form>
+                </section>
+
+                <p class="draft-status" id="draft-status" aria-live="polite"></p>
+
+                <div id="draft-success" class="form-success hidden" style="display: none;">
+                    <div class="success-check">✓</div>
+                    <h3 data-i18n-en="Draft Saved" data-i18n-fr="Brouillon Sauvegardé">Brouillon Sauvegardé</h3>
+                    <p data-i18n-en="Your draft was saved successfully. You can come back anytime and continue from where you stopped."
+                        data-i18n-fr="Votre brouillon a été sauvegardé avec succès. Vous pouvez revenir à tout moment continuer là où vous vous êtes arrêté.">
+                        Votre brouillon a été sauvegardé avec succès. Vous pouvez revenir à tout moment continuer là où
+                        vous vous êtes arrêté.</p>
+                    <div class="draft-success-actions">
+                        <button type="button" class="btn btn-primary" id="continue-draft-btn"
+                            data-i18n-en="Continue Editing" data-i18n-fr="Continuer la modification">
+                            Continuer la modification
+                        </button>
+                        <a class="btn btn-primary" href="/" data-i18n-en="Go to Home" data-i18n-fr="Aller à l'accueil">
+                            Aller à l'accueil
+                        </a>
+                    </div>
+                </div>
 
                 <div id="speaker-success" class="form-success hidden" style="display: none;">
                     <div class="success-check">✓</div>
                     <h3 data-i18n-en="Thank You!" data-i18n-fr="Merci !">Merci !</h3>
-                    <p data-i18n-en="Your talk proposal has been received. The program committee will review your submission and contact you soon." data-i18n-fr="Votre proposition de talk a été reçue. Le comité de sélection examinera votre soumission et vous contactera bientôt.">Votre proposition de talk a été reçue. Le comité de sélection examinera votre soumission et vous contactera bientôt.</p>
-                    <a class="btn btn-primary" href="/" data-i18n-en="Back to Home" data-i18n-fr="Retour à l'Accueil">Retour à l'Accueil</a>
+                    <p data-i18n-en="Your talk proposal has been received. The program committee will review your submission and contact you soon."
+                        data-i18n-fr="Votre proposition de talk a été reçue. Le comité de sélection examinera votre soumission et vous contactera bientôt.">
+                        Votre proposition de talk a été reçue. Le comité de sélection examinera votre soumission et vous
+                        contactera bientôt.</p>
+                    <a class="btn btn-primary" href="/" data-i18n-en="Back to Home"
+                        data-i18n-fr="Retour à l'Accueil">Retour à l'Accueil</a>
                 </div>
             </div>
 
@@ -181,15 +564,18 @@
                     <div class="timeline-item">
                         <div class="timeline-marker"></div>
                         <div class="timeline-content">
-                            <h4 data-i18n-en="Notification Date" data-i18n-fr="Date de notification">Date de notification</h4>
+                            <h4 data-i18n-en="Notification Date" data-i18n-fr="Date de notification">Date de
+                                notification</h4>
                             <p data-i18n-en="June 15, 2026" data-i18n-fr="15 juin 2026">15 juin 2026</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-marker"></div>
                         <div class="timeline-content">
-                            <h4 data-i18n-en="Speaker Confirmation" data-i18n-fr="Confirmation des speakers">Confirmation des speakers</h4>
-                            <p data-i18n-en="Until June 30, 2026" data-i18n-fr="Avant le 30 juin 2026">Avant le 30 juin 2026</p>
+                            <h4 data-i18n-en="Speaker Confirmation" data-i18n-fr="Confirmation des speakers">
+                                Confirmation des speakers</h4>
+                            <p data-i18n-en="Until June 30, 2026" data-i18n-fr="Avant le 30 juin 2026">Avant le 30 juin
+                                2026</p>
                         </div>
                     </div>
                 </div>
@@ -199,55 +585,1034 @@
 
     <section class="section cfs-faq" style="background-color: #f8f9fa;">
         <div class="container">
-            <h2 class="reveal" data-i18n-en="Frequently Asked Questions" data-i18n-fr="Questions Fréquemment Posées">Questions Fréquemment Posées</h2>
-            
+            <h2 class="reveal" data-i18n-en="Frequently Asked Questions" data-i18n-fr="Questions Fréquemment Posées">
+                Questions Fréquemment Posées</h2>
+
             <div class="faq-grid reveal reveal-d1">
                 <div class="faq-item">
-                    <h4 data-i18n-en="Can I submit multiple talks?" data-i18n-fr="Puis-je soumettre plusieurs talks ?">Puis-je soumettre plusieurs talks ?</h4>
-                    <p data-i18n-en="Yes! You can submit up to 3 talk proposals. However, we'll likely select only one." data-i18n-fr="Oui ! Vous pouvez soumettre jusqu'à 3 propositions. Cependant, nous sélectionnerons probablement une seule.">Oui ! Vous pouvez soumettre jusqu'à 3 propositions. Cependant, nous sélectionnerons probablement une seule.</p>
+                    <h4 data-i18n-en="Can I submit multiple talks?" data-i18n-fr="Puis-je soumettre plusieurs talks ?">
+                        Puis-je soumettre plusieurs talks ?</h4>
+                    <p data-i18n-en="Yes. You can submit up to 2 talk proposals. However, we will likely select only one."
+                        data-i18n-fr="Oui. Vous pouvez soumettre jusqu'à 2 propositions de talk. Cependant, nous sélectionnerons probablement une seule.">
+                        Oui. Vous pouvez soumettre jusqu'à 2 propositions de talk. Cependant, nous sélectionnerons
+                        probablement une seule.</p>
                 </div>
                 <div class="faq-item">
-                    <h4 data-i18n-en="Is the talk in English or French?" data-i18n-fr="Le talk doit-il être en anglais ou en français ?">Le talk doit-il être en anglais ou en français ?</h4>
-                    <p data-i18n-en="Talks can be in English or French. Please specify your preferred language in your submission." data-i18n-fr="Les talks peuvent être en anglais ou en français. Veuillez spécifier votre langue préférée.">Les talks peuvent être en anglais ou en français. Veuillez spécifier votre langue préférée.</p>
+                    <h4 data-i18n-en="Is the talk in English or French?"
+                        data-i18n-fr="Le talk doit-il être en anglais ou en français ?">Le talk doit-il être en anglais
+                        ou en français ?</h4>
+                    <p data-i18n-en="Talks can be in English or French. Please specify your preferred language in your submission."
+                        data-i18n-fr="Les talks peuvent être en anglais ou en français. Veuillez spécifier votre langue préférée.">
+                        Les talks peuvent être en anglais ou en français. Veuillez spécifier votre langue préférée.</p>
                 </div>
                 <div class="faq-item">
-                    <h4 data-i18n-en="Will travel be provided?" data-i18n-fr="Le voyage sera-t-il pris en charge ?">Le voyage sera-t-il pris en charge ?</h4>
-                    <p data-i18n-en="International speakers may be supported. We'll discuss this individually with selected keynote speakers." data-i18n-fr="Les speakers internationaux peuvent être soutenus. Nous en discuterons individuellement avec les speakers sélectionnés.">Les speakers internationaux peuvent être soutenus. Nous en discuterons individuellement avec les speakers sélectionnés.</p>
+                    <h4 data-i18n-en="Will travel be provided?" data-i18n-fr="Le voyage sera-t-il pris en charge ?">Le
+                        voyage sera-t-il pris en charge ?</h4>
+                    <p data-i18n-en="Travel support is not guaranteed. Any support depends on the event budget and may change."
+                        data-i18n-fr="La prise en charge du voyage n'est pas garantie. Tout éventuel soutien dépend du budget de l'événement et peut évoluer.">
+                        La prise en charge du voyage n'est pas garantie. Tout éventuel soutien dépend du budget de
+                        l'événement et peut évoluer.</p>
                 </div>
                 <div class="faq-item">
-                    <h4 data-i18n-en="What if I'm new to public speaking?" data-i18n-fr="Et si je suis nouveau dans les présentations publiques ?">Et si je suis nouveau dans les présentations publiques ?</h4>
-                    <p data-i18n-en="No experience needed! We welcome first-time speakers. The PyCon Togo team will support you." data-i18n-fr="Aucune expérience nécessaire ! Nous accueillons les nouveaux speakers. L'équipe de PyCon Togo vous accompagnera.">Aucune expérience nécessaire ! Nous accueillons les nouveaux speakers. L'équipe de PyCon Togo vous accompagnera.</p>
+                    <h4 data-i18n-en="What if I'm new to public speaking?"
+                        data-i18n-fr="Et si je suis nouveau dans les présentations publiques ?">Et si je suis nouveau
+                        dans les présentations publiques ?</h4>
+                    <p data-i18n-en="No experience needed! We welcome first-time speakers. The PyCon Togo team will support you."
+                        data-i18n-fr="Aucune expérience nécessaire ! Nous accueillons les nouveaux speakers. L'équipe de PyCon Togo vous accompagnera.">
+                        Aucune expérience nécessaire ! Nous accueillons les nouveaux speakers. L'équipe de PyCon Togo
+                        vous accompagnera.</p>
                 </div>
                 <div class="faq-item">
-                    <h4 data-i18n-en="Is there a speaker fee?" data-i18n-fr="Y a-t-il une rémunération pour les speakers ?">Y a-t-il une rémunération pour les speakers ?</h4>
-                    <p data-i18n-en="Selected speakers receive free tickets and participate in social events at no cost." data-i18n-fr="Les speakers sélectionnés reçoivent des tickets gratuits et participent aux événements sociaux gratuitement.">Les speakers sélectionnés reçoivent des tickets gratuits et participent aux événements sociaux gratuitement.</p>
+                    <h4 data-i18n-en="Is there a speaker fee?"
+                        data-i18n-fr="Y a-t-il une rémunération pour les speakers ?">Y a-t-il une rémunération pour les
+                        speakers ?</h4>
+                    <p data-i18n-en="Selected speakers receive a complimentary VIP ticket for all 3 event days. Financial compensation is not guaranteed."
+                        data-i18n-fr="Les speakers sélectionnés reçoivent un ticket VIP gratuit pour les 3 jours de l'événement. Une compensation financière n'est pas garantie.">
+                        Les speakers sélectionnés reçoivent un ticket VIP gratuit pour les 3 jours de l'événement. Une
+                        compensation financière n'est pas garantie.</p>
                 </div>
                 <div class="faq-item">
-                    <h4 data-i18n-en="Contact & Questions" data-i18n-fr="Contact & Questions">Contact & Questions</h4>
-                    <p data-i18n-en="Email us at speakers@pytogo.org with any questions about the submission process." data-i18n-fr="Envoyez-nous un email à speakers@pytogo.org pour toute question sur le processus de soumission.">Envoyez-nous un email à speakers@pytogo.org pour toute question sur le processus de soumission.</p>
+                    <h4 data-i18n-en="Contact & Questions" data-i18n-fr="Contact et Questions">Contact & Questions</h4>
+                    <p data-i18n-en="Email us at team@pytogo.org with any questions about the submission process."
+                        data-i18n-fr="Envoyez-nous un email à team@pytogo.org pour toute question sur le processus de soumission.">
+                        Envoyez-nous un email à team@pytogo.org pour toute question sur le processus de soumission.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
 <script>
-function handleSpeakerSubmit(e) {
-  e.preventDefault();
-  const btn = document.getElementById('speaker-submit-btn');
-  const form = document.getElementById('speaker-form');
-  const success = document.getElementById('speaker-success');
+    let countrySelectInstance = null;
 
-  btn.textContent = 'Envoi en cours...';
-  btn.disabled = true;
+    // Helper: Convert country code to flag emoji
+    function countryCodeToFlag(code) {
+        if (!code || code.length !== 2) return '';
+        return String.fromCodePoint(
+            127397 + code.charCodeAt(0),
+            127397 + code.charCodeAt(1)
+        );
+    }
 
-  // Simulate submission delay
-  setTimeout(() => {
-    form.style.display = 'none';
-    success.style.display = 'block';
-    window.scrollTo({ top: success.offsetTop - 100, behavior: 'smooth' });
-  }, 1500);
-}
+    // Mapping of ISO 3166-1 alpha-2 country codes to international dialing codes
+    const countryToDialingCode = {
+        "AF": "+93", "AL": "+355", "DZ": "+213", "AD": "+376", "AO": "+244", "AG": "+1-268", "AR": "+54", "AM": "+374", "AU": "+61", "AT": "+43", "AZ": "+994", "BS": "+1-242", "BH": "+973", "BD": "+880", "BB": "+1-246", "BY": "+375", "BE": "+32", "BZ": "+501", "BJ": "+229", "BT": "+975", "BO": "+591", "BA": "+387", "BW": "+267", "BR": "+55", "BN": "+673", "BG": "+359", "BF": "+226", "BI": "+257", "CV": "+238", "KH": "+855", "CM": "+237", "CA": "+1", "CF": "+236", "TD": "+235", "CL": "+56", "CN": "+86", "CO": "+57", "KM": "+269", "CG": "+242", "CD": "+243", "CR": "+506", "CI": "+225", "HR": "+385", "CU": "+53", "CY": "+357", "CZ": "+420", "DK": "+45", "DJ": "+253", "DM": "+1-767", "DO": "+1-809", "EC": "+593", "EG": "+20", "SV": "+503", "GQ": "+240", "ER": "+291", "EE": "+372", "SZ": "+268", "ET": "+251", "FJ": "+679", "FI": "+358", "FR": "+33", "GA": "+241", "GM": "+220", "GE": "+995", "DE": "+49", "GH": "+233", "GR": "+30", "GD": "+1-473", "GT": "+502", "GN": "+224", "GW": "+245", "GY": "+592", "HT": "+509", "HN": "+504", "HU": "+36", "IS": "+354", "IN": "+91", "ID": "+62", "IR": "+98", "IQ": "+964", "IE": "+353", "IL": "+972", "IT": "+39", "JM": "+1-876", "JP": "+81", "JO": "+962", "KZ": "+7", "KE": "+254", "KI": "+686", "KP": "+850", "KR": "+82", "KW": "+965", "KG": "+996", "LA": "+856", "LV": "+371", "LB": "+961", "LS": "+266", "LR": "+231", "LY": "+218", "LI": "+423", "LT": "+370", "LU": "+352", "MG": "+261", "MW": "+265", "MY": "+60", "MV": "+960", "ML": "+223", "MT": "+356", "MH": "+692", "MR": "+222", "MU": "+230", "MX": "+52", "FM": "+691", "MD": "+373", "MC": "+377", "MN": "+976", "ME": "+382", "MA": "+212", "MZ": "+258", "MM": "+95", "NA": "+264", "NR": "+674", "NP": "+977", "NL": "+31", "NZ": "+64", "NI": "+505", "NE": "+227", "NG": "+234", "MK": "+389", "NO": "+47", "OM": "+968", "PK": "+92", "PW": "+680", "PA": "+507", "PG": "+675", "PY": "+595", "PE": "+51", "PH": "+63", "PL": "+48", "PT": "+351", "QA": "+974", "RO": "+40", "RU": "+7", "RW": "+250", "KN": "+1-869", "LC": "+1-758", "VC": "+1-784", "WS": "+685", "SM": "+378", "ST": "+239", "SA": "+966", "SN": "+221", "RS": "+381", "SC": "+248", "SL": "+232", "SG": "+65", "SK": "+421", "SI": "+386", "SB": "+677", "SO": "+252", "ZA": "+27", "SS": "+211", "ES": "+34", "LK": "+94", "SD": "+249", "SR": "+597", "SE": "+46", "CH": "+41", "SY": "+963", "TW": "+886", "TJ": "+992", "TZ": "+255", "TH": "+66", "TL": "+670", "TG": "+228", "TO": "+676", "TT": "+1-868", "TN": "+216", "TR": "+90", "TM": "+993", "TV": "+688", "UG": "+256", "UA": "+380", "AE": "+971", "GB": "+44", "US": "+1", "UY": "+598", "UZ": "+998", "VU": "+678", "VA": "+379", "VE": "+58", "VN": "+84", "YE": "+967", "ZM": "+260", "ZW": "+263"
+    };
+
+    function setDraftStatus(messageFr, messageEn, isError = false) {
+        const status = document.getElementById('draft-status');
+        if (!status) return;
+        const lang = document.documentElement.lang === 'fr' ? 'fr' : 'en';
+        status.textContent = lang === 'fr' ? messageFr : messageEn;
+        status.classList.toggle('error', isError);
+    }
+
+    function toggleDraftPanel(panel) {
+        const savePanel = document.getElementById('save-draft-panel');
+        const resumePanel = document.getElementById('resume-draft-panel');
+        if (!savePanel || !resumePanel) return;
+
+        const isClosed = (el) => el.classList.contains('hidden') || el.style.display === 'none' || getComputedStyle(el).display === 'none';
+        const showPanel = (el) => {
+            el.classList.remove('hidden');
+            el.style.display = 'block';
+        };
+        const hidePanel = (el) => {
+            el.classList.add('hidden');
+            el.style.display = 'none';
+        };
+
+        if (panel === 'save') {
+            const willOpen = isClosed(savePanel);
+            if (willOpen) {
+                showPanel(savePanel);
+            } else {
+                hidePanel(savePanel);
+            }
+            hidePanel(resumePanel);
+            if (willOpen) savePanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } else if (panel === 'resume') {
+            const willOpen = isClosed(resumePanel);
+            if (willOpen) {
+                showPanel(resumePanel);
+            } else {
+                hidePanel(resumePanel);
+            }
+            hidePanel(savePanel);
+            if (willOpen) resumePanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    }
+
+    function getCountryEntries(lang) {
+        // Intl.supportedValuesOf does not support "region" and throws RangeError in browsers.
+        // Use a stable ISO-3166 alpha-2 list instead.
+        const regionCodes = [
+            "AF", "AL", "DZ", "AD", "AO", "AG", "AR", "AM", "AU", "AT", "AZ", "BS", "BH", "BD", "BB", "BY", "BE", "BZ", "BJ", "BT", "BO", "BA", "BW", "BR", "BN", "BG", "BF", "BI", "CV", "KH", "CM", "CA", "CF", "TD", "CL", "CN", "CO", "KM", "CG", "CD", "CR", "CI", "HR", "CU", "CY", "CZ", "DK", "DJ", "DM", "DO", "EC", "EG", "SV", "GQ", "ER", "EE", "SZ", "ET", "FJ", "FI", "FR", "GA", "GM", "GE", "DE", "GH", "GR", "GD", "GT", "GN", "GW", "GY", "HT", "HN", "HU", "IS", "IN", "ID", "IR", "IQ", "IE", "IL", "IT", "JM", "JP", "JO", "KZ", "KE", "KI", "KP", "KR", "KW", "KG", "LA", "LV", "LB", "LS", "LR", "LY", "LI", "LT", "LU", "MG", "MW", "MY", "MV", "ML", "MT", "MH", "MR", "MU", "MX", "FM", "MD", "MC", "MN", "ME", "MA", "MZ", "MM", "NA", "NR", "NP", "NL", "NZ", "NI", "NE", "NG", "MK", "NO", "OM", "PK", "PW", "PA", "PG", "PY", "PE", "PH", "PL", "PT", "QA", "RO", "RU", "RW", "KN", "LC", "VC", "WS", "SM", "ST", "SA", "SN", "RS", "SC", "SL", "SG", "SK", "SI", "SB", "SO", "ZA", "SS", "ES", "LK", "SD", "SR", "SE", "CH", "SY", "TW", "TJ", "TZ", "TH", "TL", "TG", "TO", "TT", "TN", "TR", "TM", "TV", "UG", "UA", "AE", "GB", "US", "UY", "UZ", "VU", "VA", "VE", "VN", "YE", "ZM", "ZW"
+        ];
+
+        const displayNames = (typeof Intl.DisplayNames === 'function')
+            ? new Intl.DisplayNames([lang], { type: 'region' })
+            : null;
+
+        return regionCodes
+            .map((code) => {
+                const label = displayNames ? displayNames.of(code) : code;
+                return { code, label };
+            })
+            .filter((entry) => entry.label && entry.label !== entry.code)
+            .sort((a, b) => a.label.localeCompare(b.label));
+    }
+
+    function hydrateCountrySelect(lang) {
+        const select = document.getElementById('country-select');
+        if (!select) return;
+
+        const selectedValue = countrySelectInstance
+            ? countrySelectInstance.getValue()
+            : select.value;
+
+        const placeholder = lang === 'fr' ? '-- Sélectionnez un pays --' : '-- Select a country --';
+        const countries = getCountryEntries(lang);
+
+        select.innerHTML = `<option value="">${placeholder}</option>` + countries
+            .map((country) => `<option value="${country.label}" data-country-code="${country.code}">${country.label}</option>`)
+            .join('');
+
+        if (selectedValue) {
+            const exists = Array.from(select.options).some((opt) => opt.value === selectedValue);
+            if (!exists) {
+                const customOption = document.createElement('option');
+                customOption.value = selectedValue;
+                customOption.textContent = selectedValue;
+                select.appendChild(customOption);
+            }
+            select.value = selectedValue;
+        }
+
+        if (countrySelectInstance) {
+            countrySelectInstance.destroy();
+        }
+
+        countrySelectInstance = new TomSelect(select, {
+            create: false,
+            sortField: { field: 'text', direction: 'asc' },
+            maxOptions: 300,
+            placeholder: lang === 'fr' ? 'Rechercher un pays...' : 'Search a country...'
+        });
+
+        // Populate phone country flag dropdown and bind country change
+        populatePhoneCountryFlag();
+        select.onchange = syncPhoneCountryCode;
+    }
+
+    function hydrateTopicSelect(lang) {
+        const select = document.getElementById('topic-select');
+        if (!select) return;
+
+        const selectedValue = select.value;
+        const placeholderOption = select.options[0];
+        if (placeholderOption) {
+            placeholderOption.textContent = lang === 'fr' ? '-- Sélectionnez un topic --' : '-- Select one topic --';
+        }
+
+        Array.from(select.options).forEach((option, index) => {
+            if (index === 0) return;
+
+            const label = lang === 'fr'
+                ? option.dataset.topicNameFr || option.dataset.topicNameEn || option.textContent
+                : option.dataset.topicNameEn || option.dataset.topicNameFr || option.textContent;
+
+            option.textContent = label;
+        });
+
+        if (selectedValue) {
+            select.value = selectedValue;
+        }
+    }
+
+    function hydrateFormatSelect(lang) {
+        const select = document.getElementById('format-select');
+        if (!select) return;
+
+        const selectedValue = select.value;
+        const placeholderOption = select.options[0];
+        if (placeholderOption) {
+            placeholderOption.textContent = lang === 'fr' ? '-- Sélectionnez --' : '-- Select --';
+        }
+
+        Array.from(select.options).forEach((option, index) => {
+            if (index === 0) return;
+
+            const label = lang === 'fr'
+                ? option.dataset.formatNameFr || option.dataset.formatNameEn || option.textContent
+                : option.dataset.formatNameEn || option.dataset.formatNameFr || option.textContent;
+
+            option.textContent = label;
+        });
+
+        if (selectedValue) {
+            select.value = selectedValue;
+        }
+    }
+
+    function populatePhoneCountryFlag() {
+        const phoneCountryFlagSelect = document.getElementById('phone-country-flag');
+        if (!phoneCountryFlagSelect) return;
+
+        const countries = getCountryEntries('en');
+        const currentValue = phoneCountryFlagSelect.value;
+
+        let html = '<option value=""></option>';
+        countries.forEach((country) => {
+            const flag = countryCodeToFlag(country.code);
+            const dialing = countryToDialingCode[country.code] || '';
+            html += `<option value="${dialing}">${flag} ${country.code} ${dialing}</option>`;
+        });
+        phoneCountryFlagSelect.innerHTML = html;
+
+        if (currentValue) {
+            phoneCountryFlagSelect.value = currentValue;
+        }
+    }
+
+    function syncPhoneCountryCode() {
+        const countrySelect = document.getElementById('country-select');
+        const phoneCountryFlagSelect = document.getElementById('phone-country-flag');
+        if (!countrySelect || !phoneCountryFlagSelect) return;
+
+        const selectedOption = Array.from(countrySelect.options).find(opt => opt.value === (countrySelectInstance ? countrySelectInstance.getValue() : countrySelect.value));
+        if (!selectedOption) return;
+
+        const countryCode = selectedOption.getAttribute('data-country-code');
+        if (countryCode && countryToDialingCode[countryCode]) {
+            phoneCountryFlagSelect.value = countryToDialingCode[countryCode];
+        }
+    }
+
+    function getCombinedPhoneNumber() {
+        const phoneCountryFlagSelect = document.getElementById('phone-country-flag');
+        const phoneInput = document.querySelector('input[name="phone_number"]');
+        const dialingCode = String(phoneCountryFlagSelect?.value || '').trim();
+        const localNumber = String(phoneInput?.value || '').trim();
+
+        if (!localNumber) {
+            return '';
+        }
+
+        // If the user entered only the country code (with or without +), treat it as empty.
+        const localDigits = localNumber.replace(/\D/g, '');
+        const dialDigits = dialingCode.replace(/\D/g, '');
+        const looksLikeOnlyCountryCode =
+            Boolean(localDigits) &&
+            Boolean(dialDigits) &&
+            localDigits === dialDigits &&
+            /^\+?[\d\s-]+$/.test(localNumber);
+
+        if (looksLikeOnlyCountryCode) {
+            return '';
+        }
+
+        return dialingCode ? `${dialingCode} ${localNumber}`.trim() : localNumber;
+    }
+
+    function scrollToSpeakerForm() {
+        const form = document.getElementById('speaker-form');
+        if (!form) return;
+        form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function restorePhoneNumberFields(payload, form) {
+        const phoneInput = form.elements.namedItem('phone_number');
+        const phoneCountryFlagSelect = document.getElementById('phone-country-flag');
+        if (!phoneInput || typeof phoneInput.value === 'undefined') return;
+
+        const combinedPhone = String(payload.phone_number || payload.phone || '').trim();
+        const storedDialingCode = String(payload.phone_country_code || '').trim();
+
+        if (combinedPhone) {
+            // Try to match format: "+228 90 00 00 00"
+            const match = combinedPhone.match(/^(\+\d[\d-]*)\s+(.*)$/);
+            if (match) {
+                if (phoneCountryFlagSelect) {
+                    phoneCountryFlagSelect.value = match[1];
+                }
+                phoneInput.value = match[2].trim();
+                return;
+            }
+
+            // Check if it's just a dialing code (e.g., "+228")
+            const justDialingCodeMatch = combinedPhone.match(/^(\+\d[\d-]*)$/);
+            if (justDialingCodeMatch) {
+                // Only dialing code, no local number
+                if (phoneCountryFlagSelect) {
+                    phoneCountryFlagSelect.value = justDialingCodeMatch[1];
+                }
+                phoneInput.value = '';
+                return;
+            }
+
+            // Otherwise, treat combinedPhone as local number only
+            if (storedDialingCode && phoneCountryFlagSelect) {
+                phoneCountryFlagSelect.value = storedDialingCode;
+            }
+            phoneInput.value = combinedPhone;
+            return;
+        }
+
+        if (storedDialingCode && phoneCountryFlagSelect) {
+            phoneCountryFlagSelect.value = storedDialingCode;
+        }
+
+        if (payload.phone) {
+            phoneInput.value = String(payload.phone).trim();
+        }
+    }
+
+    function normalizeSocialUsername(value, platform) {
+        if (!value) return '';
+
+        const raw = String(value).trim();
+        if (!raw) return '';
+
+        const withoutAt = raw.replace(/^@+/, '');
+
+        if (/^https?:\/\//i.test(withoutAt)) {
+            try {
+                const url = new URL(withoutAt);
+                const pathParts = url.pathname.split('/').filter(Boolean);
+                if (!pathParts.length) return '';
+
+                if (platform === 'linkedin') {
+                    const inIndex = pathParts.indexOf('in');
+                    if (inIndex >= 0 && pathParts[inIndex + 1]) {
+                        return pathParts[inIndex + 1];
+                    }
+                }
+
+                return pathParts[pathParts.length - 1].replace(/\/+$/, '');
+            } catch (error) {
+                return withoutAt;
+            }
+        }
+
+        return withoutAt.replace(/\/+$/, '');
+    }
+
+    function buildSocialMediaLinks(formData) {
+        const socialMediaLinks = {};
+
+        const linkedinUsername = normalizeSocialUsername(formData.linkedin, 'linkedin');
+        if (linkedinUsername) {
+            socialMediaLinks.linkedin = {
+                username: linkedinUsername,
+                url: `https://www.linkedin.com/in/${linkedinUsername}`,
+            };
+        }
+
+        const githubUsername = normalizeSocialUsername(formData.github, 'github');
+        if (githubUsername) {
+            socialMediaLinks.github = {
+                username: githubUsername,
+                url: `https://github.com/${githubUsername}`,
+            };
+        }
+
+        const twitterUsername = normalizeSocialUsername(formData.twitter, 'twitter');
+        if (twitterUsername) {
+            socialMediaLinks.twitter = {
+                username: twitterUsername,
+                url: `https://x.com/${twitterUsername}`,
+            };
+        }
+
+        const portfolioUrl = String(formData.portfolio || '').trim();
+        if (portfolioUrl) {
+            socialMediaLinks.portfolio = {
+                url: portfolioUrl,
+            };
+        }
+
+        return socialMediaLinks;
+    }
+
+    function extractSocialUsername(value, platform) {
+        return normalizeSocialUsername(value, platform);
+    }
+
+    function toCleanString(value) {
+        return String(value || '').trim();
+    }
+
+    function toNullableString(value) {
+        const cleaned = toCleanString(value);
+        return cleaned || null;
+    }
+
+    function toLowercaseWords(value) {
+        return toCleanString(value).toLowerCase();
+    }
+
+    function toIntegerOrNull(value) {
+        const parsed = Number.parseInt(String(value || '').trim(), 10);
+        return Number.isFinite(parsed) ? parsed : null;
+    }
+
+    function toBoolean(value) {
+        if (typeof value === 'boolean') return value;
+        const normalized = String(value || '').trim().toLowerCase();
+        return normalized === 'true' || normalized === '1' || normalized === 'yes' || normalized === 'on';
+    }
+
+    function normalizeLanguageForSubmission() {
+        const lang = document.documentElement.lang === 'fr' ? 'fr' : 'en';
+        return lang === 'fr' ? 'French' : 'English';
+    }
+
+    function buildSpeakerTablePayload(formPayload, options = {}) {
+        const status = options.status || 'draft';
+        const speakerConsent = toBoolean(formPayload.speaker_consent || formPayload.accept_privacy_code_and_conduct || (formPayload.agreed_to_code_of_conduct && formPayload.agreed_to_privacy_policy));
+        const sponsorSharing = toBoolean(formPayload.speaker_sponsor_sharing || formPayload.agree_to_share_with_sponsors || formPayload.shared_with_sponsors);
+
+        return {
+            title: toCleanString(formPayload.talk_title),
+            description: toCleanString(formPayload.description),
+            abstract: toNullableString(formPayload.abstract),
+            topic_id: toNullableString(formPayload.topic),
+            format: toLowercaseWords(formPayload.format),
+            python_percentage: toIntegerOrNull(formPayload.python_percentage),
+            full_name: toCleanString(formPayload.fullname),
+            email: toCleanString(formPayload.email).toLowerCase(),
+            phone_number: toNullableString(formPayload.phone_number),
+            organization: toNullableString(formPayload.organization),
+            bio: toNullableString(formPayload.bio),
+            country: toNullableString(formPayload.country),
+            experience: toNullableString(formPayload.experience),
+            photo_url: toNullableString(formPayload.photo_url),
+            social_media_links: formPayload.social_media_links || {},
+            language: toCleanString(formPayload.language) || normalizeLanguageForSubmission(),
+            level: toNullableString(formPayload.level),
+            needs_equipment: Boolean(formPayload.needs_equipment),
+            equipment_details: toNullableString(formPayload.equipment_details),
+            delivery_mode: toCleanString(formPayload.delivery_mode) || 'onsite',
+            accept_privacy_code_and_conduct: speakerConsent,
+            agree_to_share_with_sponsors: sponsorSharing,
+            agreed_to_code_of_conduct: speakerConsent,
+            agreed_to_privacy_policy: speakerConsent,
+            shared_with_sponsors: sponsorSharing,
+            status,
+        };
+    }
+
+    function isStrongDraftPassword(password) {
+        return /^(?=.{8,}$)(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).+$/.test(String(password || ''));
+    }
+
+    function mapSubmissionPayloadToFormPayload(payload) {
+        if (!payload || typeof payload !== 'object') {
+            return {};
+        }
+
+        const topicValue = payload.topic || payload.topic_id || (Array.isArray(payload.topics) && payload.topics.length ? payload.topics[0] : '');
+
+        return {
+            ...payload,
+            fullname: payload.fullname || payload.full_name || '',
+            talk_title: payload.talk_title || payload.title || '',
+            topic: topicValue || '',
+            description: payload.description || '',
+            abstract: payload.abstract || '',
+            format: payload.format || '',
+            python_percentage: payload.python_percentage || '',
+            email: payload.email || '',
+            phone_number: payload.phone_number || payload.phone || '',
+            bio: payload.bio || '',
+            country: payload.country || payload.location || '',
+            experience: payload.experience || '',
+            level: payload.level || '',
+            delivery_mode: payload.delivery_mode || '',
+            speaker_consent: toBoolean(payload.speaker_consent || payload.accept_privacy_code_and_conduct || (payload.agreed_to_code_of_conduct && payload.agreed_to_privacy_policy)),
+            speaker_sponsor_sharing: toBoolean(payload.speaker_sponsor_sharing || payload.agree_to_share_with_sponsors || payload.shared_with_sponsors),
+            social_media_links: payload.social_media_links || {},
+        };
+    }
+
+    function safeParseJsonObject(value) {
+        if (typeof value !== 'string') {
+            return value;
+        }
+
+        try {
+            const parsed = JSON.parse(value);
+            return parsed && typeof parsed === 'object' ? parsed : {};
+        } catch (error) {
+            return {};
+        }
+    }
+
+    function extractResumeFormData(payload) {
+        if (!payload || typeof payload !== 'object') {
+            return {};
+        }
+
+        const candidates = [
+            payload?.data?.form_data,
+            payload?.data?.proposal_data,
+            payload?.proposal_data,
+            payload?.form_data,
+            payload?.data,
+        ];
+
+        for (const candidate of candidates) {
+            const normalized = safeParseJsonObject(candidate);
+            if (normalized && typeof normalized === 'object' && Object.keys(normalized).length > 0) {
+                return normalized;
+            }
+        }
+
+        return {};
+    }
+
+    function collectSpeakerFormData(options = {}) {
+        const form = document.getElementById('speaker-form');
+        if (!form) return {};
+
+        const rawPayload = {};
+        const formData = new FormData(form);
+        formData.forEach((value, key) => {
+            if (rawPayload[key] !== undefined) {
+                if (!Array.isArray(rawPayload[key])) {
+                    rawPayload[key] = [rawPayload[key]];
+                }
+                rawPayload[key].push(value);
+            } else {
+                rawPayload[key] = value;
+            }
+        });
+
+        rawPayload.country = countrySelectInstance ? countrySelectInstance.getValue() : rawPayload.country;
+        rawPayload.phone_number = getCombinedPhoneNumber();
+        rawPayload.social_media_links = buildSocialMediaLinks(rawPayload);
+        delete rawPayload.phone;
+        delete rawPayload.phone_country_code;
+        delete rawPayload.linkedin;
+        delete rawPayload.github;
+        delete rawPayload.twitter;
+        delete rawPayload.portfolio;
+
+        return buildSpeakerTablePayload(rawPayload, { status: options.status || 'draft' });
+    }
+
+    function logPayload(label, payload) {
+        try {
+            console.groupCollapsed(label);
+            console.log(JSON.stringify(payload, null, 2));
+            console.groupEnd();
+        } catch (error) {
+            console.log(label, payload);
+        }
+    }
+
+    function hideCfpDraftUi() {
+        document.getElementById('draft-status')?.classList.add('hidden');
+        document.querySelectorAll('.draft-links-row').forEach((row) => row.classList.add('hidden'));
+        document.getElementById('save-draft-panel')?.classList.add('hidden');
+        document.getElementById('resume-draft-panel')?.classList.add('hidden');
+    }
+
+    function showDraftSaveSuccess() {
+        const form = document.getElementById('speaker-form');
+        const success = document.getElementById('draft-success');
+        const speakerSuccess = document.getElementById('speaker-success');
+        const status = document.getElementById('draft-status');
+
+        if (form) {
+            form.style.display = 'none';
+        }
+
+        hideCfpDraftUi();
+
+        if (speakerSuccess) {
+            speakerSuccess.classList.add('hidden');
+            speakerSuccess.style.display = 'none';
+        }
+
+        if (success) {
+            success.classList.remove('hidden');
+            success.style.display = 'block';
+        }
+
+        if (status) {
+            status.textContent = '';
+            status.classList.remove('error');
+        }
+    }
+
+    function continueDraftEditing() {
+        const form = document.getElementById('speaker-form');
+        const success = document.getElementById('draft-success');
+        const status = document.getElementById('draft-status');
+
+        if (success) {
+            success.classList.add('hidden');
+            success.style.display = 'none';
+        }
+
+        if (form) {
+            form.style.display = 'block';
+            form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        document.querySelectorAll('.draft-links-row').forEach((row) => row.classList.remove('hidden'));
+
+        if (status) {
+            status.textContent = '';
+            status.classList.remove('error');
+            status.classList.remove('hidden');
+        }
+    }
+
+    function showCfpSubmissionSuccess() {
+        const form = document.getElementById('speaker-form');
+        const success = document.getElementById('speaker-success');
+        const status = document.getElementById('draft-status');
+
+        if (form) {
+            form.style.display = 'none';
+        }
+
+        hideCfpDraftUi();
+
+        if (success) {
+            success.classList.remove('hidden');
+            success.style.display = 'block';
+        }
+
+        if (status) {
+            status.textContent = '';
+            status.classList.remove('error');
+        }
+    }
+
+    function showCfpSubmissionError(messageFr, messageEn) {
+        const status = document.getElementById('draft-status');
+        if (!status) return;
+        const lang = document.documentElement.lang === 'fr' ? 'fr' : 'en';
+        status.textContent = lang === 'fr' ? `✕ ${messageFr}` : `✕ ${messageEn}`;
+        status.classList.add('error');
+        status.classList.remove('hidden');
+    }
+
+    function restoreSpeakerFormData(payload) {
+        const form = document.getElementById('speaker-form');
+        if (!form || !payload) return;
+
+        const mappedPayload = mapSubmissionPayloadToFormPayload(payload);
+
+        const socialMediaLinks = mappedPayload.social_media_links || {};
+        const restoredCountry = mappedPayload.country || mappedPayload.location || '';
+
+        const linkedinField = form.elements.namedItem('linkedin');
+        if (linkedinField && typeof linkedinField.value !== 'undefined') {
+            const linkedinValue = socialMediaLinks.linkedin?.username || extractSocialUsername(mappedPayload.linkedin || socialMediaLinks.linkedin?.url || '', 'linkedin');
+            linkedinField.value = linkedinValue || '';
+        }
+
+        const githubField = form.elements.namedItem('github');
+        if (githubField && typeof githubField.value !== 'undefined') {
+            const githubValue = socialMediaLinks.github?.username || extractSocialUsername(mappedPayload.github || socialMediaLinks.github?.url || '', 'github');
+            githubField.value = githubValue || '';
+        }
+
+        const twitterField = form.elements.namedItem('twitter');
+        if (twitterField && typeof twitterField.value !== 'undefined') {
+            const twitterValue = socialMediaLinks.twitter?.username || extractSocialUsername(mappedPayload.twitter || socialMediaLinks.twitter?.url || '', 'twitter');
+            twitterField.value = twitterValue || '';
+        }
+
+        const portfolioField = form.elements.namedItem('portfolio');
+        if (portfolioField && typeof portfolioField.value !== 'undefined') {
+            portfolioField.value = socialMediaLinks.portfolio?.url || mappedPayload.portfolio || '';
+        }
+
+        Object.entries(mappedPayload).forEach(([key, value]) => {
+            if (key === 'country' || key === 'location' || key === 'phone_number' || key === 'phone_country_code' || key === 'social_media_links' || key === 'linkedin' || key === 'github' || key === 'twitter' || key === 'portfolio') return;
+            const field = form.elements.namedItem(key);
+            if (!field) return;
+
+            if (field.type === 'checkbox') {
+                field.checked = toBoolean(value);
+                return;
+            }
+
+            if (typeof field.value !== 'undefined') {
+                field.value = Array.isArray(value) ? (value[0] || '') : value;
+            }
+        });
+
+        if (countrySelectInstance && restoredCountry) {
+            countrySelectInstance.setValue(restoredCountry, true);
+            // Sync phone country code after setting location
+            setTimeout(syncPhoneCountryCode, 50);
+        }
+
+        restorePhoneNumberFields(mappedPayload, form);
+
+        const topicField = form.elements.namedItem('topic');
+        const topicValue = String(mappedPayload.topic || (Array.isArray(mappedPayload.topics) && mappedPayload.topics.length ? mappedPayload.topics[0] : '') || '').trim();
+
+        if (topicField && typeof topicField.value !== 'undefined' && topicValue) {
+            const options = Array.from(topicField.options || []);
+            const normalizedTopicValue = topicValue.toLowerCase();
+            const matchedOption = options.find((option, index) => {
+                if (index === 0) return false;
+                const candidates = [
+                    option.value,
+                    option.textContent,
+                    option.dataset.topicNameEn,
+                    option.dataset.topicNameFr,
+                ];
+                return candidates.some((candidate) => String(candidate || '').trim().toLowerCase() === normalizedTopicValue);
+            });
+
+            topicField.value = matchedOption ? matchedOption.value : topicValue;
+        }
+
+        const formatField = form.elements.namedItem('format');
+        const formatValue = String(mappedPayload.format || mappedPayload.format_id || '').trim();
+        if (formatField && typeof formatField.value !== 'undefined' && formatValue) {
+            const options = Array.from(formatField.options || []);
+            const normalizedFormatValue = formatValue.toLowerCase();
+            const matchedOption = options.find((option, index) => {
+                if (index === 0) return false;
+                const candidates = [
+                    option.value,
+                    option.dataset.formatNameEn,
+                    option.dataset.formatNameFr,
+                    option.dataset.formatId,
+                    option.textContent,
+                ];
+                return candidates.some((candidate) => String(candidate || '').trim().toLowerCase() === normalizedFormatValue);
+            });
+
+            formatField.value = matchedOption ? matchedOption.value : formatValue;
+        }
+    }
+
+    async function saveDraft(e) {
+        e.preventDefault();
+        const email = document.getElementById('save-draft-email')?.value?.trim();
+        const password = document.getElementById('save-draft-password')?.value;
+        const confirmPassword = document.getElementById('save-draft-password-confirm')?.value;
+        if (!email || !password || !confirmPassword) {
+            setDraftStatus(
+                'Veuillez renseigner email et mot de passe.',
+                'Please provide email and password.',
+                true
+            );
+            return;
+        }
+
+        if (!/^\S+@\S+\.\S+$/.test(email)) {
+            setDraftStatus(
+                'Veuillez entrer un email valide.',
+                'Please enter a valid email.',
+                true
+            );
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            setDraftStatus(
+                'La confirmation du mot de passe ne correspond pas.',
+                'Password confirmation does not match.',
+                true
+            );
+            return;
+        }
+
+        if (!isStrongDraftPassword(password)) {
+            setDraftStatus(
+                'Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.',
+                'Password must be at least 8 characters and include one uppercase letter, one lowercase letter, one number, and one special character.',
+                true
+            );
+            return;
+        }
+
+        const draft_payload = {
+            email,
+            password,
+            confirm_password: confirmPassword,
+            form_data: collectSpeakerFormData({ status: 'draft' }),
+        };
+
+
+
+        try {
+            const response = await fetch('/call-for-speakers/drafts/save', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(draft_payload),
+            });
+
+            const payload = await response.json().catch(() => ({}));
+            if (!response.ok) {
+                const detail = payload.detail || payload.message || 'Unable to save draft.';
+                throw new Error(String(detail));
+            }
+
+            showDraftSaveSuccess();
+        } catch (error) {
+            setDraftStatus(
+                `Erreur d'enregistrement : ${error.message}`,
+                `Save error: ${error.message}`,
+                true
+            );
+        }
+    }
+
+    async function loadDraft(e) {
+        e.preventDefault();
+        const email = document.getElementById('resume-draft-email')?.value?.trim();
+        const password = document.getElementById('resume-draft-password')?.value;
+        if (!email || !password) {
+            setDraftStatus(
+                'Veuillez renseigner email et mot de passe.',
+                'Please provide email and password.',
+                true
+            );
+            return;
+        }
+
+        if (!/^\S+@\S+\.\S+$/.test(email)) {
+            setDraftStatus('Veuillez entrer un email valide.', 'Please enter a valid email.', true);
+            return;
+        }
+
+        const payload_resume_draft = { email, password };
+
+        try {
+            const response = await fetch('/call-for-speakers/drafts/resume', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload_resume_draft),
+            });
+
+            const payload = await response.json().catch(() => ({}));
+
+            if (!response.ok) {
+                const detail = payload.detail || payload.message || 'Unable to resume draft.';
+                throw new Error(String(detail));
+            }
+
+            const restoredFormData = extractResumeFormData(payload);
+            if (!Object.keys(restoredFormData).length) {
+                throw new Error('No saved proposal data found for this draft.');
+            }
+
+            restoreSpeakerFormData(restoredFormData);
+
+            document.getElementById('save-draft-panel')?.classList.add('hidden');
+            document.getElementById('resume-draft-panel')?.classList.add('hidden');
+            document.getElementById('draft-success')?.classList.add('hidden');
+
+            setDraftStatus(
+                'Votre brouillon est bien revenu. Vous pouvez continuer votre proposition.',
+                'Your draft has been restored. You can continue your proposal.'
+            );
+
+            scrollToSpeakerForm();
+        } catch (error) {
+            setDraftStatus(
+                `Erreur de reprise : ${error.message}`,
+                `Resume error: ${error.message}`,
+                true
+            );
+        }
+    }
+
+    function initPhoneCountryCode() {
+        const phoneCountryFlagSelect = document.getElementById('phone-country-flag');
+        const phoneInput = document.querySelector('input[name="phone_number"]');
+        if (!phoneCountryFlagSelect || !phoneInput) return;
+
+        // Set Togo as default (dialing code +228)
+        const togoOption = Array.from(phoneCountryFlagSelect.options).find(opt => opt.value === '+228');
+        if (togoOption) {
+            phoneCountryFlagSelect.value = '+228';
+        }
+
+        // Listen to phone input changes to toggle required state
+        phoneInput.addEventListener('input', () => {
+            if (phoneInput.value.trim().length > 0) {
+                phoneCountryFlagSelect.setAttribute('required', 'required');
+            } else {
+                phoneCountryFlagSelect.removeAttribute('required');
+            }
+        });
+    }
+
+    function initEnhancedCfpFields(lang) {
+        hydrateFormatSelect(lang);
+        hydrateTopicSelect(lang);
+        if (!window.TomSelect) return;
+        hydrateCountrySelect(lang);
+        initPhoneCountryCode();
+    }
+
+    function bindDraftUiEvents() {
+        document.querySelectorAll('[data-draft-action="save"]').forEach((button) => {
+            button.addEventListener('click', () => toggleDraftPanel('save'));
+        });
+        document.querySelectorAll('[data-draft-action="resume"]').forEach((button) => {
+            button.addEventListener('click', () => toggleDraftPanel('resume'));
+        });
+        document.getElementById('save-draft-form')?.addEventListener('submit', saveDraft);
+        document.getElementById('resume-draft-form')?.addEventListener('submit', loadDraft);
+        document.getElementById('continue-draft-btn')?.addEventListener('click', continueDraftEditing);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const lang = document.documentElement.lang === 'fr' ? 'fr' : 'en';
+        initEnhancedCfpFields(lang);
+        bindDraftUiEvents();
+    });
+
+    if (document.readyState !== 'loading') {
+        bindDraftUiEvents();
+    }
+
+    document.addEventListener('pycontg:language-changed', (event) => {
+        const lang = (event.detail && event.detail.lang) || (document.documentElement.lang === 'fr' ? 'fr' : 'en');
+        initEnhancedCfpFields(lang);
+    });
+
+    async function handleSpeakerSubmit(e) {
+        e.preventDefault();
+        const btn = document.getElementById('speaker-submit-btn');
+        const form = document.getElementById('speaker-form');
+        const consent = document.getElementById('speaker-consent');
+        const lang = document.documentElement.lang === 'fr' ? 'fr' : 'en';
+
+        if (form && !form.checkValidity()) {
+            form.reportValidity();
+            showCfpSubmissionError(
+                'Veuillez corriger les champs obligatoires avant de soumettre.',
+                'Please correct the required fields before submitting.'
+            );
+            return;
+        }
+
+        if (consent && !consent.checked) {
+            consent.focus();
+            showCfpSubmissionError(
+                'Veuillez accepter le Code de conduite et la politique de confidentialité avant de soumettre.',
+                'Please accept the Code of Conduct and Privacy Policy before submitting.'
+            );
+            return;
+        }
+
+        const submissionPayload = {
+            form_data: collectSpeakerFormData({ status: 'submitted' }),
+            agreed_to_code_of_conduct: Boolean(consent && consent.checked),
+            agreed_to_privacy_policy: Boolean(consent && consent.checked),
+            shared_with_sponsors: Boolean(document.getElementById('speaker-sponsor-sharing')?.checked),
+        };
+
+        try {
+            const response = await fetch("/submit-proposal", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(submissionPayload),
+            });
+
+            const payload = await response.json().catch(() => ({}));
+            if (!response.ok) {
+                const detail = 'Unable to save proposal please try again later.';
+                throw new Error(String(detail));
+            }
+            setTimeout(() => {
+                showCfpSubmissionSuccess();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 900);
+
+        } catch (error) {
+            setDraftStatus(
+                `Erreur d'enregistrement : ${error.message}`,
+                `Save error: ${error.message}`,
+                true
+            );
+        }
+
+        if (btn) {
+            btn.textContent = lang === 'fr' ? (btn.dataset.loadingFr || 'Envoi en cours...') : (btn.dataset.loadingEn || 'Sending...');
+            btn.disabled = true;
+        }
+
+
+    }
 </script>
 
 {% endblock %}
