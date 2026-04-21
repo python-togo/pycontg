@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="page active" id="page-error">
+    <section class="page-hero error-hero">
+        <div class="container">
+            <span class="eyebrow reveal" data-i18n-en="System Notice" data-i18n-fr="Notification Systeme">Notification Systeme</span>
+            <h1 class="reveal reveal-d1" data-i18n-en="Something went wrong" data-i18n-fr="Une erreur est survenue">Une erreur est survenue</h1>
+            <p class="page-hero-sub reveal reveal-d2"
+                data-i18n-en="We could not complete your request right now. Please try again in a moment."
+                data-i18n-fr="Nous ne pouvons pas traiter votre demande pour le moment. Veuillez reessayer dans un instant.">
+                Nous ne pouvons pas traiter votre demande pour le moment. Veuillez reessayer dans un instant.
+            </p>
+        </div>
+    </section>
+
+    <section class="section error-wrap">
+        <div class="container">
+            <article class="error-card reveal reveal-d1">
+                <h2 data-i18n-en="Error details" data-i18n-fr="Details de l'erreur">Details de l'erreur</h2>
+                <p class="error-message">{{ error_message or "Unexpected error" }}</p>
+
+                <div class="error-actions">
+                    <a class="btn btn-primary" href="/" data-i18n-en="Back to Home" data-i18n-fr="Retour a l'Accueil">Retour a l'Accueil</a>
+                    <a class="btn btn-ghost" href="/contact" data-i18n-en="Contact the Team" data-i18n-fr="Contacter l'Equipe">Contacter l'Equipe</a>
+                </div>
+            </article>
+        </div>
+    </section>
+</main>
+{% endblock %}

@@ -14,7 +14,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from app.core.settings import settings
-
+from app.utils.email_validator import validate_email
 
 template = Jinja2Templates(
     directory=str(Path(__file__).resolve(
@@ -756,9 +756,14 @@ async def partners(request: Request):
 @router.post("/sponsors/inquiry")
 async def sponsors_inquiry(payload: SponsorInquiryPayload):
     event_code = getattr(settings, "python_togo_event_code", None)
+
+    if not validate_email(payload.contact_email).is_valid:
+
+        raise HTTPException(
+            status_code=400, detail="Failed to validate email address please check your email address.")
     if not event_code:
         raise HTTPException(
-            status_code=500,
+            status_code=403,
             detail="Unauthorized.",
         )
 
@@ -769,6 +774,7 @@ async def sponsors_inquiry(payload: SponsorInquiryPayload):
     }
 
     try:
+        payload = payload.model_dump(mode="json")
         async with httpx.AsyncClient(timeout=settings.python_togo_api_timeout_seconds) as client:
             response = await client.post(url, headers=headers, json=payload)
     except httpx.RequestError as exc:
@@ -783,17 +789,10 @@ async def sponsors_inquiry(payload: SponsorInquiryPayload):
             message = body.get("message") or body.get("detail") or message
         except ValueError:
             message = response.text or message
-
         return JSONResponse(
             status_code=response.status_code,
             content={"ok": False, "message": message},
         )
-
-    data = None
-    try:
-        data = response.json()
-    except ValueError:
-        data = {"message": "Request accepted"}
 
     return {"ok": True, "message": "Sponsorship inquiry sent"}
 
@@ -811,8 +810,18 @@ async def call_for_speakers(request: Request):
 @router.post("/submit-proposal")
 async def submit_proposal(payload: Proposalubmission):
     await _assert_cfp_open()
+    if not payload.agreed_to_code_of_conduct:
+        raise HTTPException(
+            status_code=400, detail="You must agree to the Code of Conduct.")
+    if not payload.agreed_to_privacy_policy:
+        raise HTTPException(
+            status_code=400, detail="You must agree to the Privacy Policy.")
 
     proposal_data = payload.form_data
+
+    if not validate_email(proposal_data["email"]).is_valid:
+        raise HTTPException(
+            status_code=400, detail="Failed to validate email address please check your email address.")
     url = _build_api_url(
         f"/proposals/create/{settings.python_togo_event_code}")
     headers = {
@@ -866,6 +875,10 @@ async def save_cfp_draft(payload: CfpDraftSavePayload):
         )
 
     email = _normalize_email(str(payload.email))
+    if not validate_email(email).is_valid:
+        raise HTTPException(
+            status_code=400, detail="Failed to validate email address please check your email address.")
+
     key = _draft_key_by_email(email)
     hash_password = _hash_password(payload.password, key)
     url = _build_api_url(
@@ -913,6 +926,9 @@ async def resume_cfp_draft(payload: CfpDraftResumePayload):
     await _assert_cfp_open()
 
     email = _normalize_email(str(payload.email))
+    if not validate_email(email).is_valid:
+        raise HTTPException(
+            status_code=400, detail="Failed to validate email address please check your email address.")
     key = _draft_key_by_email(email)
 
     hash_password = _hash_password(payload.password, key)

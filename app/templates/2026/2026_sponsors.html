@@ -548,6 +548,12 @@
             });
 
             if (!response.ok) {
+                if (response.status === 400) {
+                    const errorData = await response.json();
+                    const errorMessage = errorData.error || texts.submitError;
+                    console.error("Submission error:", errorMessage);
+                    throw new Error(errorMessage);
+                }
                 throw new Error(texts.submitError);
             }
 

@@ -23,3 +23,5 @@ python-multipart==0.0.20
 
 # Web Server (Optional for Vercel, but good for Prod parity)
 gunicorn==23.0.0
+
+dnspython==2.8.0
