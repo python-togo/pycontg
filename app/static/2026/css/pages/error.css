@@ -1,0 +1,51 @@
+.error-hero {
+    background:
+        radial-gradient(80rem 40rem at 15% -20%, rgba(238, 68, 68, 0.2), transparent 65%),
+        linear-gradient(120deg, #fff8f6 0%, #f6f8ff 100%);
+}
+
+.error-wrap {
+    padding-top: 0;
+}
+
+.error-card {
+    max-width: 48rem;
+    margin: 0 auto;
+    background: #ffffff;
+    border: 1px solid rgba(205, 96, 96, 0.25);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 14px 36px rgba(17, 24, 39, 0.08);
+}
+
+.error-card h2 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+}
+
+.error-message {
+    background: #fff2f2;
+    color: #8f1d1d;
+    border: 1px solid #f6caca;
+    border-radius: 0.75rem;
+    padding: 0.9rem 1rem;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.error-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+    .error-card {
+        padding: 1rem;
+    }
+
+    .error-actions {
+        flex-direction: column;
+    }
+}

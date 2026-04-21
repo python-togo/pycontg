@@ -15,9 +15,11 @@ from datetime import datetime,  timezone
 from pathlib import Path
 from app.core.settings import settings
 import httpx
+from app.utils.email_validator import validate_email
 
 
 ENV = settings.env
+
 
 app = FastAPI(
     title=settings.name,
@@ -34,6 +36,30 @@ template = Jinja2Templates(directory=str(BASE_DIR / "templates"))
 app.mount("/static", StaticFiles(directory=str(BASE_DIR / "static")), name="static")
 
 year = datetime.now(timezone.utc).year
+
+
+def render_page(
+    request: Request,
+    name: str,
+    active_page: str,
+    page_css: str,
+    page_title: str,
+    extra_context: dict | None = None,
+):
+    context = {
+        "year": year,
+        "active_page": active_page,
+        "page_css": page_css,
+        "page_title": page_title,
+    }
+    if extra_context:
+        context.update(extra_context)
+
+    return template.TemplateResponse(
+        request=request,
+        name=name,
+        context=context,
+    )
 
 
 @app.get("/talents", response_class=HTMLResponse)
@@ -108,12 +134,14 @@ async def send_contact_message(payload: ContactFormPayload):
         "subject": payload.subject.strip() or "General inquiry",
         "message": payload.message.strip(),
     }
+    if not validate_email(normalized_payload["email"]).is_valid:
+        raise HTTPException(
+            status_code=400, detail="Failed to validate email address please check your email address.")
 
     target_url = (
         f"{settings.python_togo_api_base_url.rstrip('/')}/contacts/send"
     )
-    print(
-        f"Prepared contact form payload: {normalized_payload} to be sent to {target_url}")
+
     headers = {
         "Authorization": f"Bearer {settings.python_togo_api_key}",
         "Content-Type": "application/json",
