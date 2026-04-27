@@ -6,7 +6,7 @@
 
 :root {
   /* 2026 coming-soon inspired palette */
-  --green: #57B67F;
+  --green: #00854c;
   --green-mid: #469a69;
   --green-light: #6ec592;
   --green-pale: #eef8f2;
@@ -385,6 +385,8 @@ p:last-child {
   align-items: center;
   transition: background .3s ease, box-shadow .3s ease, backdrop-filter .3s ease;
 }
+
+
 
 #navbar.scrolled {
   background: rgba(250, 253, 248, 0.92);
@@ -2333,28 +2335,19 @@ footer {
 footer::before {
   content: "";
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 50%;
   bottom: 0;
-  height: 112px;
-  background:
-    url("../../images/motifs/palmier.svg") 34% bottom / 124px auto no-repeat,
-    url("../../images/motifs/motif-zigzag.svg") center bottom / 300px auto repeat-x,
-    linear-gradient(to top, rgba(23, 60, 44, .26) 0%, rgba(23, 60, 44, 0) 100%);
-  opacity: .17;
+  width: 100%;
+  aspect-ratio: 7548 / 1086;
+  height: auto;
+  transform: translateX(-50%);
+  background: url("../../images/motifs/skyline/Group%20207.png") center bottom / 100% 100% no-repeat;
+  opacity: .32;
   pointer-events: none;
 }
 
 footer::after {
-  content: "";
-  position: absolute;
-  left: 8px;
-  bottom: 0;
-  width: 178px;
-  height: 162px;
-  background: url("../../images/motifs/tata-somba%20(1).svg") left bottom / contain no-repeat;
-  opacity: .16;
-  pointer-events: none;
+  content: none;
 }
 
 .footer-inner {
@@ -2364,32 +2357,11 @@ footer::after {
 }
 
 .footer-inner::before {
-  content: "";
-  position: absolute;
-  right: 120px;
-  top: -2px;
-  width: 140px;
-  height: 140px;
-  background: url("../../images/motifs/masque-tem.svg") center / contain no-repeat;
-  opacity: .18;
-  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, .16));
-  pointer-events: none;
-  z-index: 0;
+  content: none;
 }
 
 .footer-inner::after {
-  content: "";
-  position: absolute;
-  right: 14px;
-  bottom: 0;
-  width: 168px;
-  height: 168px;
-  background: url("../../images/motifs/palmier.svg") right bottom / contain no-repeat;
-  opacity: .22;
-  transform: scaleX(-1);
-  transform-origin: bottom right;
-  pointer-events: none;
-  z-index: 0;
+  content: none;
 }
 
 .footer-bottom::before {
@@ -2598,11 +2570,8 @@ footer::after {
   }
 
   footer::before {
-    height: 96px;
-    background:
-      url("../../images/motifs/palmier.svg") 30% bottom / 96px auto no-repeat,
-      url("../../images/motifs/motif-zigzag.svg") center bottom / 240px auto repeat-x,
-      linear-gradient(to top, rgba(23, 60, 44, .24) 0%, rgba(23, 60, 44, 0) 100%);
+    width: 128%;
+    opacity: .3;
   }
 
   footer::after,
@@ -2656,15 +2625,16 @@ footer::after {
   }
 
   footer::before {
-    height: 88px;
-    background:
-      url("../../images/motifs/palmier.svg") 26% bottom / 82px auto no-repeat,
-      url("../../images/motifs/motif-zigzag.svg") center bottom / 208px auto repeat-x,
-      linear-gradient(to top, rgba(23, 60, 44, .22) 0%, rgba(23, 60, 44, 0) 100%);
+    width: 160%;
+    opacity: .27;
   }
 
   .footer-inner::before {
-    content: none;
+    right: 16px;
+    top: 12px;
+    width: 92px;
+    height: 92px;
+    opacity: .14;
   }
 
   .proof-item.wide {

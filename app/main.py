@@ -146,8 +146,6 @@ async def send_contact_message(payload: ContactFormPayload):
         "Authorization": f"Bearer {settings.python_togo_api_key}",
         "Content-Type": "application/json",
     }
-    print(
-        f"Sending contact form data to {target_url} with payload: {normalized_payload}")
 
     try:
         async with httpx.AsyncClient(

@@ -1,6 +1,397 @@
 {% extends "base.html" %}
 
 {% block content %}
+<style>
+  .speakerfeatured {
+    padding: 88px 0;
+    background: linear-gradient(180deg, #f4f8f7 0%, #edf4f2 100%);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .speakerfeatured .container {
+    background: #00854c;
+    border-radius: 14px;
+    padding: 26px;
+    box-shadow: 0 14px 32px rgba(6, 39, 50, .22);
+  }
+
+  .speakerfeatured .speakers-header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+
+  .speakerfeatured .speakers-header h1 {
+    margin-bottom: 12px;
+    color: #f3f7f8;
+    letter-spacing: .08em;
+  }
+
+  .speakerfeatured .speakers-header p {
+    max-width: 700px;
+    margin: 0 auto;
+    color: rgba(239, 248, 250, .9);
+  }
+
+  .speakerfeatured .speakers-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .speaker-card {
+    background: #f2f4f5;
+    border: 1px solid rgba(255, 255, 255, .42);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, .14);
+    cursor: pointer;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .speaker-card:hover,
+  .speaker-card:focus-visible {
+    transform: translateY(-6px);
+    border-color: rgba(227, 244, 246, .72);
+    box-shadow: 0 14px 30px rgba(2, 34, 45, .35);
+    outline: none;
+  }
+
+  .speaker-card__photo-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 12px 8px;
+    background: transparent;
+  }
+
+  .speaker-card__photo {
+    width: min(196px, 100%);
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+    border: 3px solid #3d6776;
+    background: #d9e4e8;
+  }
+
+  .speaker-card__body {
+    padding: 8px 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+    text-align: center;
+  }
+
+  .speaker-card__name {
+    margin: 0;
+    font-size: 1.85rem;
+    line-height: 1.2;
+    color: var(--text-dark);
+    font-family: var(--font-display);
+  }
+
+  .speaker-card__title {
+    margin: 0;
+    color: #2b3139;
+    font-size: .95rem;
+    line-height: 1.38;
+    min-height: 42px;
+  }
+
+  .speaker-card__footer {
+    margin-top: auto;
+    padding-top: 6px;
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .speaker-card__company-logo {
+    max-height: 52px;
+    max-width: 172px;
+    object-fit: contain;
+  }
+
+  .speaker-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    display: none;
+    padding: 0;
+    background: rgba(10, 20, 15, .68);
+    backdrop-filter: blur(10px);
+    overflow: auto;
+  }
+
+  .speaker-modal.is-open {
+    display: block;
+  }
+
+  .speaker-modal__panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    width: min(960px, calc(100vw - 32px));
+    max-height: calc(100vh - 32px);
+    overflow: auto;
+    background: var(--white);
+    border-radius: 0;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, .28);
+    transform: translate(-50%, -47%) scale(.96);
+    opacity: 0;
+    transition: transform .2s ease, opacity .2s ease;
+  }
+
+  .speaker-modal.is-open .speaker-modal__panel {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+
+  .speaker-modal__backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .speaker-modal__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 54px;
+    height: 54px;
+    border: 0;
+    border-radius: 0;
+    background: #0a0a0a;
+    color: #ffffff;
+    font-size: 36px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+    box-shadow: none;
+  }
+
+  .speaker-modal__header {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 42px;
+    width: min(780px, 100%);
+    margin: 0 auto;
+    padding: 36px 34px 26px;
+    background: #ffffff;
+    color: #111111;
+    align-items: center;
+  }
+
+  .speaker-modal__photo {
+    width: 196px;
+    z-index: 1;
+    height: 196px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #3f6773;
+    background: #f0f2f3;
+    margin: 0;
+  }
+
+  .speaker-modal__header-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    padding-top: 4px;
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .speaker-modal__name {
+    margin: 0;
+    font-size: clamp(28px, 3vw, 40px);
+    line-height: 1.05;
+    color: #111111;
+  }
+
+  .speaker-modal__title {
+    margin: 0;
+    color: #222831;
+    font-size: 1.05rem;
+  }
+
+  .speaker-modal__bio {
+    margin: 0;
+    color: var(--text-dark);
+    line-height: 1.8;
+    font-size: 16px;
+  }
+
+  .speaker-modal__company-block {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 14px;
+    width: auto;
+    max-width: 100%;
+  }
+
+  .speaker-modal__company-logo {
+    display: block;
+    max-height: 96px;
+    max-width: 380px;
+    width: auto;
+    object-fit: contain;
+    background: #ffffff;
+    margin: 0;
+  }
+
+  .speaker-modal__body {
+    padding: 18px 36px 34px;
+    background: #ffffff;
+    width: min(780px, 100%);
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .speaker-modal__sessions {
+    margin-top: 30px;
+    text-align: left;
+  }
+
+  .speaker-modal__sessions-title {
+    margin: 0 0 16px;
+    font-size: 2rem;
+    color: var(--green);
+    font-family: var(--font-display);
+  }
+
+  .speaker-modal__sessions-list {
+    display: grid;
+    gap: 18px;
+  }
+
+  .speaker-modal__session-item {
+    padding: 0;
+  }
+
+  .speaker-modal__session-title {
+    margin: 0 0 8px;
+    font-weight: 700;
+    color: var(--green);
+    font-size: 1.4rem;
+    line-height: 1.35;
+  }
+
+  .speaker-modal__session-meta {
+    margin: 0;
+    color: #1d2630;
+    font-size: 1.05rem;
+  }
+
+  @media (max-width: 1100px) {
+    .speakerfeatured .speakers-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .speaker-card__name {
+      font-size: 1.55rem;
+    }
+
+    .speaker-card__title {
+      font-size: .9rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .speakerfeatured .speakers-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .speakerfeatured .container {
+      padding: 20px;
+    }
+
+    .speaker-card__name {
+      font-size: 1.35rem;
+    }
+
+    .speaker-card__title {
+      font-size: .88rem;
+      min-height: 0;
+    }
+
+    .speaker-modal__header {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 28px 22px 20px;
+    }
+
+    .speaker-modal__photo {
+      margin: 0 auto;
+    }
+
+    .speaker-modal__header-copy {
+      text-align: center;
+      align-items: center;
+    }
+
+    .speaker-modal__photo {
+      width: 142px;
+      height: 142px;
+      margin-left: 0;
+    }
+
+    .speaker-modal__company-logo {
+      max-height: 74px;
+      margin: 0 auto;
+    }
+
+    .speaker-modal__body {
+      padding: 14px 22px 24px;
+      text-align: center;
+    }
+
+    .speaker-modal__sessions-title {
+      font-size: 1.6rem;
+    }
+
+    .speaker-modal__session-title {
+      font-size: 1.1rem;
+    }
+
+    .speaker-modal__session-meta {
+      font-size: .95rem;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .speakerfeatured .speakers-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .speaker-modal {
+      padding: 0;
+    }
+
+    .speakerfeatured .container {
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .speaker-card__photo {
+      width: min(170px, 100%);
+    }
+
+    .speaker-modal__panel {
+      width: calc(100vw - 20px);
+      max-height: calc(100vh - 20px);
+    }
+  }
+</style>
 <main class="page active" id="page-home">
   <section class="hero">
     <div class="hero-bg-pattern"></div>
@@ -113,6 +504,50 @@
     </div>
   </section>
 
+  <section class="session speakerfeatured">
+    <div class="container">
+      <div class="speakers-header">
+        <h1 data-i18n-en="GLOBAL SPEAKERS" data-i18n-fr="SPEAKERS INTERNATIONAUX">GLOBAL SPEAKERS</h1>
+        <p data-i18n-en="Meet international voices and local pioneers joining PyCon Togo 2026."
+          data-i18n-fr="Découvrez les voix internationales et les talents locaux qui rejoignent PyCon Togo 2026.">
+          Meet international voices and local pioneers joining PyCon Togo 2026.
+        </p>
+      </div>
+
+      <div class="speakers-grid">
+        {% for speaker in speakers %}
+        <article class="speaker-card" role="button" tabindex="0" data-speaker-name="{{ speaker.full_name|e }}"
+          data-speaker-title="{{ speaker.headline|default('', true)|e }}"
+          data-speaker-company="{{ speaker.organization|default('', true)|e }}"
+          data-speaker-company-logo="{{ speaker.company_logo_url|default('', true)|e }}"
+          data-speaker-photo="{{ speaker.photo_url|default(speaker.image, true)|e }}"
+          data-speaker-bio="{{ speaker.bio|e }}"
+          data-speaker-sessions='{{ speaker.sessions | tojson if speaker.sessions else "[]" }}'>
+          <div class="speaker-card__photo-wrap">
+            <img class="speaker-card__photo" src="{{ speaker.photo_url|default(speaker.image, true) }}"
+              alt="{{ speaker.full_name }}">
+          </div>
+
+          <div class="speaker-card__body">
+            <h3 class="speaker-card__name">{{ speaker.full_name }}</h3>
+
+            {% if speaker.headline %}
+            <p class="speaker-card__title">{{ speaker.headline }}</p>
+            {% endif %}
+
+            <div class="speaker-card__footer">
+              {% if speaker.company_logo_url %}
+              <img class="speaker-card__company-logo" src="{{ speaker.company_logo_url }}"
+                alt="{{ speaker.organization }}">
+              {% endif %}
+            </div>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
   <section class="section edition-proof">
     <div class="container edition-proof-grid">
       <div class="proof-copy reveal">
@@ -195,6 +630,8 @@
     </div>
   </section>
 
+
+
   <section class="section open-source-commitment">
     <div class="container">
       <div class="section-header reveal">
@@ -234,48 +671,131 @@
     </div>
   </section>
 
-  <section class="section speakers-reserve" style="display: none;">
-    <!--TODO: Implement speaker reservation functionality -->
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="eyebrow" data-i18n-en="Speakers Spotlight" data-i18n-fr="Speakers à l'honneur">Speakers
-          Spotlight</span>
-        <h2 data-i18n-en="Reserved space for invited speakers" data-i18n-fr="Espace réservé aux speakers invités">
-          Reserved space for invited speakers</h2>
-        <p data-i18n-en="This area is reserved for speaker photos. International speakers, including invited experts from Europe, will appear here as confirmations arrive."
-          data-i18n-fr="Cette zone est réservée aux photos des speakers. Les speakers internationaux, y compris des experts invités d'Europe, apparaîtront ici au fur et à mesure des confirmations.">
-          This area is reserved for speaker photos. International speakers, including invited experts from Europe,
-          will appear here as confirmations arrive.
-        </p>
-        <a class="btn btn-primary" href="/call-for-speakers" data-i18n-en="Submit your talk / Become a speaker"
-          data-i18n-fr="Soumettre votre talk / Devenir speaker">Submit your talk / Become a speaker</a>
+
+
+
+
+  <div id="speakerModal" class="speaker-modal" aria-hidden="true">
+    <div class="speaker-modal__backdrop" data-modal-close></div>
+    <div class="speaker-modal__panel" role="dialog" aria-modal="true" aria-labelledby="speakerModalName">
+      <button class="speaker-modal__close" type="button" aria-label="Close speaker details"
+        data-modal-close>&times;</button>
+
+      <div class="speaker-modal__header">
+        <img id="speakerModalPhoto" class="speaker-modal__photo" src="" alt="">
+        <div class="speaker-modal__header-copy">
+          <h3 id="speakerModalName" class="speaker-modal__name"></h3>
+          <p id="speakerModalTitle" class="speaker-modal__title"></p>
+          <div id="speakerModalCompanyBlock" class="speaker-modal__company-block" hidden>
+            <img id="speakerModalCompanyLogo" class="speaker-modal__company-logo" src="" alt="">
+          </div>
+        </div>
       </div>
-      <div class="speakers-reserve-grid reveal reveal-d1" aria-label="Reserved speaker photo slots">
-        <article class="speaker-slot-card">
-          <div class="speaker-slot-avatar">Photo</div>
-          <h4>Keynote Speaker Slot</h4>
-          <p>Europe / International</p>
-        </article>
-        <article class="speaker-slot-card">
-          <div class="speaker-slot-avatar">Photo</div>
-          <h4>Django Expert Slot</h4>
-          <p>Backend & Architecture</p>
-        </article>
-        <article class="speaker-slot-card">
-          <div class="speaker-slot-avatar">Photo</div>
-          <h4>AI Speaker Slot</h4>
-          <p>Applied AI with Python</p>
-        </article>
-        <article class="speaker-slot-card">
-          <div class="speaker-slot-avatar">Photo</div>
-          <h4>Community Leader Slot</h4>
-          <p>Future of Python</p>
-        </article>
+
+      <div class="speaker-modal__body">
+        <p id="speakerModalBio" class="speaker-modal__bio"></p>
+
+        <div id="speakerModalSessionsBlock" class="speaker-modal__sessions" hidden>
+          <h4 class="speaker-modal__sessions-title" data-i18n-en="Conference Sessions"
+            data-i18n-fr="Sessions de la conférence">Conference Sessions</h4>
+          <div id="speakerModalSessionsList" class="speaker-modal__sessions-list"></div>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="sponsor-teaser">
+  <script>
+    (() => {
+      const modal = document.getElementById('speakerModal');
+      const modalPhoto = document.getElementById('speakerModalPhoto');
+      const modalName = document.getElementById('speakerModalName');
+      const modalTitle = document.getElementById('speakerModalTitle');
+      const modalCompanyBlock = document.getElementById('speakerModalCompanyBlock');
+      const modalCompanyLogo = document.getElementById('speakerModalCompanyLogo');
+      const modalBio = document.getElementById('speakerModalBio');
+      const sessionsBlock = document.getElementById('speakerModalSessionsBlock');
+      const sessionsList = document.getElementById('speakerModalSessionsList');
+      const modalPanel = modal.querySelector('.speaker-modal__panel');
+
+      if (!modal) return;
+
+      if (modal.parentElement !== document.body) {
+        document.body.appendChild(modal);
+      }
+
+      const openModal = (card) => {
+        const sessions = JSON.parse(card.dataset.speakerSessions || '[]');
+
+        modalPhoto.src = card.dataset.speakerPhoto || '';
+        modalPhoto.alt = card.dataset.speakerName || '';
+        modalName.textContent = card.dataset.speakerName || '';
+        modalTitle.textContent = card.dataset.speakerTitle || '';
+
+        const company = card.dataset.speakerCompany || '';
+        const companyLogo = card.dataset.speakerCompanyLogo || '';
+
+        if (companyLogo) {
+          modalCompanyBlock.hidden = false;
+          modalCompanyLogo.src = companyLogo;
+          modalCompanyLogo.alt = company ? `${company} logo` : 'Company logo';
+        } else {
+          modalCompanyBlock.hidden = true;
+          modalCompanyLogo.src = '';
+          modalCompanyLogo.alt = '';
+        }
+
+        modalBio.textContent = card.dataset.speakerBio || '';
+
+        if (sessions.length) {
+          sessionsBlock.hidden = false;
+          sessionsList.innerHTML = sessions.map(session => `
+            <div class="speaker-modal__session-item">
+              <p class="speaker-modal__session-title">${session.title || ''}</p>
+              <p class="speaker-modal__session-meta">${[session.time, session.room].filter(Boolean).join(' • ')}</p>
+            </div>
+          `).join('');
+        } else {
+          sessionsBlock.hidden = true;
+          sessionsList.innerHTML = '';
+        }
+
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+        if (modalPanel) {
+          modalPanel.scrollTop = 0;
+        }
+      };
+
+      const closeModal = () => {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+      };
+
+      document.querySelectorAll('.speaker-card').forEach(card => {
+        card.addEventListener('click', () => openModal(card));
+        card.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openModal(card);
+          }
+        });
+      });
+
+      modal.addEventListener('click', (event) => {
+        if (event.target.matches('[data-modal-close]')) closeModal();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+      });
+    })();
+  </script>
+
+  <section class="sponsor-teaser" style="display: none;">
     <div class="container">
       <div class="sponsor-teaser-inner">
         <div class="sponsor-teaser-text reveal">
@@ -314,7 +834,7 @@
     </div>
   </section>
 
-  <section class="ticket-section section">
+  <section class="ticket-section section" style="display: none;">
     <div class="container">
       <div class="ticket-block reveal">
         <div class="ticket-stub-visual">

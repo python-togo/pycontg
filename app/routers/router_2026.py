@@ -560,22 +560,96 @@ async def _fetch_partner_sections() -> dict:
     return grouped
 
 
+def _extract_featured_speakers(data: object) -> list[dict]:
+
+    response_exemple = [
+        {
+            "full_name": "string",
+            "headline": "string",
+            "organization": "string",
+            "company_logo_url": "string",
+            "country": "string",
+            "bio": "string",
+            "photo_url": "string",
+            "social_links": {
+                "additionalProp1": "string",
+                "additionalProp2": "string",
+                "additionalProp3": "string"
+            },
+            "sessions": [
+                {
+                    "additionalProp1": "string",
+                    "additionalProp2": "string",
+                    "additionalProp3": "string"
+                }
+            ],
+            "is_featured": False,
+            "created_at": "2026-04-27T15:30:17.565Z",
+            "updated_at": "2026-04-27T15:30:17.565Z"
+        }
+    ]
+    if isinstance(data, list):
+        rows = [row for row in data if isinstance(row, dict)]
+    elif isinstance(data, dict):
+        if isinstance(data.get("data"), list):
+            rows = [row for row in data["data"] if isinstance(row, dict)]
+        elif isinstance(data.get("items"), list):
+            rows = [row for row in data["items"] if isinstance(row, dict)]
+        else:
+            rows = []
+    else:
+        rows = []
+    speakers: list[dict] = []
+    for row in rows:
+        full_name = (row.get("full_name") or "").strip()
+        headline = (row.get("headline") or "").strip()
+        organization = (row.get("organization") or "").strip()
+        company_logo_url = (row.get("company_logo_url") or "").strip()
+        country = (row.get("country") or "").strip()
+        bio = (row.get("bio") or "").strip()
+        photo_url = (row.get("photo_url") or "").strip()
+        social_links = row.get("social_links") or {}
+        sessions = row.get("sessions") or []
+        speakers.append({
+            "full_name": full_name,
+            "headline": headline,
+            "organization": organization,
+            "company_logo_url": company_logo_url,
+            "country": country,
+            "bio": bio,
+            "photo_url": photo_url,
+            "social_links": social_links,
+            "sessions": sessions,
+        })
+    return speakers
+
+
+async def _fetch_featured_speakers() -> list[dict]:
+    """Fetch featured speakers from the API. This is a placeholder implementation and should be updated to match the actual API response structure."""
+    event_code = getattr(settings, "python_togo_event_code", None)
+    url = _build_api_url(f"/speakers/featured/{event_code}")
+    headers = {"Authorization": f"Bearer {settings.python_togo_api_key}"}
+    try:
+        async with httpx.AsyncClient(timeout=settings.python_togo_api_timeout_seconds) as client:
+            response = await client.get(url, headers=headers)
+        if response.status_code < 400:
+            payload = response.json()
+            return _extract_featured_speakers(payload)
+    except Exception:
+        return []
+
+    return []
+
+
 @router.get("/")
 async def home(request: Request):
     partner_sections = await _fetch_partner_sections()
     python_community = partner_sections.get("python_community_partners", [])
-    community = partner_sections.get("community_partners", [])
-
+    # community = partner_sections.get("community_partners", [])
+    speakers = await _fetch_featured_speakers()
     # Keep PSF always first on the home page, then append dynamic community names.
     home_partner_names: list[str] = ["Python Software Foundation"]
     seen = {"python software foundation"}
-
-    for row in (python_community + community):
-        name = (row.get("name") or "").strip()
-        key = name.lower()
-        if name and key not in seen:
-            home_partner_names.append(name)
-            seen.add(key)
 
     return await _render_page_with_event(
         request=request,
@@ -583,7 +657,7 @@ async def home(request: Request):
         active_page="home",
         page_css="home.css",
         page_title="PyCon Togo 2026 — Home",
-        extra_context={"home_partner_names": home_partner_names},
+        extra_context={"speakers": speakers},
     )
 
 
