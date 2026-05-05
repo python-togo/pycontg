@@ -754,6 +754,17 @@ async def teams(request: Request):
     return await team(request)
 
 
+@router.get("/visit")
+async def visit(request: Request):
+    return await _render_page_with_event(
+        request=request,
+        name="2026_visit.html",
+        active_page="visit",
+        page_css="about.css",
+        page_title="PyCon Togo 2026 — Visit Togo",
+    )
+
+
 @router.get("/coc")
 async def coc(request: Request):
     return await _render_page_with_event(
