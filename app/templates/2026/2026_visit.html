@@ -1,0 +1,889 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="page active" id="page-travel">
+    <section class="page-hero">
+        <div class="container">
+            <span class="eyebrow reveal" data-i18n-en="Travel Guide" data-i18n-fr="Guide de voyage">Guide de
+                voyage</span>
+            <h1 class="reveal reveal-d1" data-i18n-en="Coming to Togo" data-i18n-fr="Venir au Togo">Venir au Togo</h1>
+            <p class="page-hero-sub reveal reveal-d2"
+                data-i18n-en="Everything you need to know about visa, flights, accommodation, tourist sites and local life for PyCon Togo 2026."
+                data-i18n-fr="Tout ce qu'il faut savoir sur le visa, les vols, l'hébergement, les sites touristiques et la vie locale pour PyCon Togo 2026.">
+                Tout ce qu'il faut savoir sur le visa, les vols, l'hébergement, les sites touristiques et la vie locale
+                pour PyCon Togo 2026.
+            </p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container policy-doc">
+
+            <!-- QUICK NAV -->
+            <nav class="visit-toc reveal">
+                <a href="#sec-flights" data-i18n-en="Flights" data-i18n-fr="Vols">✈ Vols</a>
+                <a href="#sec-land" data-i18n-en="By Land" data-i18n-fr="Par route">🚌 Par route</a>
+                <a href="#sec-accommodation" data-i18n-en="Stay" data-i18n-fr="Hébergement">🏨 Hébergement</a>
+                <a href="#sec-visa-letter" data-i18n-en="Invitation" data-i18n-fr="Invitation">📄 Invitation</a>
+                <a href="#sec-visa" data-i18n-en="Visa" data-i18n-fr="Visa">🛂 Visa</a>
+                <a href="#sec-customs" data-i18n-en="Customs" data-i18n-fr="Douane">🛃 Douane</a>
+                <a href="#sec-tourism" data-i18n-en="Tourism" data-i18n-fr="Tourisme">🌍 Tourisme</a>
+                <a href="#sec-food" data-i18n-en="Food" data-i18n-fr="Cuisine">🍽 Cuisine</a>
+                <a href="#sec-tips" data-i18n-en="Tips" data-i18n-fr="Conseils">💡 Conseils</a>
+            </nav>
+
+            <!-- 1. FLYING TO TOGO -->
+            <article class="policy-section reveal" id="sec-flights">
+                <h3 data-i18n-en="1. Flying to Togo" data-i18n-fr="1. Arriver par avion">1. Arriver par avion</h3>
+                <p data-i18n-en="The main gateway is Gnassingbé Eyadéma International Airport (LFW) in Lomé, located just 5 km (15-20 min) from the city center."
+                    data-i18n-fr="La porte d'entrée principale est l'Aéroport International Gnassingbé Eyadéma (LFW) à Lomé, situé à seulement 5 km (15-20 min) du centre-ville.">
+                    La porte d'entrée principale est l'Aéroport International Gnassingbé Eyadéma (LFW) à Lomé, situé à
+                    seulement 5 km (15-20 min) du centre-ville.
+                </p>
+
+                <h4 data-i18n-en="Airlines by Region" data-i18n-fr="Compagnies par région">Compagnies par région</h4>
+                <ul>
+                    <li data-i18n-en="From France / Europe:Air France (Paris CDG direct), Brussels Airlines (Brussels), Royal Air Maroc via Casablanca, Turkish Airlines via Istanbul."
+                        data-i18n-fr="Depuis la France / l'Europe : Air France (Paris CDG direct), Brussels Airlines (Bruxelles), Royal Air Maroc via Casablanca, Turkish Airlines via Istanbul.">
+                        <strong>Depuis la France / l'Europe :</strong> Air France (Paris CDG direct), Brussels Airlines,
+                        Royal Air Maroc, Turkish Airlines.
+                    </li>
+                    <li data-i18n-en="From the USA: No direct flight. Connect via Paris (Air France), Addis Ababa (Ethiopian Airlines), or Casablanca (Royal Air Maroc)."
+                        data-i18n-fr="Depuis les USA : Pas de vol direct. Connexion via Paris (Air France), Addis-Abeba (Ethiopian Airlines) ou Casablanca (Royal Air Maroc).">
+                        <strong>Depuis les USA :</strong> Pas de vol direct. Connexion via Paris (Air France),
+                        Addis-Abeba (Ethiopian Airlines) ou Casablanca.
+                    </li>
+                    <li data-i18n-en="From the UK: Connect via Paris (Air France), Brussels (Brussels Airlines), or Casablanca (Royal Air Maroc). No direct flight."
+                        data-i18n-fr="Depuis le Royaume-Uni : Connexion via Paris, Bruxelles ou Casablanca. Pas de vol direct.">
+                        <strong>Depuis le Royaume-Uni :</strong> Connexion via Paris, Bruxelles ou Casablanca.
+                    </li>
+                    <li data-i18n-en="From India: Connect via Addis Ababa (Ethiopian Airlines) or Nairobi (Kenya Airways). Journey: 12-16h total."
+                        data-i18n-fr="Depuis l'Inde : Connexion via Addis-Abeba (Ethiopian Airlines) ou Nairobi (Kenya Airways). Durée totale : 12-16h.">
+                        <strong>Depuis l'Inde :</strong> Connexion via Addis-Abeba (Ethiopian Airlines) ou Nairobi.
+                        Durée totale : 12-16h.
+                    </li>
+                    <li data-i18n-en="From West Africa: ASKY Airlines (based in Lomé) connects Accra, Abidjan, Lagos, Dakar, Cotonou, Douala, Bamako and more often daily."
+                        data-i18n-fr="Depuis l'Afrique de l'Ouest : ASKY Airlines (basée à Lomé) relie Accra, Abidjan, Lagos, Dakar, Cotonou, Douala, Bamako souvent quotidiennement.">
+                        <strong>Depuis l'Afrique de l'Ouest :</strong> ASKY Airlines relie Accra, Abidjan, Lagos,
+                        Dakar, Cotonou, Douala, Bamako souvent quotidiennement.
+                    </li>
+                    <li data-i18n-en="From other Africa: Ethiopian Airlines connects Addis Ababa to Lomé. Air Côte d'Ivoire via Abidjan. Kenya Airways via Nairobi."
+                        data-i18n-fr="Depuis les autres pays africains : Ethiopian Airlines via Addis-Abeba. Air Côte d'Ivoire via Abidjan. Kenya Airways via Nairobi.">
+                        <strong>Depuis les autres pays africains :</strong> Ethiopian Airlines, Air Côte d'Ivoire,
+                        Kenya Airways.
+                    </li>
+                </ul>
+
+                <h4 data-i18n-en="Upon Arrival at the Airport" data-i18n-fr="À votre arrivée à l'aéroport">À votre
+                    arrivée à l'aéroport</h4>
+                <ul>
+                    <li data-i18n-en="Immigration: Present your passport, e-visa printout or QR code, and yellow fever certificate. Queues are usually quick."
+                        data-i18n-fr="Immigration : Présentez votre passeport, l'imprimé ou QR code d'e-visa, et votre certificat de fièvre jaune. Les files sont généralement rapides.">
+                        <strong>Immigration :</strong> Passeport + e-visa (imprimé ou QR code) + carnet de vaccination
+                        fièvre jaune. Files généralement rapides.
+                    </li>
+                    <li data-i18n-en="SIM card: Buy a local SIM (Yas or Moov Africa Togo) right at the terminal bring your passport. Affordable data bundles available."
+                        data-i18n-fr="Carte SIM : Achetez une SIM locale (Yas ou Moov Africa Togo) directement au terminal munissez-vous de votre passeport. Forfaits data abordables disponibles.">
+                        <strong>Carte SIM :</strong> Yas ou Moov Africa Togo au terminal avec votre passeport.
+                        Forfaits
+                        data abordables.
+                    </li>
+                    <li data-i18n-en="Wi-Fi: Free Wi-Fi is available throughout the airport."
+                        data-i18n-fr="Wi-Fi : Wi-Fi gratuit disponible dans tout l'aéroport.">
+                        <strong>Wi-Fi :</strong> Wi-Fi gratuit disponible dans tout l'aéroport.
+                    </li>
+                    <li data-i18n-en="Transport: Use the GOZEM app (like Uber) for cars or motos. Official airport taxis: 2,500–5,000 XOF to city center."
+                        data-i18n-fr="Transport : Utilisez l'application GOZEM (comme Uber) pour voitures ou motos. Taxis officiels : 2 500–5 000 XOF vers le centre-ville.">
+                        <strong>Transport :</strong> Application GOZEM (voitures ou motos). Taxis officiels : 2 500–5
+                        000 XOF vers le centre-ville.
+                    </li>
+                    <li data-i18n-en="Currency exchange: Exchange bureaus and ATMs (Visa/Mastercard) are available at the airport."
+                        data-i18n-fr="Change : Bureaux de change et distributeurs automatiques (Visa/Mastercard) disponibles à l'aéroport.">
+                        <strong>Change :</strong> Bureaux de change et distributeurs (Visa/Mastercard) à l'aéroport.
+                    </li>
+                </ul>
+            </article>
+
+            <!-- 2. ARRIVING BY LAND -->
+            <article class="policy-section reveal reveal-d1" id="sec-land">
+                <h3 data-i18n-en="2. Arriving by Land" data-i18n-fr="2. Arriver par voie terrestre">2. Arriver par
+                    voie terrestre</h3>
+                <p data-i18n-en="Lomé is a major regional hub for West Africa. Land travel is common and affordable for visitors coming from neighboring countries."
+                    data-i18n-fr="Lomé est un carrefour régional majeur en Afrique de l'Ouest. Le voyage terrestre est courant et abordable depuis les pays voisins.">
+                    Lomé est un carrefour régional majeur. Le voyage terrestre est courant et abordable depuis les pays
+                    voisins.
+                </p>
+                <ul>
+                    <li data-i18n-en="From Ghana (Accra): ~4h drive. Cross the Aflao–Kodjoviakopé border right at the edge of Lomé city. Several buses daily (VIP Bus, STC ~70 GHC - 7 USD)."
+                        data-i18n-fr="Depuis le Ghana (Accra) : ~4h. Traversée de la frontière Aflao–Kodjoviakopé, à l'entrée de Lomé. Plusieurs bus par jour (VIP Bus, STC ~70 GHC - 7 USD).">
+                        <strong>Depuis le Ghana (Accra) :</strong> ~4h. Frontière Aflao–Kodjoviakopé. Plusieurs bus/j
+                        (VIP Bus, STC ~70 GHC - 7 USD).
+                    </li>
+                    <li data-i18n-en="From Benin (Cotonou): ~4h drive. Cross the Sanvee Kondji/Hillacondji border. Various bus companies available ~10,000 XOF - 15,000 XOF (18 USD - 27 USD)."
+                        data-i18n-fr="Depuis le Bénin (Cotonou) : ~4h. Frontière de Sanvee Kondji/Hillacondji. Plusieurs compagnies de bus disponibles ~10,000 XOF - 15,000 XOF (18 USD - 27 USD).">
+                        <strong>Depuis le Bénin (Cotonou) :</strong> ~4h. Frontière Sanvee Kondji/Hillacondji.
+                    </li>
+                    <li data-i18n-en="From Nigeria (Lagos): ~6–8h via Cotonou. Also possible via Badagry (Nigeria) to Aflao border (Ghana) then Lomé."
+                        data-i18n-fr="Depuis le Nigéria (Lagos) : ~6–8h via Cotonou. Aussi possible via Badagry (Nigéria) puis frontière Aflao (Ghana).">
+                        <strong>Depuis le Nigéria (Lagos) :</strong> ~6–8h via Cotonou.
+                    </li>
+                    <li data-i18n-en="Border tip: Have your e-visa QR code ready on your phone or printed. ECOWAS nationals (Benin, Ghana, Nigeria, Senegal, etc.) cross visa-free."
+                        data-i18n-fr="Conseil frontière : Ayez votre QR code d'e-visa sur votre téléphone ou imprimé. Les ressortissants CEDEAO (Bénin, Ghana, Nigéria, Sénégal, etc.) passent sans visa.">
+                        <strong>Conseil frontière :</strong> QR code e-visa prêt. Les ressortissants CEDEAO passent
+                        sans visa.
+                    </li>
+                </ul>
+            </article>
+
+            <!-- 3. ACCOMMODATION -->
+            <article class="policy-section reveal" id="sec-accommodation">
+                <h3 data-i18n-en="3. Accommodation in Lomé" data-i18n-fr="3. Hébergement à Lomé">3. Hébergement à
+                    Lomé</h3>
+                <p data-i18n-en="Lomé offers accommodation for every budget luxury hotels, comfortable mid-range options, guesthouses, and Airbnb. The conference venue is in the University of Lomé, so everything is within easy reach."
+                    data-i18n-fr="Lomé propose des hébergements pour tous les budgets hôtels de luxe, options intermédiaires confortables, maisons d'hôtes et Airbnb. Le lieu de la conférence étant à l'Université de Lomé, tout est facilement accessible.">
+                    Lomé propose des hébergements pour tous les budgets. Le lieu de la conférence est à l'Université de
+                    Lomé tout est facilement accessible.
+                </p>
+
+                <h4 data-i18n-en="Hotels" data-i18n-fr="Hôtels">Hôtels</h4>
+                <div class="hotel-list">
+                    <div class="hotel-item">
+                        <div class="hotel-item-info">
+                            <h5>Hôtel 2 Février ⭐⭐⭐⭐⭐</h5>
+                            <p data-i18n-en="Iconic tower hotel. Ocean view, pool, restaurant, conference center. City center."
+                                data-i18n-fr="Hôtel tour iconique. Vue mer, piscine, restaurant, centre de conférences. Centre-ville.">
+                                Tour iconique. Vue mer, piscine, restaurant, centre de conférences.
+                            </p>
+                        </div>
+                        <span class="hotel-item-price">~80–150€/nuit</span>
+                    </div>
+                    <div class="hotel-item">
+                        <div class="hotel-item-info">
+                            <h5>Golden Tulip Lomé ⭐⭐⭐⭐</h5>
+                            <p data-i18n-en="Pool, restaurant, reliable Wi-Fi, business-friendly. Central location."
+                                data-i18n-fr="Piscine, restaurant, Wi-Fi fiable, adapté aux professionnels. Emplacement central.">
+                                Piscine, restaurant, Wi-Fi fiable, adapté aux professionnels.
+                            </p>
+                        </div>
+                        <span class="hotel-item-price">~60–100€/nuit</span>
+                    </div>
+                    <div class="hotel-item">
+                        <div class="hotel-item-info">
+                            <h5>ONOMO Hotel Lomé ⭐⭐⭐⭐</h5>
+                            <p data-i18n-en="Modern, near airport, reliable broadband. Good for tech travelers."
+                                data-i18n-fr="Moderne, proche de l'aéroport, connexion fiable. Idéal pour les voyageurs tech.">
+                                Moderne, proche de l'aéroport, connexion fiable.
+                            </p>
+                        </div>
+                        <span class="hotel-item-price">~55–90€/nuit</span>
+                    </div>
+                    <div class="hotel-item">
+                        <div class="hotel-item-info">
+                            <h5>Hôtel du Golfe ⭐⭐⭐</h5>
+                            <p data-i18n-en="Comfortable mid-range option. Good location, solid amenities."
+                                data-i18n-fr="Option intermédiaire confortable. Bonne situation, équipements solides.">
+                                Option intermédiaire confortable. Bonne situation.
+                            </p>
+                        </div>
+                        <span class="hotel-item-price">~35–60€/nuit</span>
+                    </div>
+                    <div class="hotel-item">
+                        <div class="hotel-item-info">
+                            <h5 data-i18n-en="Guesthouses / Chambres d'hôtes" data-i18n-fr="Maisons d'hôtes / Chambres">
+                                Maisons d'hôtes / Chambres</h5>
+                            <p data-i18n-en="Budget-friendly local accommodation across all neighborhoods. Personal and welcoming."
+                                data-i18n-fr="Hébergements locaux abordables dans tous les quartiers. Accueil chaleureux et personnel.">
+                                Abordables dans tous les quartiers. Accueil chaleureux.
+                            </p>
+                        </div>
+                        <span class="hotel-item-price">~15–30€/nuit</span>
+                    </div>
+                </div>
+
+                <h4 data-i18n-en="Tahaga.com (like Airbnb) & Short-term Rentals"
+                    data-i18n-fr="Tahaga.com (comme Airbnb) & Locations courte durée">Tahaga.com (like Airbnb) &
+                    Locations courte durée</h4>
+                <p data-i18n-en="Tahaga.com is active in Lomé with private rooms, apartments, and villas from ~€25 to €80/night. Search for 'Lomé' on Tahaga.com. Recommended neighborhoods: Tokoin, Residence du Benin, Cite millenium, Adidogome, Adewui."
+                    data-i18n-fr="Tahaga.com est actif à Lomé avec chambres privées, appartements et villas de ~25 à 80€/nuit. Cherchez 'Lomé' sur Tahaga.com. Quartiers recommandés : Tokoin, Residence du Benin, Cite millenium, Adidogome, Adewui.">
+                    Tahaga.com est actif à Lomé : chambres, appartements, villas (25–80€/nuit). Quartiers recommandés :
+                    Tokoin, Residence du Benin, Cite millenium, Adidogome, Adewui.
+                </p>
+
+                <div class="info-box info-box-warning">
+                    <strong data-i18n-en="Book Early!" data-i18n-fr="Réservez à l'avance !">Réservez à
+                        l'avance !</strong>
+                    <span
+                        data-i18n-en="Accommodation fills quickly during the conference period. Book at least 2 weeks in advance to get the best options."
+                        data-i18n-fr="L'hébergement se remplit rapidement pendant la période de la conférence. Réservez au moins 2 semaines à l'avance pour avoir le meilleur choix.">
+                        L'hébergement se remplit vite pendant la conférence. Réservez au moins 2 semaines à l'avance.
+                    </span>
+                </div>
+            </article>
+
+            <!-- 4. VISA SUPPORT LETTER -->
+            <article class="policy-section reveal reveal-d2" id="sec-visa-letter">
+                <h3 data-i18n-en="4. Visa Support / Invitation Letter"
+                    data-i18n-fr="4. Lettre de support Visa / Invitation">4. Lettre de support Visa / Invitation</h3>
+                <p data-i18n-en="If you are an international speaker or attendee, we can provide an official invitation letter to support your e-visa application at voyage.gouv.tg."
+                    data-i18n-fr="Si vous êtes un speaker ou participant international, nous pouvons vous fournir une lettre d'invitation officielle pour appuyer votre demande d'e-visa sur voyage.gouv.tg.">
+                    Si vous êtes speaker ou participant international, nous pouvons vous fournir une lettre d'invitation
+                    officielle pour appuyer votre demande d'e-visa.
+                </p>
+                <div class="policy-contact">
+                    <p data-i18n-en="Email us with: Full name, nationality, passport number, and registration confirmation."
+                        data-i18n-fr="Envoyez-nous par email : Nom complet, nationalité, numéro de passeport et confirmation d'inscription.">
+                        Envoyez-nous par email : Nom complet, nationalité, numéro de passeport et confirmation
+                        d'inscription.
+                    </p>
+                    <p>Email : <a href="mailto:legal@pytogo.org">legal@pytogo.org</a></p>
+                    <a class="btn btn-primary" href="mailto:legal@pytogo.org" style="color: white;"
+                        data-i18n-en="Request Invitation Letter"
+                        data-i18n-fr="Demander une lettre d'invitation">Demander une lettre d'invitation</a>
+                </div>
+            </article>
+
+            <!-- 5. VISA APPLICATION -->
+            <article class="policy-section reveal reveal-d3" id="sec-visa">
+                <h3 data-i18n-en="5. Visa Application" data-i18n-fr="5. Demande de Visa">5. Demande de Visa</h3>
+
+                <h4 data-i18n-en="E-Visa Mandatory Since 2024" data-i18n-fr="E-Visa Obligatoire depuis 2024">E-Visa
+                    Obligatoire depuis 2024</h4>
+                <p data-i18n-en="Since 2024, all foreign visitors must apply for an e-visa before arrival. Visas are no longer issued on arrival. Apply at least 7–10 business days before your travel date via the official portal:"
+                    data-i18n-fr="Depuis 2024, tous les visiteurs étrangers doivent demander un e-visa avant d'arriver. Le visa à l'arrivée n'est plus disponible. Postulez au moins 7–10 jours ouvrables avant votre départ via le portail officiel :">
+                    Depuis 2024, le visa à l'arrivée n'est plus disponible. Postulez au moins 7–10 jours ouvrables
+                    avant votre départ :
+                </p>
+                <p style="text-align: center; margin: 14px 0;">
+                    <a href="https://voyage.gouv.tg" target="_blank" rel="noopener"
+                        class="btn btn-secondary">voyage.gouv.tg</a>
+                </p>
+
+                <h4 data-i18n-en="By Nationality" data-i18n-fr="Par nationalité">Par nationalité</h4>
+                <div class="visa-countries">
+                    <div class="visa-card">
+                        <div class="visa-card-flag">🇫🇷</div>
+                        <span class="badge badge-required" data-i18n-en="E-Visa required"
+                            data-i18n-fr="E-Visa requis">E-Visa requis</span>
+                        <h5>France</h5>
+                        <p data-i18n-en="Apply on voyage.gouv.tg. 15-day single-entry (30 EUR). Processing: 5–7 business days."
+                            data-i18n-fr="Demande sur voyage.gouv.tg. 15 jours (30 EUR), entrée unique. Traitement : 5–7 jours ouvrables.">
+                            voyage.gouv.tg 15 jours (30 EUR), entrée unique. Traitement : 5–7 jours ouvrables.
+                        </p>
+                    </div>
+                    <div class="visa-card">
+                        <div class="visa-card-flag">🇺🇸</div>
+                        <span class="badge badge-required" data-i18n-en="E-Visa required"
+                            data-i18n-fr="E-Visa requis">E-Visa requis</span>
+                        <h5>USA</h5>
+                        <p data-i18n-en="Apply on voyage.gouv.tg. 15-day single-entry (45 USD). Processing: 5–7 business days."
+                            data-i18n-fr="Demande sur voyage.gouv.tg. 15 jours (45 USD), entrée unique. Traitement : 5–7 jours ouvrables.">
+                            voyage.gouv.tg — 15 jours (45 USD), entrée unique. Traitement : 5–7 jours ouvrables.
+                        </p>
+                    </div>
+                    <div class="visa-card">
+                        <div class="visa-card-flag">🇬🇧</div>
+                        <span class="badge badge-required" data-i18n-en="E-Visa required"
+                            data-i18n-fr="E-Visa requis">E-Visa requis</span>
+                        <h5>United Kingdom</h5>
+                        <p data-i18n-en="Apply on voyage.gouv.tg. Same conditions as France/USA. No Togo embassy in UK apply online only."
+                            data-i18n-fr="Demande sur voyage.gouv.tg. Mêmes conditions que France/USA. Pas d'ambassade du Togo au RU demande uniquement en ligne.">
+                            voyage.gouv.tg — Pas d'ambassade Togo au RU, demande uniquement en ligne.
+                        </p>
+                    </div>
+                    <div class="visa-card">
+                        <div class="visa-card-flag">🇩🇪 🇧🇪 🇳🇱 🇨🇭 🇮🇹 🇪🇸</div>
+                        <span class="badge badge-required" data-i18n-en="E-Visa required"
+                            data-i18n-fr="E-Visa requis">E-Visa requis</span>
+                        <h5 data-i18n-en="Other Europe" data-i18n-fr="Autres pays d'Europe">Autres pays d'Europe</h5>
+                        <p data-i18n-en="Germany, Belgium, Netherlands, Switzerland, Italy, Spain… Apply on voyage.gouv.tg. Same 15-day conditions."
+                            data-i18n-fr="Allemagne, Belgique, Pays-Bas, Suisse, Italie, Espagne… Demande sur voyage.gouv.tg. Mêmes conditions de 15 jours.">
+                            voyage.gouv.tg — mêmes conditions. 15 jours, entrée unique.
+                        </p>
+                    </div>
+                    <div class="visa-card">
+                        <div class="visa-card-flag">🇮🇳</div>
+                        <span class="badge badge-required" data-i18n-en="E-Visa required"
+                            data-i18n-fr="E-Visa requis">E-Visa requis</span>
+                        <h5>India</h5>
+                        <p data-i18n-en="Apply on voyage.gouv.tg. You may also contact the Togo Embassy in New Delhi. Allow extra time for processing."
+                            data-i18n-fr="Demande sur voyage.gouv.tg. Vous pouvez aussi contacter l'ambassade du Togo à New Delhi. Prévoyez un délai supplémentaire.">
+                            voyage.gouv.tg ou Ambassade du Togo à New Delhi. Prévoyez un délai supplémentaire.
+                        </p>
+                    </div>
+                    <div class="visa-card free">
+                        <div class="visa-card-flag">🇧🇯 🇬🇭 🇸🇳 🇨🇮 🇳🇬 🇧🇫 🇲🇱</div>
+                        <span class="badge badge-free" data-i18n-en="Visa-Free (ECOWAS)"
+                            data-i18n-fr="Sans visa (CEDEAO)">Sans visa (CEDEAO)</span>
+                        <h5 data-i18n-en="ECOWAS Member States" data-i18n-fr="États membres CEDEAO">États membres CEDEAO
+                        </h5>
+                        <p data-i18n-en="Citizens of Benin, Ghana, Nigeria, Senegal, Côte d'Ivoire, Burkina Faso, Mali, Niger, Guinea, Liberia, Sierra Leone, Gambia, Guinea-Bissau, Cape Verde travel visa-free."
+                            data-i18n-fr="Ressortissants du Bénin, Ghana, Nigéria, Sénégal, Côte d'Ivoire, Burkina Faso, Mali, Niger, Guinée, Libéria, Sierra Leone, Gambie, Guinée-Bissau, Cap-Vert : libre circulation sans visa.">
+                            Libre circulation sans visa. Bénin, Ghana, Nigéria, Sénégal, Côte d'Ivoire, Burkina Faso,
+                            Mali, Niger, Guinée et autres membres CEDEAO.
+                        </p>
+                    </div>
+                    <div class="visa-card">
+                        <div class="visa-card-flag">🇨🇲 🇨🇬 🇬🇦 🇲🇦 🇩🇿 🇿🇦 🇪🇹</div>
+                        <span class="badge badge-required" data-i18n-en="E-Visa required"
+                            data-i18n-fr="E-Visa requis">E-Visa requis</span>
+                        <h5 data-i18n-en="Other African Countries" data-i18n-fr="Autres pays africains (non-CEDEAO)">
+                            Autres pays africains (non-CEDEAO)</h5>
+                        <p data-i18n-en="Cameroon, Congo, Gabon, Morocco, Algeria, South Africa, Ethiopia and other non-ECOWAS African nations: e-visa required via voyage.gouv.tg."
+                            data-i18n-fr="Cameroun, Congo, Gabon, Maroc, Algérie, Afrique du Sud, Éthiopie et autres pays africains non-CEDEAO : e-visa obligatoire via voyage.gouv.tg.">
+                            Cameroun, Gabon, Maroc, Algérie, Afrique du Sud, Éthiopie… e-visa sur voyage.gouv.tg.
+                        </p>
+                    </div>
+                </div>
+
+                <h4 data-i18n-en="Step-by-Step E-Visa Application" data-i18n-fr="Demande d'e-visa : étape par étape">
+                    Demande d'e-visa : étape par étape</h4>
+                <ol>
+                    <li data-i18n-en="Go to voyage.gouv.tg and create an account."
+                        data-i18n-fr="Rendez-vous sur voyage.gouv.tg et créez un compte.">
+                        Rendez-vous sur <strong>voyage.gouv.tg</strong> et créez un compte.
+                    </li>
+                    <li data-i18n-en="Select visa type: 'Tourist' and Type of entry : Unique entry."
+                        data-i18n-fr="Sélectionnez le type de visa : 'Touriste' et le type d'entrée : Entrée unique.">
+                        Sélectionnez le type : 'Touriste' et le type d'entrée : Entrée unique.
+                    </li>
+                    <li data-i18n-en="Upload required documents: A scanned copy of the first three pages of the passport with at least a validity period which is three (3) months longer than that of the requested visa, passport-size photo (One [1] recent photo ID), Proof of flight reservation or a copy of the flight ticket if you arrive by air, and invitation letter if you choose Visa Type: 'Conference'."
+                        data-i18n-fr="Téléversez les documents requis : Une copie scannée des trois premières pages du passeport avec une validité d'au moins trois (3) mois après la date de fin du visa demandé, une photo d'identité récente, une preuve de réservation de vol ou une copie du billet d'avion si vous arrivez par avion, et la lettre d'invitation si vous choisissez le type de visa : 'Conférence/Seminaire'.">
+                        Documents : Passeport (3 mois de validité après le visa), photo d'identité, preuve de vol,
+                        certificat de fièvre jaune.
+                    </li>
+                    <li data-i18n-en="Pay the e-visa fee online by card. Fees vary by nationality and number of days to stay. Check current rates on the portal."
+                        data-i18n-fr="Payez les frais d'e-visa en ligne par carte. Les tarifs varient selon la nationalité et la durée du séjour. Consultez les tarifs actuels sur le portail.">
+                        Payez les frais en ligne. Les tarifs varient selon la nationalité et la durée du séjour.
+                    </li>
+                    <li data-i18n-en="Wait 5–7 business days for approval. You will receive your e-visa by email with a QR code."
+                        data-i18n-fr="Attendez 5–7 jours ouvrables. Vous recevrez votre e-visa par email avec un QR code.">
+                        Attendez 5–7 jours ouvrables. L'e-visa vous sera envoyé par email avec un QR code.
+                    </li>
+                    <li data-i18n-en="Print your e-visa or save it on your phone. Present it with your passport at immigration."
+                        data-i18n-fr="Imprimez votre e-visa ou enregistrez-le sur votre téléphone. Présentez-le avec votre passeport à l'immigration.">
+                        Imprimez ou sauvegardez l'e-visa. Présentez-le avec votre passeport à l'immigration.
+                    </li>
+                </ol>
+
+                <h4 data-i18n-en="Health Requirements" data-i18n-fr="Santé & Vaccinations">Santé & Vaccinations</h4>
+                <div class="info-box info-box-danger">
+                    <strong data-i18n-en="Yellow Fever Vaccination: MANDATORY for entry"
+                        data-i18n-fr="Vaccin Fièvre Jaune : OBLIGATOIRE pour entrer au Togo">Vaccin Fièvre Jaune
+                        : OBLIGATOIRE pour entrer au Togo</strong>
+                    <span
+                        data-i18n-en="You must carry your International Certificate of Vaccination (Yellow Booklet) at all times. Travellers without proof of yellow fever vaccination may be refused entry or vaccinated on the spot (at cost)."
+                        data-i18n-fr="Vous devez avoir votre Carnet International de Vaccination (carnet jaune) sur vous en permanence. Les voyageurs sans preuve de vaccination peuvent se voir refuser l'entrée ou être vaccinés sur place (à leurs frais).">
+                        Vous devez avoir votre carnet international de vaccination (carnet jaune) sur vous. Sans preuve,
+                        l'entrée peut être refusée.
+                    </span>
+                </div>
+                <ul>
+                    <li data-i18n-en="Malaria: Take antimalarial medication (Malarone, Doxycycline, or equivalent). Start before departure as instructed by your doctor. Use DEET 30%+ repellent."
+                        data-i18n-fr="Paludisme : Prenez un traitement antipaludéen (Malarone, Doxycycline ou équivalent). Commencez avant le départ selon les recommandations de votre médecin. Utilisez un répulsif DEET 30%+.">
+                        <strong>Paludisme :</strong> Antipaludéen (Malarone, Doxycycline) à commencer avant le départ.
+                        Répulsif DEET 30%+.
+                    </li>
+                    <li data-i18n-en="Recommended vaccines: Hepatitis A &amp; B, Typhoid, Meningitis (A/C/W/Y), Tetanus-Diphtheria-Polio. Consult your doctor 4 weeks before travel."
+                        data-i18n-fr="Vaccins recommandés : Hépatite A &amp; B, Typhoïde, Méningite (A/C/W/Y), Tétanos-Diphtérie-Polio. Consultez votre médecin 4 semaines avant le voyage.">
+                        <strong>Vaccins recommandés :</strong> Hépatite A &amp; B, Typhoïde, Méningite, DTP.
+                        Consultez votre médecin 4 semaines avant.
+                    </li>
+                    <li data-i18n-en="Travel insurance: Strongly recommended. Ensure it covers medical evacuation and emergency hospitalisation. (Optional but highly advised for all travellers.)"
+                        data-i18n-fr="Assurance voyage : Fortement recommandée. Vérifiez qu'elle couvre l'évacuation médicale et l'hospitalisation d'urgence. (Optionnelle mais fortement conseillée pour tous les voyageurs.)">
+                        <strong>Assurance voyage :</strong> Fortement recommandée couvrant évacuation médicale et
+                        hospitalisation.
+                    </li>
+                </ul>
+            </article>
+
+            <!-- 6. IMMIGRATION & CUSTOMS -->
+            <article class="policy-section reveal" id="sec-customs">
+                <h3 data-i18n-en="6. Immigration &amp; Customs" data-i18n-fr="6. Immigration &amp; Douane">6.
+                    Immigration &amp; Douane</h3>
+
+                <h4 data-i18n-en="At Immigration" data-i18n-fr="À l'immigration">À l'immigration</h4>
+                <ul>
+                    <li data-i18n-en="Present your passport, e-visa (printed or on phone), and yellow fever certificate."
+                        data-i18n-fr="Présentez votre passeport, e-visa (imprimé ou sur téléphone) et carnet de vaccination fièvre jaune.">
+                        Passeport + e-visa (imprimé ou téléphone) + carnet fièvre jaune.
+                    </li>
+                    <li data-i18n-en="Fill in the arrival card if provided (on the plane or at the immigration desk)."
+                        data-i18n-fr="Remplissez la fiche d'arrivée si elle est fournie (dans l'avion ou au bureau d'immigration).">
+                        Remplissez la fiche d'arrivée si fournie.
+                    </li>
+                    <li data-i18n-en="Fingerprints and a photo may be taken this is standard procedure."
+                        data-i18n-fr="Empreintes digitales et photo peuvent être prises c'est une procédure standard.">
+                        Empreintes et photo standard.
+                    </li>
+                    <li data-i18n-en="State your purpose: attending PyCon Togo 2026, a technology conference in Lomé."
+                        data-i18n-fr="Indiquez votre but : participer à PyCon Togo 2026, une conférence technologique à Lomé.">
+                        But du séjour : PyCon Togo 2026, conférence technologique à Lomé.
+                    </li>
+                    <li data-i18n-en="Have the conference address and your accommodation address ready if asked."
+                        data-i18n-fr="Ayez l'adresse de la conférence et votre adresse d'hébergement disponibles si demandé.">
+                        Adresse de la conférence et hébergement à portée de main.
+                    </li>
+                </ul>
+
+                <h4 data-i18n-en="Customs Rules" data-i18n-fr="Règles douanières">Règles douanières</h4>
+                <ul>
+                    <li data-i18n-en="Currency: You may bring up to 1,000,000 XOF (~€1,524) in cash without declaration. Larger amounts must be declared."
+                        data-i18n-fr="Devises : Vous pouvez entrer jusqu'à 1 000 000 XOF (~1 524€) en espèces sans déclaration. Les montants supérieurs doivent être déclarés.">
+                        <strong>Devises :</strong> Jusqu'à 1 000 000 XOF (~1 524€) sans déclaration.
+                    </li>
+                    <li data-i18n-en="Electronics: Laptops, cameras, and phones for personal use are allowed. Professional video/broadcast equipment may require a declaration."
+                        data-i18n-fr="Électronique : Ordinateurs, appareils photo, téléphones pour usage personnel autorisés. Les équipements vidéo/diffusion professionnels peuvent nécessiter une déclaration.">
+                        <strong>Électronique :</strong> Usage personnel autorisé. Équipements professionnels :
+                        déclaration possible.
+                    </li>
+                    <li data-i18n-en="Medicines: Bring prescriptions in original packaging with a doctor's note. Personal health supplies and antimalarials are fine."
+                        data-i18n-fr="Médicaments : Emballage d'origine avec ordonnance. Fournitures médicales personnelles et antipaludéens acceptés.">
+                        <strong>Médicaments :</strong> Emballage d'origine + ordonnance. Antipaludéens autorisés.
+                    </li>
+                    <li data-i18n-en="Alcohol &amp; tobacco: Reasonable personal quantities are allowed (check current duty-free limits at the airport)."
+                        data-i18n-fr="Alcool &amp; tabac : Quantités raisonnables pour usage personnel autorisées (consultez les limites hors taxes actuelles à l'aéroport).">
+                        <strong>Alcool &amp; tabac :</strong> Quantités personnelles raisonnables autorisées.
+                    </li>
+                    <li data-i18n-en="Prohibited items: Narcotics, weapons, counterfeit goods, large undeclared cash sums, and items that endanger wildlife (ivory, etc.)."
+                        data-i18n-fr="Articles interdits : Stupéfiants, armes, marchandises contrefaites, grosses sommes non déclarées, produits menaçant la faune sauvage (ivoire, etc.).">
+                        <strong>Interdit :</strong> Stupéfiants, armes, contrefaçons, espèces non déclarées, produits
+                        de la faune protégée.
+                    </li>
+                </ul>
+
+                <div class="info-box info-box-success">
+                    <strong data-i18n-en="Green or Red Lane?" data-i18n-fr="File verte ou rouge ?">File verte ou
+                        rouge ?</strong>
+                    <span
+                        data-i18n-en="Nothing to declare? Use the green lane. Unsure about an item? Use the red lane and declare customs officers are generally courteous and professional."
+                        data-i18n-fr="Rien à déclarer ? Prenez la file verte. Doute sur un article ? Prenez la file rouge et déclarez les douaniers sont généralement courtois et professionnels.">
+                        Rien à déclarer → file verte. Doute → file rouge et déclarez. Les douaniers sont généralement
+                        courtois.
+                    </span>
+                </div>
+            </article>
+
+            <!-- 7. TOURIST SITES -->
+            <article class="policy-section reveal reveal-d1" id="sec-tourism">
+                <h3 data-i18n-en="7. Tourist Sites &amp; Attractions"
+                    data-i18n-fr="7. Sites touristiques &amp; Attractions">7. Sites touristiques &amp; Attractions</h3>
+                <p data-i18n-en="Take advantage of your visit to discover the beauty of Togo from vibrant Lomé to highlands, waterfalls, and UNESCO World Heritage sites."
+                    data-i18n-fr="Profitez de votre séjour pour découvrir les richesses du Togo de la bouillonnante capitale Lomé aux hauts plateaux, cascades et sites inscrits au Patrimoine mondial de l'UNESCO.">
+                    Profitez de votre séjour pour découvrir les richesses du Togo de Lomé aux hauts plateaux,
+                    cascades et sites UNESCO.
+                </p>
+
+                <h4 data-i18n-en="In Lomé" data-i18n-fr="À Lomé">À Lomé</h4>
+                <div class="tourism-grid">
+                    <div class="tourism-card">
+                        <div class="tourism-card-body">
+                            <span class="tourism-card-tag" data-i18n-en="Market" data-i18n-fr="Marché">Marché</span>
+                            <h5 data-i18n-en="Grand Marché de Lomé" data-i18n-fr="Grand Marché de Lomé">Grand Marché de
+                                Lomé</h5>
+                            <p data-i18n-en="One of the largest markets in West Africa. A sensory feast of fabrics, spices, crafts, and street food run by the legendary 'Nana Benz' women traders."
+                                data-i18n-fr="L'un des plus grands marchés d'Afrique de l'Ouest. Tissus, épices, artisanat et street food géré par les légendaires commerçantes 'Nana Benz'.">
+                                L'un des plus grands marchés d'Afrique de l'Ouest. Tissus, épices, artisanat géré
+                                par les légendaires 'Nana Benz'.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="tourism-card">
+                        <div class="tourism-card-body">
+                            <span class="tourism-card-tag" data-i18n-en="Unique" data-i18n-fr="Unique">Unique</span>
+                            <h5 data-i18n-en="Akodessewa Fetish Market"
+                                data-i18n-fr="Marché des Féticheurs d'Akodessewa">Marché des Féticheurs
+                                d'Akodessewa</h5>
+                            <p data-i18n-en="The world's largest voodoo market. A one-of-a-kind cultural experience with traditional medicine, ritual objects, and spiritual consultations."
+                                data-i18n-fr="Le plus grand marché vaudou du monde. Expérience culturelle unique : médecine traditionnelle, objets rituels et consultations spirituelles.">
+                                Le plus grand marché vaudou du monde. Médecine traditionnelle, objets rituels
+                                expérience culturelle hors du commun.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="tourism-card">
+                        <div class="tourism-card-body">
+                            <span class="tourism-card-tag" data-i18n-en="Beach" data-i18n-fr="Plage">Plage</span>
+                            <h5 data-i18n-en="Lomé Beach" data-i18n-fr="Plage de Lomé">Plage de Lomé</h5>
+                            <p data-i18n-en="The beach runs through the heart of the city. Watch the fishermen, eat fresh grilled fish, and admire the Atlantic sunset."
+                                data-i18n-fr="La plage traverse le cœur de la ville. Pêcheurs, poisson grillé frais et coucher de soleil sur l'Atlantique.">
+                                Au cœur de la ville. Pêcheurs, poisson grillé frais et coucher de soleil sur
+                                l'Atlantique.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="tourism-card">
+                        <div class="tourism-card-body">
+                            <span class="tourism-card-tag" data-i18n-en="History"
+                                data-i18n-fr="Histoire">Histoire</span>
+                            <h5 data-i18n-en="Palais du Gouverneur &amp; National Museum"
+                                data-i18n-fr="Palais du Gouverneur &amp; Musée National">Palais du Gouverneur &amp;
+                                Musée National</h5>
+                            <p data-i18n-en="Colonial-era governor's palace now housing historical collections. A must for history lovers."
+                                data-i18n-fr="Palais colonial abritant des collections historiques nationales. Incontournable pour les amateurs d'histoire.">
+                                Palais colonial, collections historiques nationales. Incontournable.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="tourism-card">
+                        <div class="tourism-card-body">
+                            <span class="tourism-card-tag" data-i18n-en="Architecture"
+                                data-i18n-fr="Architecture">Architecture</span>
+                            <h5 data-i18n-en="Cathédrale du Sacré-Cœur" data-i18n-fr="Cathédrale du Sacré-Cœur">
+                                Cathédrale du Sacré-Cœur</h5>
+                            <p data-i18n-en="Stunning German colonial cathedral built in 1902, right in the heart of Lomé."
+                                data-i18n-fr="Magnifique cathédrale coloniale allemande construite en 1902, au cœur de Lomé.">
+                                Cathédrale coloniale allemande (1902). Belle architecture au cœur de Lomé.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="tourism-card">
+                        <div class="tourism-card-body">
+                            <span class="tourism-card-tag" data-i18n-en="Monument"
+                                data-i18n-fr="Monument">Monument</span>
+                            <h5 data-i18n-en="Monument de l'Indépendance" data-i18n-fr="Monument de l'Indépendance">
+                                Monument de l'Indépendance</h5>
+                            <p data-i18n-en="The iconic monument on Place de l'Indépendance the symbolic heart of Lomé."
+                                data-i18n-fr="Monument iconique sur la Place de l'Indépendance le cœur symbolique de Lomé.">
+                                Sur la Place de l'Indépendance le cœur symbolique de Lomé.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 data-i18n-en="Day Trips &amp; Excursions from Lomé"
+                    data-i18n-fr="Excursions &amp; escapades depuis Lomé">Excursions &amp; escapades depuis Lomé</h4>
+                <div class="tourism-grid">
+                    <div class="tourism-card">
+                        <div class="tourism-card-body">
+                            <span class="tourism-card-tag" data-i18n-en="Nature · 2h from Lomé"
+                                data-i18n-fr="Nature · 2h de Lomé">Nature · 2h de Lomé</span>
+                            <h5 data-i18n-en="Kpalimé &amp; Cascade de Kpimé"
+                                data-i18n-fr="Kpalimé &amp; Cascade de Kpimé">Kpalimé &amp; Cascade de Kpimé</h5>
+                            <p data-i18n-en="Lush highland town with waterfalls, butterfly sanctuary, and artisan crafts (weaving, pottery). Great hiking trails and cooler temperatures."
+                                data-i18n-fr="Ville verdoyante des hauts plateaux : cascades, sanctuaire de papillons, artisanat (tissage, poterie). Bonnes randonnées et températures plus fraîches.">
+                                Cascades, sanctuaire de papillons, artisanat, randonnées. Températures plus fraîches.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="tourism-card">
+                        <div class="tourism-card-body">
+                            <span class="tourism-card-tag" data-i18n-en="UNESCO · North Togo"
+                                data-i18n-fr="UNESCO · Nord Togo">UNESCO · Nord Togo</span>
+                            <h5>Koutammakou</h5>
+                            <p data-i18n-en="UNESCO World Heritage Site. Home of the Batammariba people and their iconic multi-storey mud tower-houses (Takienta). A breathtaking cultural landscape."
+                                data-i18n-fr="Patrimoine mondial de l'UNESCO. Maisons-tours en terre du peuple Batammariba (Takienta). Paysage culturel exceptionnel.">
+                                Patrimoine UNESCO. Maisons-tours en terre (Takienta) du peuple Batammariba.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="tourism-card">
+                        <div class="tourism-card-body">
+                            <span class="tourism-card-tag" data-i18n-en="Wildlife · Central Togo"
+                                data-i18n-fr="Faune · Centre Togo">Faune · Centre Togo</span>
+                            <h5 data-i18n-en="Fazao-Malfakassa National Park"
+                                data-i18n-fr="Réserve de Fazao-Malfakassa">Réserve de Fazao-Malfakassa</h5>
+                            <p data-i18n-en="Togo's largest national park: elephants, buffalos, antelopes, and 300+ bird species. Guided safaris available."
+                                data-i18n-fr="Plus grand parc national du Togo : éléphants, buffles, antilopes, 300+ espèces d'oiseaux. Safaris guidés disponibles.">
+                                Éléphants, buffles, antilopes, 300+ oiseaux. Safaris guidés disponibles.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="tourism-card">
+                        <div class="tourism-card-body">
+                            <span class="tourism-card-tag" data-i18n-en="Hiking · 2h30 from Lomé"
+                                data-i18n-fr="Randonnée · 2h30 de Lomé">Randonnée · 2h30 de Lomé</span>
+                            <h5 data-i18n-en="Mont Agou - Highest Peak in Togo"
+                                data-i18n-fr="Mont Agou - Point culminant du Togo">Mont Agou - Point culminant du
+                                Togo</h5>
+                            <p data-i18n-en="986 m. Stunning panoramic views over Ghana, Benin and the Togolese plateau. Half-day hike."
+                                data-i18n-fr="986 m. Vue panoramique sur le Ghana, le Bénin et le plateau togolais. Randonnée d'une demi-journée.">
+                                986 m. Vue sur le Ghana, le Bénin et le plateau. Randonnée demi-journée.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="tourism-card">
+                        <div class="tourism-card-body">
+                            <span class="tourism-card-tag" data-i18n-en="Heritage · 45 min from Lomé"
+                                data-i18n-fr="Patrimoine · 45 min de Lomé">Patrimoine · 45 min de Lomé</span>
+                            <h5 data-i18n-en="Togoville" data-i18n-fr="Togoville">Togoville</h5>
+                            <p data-i18n-en="Historic village on Lake Togo where the protectorate treaty was signed in 1884. Accessible by traditional pirogue canoe."
+                                data-i18n-fr="Village historique sur le lac Togo où fut signé le traité du protectorat en 1884. Accessible par pirogue traditionnelle.">
+                                Village historique sur le lac Togo. Accessible par pirogue. Lieu du traité du
+                                protectorat (1884).
+                            </p>
+                        </div>
+                    </div>
+                    <div class="tourism-card">
+                        <div class="tourism-card-body">
+                            <span class="tourism-card-tag" data-i18n-en="Culture · 2h from Lomé"
+                                data-i18n-fr="Culture · 2h de Lomé">Culture · 2h de Lomé</span>
+                            <h5 data-i18n-en="Atakpamé" data-i18n-fr="Atakpamé">Atakpamé</h5>
+                            <p data-i18n-en="Pleasant highland town known for its market, traditional weaving, and views from the hills. Good base to explore the central plateau."
+                                data-i18n-fr="Ville agréable des hauts plateaux connue pour son marché, le tissage traditionnel et les vues depuis les collines. Bonne base pour explorer le plateau central.">
+                                Marché animé, tissage traditionnel, vues depuis les collines.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="tourism-card">
+                        <div class="tourism-card-body">
+                            <span class="tourism-card-tag" data-i18n-en="Aneho Culture · 1h from Lomé"
+                                data-i18n-fr="Aneho Culture · 1h de Lomé">Aneho Culture · 1h de Lomé</span>
+                            <h5 data-i18n-en="Aneho" data-i18n-fr="Aneho">Aneho</h5>
+                            <p data-i18n-en="Traditional town known for its cultural heritage and scenic landscapes. Perfect for immersing in local traditions. The old colonial architecture and coastal views make it a charming day trip from Lomé."
+                                data-i18n-fr="Ville traditionnelle connue pour son patrimoine culturel et ses paysages scéniques. Parfait pour s'immerger dans les traditions locales. L'architecture coloniale et les vues côtières en font une escapade charmante depuis Lomé.">
+                                Ville traditionnelle, patrimoine culturel, paysages scéniques. Parfait pour s'immerger
+                                dans les traditions locales.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 8. FOOD & RESTAURANTS -->
+            <article class="policy-section reveal reveal-d2" id="sec-food">
+                <h3 data-i18n-en="8. Food &amp; Restaurants" data-i18n-fr="8. Cuisine &amp; Restaurants">8. Cuisine
+                    &amp; Restaurants</h3>
+                <p data-i18n-en="Togolese cuisine is rich, flavourful, and varied influenced by West African traditions and French culinary heritage."
+                    data-i18n-fr="La cuisine togolaise est riche, savoureuse et variée influencée par les traditions d'Afrique de l'Ouest et l'héritage culinaire français.">
+                    La cuisine togolaise est riche, savoureuse et variée influences d'Afrique de l'Ouest et
+                    héritage culinaire français.
+                </p>
+
+                <h4 data-i18n-en="Must-Try Dishes" data-i18n-fr="Plats incontournables">Plats incontournables</h4>
+                <ul>
+                    <li data-i18n-en="Fufu avec sauce arachide - Pounded yam or cassava served with rich groundnut sauce, meat, or fish. A staple."
+                        data-i18n-fr="Fufu avec sauce arachide - Igname ou manioc pilé avec une sauce aux arachides, de la viande ou du poisson. Un incontournable.">
+                        <strong>Fufu avec sauce arachide</strong> - Igname ou manioc pilé, sauce arachides, viande ou
+                        poisson.
+                    </li>
+                    <li data-i18n-en="Gboma Dessi - Spinach stew with tomatoes, palm oil, smoked fish, and meat. A Lomé specialty."
+                        data-i18n-fr="Gboma Dessi - Ragoût d'épinards aux tomates, huile de palme, poisson fumé et viande. Spécialité de Lomé.">
+                        <strong>Gboma Dessi</strong> - Ragoût d'épinards, tomates, huile de palme, poisson fumé.
+                        Spécialité lomoise.
+                    </li>
+                    <li data-i18n-en="Akpan - Fermented corn pudding eaten for breakfast with fried fish or bean fritters. Comforting and local."
+                        data-i18n-fr="Akpan - Bouillie de maïs fermenté au petit-déjeuner avec du poisson frit ou des beignets de haricots. Réconfortant et local.">
+                        <strong>Akpan</strong> - Bouillie de maïs fermenté au petit-déjeuner avec poisson frit ou
+                        beignets de haricots.
+                    </li>
+                    <li data-i18n-en="Poisson braisé - Whole grilled tilapia or sea bream with tomato sauce, best enjoyed beachside. Do not miss it!"
+                        data-i18n-fr="Poisson braisé - Tilapia ou dorade grillé entier avec sauce tomate, idéalement en bord de mer. À ne pas manquer !">
+                        <strong>Poisson braisé</strong> - Tilapia ou dorade grillé, sauce tomate en bord de mer. À ne
+                        pas manquer !
+                    </li>
+                    <li data-i18n-en="Brochettes - Grilled meat skewers (beef, chicken, goat) sold everywhere, especially at night markets."
+                        data-i18n-fr="Brochettes - Brochettes de viande grillée (bœuf, poulet, chèvre) vendues partout, surtout dans les marchés nocturnes.">
+                        <strong>Brochettes</strong> - Viande grillée (bœuf, poulet, chèvre) dans les marchés nocturnes.
+                    </li>
+                    <li data-i18n-en="Aloco - Fried ripe plantains, a popular side dish or snack with chilli sauce."
+                        data-i18n-fr="Aloco - Bananes plantains frites, accompagnement populaire ou snack avec sauce pimentée.">
+                        <strong>Aloco</strong> - Bananes plantains frites avec sauce pimentée.
+                    </li>
+                </ul>
+
+                <h4 data-i18n-en="Where to Eat in Lomé" data-i18n-fr="Où manger à Lomé">Où manger à Lomé</h4>
+                <ul>
+                    <li data-i18n-en="Local maquis (snack bars): Affordable and authentic. Busy at lunch. Best for local cuisine. Budget: 1,000–3,000 XOF (~€1.5–4.5)."
+                        data-i18n-fr="Maquis locaux (snack-bars) : Abordables et authentiques. Animés le midi. Idéal pour la cuisine locale. Budget : 1 000–3 000 XOF (~1,5–4,5€).">
+                        <strong>Maquis locaux :</strong> Abordables et authentiques. 1 000–3 000 XOF le repas.
+                    </li>
+                    <li data-i18n-en="Beach restaurants: Fresh seafood, grilled fish, cold drinks along the Lomé seafront. Popular with locals and visitors alike."
+                        data-i18n-fr="Restaurants de plage : Fruits de mer frais, poisson grillé, boissons fraîches en bord de mer. Populaires auprès des locaux et des visiteurs.">
+                        <strong>Restaurants de plage :</strong> Fruits de mer, poisson grillé, ambiance décontractée.
+                    </li>
+                    <li data-i18n-en="Coco Beach, Weda Beach: Popular with expats and conference attendees. Relaxed atmosphere, seafood specials."
+                        data-i18n-fr="Coco Beach, Weda Beach : Populaires auprès des expatriés et participants de conférences. Ambiance détendue, spécialités de la mer.">
+                        <strong>Coco Beach, Weda Beach :</strong> Populaires, ambiance détendue, spécialités de la mer.
+                    </li>
+                    <li data-i18n-en="L'Escale, Le Galion: French-Togolese cuisine, mid-to-high range. Reliable quality for business meals."
+                        data-i18n-fr="L'Escale, Le Galion : Cuisine franco-togolaise, gamme intermédiaire à élevée. Qualité fiable pour les repas d'affaires.">
+                        <strong>L'Escale, Le Galion :</strong> Franco-togolais, qualité fiable.
+                    </li>
+                    <li data-i18n-en="Hotel restaurants: All major hotels have restaurants reliable but pricier."
+                        data-i18n-fr="Restaurants d'hôtels : Tous les grands hôtels ont des restaurants fiables mais plus chers.">
+                        <strong>Restaurants d'hôtels :</strong> Fiables mais plus chers.
+                    </li>
+                </ul>
+
+                <div class="info-box info-box-warning">
+                    <strong data-i18n-en="Drinks" data-i18n-fr="Boissons">Boissons</strong>
+                    <span
+                        data-i18n-en="Drink bottled water only (tap water is not drinkable). Local sodas, cold Flag Beer, palm wine (sodabi), and fresh juice (ginger, bissap/hibiscus, baobab) are popular and safe."
+                        data-i18n-fr="Buvez uniquement de l'eau en bouteille (l'eau du robinet n'est pas potable). Sodas locaux, Flag Beer froide, vin de palme (sodabi) et jus frais (gingembre, bissap/hibiscus, baobab) sont populaires et sûrs.">
+                        Eau en bouteille uniquement (eau du robinet non potable). Sodas locaux, Flag Beer, sodabi,
+                        jus de gingembre/bissap/baobab.
+                    </span>
+                </div>
+            </article>
+
+            <!-- 9. LOCAL TIPS & SAFETY -->
+            <article class="policy-section reveal reveal-d3" id="sec-tips">
+                <h3 data-i18n-en="9. Practical Tips, Safety &amp; Emergency Contacts"
+                    data-i18n-fr="9. Conseils pratiques, Sécurité &amp; Contacts d'urgence">9. Conseils pratiques,
+                    Sécurité &amp; Contacts d'urgence</h3>
+
+                <h4 data-i18n-en="Currency &amp; Money" data-i18n-fr="Monnaie &amp; Argent">Monnaie &amp; Argent</h4>
+                <ul>
+                    <li data-i18n-en="Currency: West African CFA Franc (XOF). Pegged to the Euro at a fixed rate: 1 EUR = 655.96 XOF."
+                        data-i18n-fr="Monnaie : Franc CFA Ouest-Africain (XOF). Ancré à l'euro à taux fixe : 1 EUR = 655,96 XOF.">
+                        <strong>Monnaie :</strong> Franc CFA (XOF). Taux fixe : 1 EUR = 655,96 XOF.
+                    </li>
+                    <li data-i18n-en="Approximate exchange rates: 1 USD ≈ 550 XOF | 1 GBP ≈ 760 XOF | 1 GHC ≈ 50 XOF | 1 NGN ≈ 0.41 XOF | 1 INR ≈ 7 XOF. Check live rates before travel."
+                        data-i18n-fr="Taux approximatifs : 1 USD ≈ 550 XOF | 1 GBP ≈ 760 XOF | 1 GHC ≈ 50 XOF | 1 NGN ≈ 0.41 XOF | 1 INR ≈ 7 XOF. Vérifiez les taux avant le départ.">
+                        <strong>Taux approx. :</strong> 1 USD ≈ 550 XOF | 1 GBP ≈ 760 XOF | 1 GHC ≈ 50 XOF | 1 NGN ≈
+                        0.41 XOF | 1 INR ≈ 7 XOF.
+                    </li>
+                    <li data-i18n-en="Cash is king: Most local shops, markets, and taxis only accept cash. Always carry XOF."
+                        data-i18n-fr="Le cash est roi : La plupart des commerces locaux, marchés et taxis acceptent uniquement les espèces. Gardez toujours des XOF sur vous.">
+                        <strong>Le cash est roi :</strong> Marchés, taxis et commerces locaux en XOF uniquement.
+                    </li>
+                    <li data-i18n-en="ATMs: Available throughout Lomé (Ecobank, Orabank, BIA Togo). Visa and Mastercard accepted. Withdraw XOF directly."
+                        data-i18n-fr="Distributeurs : Disponibles à Lomé (Ecobank, Orabank, BIA Togo). Visa et Mastercard acceptés. Retirez des XOF directement.">
+                        <strong>Distributeurs :</strong> Ecobank, Orabank, BIA Togo. Visa/Mastercard acceptés.
+                    </li>
+                    <li data-i18n-en="Mobile Money: Mixx by Yas (Yas) and Flooz (Moov Africa Togo) widely used. Useful for local payments if you have a Togolese SIM."
+                        data-i18n-fr="Mobile Money : Mixx by Yas (Yas) et Flooz (Moov Africa Togo) très utilisés. Pratique pour les paiements locaux avec une SIM togolaise.">
+                        <strong>Mobile Money :</strong> Mixx by Yas et Flooz très utilisés avec une SIM togolaise.
+                    </li>
+                </ul>
+
+                <h4 data-i18n-en="Internet &amp; Connectivity" data-i18n-fr="Internet &amp; Connectivité">Internet &amp;
+                    Connectivité</h4>
+                <ul>
+                    <li data-i18n-en="SIM cards: Yas and Moov Africa Togo. Buy at the airport or any mobile shop with your passport. Cost: ~1,000–2,000 XOF including a data bundle."
+                        data-i18n-fr="Cartes SIM : Yas et Moov Africa Togo. Achetez à l'aéroport ou dans une boutique mobile avec votre passeport. Coût : ~1 000–2 000 XOF avec forfait data.">
+                        <strong>Cartes SIM :</strong> Yas ou Moov Africa Togo. ~1 000–2 000 XOF avec forfait
+                        data.
+                    </li>
+                    <li data-i18n-en="4G coverage: Widely available in Lomé and major towns. More limited in rural areas."
+                        data-i18n-fr="Couverture 4G : Largement disponible à Lomé et dans les grandes villes. Plus limitée dans les zones rurales.">
+                        <strong>4G :</strong> Bonne couverture à Lomé. Limitée dans les zones rurales.
+                    </li>
+                    <li data-i18n-en="Wi-Fi: Available at all major hotels, many restaurants and cafés."
+                        data-i18n-fr="Wi-Fi : Disponible dans tous les grands hôtels, nombreux restaurants et cafés.">
+                        <strong>Wi-Fi :</strong> Grands hôtels, restaurants et cafés.
+                    </li>
+                </ul>
+
+                <h4 data-i18n-en="Transport in Lomé" data-i18n-fr="Transport à Lomé">Transport à Lomé</h4>
+                <ul>
+                    <li data-i18n-en="GOZEM app: The safest, most convenient option. Book a car or motorbike taxi directly from the app available 24/7."
+                        data-i18n-fr="Application GOZEM : L'option la plus sûre et pratique. Réservez voiture ou moto directement disponible 24h/24.">
+                        <strong>GOZEM :</strong> Voitures ou motos 24h/24. L'option la plus sûre et pratique.
+                    </li>
+                    <li data-i18n-en="Zemidjans (moto-taxis): Quick for short distances. Agree the price before getting on. Helmet provided."
+                        data-i18n-fr="Zémidjans (moto-taxis) : Rapides pour les courtes distances. Négociez le prix avant de monter. Casque fourni.">
+                        <strong>Zémidjans :</strong> Rapides, courtes distances. Négociez le prix avant de monter.
+                    </li>
+                    <li data-i18n-en="Yellow taxis: Widely available. Negotiate the fare before the journey."
+                        data-i18n-fr="Taxis jaunes : Très disponibles. Négociez le prix avant le trajet.">
+                        <strong>Taxis jaunes :</strong> Très disponibles. Négociez le prix avant de partir.
+                    </li>
+                </ul>
+
+                <h4 data-i18n-en="Safety" data-i18n-fr="Sécurité">Sécurité</h4>
+                <ul>
+                    <li data-i18n-en="Lomé is generally safe for visitors, especially during the day in busy areas."
+                        data-i18n-fr="Lomé est globalement sûre pour les visiteurs, surtout de jour dans les zones animées.">
+                        Lomé est globalement sûre pour les visiteurs, surtout de jour dans les zones animées.
+                    </li>
+                    <li data-i18n-en="Avoid walking alone at night on the beach or in isolated streets. Use GOZEM for evening travel."
+                        data-i18n-fr="Évitez de marcher seul la nuit en bord de mer ou dans les rues isolées. Utilisez GOZEM pour les trajets du soir.">
+                        Évitez de marcher seul la nuit en bord de mer. Utilisez GOZEM le soir.
+                    </li>
+                    <li data-i18n-en="Store copies of your passport, e-visa, and insurance in a cloud folder (email or Google Drive)."
+                        data-i18n-fr="Conservez des copies de votre passeport, e-visa et assurance dans un dossier en ligne (email ou Google Drive).">
+                        Copies numériques de votre passeport, e-visa et assurance en ligne.
+                    </li>
+                    <li data-i18n-en="Don't display expensive jewelry or electronics openly in crowded markets."
+                        data-i18n-fr="Évitez d'afficher bijoux coûteux ou appareils électroniques dans les marchés bondés.">
+                        Évitez d'afficher bijoux et électronique dans les marchés bondés.
+                    </li>
+                </ul>
+
+                <h4 data-i18n-en="Culture &amp; Etiquette" data-i18n-fr="Culture &amp; Savoir-vivre">Culture &amp;
+                    Savoir-vivre</h4>
+                <ul>
+                    <li data-i18n-en="Always greet people with 'Bonjour' - French is the official language. A warm greeting opens all doors."
+                        data-i18n-fr="Saluez toujours avec 'Bonjour' - le français est la langue officielle. Un salut chaleureux ouvre toutes les portes.">
+                        Saluez toujours avec <strong>'Bonjour'</strong>. Un salut chaleureux ouvre toutes les portes.
+                    </li>
+                    <li data-i18n-en="Ask permission before taking photos of people, especially in markets and during traditional ceremonies."
+                        data-i18n-fr="Demandez toujours la permission avant de photographier des personnes, surtout dans les marchés et les cérémonies traditionnelles.">
+                        Demandez toujours la permission avant de photographier.
+                    </li>
+                    <li data-i18n-en="Dress modestly when visiting religious sites or traditional communities outside the capital."
+                        data-i18n-fr="Habillez-vous modestement dans les sites religieux et communautés traditionnelles hors de la capitale.">
+                        Tenue modeste dans les sites religieux et communautés traditionnelles.
+                    </li>
+                    <li data-i18n-en="Bargaining is expected in markets. Start at 40–50% of the asking price and negotiate politely."
+                        data-i18n-fr="Le marchandage est la norme dans les marchés. Commencez à 40–50% du prix demandé et négociez poliment.">
+                        Marchandage normal dans les marchés. Commencez à 40–50% du prix demandé.
+                    </li>
+                </ul>
+
+                <h4 data-i18n-en="Weather &amp; Packing" data-i18n-fr="Météo &amp; Bagages">Météo &amp; Bagages</h4>
+                <ul>
+                    <li data-i18n-en="Togo is tropical: hot and humid year-round, averaging 27–32°C (81–90°F)."
+                        data-i18n-fr="Le Togo est tropical : chaud et humide toute l'année, en moyenne 27–32°C.">
+                        Tropical : chaud et humide toute l'année (27–32°C).
+                    </li>
+                    <li data-i18n-en="Pack lightweight, breathable clothes (cotton/linen). Bring a light jacket for air-conditioned venues."
+                        data-i18n-fr="Emportez des vêtements légers et respirants (coton/lin). Prévoyez une légère veste pour les salles climatisées.">
+                        Vêtements légers respirants. Petite veste pour les salles climatisées.
+                    </li>
+                    <li data-i18n-en="Apply SPF 30+ sunscreen daily. Use DEET 30%+ mosquito repellent from dusk onwards."
+                        data-i18n-fr="Appliquez une crème solaire SPF 30+ quotidiennement. Utilisez un répulsif anti-moustiques DEET 30%+ dès le crépuscule.">
+                        Crème solaire SPF 30+ quotidienne. Répulsif DEET 30%+ dès le crépuscule.
+                    </li>
+                </ul>
+
+                <h4 data-i18n-en="Emergency Contacts" data-i18n-fr="Contacts d'urgence">Contacts d'urgence</h4>
+                <div class="emergency-grid">
+                    <div class="emergency-card">
+                        <!-- <div class="emergency-icon">🚨</div> -->
+                        <span class="emergency-number">117</span>
+                        <span class="emergency-label" data-i18n-en="Police" data-i18n-fr="Police">Police</span>
+                    </div>
+                    <div class="emergency-card">
+                        <!-- <div class="emergency-icon">🔥</div> -->
+                        <span class="emergency-number">118</span>
+                        <span class="emergency-label" data-i18n-en="Fire Brigade"
+                            data-i18n-fr="Pompiers">Pompiers</span>
+                    </div>
+                    <div class="emergency-card">
+                        <!-- <div class="emergency-icon">🏥</div> -->
+                        <span class="emergency-number">+228 22 21 25 00</span>
+                        <span class="emergency-label" data-i18n-en="CHU Lomé (Hospital)"
+                            data-i18n-fr="CHU Lomé (Hôpital)">CHU Lomé</span>
+                    </div>
+                    <div class="emergency-card">
+                        <!-- <div class="emergency-icon">🇫🇷</div> -->
+                        <span class="emergency-number">+228 22 21 25 71</span>
+                        <span class="emergency-label" data-i18n-en="French Embassy"
+                            data-i18n-fr="Ambassade de France">Ambassade France</span>
+                    </div>
+                    <div class="emergency-card">
+                        <!-- <div class="emergency-icon">🇺🇸</div> -->
+                        <span class="emergency-number">+228 22 61 54 70</span>
+                        <span class="emergency-label" data-i18n-en="US Embassy" data-i18n-fr="Ambassade USA">Ambassade
+                            USA</span>
+                    </div>
+                    <div class="emergency-card">
+                        <!-- <div class="emergency-icon">🇬🇧</div> -->
+                        <span class="emergency-number">+233 30 221 3250</span>
+                        <span class="emergency-label" data-i18n-en="UK (British High Commission, Ghana)"
+                            data-i18n-fr="RU (Haut-Commissariat, Ghana)">UK via Ghana</span>
+                    </div>
+                </div>
+                <p style="font-size: 13px; color: var(--text-muted); margin-top: 10px;"
+                    data-i18n-en="* Always verify contact numbers with your country's foreign affairs ministry before departure."
+                    data-i18n-fr="* Vérifiez toujours les numéros de contact auprès du ministère des affaires étrangères de votre pays avant le départ.">
+                    * Vérifiez les numéros auprès du ministère des affaires étrangères de votre pays avant le départ.
+                </p>
+            </article>
+
+        </div>
+    </section>
+</main>
+{% endblock %}
