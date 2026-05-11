@@ -45,7 +45,7 @@
   --radius-lg: 22px;
   --radius-pill: 100px;
 
-  --nav-h: 72px;
+  --nav-h: 132px;
   --max-w: 1160px;
 }
 
@@ -411,7 +411,7 @@ p:last-child {
 }
 
 #navbar .logo-img {
-  height: 52px;
+  height: 124px;
 }
 
 .nav-links {
@@ -852,8 +852,8 @@ p:last-child {
 .hero {
   background: linear-gradient(180deg, #ffffff 0%, #f8fbf9 100%);
   min-height: calc(100vh - var(--nav-h));
-  display: flex;
-  flex-direction: column;
+  display: block;
+  gap: 0;
   position: relative;
   overflow: hidden;
 }
@@ -864,11 +864,9 @@ p:last-child {
 }
 
 .hero-content {
-  flex: 1;
   max-width: 1180px;
-  width: 100%;
   margin: 0 auto;
-  padding: 56px 28px 60px;
+  padding: 82px 28px 84px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -990,7 +988,7 @@ p:last-child {
   --topic-lane-height: 124px;
   width: 100vw;
   max-width: 100vw;
-  margin-top: auto;
+  margin-top: 30px;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   padding-bottom: calc(var(--topic-lane-height) + 6px);
@@ -2486,12 +2484,12 @@ footer::after {
   }
 
   .hero-content {
-    padding: 44px 28px 44px;
+    padding: 72px 28px 52px;
     text-align: center;
   }
 
   .hero-ribbon-shell {
-    margin-top: 24px;
+    margin-top: 18px;
   }
 
   .hero-ribbon-card {
@@ -2585,7 +2583,7 @@ footer::after {
 
 @media (max-width: 860px) {
   #navbar .logo-img {
-    height: 44px;
+    height: 102px;
   }
 
   .features-row {
