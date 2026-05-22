@@ -15,12 +15,15 @@ Python Togo Talents - PyCon Togo 2025
         max-width: 900px;
     }
 
-    #talentForm .full { grid-column: 1 / -1; }
+    #talentForm .full {
+        grid-column: 1 / -1;
+    }
 
     #talentForm label.field-label {
         display: block;
         font-weight: 700;
-        color: #2D5016; /* keep existing site green */
+        color: #2D5016;
+        /* keep existing site green */
         margin-bottom: 6px;
         font-size: 0.95rem;
     }
@@ -32,45 +35,92 @@ Python Togo Talents - PyCon Togo 2025
         width: 100%;
         padding: 10px 12px;
         border-radius: 8px;
-        border: 1px solid rgba(0,0,0,0.08);
+        border: 1px solid rgba(0, 0, 0, 0.08);
         background: #ffffff;
         color: #111;
         font-size: 0.95rem;
     }
 
-    #talentForm .actions { display:flex; gap:12px; align-items:center; }
+    #talentForm .actions {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+    }
 
     #talentForm .btn-submit {
-        background: rgba(255,212,59,0.95);
+        background: rgba(255, 212, 59, 0.95);
         color: #2D5016;
         font-weight: 800;
         padding: 10px 16px;
         border-radius: 10px;
-        border: 2px solid rgba(255,212,59,0.9);
+        border: 2px solid rgba(255, 212, 59, 0.9);
         cursor: pointer;
     }
-    #talentForm .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
 
-    #talentForm .btn-cancel { background: transparent; color: #2D5016; padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.06); cursor: pointer; }
+    #talentForm .btn-submit:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
 
-    #talentForm .status { margin-top: 12px; padding: 12px; border-radius: 10px; display: none; align-items: center; gap: 10px; }
-    #talentForm .status.success { background: rgba(5,109,30,0.06); border: 2px solid rgba(255,212,59,0.18); color: #2D5016; display: flex; }
-    #talentForm .status.error { background: rgba(255,0,0,0.04); border: 2px solid rgba(255,0,0,0.12); color: #800; display: flex; }
-    #talentForm .status .msg { font-weight: 700; }
+    #talentForm .btn-cancel {
+        background: transparent;
+        color: #2D5016;
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        cursor: pointer;
+    }
 
-    .disclaimer { font-size:0.95rem; color:var(--muted-text, #333); background:transparent; margin-bottom:1rem; }
+    #talentForm .status {
+        margin-top: 12px;
+        padding: 12px;
+        border-radius: 10px;
+        display: none;
+        align-items: center;
+        gap: 10px;
+    }
+
+    #talentForm .status.success {
+        background: rgba(5, 109, 30, 0.06);
+        border: 2px solid rgba(255, 212, 59, 0.18);
+        color: #2D5016;
+        display: flex;
+    }
+
+    #talentForm .status.error {
+        background: rgba(255, 0, 0, 0.04);
+        border: 2px solid rgba(255, 0, 0, 0.12);
+        color: #800;
+        display: flex;
+    }
+
+    #talentForm .status .msg {
+        font-weight: 700;
+    }
+
+    .disclaimer {
+        font-size: 0.95rem;
+        color: var(--muted-text, #333);
+        background: transparent;
+        margin-bottom: 1rem;
+    }
 
     @media (max-width: 720px) {
-        #talentForm.talent-form { grid-template-columns: 1fr; }
+        #talentForm.talent-form {
+            grid-template-columns: 1fr;
+        }
     }
 </style>
 
 <div class="container">
-    <div class="card" style="background:transparent;border:none;padding:0;">
+    <div class="card" style="background:transparent;border:none;padding:0;margin-top: 200px;margin-bottom: 50px;">
         <h1 style="color: #056d1e; margin-bottom:8px;">Python Togo Talents / Talents Python Togo</h1>
-        <p class="lead" style="color:inherit; margin-bottom:12px;">Nous recueillons des profils pour les opportunités partenaires. / We collect profiles for partner opportunities.</p>
+        <p class="lead" style="color:inherit; margin-bottom:12px;">Nous recueillons des profils pour les opportunités
+            partenaires. / We collect profiles for partner opportunities.</p>
 
-        <p class="disclaimer">En soumettant votre CV, vous acceptez que Python Togo transmette votre profil à son partenaire <a href="https://www.wearedigijob.com/">DIGI.Job</a>. Ceci concerne des talents spécialisés en Python (analyse de données, data science, intelligence artificielle). Cela ne garantit pas une embauche, mais si votre profil correspond aux besoins, vous serez contacté.</p>
+        <p class="disclaimer">En soumettant votre CV, vous acceptez que Python Togo transmette votre profil à ses
+            partenaires. Cela ne garantit pas une embauche,
+            mais si votre profil correspond aux besoins, vous serez contacté.</p>
 
         <form id="talentForm" class="talent-form" novalidate>
             <div>
@@ -127,69 +177,69 @@ Python Togo Talents - PyCon Togo 2025
 </div>
 
 <script>
-(function(){
-    const apiUrl = 'https://api.pycontg.pytogo.org/api/talents';
-    const form = document.getElementById('talentForm');
-    const submitBtn = document.getElementById('submitBtn');
-    const resetBtn = document.getElementById('resetBtn');
-    const statusEl = document.getElementById('formStatus');
-    const statusMsg = statusEl.querySelector('.msg');
+    (function () {
+        const apiUrl = 'https://api.pycontg.pytogo.org/api/talents';
+        const form = document.getElementById('talentForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const statusEl = document.getElementById('formStatus');
+        const statusMsg = statusEl.querySelector('.msg');
 
-    function showStatus(success, text){
-        statusEl.className = 'status ' + (success ? 'success' : 'error');
-        statusMsg.textContent = text;
-        statusEl.style.display = 'flex';
-    }
-    function hideStatus(){ statusEl.style.display = 'none'; statusMsg.textContent = ''; }
-
-    resetBtn.addEventListener('click', ()=>{ form.reset(); hideStatus(); });
-
-    form.addEventListener('submit', async function(e){
-        e.preventDefault();
-        hideStatus();
-
-        const fd = new FormData(form);
-        const payload = {
-            last_name: (fd.get('last_name')||'').trim(),
-            first_name: (fd.get('first_name')||'').trim(),
-            email: (fd.get('email')||'').trim(),
-            track: fd.get('track') || null,
-            cv_link: (fd.get('cv_link')||'').trim(),
-            github_link: (fd.get('github_link')||'').trim(),
-        };
-
-        // Basic required validation
-        if(!payload.last_name || !payload.first_name || !payload.email || !payload.track || !payload.cv_link || !payload.github_link){
-            showStatus(false, 'Please fill required fields. / Veuillez remplir les champs requis.');
-            return;
+        function showStatus(success, text) {
+            statusEl.className = 'status ' + (success ? 'success' : 'error');
+            statusMsg.textContent = text;
+            statusEl.style.display = 'flex';
         }
+        function hideStatus() { statusEl.style.display = 'none'; statusMsg.textContent = ''; }
 
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Sending… / Envoi…';
+        resetBtn.addEventListener('click', () => { form.reset(); hideStatus(); });
 
-        try{
-            const res = await fetch(apiUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            hideStatus();
 
-            if(res.ok){
-                showStatus(true, 'Thank you! Your profile has been submitted. / Merci ! Votre profil a été soumis.');
-                form.reset();
-            } else {
-                let msg = 'An error occurred. Please try again later. / Une erreur est survenue. Veuillez réessayer plus tard.';
-                try{ const data = await res.json(); if(data && data.message) msg = data.message + ' — ' + msg; }catch(e){}
-                showStatus(false, msg);
+            const fd = new FormData(form);
+            const payload = {
+                last_name: (fd.get('last_name') || '').trim(),
+                first_name: (fd.get('first_name') || '').trim(),
+                email: (fd.get('email') || '').trim(),
+                track: fd.get('track') || null,
+                cv_link: (fd.get('cv_link') || '').trim(),
+                github_link: (fd.get('github_link') || '').trim(),
+            };
+
+            // Basic required validation
+            if (!payload.last_name || !payload.first_name || !payload.email || !payload.track || !payload.cv_link || !payload.github_link) {
+                showStatus(false, 'Please fill required fields. / Veuillez remplir les champs requis.');
+                return;
             }
-        }catch(err){
-            showStatus(false, 'Network error. Please check your connection. / Erreur réseau. Veuillez vérifier votre connexion.');
-        }finally{
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Submit / Soumettre';
-        }
-    });
-})();
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending… / Envoi…';
+
+            try {
+                const res = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (res.ok) {
+                    showStatus(true, 'Thank you! Your profile has been submitted. / Merci ! Votre profil a été soumis.');
+                    form.reset();
+                } else {
+                    let msg = 'An error occurred. Please try again later. / Une erreur est survenue. Veuillez réessayer plus tard.';
+                    try { const data = await res.json(); if (data && data.message) msg = data.message + ' — ' + msg; } catch (e) { }
+                    showStatus(false, msg);
+                }
+            } catch (err) {
+                showStatus(false, 'Network error. Please check your connection. / Erreur réseau. Veuillez vérifier votre connexion.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit / Soumettre';
+            }
+        });
+    })();
 </script>
 
 {% endblock %}
