@@ -73,14 +73,14 @@ def get_fallback_description(item, description_type='short'):
             'short': f"Temps de pause pour se restaurer et échanger",
             'full': f"Moment convivial pour se détendre et échanger avec les autres participants."
         },
-        'opening': {
-            'short': f"Ouverture officielle par {item.get('speaker', 'l\'équipe organisatrice')}",
-            'full': f"Ouverture officielle de PyCon Togo 2025 par {item.get('speaker', 'l\'équipe organisatrice')}."
-        },
-        'closing': {
-            'short': f"Clôture officielle par {item.get('speaker', 'l\'équipe organisatrice')}",
-            'full': f"Clôture officielle de PyCon Togo 2025 par {item.get('speaker', 'l\'équipe organisatrice')}."
-        }
+        # 'opening': {
+        #     'short': f"Ouverture officielle par {item.get('speaker', 'l\'équipe organisatrice')}",
+        #     'full': f"Ouverture officielle de PyCon Togo 2025 par {item.get('speaker', 'l\'équipe organisatrice')}."
+        # },
+        # 'closing': {
+        #     'short': f"Clôture officielle par {item.get('speaker', 'l\'équipe organisatrice')}",
+        #     'full': f"Clôture officielle de PyCon Togo 2025 par {item.get('speaker', 'l\'équipe organisatrice')}."
+        # }
     }
 
     session_type = item.get('type', 'session')
