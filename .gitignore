@@ -39,3 +39,4 @@ test*
 *.sublime-project
 db.sqlite3
 *.sql
+.gstack/

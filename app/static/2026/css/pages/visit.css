@@ -118,6 +118,14 @@
     box-shadow: var(--shadow-sm);
 }
 
+.tourism-card-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    border-radius: var(--radius) var(--radius) 0 0;
+}
+
 .tourism-card-body {
     padding: 14px;
 }
