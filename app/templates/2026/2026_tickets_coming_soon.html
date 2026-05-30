@@ -1,36 +1,373 @@
 {% extends "base.html" %}
 
 {% block content %}
-<main class="page active" id="page-tickets-coming-soon">
-    <section class="page-hero coming-hero">
+<main class="page active" id="page-tickets">
+    {% if payment_status == 'success' %}
+    <section class="section ticket-payment-status">
+        <div class="container">
+            <div class="ticket-payment-banner" role="status" aria-live="polite">
+                <strong data-i18n-en="Payment confirmed" data-i18n-fr="Paiement confirme">Paiement confirme</strong>
+                <p data-i18n-en="Your ticket request has been submitted successfully. You can continue with any next steps from here."
+                    data-i18n-fr="Votre demande de ticket a ete soumise avec succes. Vous pouvez continuer les prochaines etapes depuis ici.">
+                    Votre demande de ticket a ete soumise avec succes. Vous pouvez continuer les prochaines etapes
+                    depuis ici.
+                </p>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <section class="page-hero ticket-hero">
         <div class="container">
             <span class="eyebrow reveal" data-i18n-en="Tickets" data-i18n-fr="Billetterie">Billetterie</span>
-            <h1 class="reveal reveal-d1" data-i18n-en="Not Open Yet" data-i18n-fr="Pas Encore Ouvert">Pas Encore Ouvert
+            <h1 class="reveal reveal-d1" data-i18n-html-en="PyCon Togo 2026<br /><em>Ticketing</em>"
+                data-i18n-html-fr="PyCon Togo 2026<br /><em>Billetterie</em>">PyCon Togo 2026<br /><em>Billetterie</em>
             </h1>
             <p class="page-hero-sub reveal reveal-d2"
-                data-i18n-en="Ticket sales are not open yet. We are preparing the launch for PyCon Togo 2026."
-                data-i18n-fr="La billetterie n'est pas encore ouverte. Nous preparons le lancement pour PyCon Togo 2026.">
-                La billetterie n'est pas encore ouverte. Nous preparons le lancement pour PyCon Togo 2026.</p>
+                data-i18n-en="Secure your spot for three days of talks, workshops, and community."
+                data-i18n-fr="Réservez votre place pour trois jours de conférences, ateliers et communauté.">Réservez
+                votre place pour trois jours de conférences, ateliers et communauté.</p>
+            <div class="ticket-hero-meta reveal reveal-d2">
+                <div class="ticket-hero-item">
+                    <span data-i18n-en="Dates" data-i18n-fr="Dates">Dates</span>
+                    <strong data-i18n-en="Aug 21-23, 2026" data-i18n-fr="21-23 Aout 2026">21-23 Aout 2026</strong>
+                </div>
+                <div class="ticket-hero-item">
+                    <span data-i18n-en="Location" data-i18n-fr="Lieu">Lieu</span>
+                    <strong data-i18n-en="Lome, Togo" data-i18n-fr="Lome, Togo">Lome, Togo</strong>
+                </div>
+                <div class="ticket-hero-item">
+                    <span data-i18n-en="Format" data-i18n-fr="Format">Format</span>
+                    <strong data-i18n-en="Talks + Workshops" data-i18n-fr="Conferences + Ateliers">Conferences +
+                        Ateliers</strong>
+                </div>
+            </div>
+            <div class="ticket-hero-actions reveal reveal-d3">
+                <a class="btn btn-primary btn-lg" href="#ticket-types" data-i18n-en="Buy Tickets"
+                    data-i18n-fr="Acheter des tickets">Acheter des tickets</a>
+            </div>
         </div>
     </section>
 
-    <section class="section coming-wrap">
+    <section class="section ticket-layout" id="ticket-types">
         <div class="container">
-            <div class="coming-card reveal reveal-d1">
-                <h2 data-i18n-en="Estimated Opening" data-i18n-fr="Ouverture Estimee">Ouverture Estimee</h2>
-                <p class="coming-window" data-i18n-en="Late-April 2026" data-i18n-fr="Fin-Avril 2026">Fin-Avril 2026</p>
-                <p data-i18n-en="We will announce ticket categories and pricing very soon."
-                    data-i18n-fr="Nous annoncerons tres bientot les categories de tickets et les tarifs.">Nous
-                    annoncerons tres bientot les categories de tickets et les tarifs.</p>
+            <div class="ticket-layout-grid">
+                <div class="ticket-list-column">
+                    <div class="ticket-section-header reveal">
+                        <h2 data-i18n-en="Ticket types" data-i18n-fr="Types de tickets">Types de tickets</h2>
+                        <p data-i18n-en="Choose your ticket, adjust quantities, and continue to checkout."
+                            data-i18n-fr="Choisissez votre ticket, ajustez la quantite et continuez vers le paiement.">
+                            Choisissez votre ticket, ajustez la quantite et continuez vers le paiement.</p>
+                    </div>
+                    <div id="ticket-list" class="ticket-list reveal" aria-live="polite">
+                        {% for ticket in ticket_catalog or [] %}
+                        {% set sales_open = ticket.isSalesOpen if ticket.isSalesOpen is defined else true %}
+                        {% set sold_out = ticket.quantityAvailable <= 0 %} {% set button_disabled=(not sales_open) or
+                            sold_out %} {% set button_label_en='Buy' %} {% set button_label_fr='Acheter' %} {% if not
+                            sales_open %} {% set button_label_en='Coming soon' if ticket.salesStatus=='upcoming'
+                            else 'Closed' %} {% set button_label_fr='Bientot disponible' if
+                            ticket.salesStatus=='upcoming' else 'Ferme' %} {% elif sold_out %} {% set
+                            button_label_en='Sold out' %} {% set button_label_fr='Epuise' %} {% endif %} <article
+                            class="ticket-card {% if sold_out %}is-sold-out{% endif %}" data-ticket-id="{{ ticket.id }}"
+                            data-ticket-name-en="{{ ticket.name.en|e }}" data-ticket-name-fr="{{ ticket.name.fr|e }}"
+                            data-ticket-description-en="{{ ticket.description.en|e }}"
+                            data-ticket-description-fr="{{ ticket.description.fr|e }}"
+                            data-early-bird-price="{{ ticket.earlyBirdPrice if ticket.earlyBirdPrice is not none else '' }}"
+                            data-regular-price="{{ ticket.regularPrice }}"
+                            data-quantity-available="{{ ticket.quantityAvailable }}"
+                            data-max-per-user="{{ ticket.maxPerUser }}"
+                            data-early-bird-active="{{ 'true' if ticket.isEarlyBirdActive else 'false' }}"
+                            data-sales-status="{{ ticket.salesStatus }}">
+                            <div class="ticket-card-header">
+                                <div>
+                                    <h3 class="ticket-card-title" data-i18n-en="{{ ticket.name.en|e }}"
+                                        data-i18n-fr="{{ ticket.name.fr|e }}">{{ ticket.name.en }}</h3>
+                                    <p class="ticket-card-desc" data-i18n-en="{{ ticket.description.en|e }}"
+                                        data-i18n-fr="{{ ticket.description.fr|e }}">{{ ticket.description.en }}</p>
+                                </div>
+                                {% if ticket.isEarlyBirdActive and ticket.earlyBirdPrice is not none %}
+                                <span class="ticket-badge" data-i18n-en="Early Bird" data-i18n-fr="Early Bird">Early
+                                    Bird</span>
+                                {% endif %}
+                            </div>
+                            <div class="ticket-price">
+                                {% if ticket.isEarlyBirdActive and ticket.earlyBirdPrice is not none %}
+                                <del>{{ "{:,.0f}".format(ticket.regularPrice).replace(",", " ") }} F CFA</del>
+                                <span class="price-main">{{ "{:,.0f}".format(ticket.earlyBirdPrice).replace(",", " ") }}
+                                    F CFA</span>
+                                {% else %}
+                                <span class="price-main">{{ "{:,.0f}".format(ticket.regularPrice).replace(",", " ") }} F
+                                    CFA</span>
+                                {% endif %}
+                            </div>
+                            <div class="ticket-meta-row">
+                                <span>
+                                    {% if not sales_open %}
+                                    {% if ticket.salesStatus == 'upcoming' %}Bientot disponible{% else %}Ferme{% endif
+                                    %}
+                                    {% else %}
+                                    {% if sold_out %}Epuise{% else %}{{ ticket.quantityAvailable }} places{% endif %}
+                                    {% endif %}
+                                </span>
+                                <span>Max {{ ticket.maxPerUser }} par personne</span>
+                            </div>
+                            <div class="ticket-actions">
+                                <div class="qty-selector" role="group" aria-label="Quantite">
+                                    <button type="button" aria-label="Diminuer" data-qty-btn="minus"
+                                        data-ticket-id="{{ ticket.id }}" {% if button_disabled %}disabled{% endif
+                                        %}>-</button>
+                                    <input type="number" aria-label="Quantite"
+                                        min="{% if button_disabled %}0{% else %}1{% endif %}"
+                                        max="{{ ticket.maxPerUser if ticket.quantityAvailable >= ticket.maxPerUser else ticket.quantityAvailable }}"
+                                        value="1" inputmode="numeric" data-qty-input="{{ ticket.id }}" {% if
+                                        button_disabled %}disabled{% endif %} />
+                                    <button type="button" aria-label="Augmenter" data-qty-btn="plus"
+                                        data-ticket-id="{{ ticket.id }}" {% if button_disabled %}disabled{% endif
+                                        %}>+</button>
+                                </div>
+                                <button type="button"
+                                    class="btn {% if button_disabled %}btn-ghost{% else %}btn-primary{% endif %}"
+                                    data-buy-ticket="{{ ticket.id }}" {% if button_disabled %}disabled{% endif %}>
+                                    {{ button_label_en }}
+                                </button>
+                            </div>
+                            </article>
+                            {% endfor %}
+                    </div>
+                </div>
 
-                <div class="coming-actions">
-                    <a class="btn btn-primary" href="mailto:contact@pycontogo.org" data-i18n-en="Contact the Team"
-                        data-i18n-fr="Contacter l'Equipe">Contacter l'Equipe</a>
-                    <a class="btn btn-ghost" href="/" data-i18n-en="Back to Home"
-                        data-i18n-fr="Retour a l'Accueil">Retour a l'Accueil</a>
+                <aside class="ticket-summary reveal" aria-label="Checkout summary">
+                    <h3 data-i18n-en="Checkout summary" data-i18n-fr="Resume de commande">Resume de commande</h3>
+                    <div class="summary-body">
+                        <div class="summary-line">
+                            <span data-i18n-en="Ticket" data-i18n-fr="Ticket">Ticket</span>
+                            <strong id="summary-ticket" data-i18n-en="Select a ticket"
+                                data-i18n-fr="Choisissez un ticket">Choisissez un ticket</strong>
+                        </div>
+                        <div class="summary-line">
+                            <span data-i18n-en="Quantity" data-i18n-fr="Quantite">Quantite</span>
+                            <strong id="summary-qty">0</strong>
+                        </div>
+                        <div class="summary-line">
+                            <span data-i18n-en="Subtotal" data-i18n-fr="Sous-total">Sous-total</span>
+                            <strong id="summary-subtotal">0 F CFA</strong>
+                        </div>
+                    </div>
+
+                    <div class="coupon-box">
+                        <label for="coupon" data-i18n-en="Coupon" data-i18n-fr="Code promo">Code promo</label>
+                        <div class="coupon-row">
+                            <input type="text" id="coupon" name="coupon" placeholder="PYCONTG"
+                                data-i18n-placeholder-en="PYCONTG" data-i18n-placeholder-fr="PYCONTG" />
+                            <button type="button" class="btn btn-ghost" data-i18n-en="Apply"
+                                data-i18n-fr="Appliquer">Appliquer</button>
+                        </div>
+                        <p class="coupon-help" data-i18n-en="Coupons are applied at payment (coming soon)."
+                            data-i18n-fr="Les codes promo seront appliques au paiement (bientot).">Les codes promo
+                            seront appliques au paiement (bientot).</p>
+                    </div>
+
+                    <div class="summary-total">
+                        <span data-i18n-en="Total" data-i18n-fr="Total">Total</span>
+                        <strong id="summary-total">0 F CFA</strong>
+                    </div>
+
+                    <button id="continue-to-payment" class="btn btn-primary btn-lg" type="button" disabled
+                        data-i18n-en="Continue to payment" data-i18n-fr="Continuer vers le paiement">Continuer vers le
+                        paiement</button>
+                    <p class="summary-note" data-i18n-en="You will be redirected to the secure payment flow."
+                        data-i18n-fr="Vous serez redirige vers le paiement securise.">Vous serez redirige vers le
+                        paiement securise.</p>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <section class="section ticket-info">
+        <div class="container">
+            <div class="ticket-info-grid">
+                <div class="ticket-info-card reveal">
+                    <h3 data-i18n-en="Need help?" data-i18n-fr="Besoin d'aide ?">Besoin d'aide ?</h3>
+                    <p data-i18n-en="Contact our team for invoice requests or group bookings."
+                        data-i18n-fr="Contactez notre equipe pour une facture ou une reservation de groupe.">Contactez
+                        notre equipe pour une facture ou une reservation de groupe.</p>
+                    <a class="btn btn-text" href="/contact" data-i18n-en="Contact the team"
+                        data-i18n-fr="Contacter l'equipe">Contacter l'equipe</a>
+                </div>
+                <div class="ticket-info-card reveal reveal-d1">
+                    <h3 data-i18n-en="Policies" data-i18n-fr="Politiques">Politiques</h3>
+                    <p data-i18n-en="By purchasing a ticket you agree to the Code of Conduct and Privacy Policy."
+                        data-i18n-fr="En achetant un ticket vous acceptez le Code de conduite et la politique de confidentialite.">
+                        En achetant un ticket vous acceptez le Code de conduite et la politique de confidentialite.</p>
+                    <div class="ticket-info-links">
+                        <a class="btn btn-text" href="/coc" data-i18n-en="Read Code of Conduct"
+                            data-i18n-fr="Lire le Code de conduite">Lire le Code de conduite</a>
+                        <a class="btn btn-text" href="/privacy-policy" data-i18n-en="Read Privacy Policy"
+                            data-i18n-fr="Lire la politique de confidentialite">Lire la politique de confidentialite</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <div id="ticket-modal" class="ticket-modal" aria-hidden="true" role="dialog" aria-modal="true"
+        aria-labelledby="ticket-modal-title">
+        <div class="ticket-modal-backdrop" data-close-modal></div>
+        <div class="ticket-modal-panel" role="document">
+            <header class="ticket-modal-header">
+                <div>
+                    <span class="eyebrow" data-i18n-en="Ticket" data-i18n-fr="Ticket">Ticket</span>
+                    <h2 id="ticket-modal-title" data-i18n-en="Ticket holder details"
+                        data-i18n-fr="Informations du participant">Informations du participant</h2>
+                    <p class="modal-subtitle" data-i18n-en="Fill in the details below to continue to payment."
+                        data-i18n-fr="Remplissez les informations ci-dessous pour continuer vers le paiement.">
+                        Remplissez les informations ci-dessous pour continuer vers le paiement.</p>
+                </div>
+                <button type="button" class="modal-close" aria-label="Close" data-close-modal>×</button>
+            </header>
+            <div class="ticket-modal-body">
+                <form id="ticket-form" class="ticket-form">
+                    <div class="ticket-form-grid">
+                        <div class="form-field span-2">
+                            <label for="full-name" data-i18n-en="Full name" data-i18n-fr="Nom et prenom">Nom et
+                                prenom</label>
+                            <input type="text" id="full-name" name="full_name" autocomplete="name" required
+                                placeholder="Jane Doe" data-i18n-placeholder-en="Jane Doe"
+                                data-i18n-placeholder-fr="Jean Dupont" />
+                            <p class="field-error" data-error-for="full-name"></p>
+                        </div>
+                        <div class="form-field">
+                            <label for="email" data-i18n-en="Email" data-i18n-fr="Email">Email</label>
+                            <input type="email" id="email" name="email" autocomplete="email" required
+                                placeholder="you@email.com" data-i18n-placeholder-en="you@email.com"
+                                data-i18n-placeholder-fr="vous@email.com" />
+                            <p class="field-error" data-error-for="email"></p>
+                        </div>
+                        <div class="form-field">
+                            <label for="whatsapp" data-i18n-en="WhatsApp (optional)"
+                                data-i18n-fr="WhatsApp (optionnel)">
+                                WhatsApp (optionnel)
+                            </label>
+                            <input type="tel" id="whatsapp" name="whatsapp" autocomplete="tel"
+                                placeholder="+228 90 00 00 00" data-i18n-placeholder-en="+228 90 00 00 00"
+                                data-i18n-placeholder-fr="+228 90 00 00 00" />
+                            <p class="form-hint" data-i18n-en="Optional, but helps us reach you fast."
+                                data-i18n-fr="Optionnel, mais utile pour vous joindre rapidement.">
+                                Optionnel, mais utile pour vous joindre rapidement.</p>
+                        </div>
+
+                        <div class="form-field span-2">
+                            <label for="dietary-restrictions" data-i18n-en="Dietary restrictions (optional)"
+                                data-i18n-fr="Restrictions alimentaires (optionnel)">
+                                Restrictions alimentaires (optionnel)
+                            </label>
+                            <textarea id="dietary-restrictions" name="dietary_restrictions" rows="3"
+                                placeholder="Allergies, vegetarian, vegan, halal, gluten-free..."
+                                data-i18n-placeholder-en="Allergies, vegetarian, vegan, halal, gluten-free..."
+                                data-i18n-placeholder-fr="Allergies, vegetarien, vegan, halal, sans gluten..."></textarea>
+                            <p class="form-hint"
+                                data-i18n-en="Optional. Let us know if you have any meal restrictions or preferences."
+                                data-i18n-fr="Optionnel. Indiquez vos restrictions ou preferences alimentaires, si besoin.">
+                                Optionnel. Indiquez vos restrictions ou preferences alimentaires, si besoin.</p>
+                        </div>
+
+                        <div class="form-consent ticket-proof-card span-2" id="student-proof-field" hidden>
+                            <label class="consent-check ticket-proof-check" for="student-proof">
+                                <input type="file" id="student-proof" name="student_proof" accept=".pdf,.png,.jpg,.jpeg"
+                                    data-i18n-aria-label-en="Upload student proof"
+                                    data-i18n-aria-label-fr="Televerser le justificatif etudiant" />
+                                <span>
+                                    <strong data-i18n-en="Student ticket proof"
+                                        data-i18n-fr="Justificatif pour ticket etudiant">Justificatif pour ticket
+                                        etudiant</strong><br />
+                                    <span
+                                        data-i18n-en="Only required for student tickets. Professional tickets do not need any upload."
+                                        data-i18n-fr="Requis uniquement pour les tickets etudiants. Les tickets professionnels n'ont aucun document a televerser.">
+                                        Requis uniquement pour les tickets etudiants. Les tickets professionnels n'ont
+                                        aucun document a televerser.
+                                    </span>
+                                </span>
+                            </label>
+                            <p class="field-error" data-error-for="student-proof"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-consent ticket-consent-card">
+                        <label class="consent-check">
+                            <input type="checkbox" id="consent-coc" required />
+                            <span
+                                data-i18n-en="I agree to the Code of Conduct, Privacy Policy, and ticketing terms before completing my purchase. *"
+                                data-i18n-fr="J'accepte le Code de conduite, la politique de confidentialité et les conditions de billetterie avant de finaliser mon achat. *">
+                                J'accepte le Code de conduite, la politique de confidentialité et les conditions de
+                                billetterie avant de finaliser mon achat. <span class="required-star">*</span>
+                            </span>
+                        </label>
+                        <p class="consent-note">
+                            <a href="/coc" target="_blank" rel="noopener noreferrer"
+                                data-i18n-en="Read the Code of Conduct" data-i18n-fr="Lire le Code de conduite">Lire
+                                le Code de conduite</a>
+                            <span aria-hidden="true">·</span>
+                            <a href="/privacy-policy" target="_blank" rel="noopener noreferrer"
+                                data-i18n-en="Read the Privacy Policy"
+                                data-i18n-fr="Lire la politique de confidentialité">Lire la politique de
+                                confidentialité</a>
+                        </p>
+                    </div>
+
+                    <div class="form-consent optional-consent ticket-consent-card">
+                        <label class="consent-check">
+                            <input type="checkbox" id="consent-partners" />
+                            <span
+                                data-i18n-en="I agree that my contact details may be shared with sponsors and partners for event-related opportunities. (Optional)"
+                                data-i18n-fr="J'accepte que mes coordonnées puissent être partagées avec les sponsors et partenaires pour des opportunités liées à l'événement. (Optionnel)">
+                                J'accepte que mes coordonnées puissent être partagées avec les sponsors et partenaires
+                                pour des opportunités liées à l'événement. (Optionnel)
+                            </span>
+                        </label>
+                        <p class="consent-note"
+                            data-i18n-en="Optional. Leave unchecked if you do not want any sharing with sponsors or partners."
+                            data-i18n-fr="Optionnel. Laissez décoché si vous ne souhaitez aucun partage avec les sponsors ou partenaires.">
+                            Optionnel. Laissez décoché si vous ne souhaitez aucun partage avec les sponsors ou
+                            partenaires.
+                        </p>
+                    </div>
+                    <p class="field-error" data-error-for="consent"></p>
+                    <p id="ticket-form-error" class="form-error"></p>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-ghost" data-close-modal data-i18n-en="Back"
+                            data-i18n-fr="Retour">Retour</button>
+                        <button type="submit" class="btn btn-primary" data-i18n-en="Continue to payment"
+                            data-i18n-fr="Continuer vers le paiement">Continuer vers le paiement</button>
+                    </div>
+                </form>
+
+                <aside class="modal-summary" aria-label="Order summary">
+                    <h3 data-i18n-en="Order summary" data-i18n-fr="Resume de commande">Resume de commande</h3>
+                    <div class="summary-body">
+                        <div class="summary-line">
+                            <span data-i18n-en="Ticket" data-i18n-fr="Ticket">Ticket</span>
+                            <strong id="modal-summary-ticket">-</strong>
+                        </div>
+                        <div class="summary-line">
+                            <span data-i18n-en="Quantity" data-i18n-fr="Quantite">Quantite</span>
+                            <strong id="modal-summary-qty">0</strong>
+                        </div>
+                    </div>
+                    <div class="summary-total">
+                        <span data-i18n-en="Total" data-i18n-fr="Total">Total</span>
+                        <strong id="modal-summary-total">0 F CFA</strong>
+                    </div>
+                    <p class="modal-note" data-i18n-en="Secure payment opens after confirmation."
+                        data-i18n-fr="Le paiement securise s'ouvre apres confirmation.">
+                        Le paiement securise s'ouvre apres confirmation.</p>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <script id="ticket-catalog-data" type="application/json">
+        {{ ticket_catalog | default([], true) | tojson }}
+    </script>
+
 </main>
 {% endblock %}

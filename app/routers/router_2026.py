@@ -1,4 +1,6 @@
 
+import base64
+import binascii
 from typing import Any, Literal
 import hashlib
 import hmac
@@ -7,9 +9,9 @@ from threading import Lock
 
 import httpx
 from fastapi import APIRouter, HTTPException, Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field, model_validator
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -81,6 +83,56 @@ class CfpDraftSavePayload(BaseModel):
 class CfpDraftResumePayload(BaseModel):
     email: EmailStr
     password: str
+
+
+class TicketStudentProofPayload(BaseModel):
+    fileName: str
+    mimeType: str
+    base64: str
+
+
+class TicketBuyerPayload(BaseModel):
+    fullName: str
+    firstName: str
+    lastName: str
+    email: EmailStr
+    whatsapp: str | None = None
+    dietaryRestrictions: str | None = None
+
+
+class TicketConsentPayload(BaseModel):
+    codeOfConduct: bool
+    privacyPolicy: bool
+    terms: bool
+    partnerSharing: bool = False
+
+
+class TicketPayload(BaseModel):
+    id: str
+    name: str
+    unitPrice: int = Field(gt=0)
+    currency: str
+    isStudent: bool = False
+
+
+class TicketSubmissionPayload(BaseModel):
+    ticket: TicketPayload
+    quantity: int = Field(gt=0)
+    total: int = Field(gt=0)
+    buyer: TicketBuyerPayload
+    consent: TicketConsentPayload
+    coupon: str | None = None
+    studentProof: TicketStudentProofPayload | None = None
+
+    @model_validator(mode="after")
+    def validate_student_requirement(self):
+        if self.ticket.isStudent and self.studentProof is None:
+            raise ValueError(
+                "Student ticket proof is required for student tickets.")
+        if not self.ticket.isStudent and self.studentProof is not None:
+            raise ValueError(
+                "Student ticket proof is only allowed for student tickets.")
+        return self
 
 
 def _normalize_email(value: str) -> str:
@@ -196,6 +248,125 @@ def _extract_first_datetime(event: dict, keys: list[str]) -> datetime | None:
             if parsed:
                 return parsed
     return None
+
+
+def _window_status(now: datetime, start: datetime | None, end: datetime | None) -> str:
+    if start and now < start:
+        return "upcoming"
+    if end and now > end:
+        return "closed"
+    if start or end:
+        return "open"
+    return "open"
+
+
+def _guess_ticket_limit(ticket_id: str, ticket_name: str) -> int:
+    label = f"{ticket_id} {ticket_name}".lower()
+    if "student" in label or "vip" in label:
+        return 2
+    return 4
+
+
+def _is_student_ticket(ticket_id: str, ticket_name: str, description: str) -> bool:
+    label = f"{ticket_id} {ticket_name} {description}".lower()
+    return "student" in label or "etudiant" in label or "etudiante" in label
+
+
+def _extract_ticket_rows(data: object) -> list[dict]:
+    if isinstance(data, list):
+        return [row for row in data if isinstance(row, dict)]
+    if isinstance(data, dict):
+        if isinstance(data.get("data"), list):
+            return [row for row in data["data"] if isinstance(row, dict)]
+        if isinstance(data.get("items"), list):
+            return [row for row in data["items"] if isinstance(row, dict)]
+    return []
+
+
+def _normalize_ticket_catalog(rows: list[dict], event: dict) -> list[dict]:
+    now_utc = datetime.now(timezone.utc)
+
+    early_bird_open_at = _extract_first_datetime(event, [
+        "early_bird_sales_open_at",
+        "earlyBirdSalesOpenAt",
+    ])
+    early_bird_close_at = _extract_first_datetime(event, [
+        "early_bird_sales_close_at",
+        "earlyBirdSalesCloseAt",
+    ])
+    ticket_sales_open_at = _extract_first_datetime(event, [
+        "ticket_sales_open_at",
+        "ticketSalesOpenAt",
+    ])
+    ticket_sales_close_at = _extract_first_datetime(event, [
+        "ticket_sales_close_at",
+        "ticketSalesCloseAt",
+    ])
+
+    early_bird_status = event.get("early_bird_status") or "open"
+    ticket_sales_status = event.get("ticket_sales_status") or "open"
+
+    catalog: list[dict] = []
+    for index, row in enumerate(rows):
+        ticket_id = str(row.get("id") or row.get(
+            "ticket_id") or row.get("code") or index)
+        ticket_name = (row.get("name") or row.get("title") or "").strip()
+        if not ticket_name:
+            continue
+
+        description = (row.get("description") or "").strip()
+        price = row.get("price")
+        if price is None:
+            continue
+
+        early_bird_price = row.get("early_bird_price")
+        quantity = row.get("quantity")
+        quantity_available = int(quantity) if quantity is not None else 0
+        regular_price = int(round(float(price)))
+        early_price = int(round(float(early_bird_price))
+                          ) if early_bird_price is not None else None
+        max_per_user = _guess_ticket_limit(ticket_id, ticket_name)
+        is_student_ticket = _is_student_ticket(
+            ticket_id, ticket_name, description)
+        is_early_bird_active = early_bird_status == "open" and early_price is not None
+        is_sales_open = ticket_sales_status == "open"
+
+        catalog.append({
+            "id": ticket_id,
+            "name": {"en": ticket_name, "fr": ticket_name},
+            "description": {"en": description, "fr": description},
+            "earlyBirdPrice": early_price,
+            "regularPrice": regular_price,
+            "earlyBirdEndDate": event.get("early_bird_close_at_en") or event.get("early_bird_close_at_fr") or None,
+            "quantityAvailable": quantity_available,
+            "maxPerUser": max_per_user,
+            "isStudent": is_student_ticket,
+            "isEarlyBirdActive": is_early_bird_active,
+            "isSalesOpen": is_sales_open,
+            "salesStatus": ticket_sales_status,
+        })
+
+    return catalog
+
+
+async def _fetch_tickets() -> list[dict]:
+    event_code = getattr(settings, "python_togo_event_code", None)
+    if not event_code:
+        return []
+
+    headers = {"Authorization": f"Bearer {settings.python_togo_api_key}"}
+    url = _build_api_url(f"/tickets/list/{event_code}")
+
+    try:
+        async with httpx.AsyncClient(timeout=settings.python_togo_api_timeout_seconds) as client:
+            response = await client.get(url, headers=headers)
+        if response.status_code < 400:
+            payload = response.json()
+            return _extract_ticket_rows(payload)
+    except Exception:
+        return []
+
+    return []
 
 
 def _format_datetime(value: datetime | None, lang: str) -> str:
@@ -347,6 +518,23 @@ async def _build_event_context() -> dict:
         "cfpCloseAt",
     ])
 
+    early_bird_open_at = _extract_first_datetime(event, [
+        "early_bird_sales_open_at",
+        "earlyBirdSalesOpenAt",
+    ])
+    early_bird_close_at = _extract_first_datetime(event, [
+        "early_bird_sales_close_at",
+        "earlyBirdSalesCloseAt",
+    ])
+    ticket_sales_open_at = _extract_first_datetime(event, [
+        "ticket_sales_open_at",
+        "ticketSalesOpenAt",
+    ])
+    ticket_sales_close_at = _extract_first_datetime(event, [
+        "ticket_sales_close_at",
+        "ticketSalesCloseAt",
+    ])
+
     now_utc = datetime.now(timezone.utc)
     cfp_status = "open"
     if cfp_open_at and now_utc < cfp_open_at:
@@ -358,6 +546,20 @@ async def _build_event_context() -> dict:
     cfp_open_at_fr = _format_datetime(cfp_open_at, "fr")
     cfp_close_at_en = _format_datetime(cfp_close_at, "en")
     cfp_close_at_fr = _format_datetime(cfp_close_at, "fr")
+
+    early_bird_status = _window_status(
+        now_utc, early_bird_open_at, early_bird_close_at)
+    ticket_sales_status = _window_status(
+        now_utc, ticket_sales_open_at, ticket_sales_close_at)
+
+    early_bird_open_at_en = _format_datetime(early_bird_open_at, "en")
+    early_bird_open_at_fr = _format_datetime(early_bird_open_at, "fr")
+    early_bird_close_at_en = _format_datetime(early_bird_close_at, "en")
+    early_bird_close_at_fr = _format_datetime(early_bird_close_at, "fr")
+    ticket_sales_open_at_en = _format_datetime(ticket_sales_open_at, "en")
+    ticket_sales_open_at_fr = _format_datetime(ticket_sales_open_at, "fr")
+    ticket_sales_close_at_en = _format_datetime(ticket_sales_close_at, "en")
+    ticket_sales_close_at_fr = _format_datetime(ticket_sales_close_at, "fr")
 
     return {
         "event_name": name,
@@ -377,6 +579,16 @@ async def _build_event_context() -> dict:
         "cfp_open_at_fr": cfp_open_at_fr,
         "cfp_close_at_en": cfp_close_at_en,
         "cfp_close_at_fr": cfp_close_at_fr,
+        "early_bird_status": early_bird_status,
+        "early_bird_open_at_en": early_bird_open_at_en,
+        "early_bird_open_at_fr": early_bird_open_at_fr,
+        "early_bird_close_at_en": early_bird_close_at_en,
+        "early_bird_close_at_fr": early_bird_close_at_fr,
+        "ticket_sales_status": ticket_sales_status,
+        "ticket_sales_open_at_en": ticket_sales_open_at_en,
+        "ticket_sales_open_at_fr": ticket_sales_open_at_fr,
+        "ticket_sales_close_at_en": ticket_sales_close_at_en,
+        "ticket_sales_close_at_fr": ticket_sales_close_at_fr,
     }
 
 
@@ -641,6 +853,44 @@ async def _fetch_featured_speakers() -> list[dict]:
     return []
 
 
+async def _submet_ticket_purchase_to_api(submission: TicketSubmissionPayload):
+    event_code = getattr(settings, "python_togo_event_code", None)
+    url = _build_api_url(f"/helper/ticket/submit/{event_code}")
+    headers = {
+        "Authorization": f"Bearer {settings.python_togo_api_key}",
+        "Content-Type": "application/json",
+    }
+    try:
+        async with httpx.AsyncClient(timeout=settings.python_togo_api_timeout_seconds) as client:
+            response = await client.post(url, headers=headers, json=submission.model_dump(mode="json"))
+        return response
+    except Exception as e:
+        if isinstance(e, HTTPException):
+            raise e
+        raise HTTPException(
+            status_code=500,
+            detail="An error occurred while submitting the ticket purchase.",
+        )
+
+
+def _extract_payment_url(data: object, headers: dict[str, str] | None = None) -> str | None:
+    if isinstance(data, dict):
+        for key in ("payment_url", "paymentUrl", "checkout_url", "checkoutUrl", "url", "link"):
+            value = data.get(key)
+            if isinstance(value, str) and value.strip():
+                return value.strip()
+        nested = data.get("data")
+        if isinstance(nested, dict):
+            nested_url = _extract_payment_url(nested, headers=headers)
+            if nested_url:
+                return nested_url
+    if headers:
+        location = headers.get("location") or headers.get("Location")
+        if isinstance(location, str) and location.strip():
+            return location.strip()
+    return None
+
+
 @router.get("/")
 async def home(request: Request):
     partner_sections = await _fetch_partner_sections()
@@ -701,14 +951,90 @@ async def venue(request: Request):
 
 
 @router.get("/tickets")
-async def tickets(request: Request):
-    return await _render_page_with_event(
+async def tickets(request: Request, payment_status: str | None = None, submission_id: str | None = None):
+    event_context = await _build_event_context()
+    ticket_rows = await _fetch_tickets()
+    ticket_catalog = _normalize_ticket_catalog(ticket_rows, event_context)
+
+    return render_page(
         request=request,
         name="2026_tickets_coming_soon.html",
         active_page="tickets",
-        page_css="coming-soon.css",
-        page_title="PyCon Togo 2026 — Tickets (Opening Soon)",
+        page_css="tickets.css",
+        page_title="PyCon Togo 2026 — Tickets",
+        extra_context={
+            **event_context,
+            "ticket_catalog": ticket_catalog,
+            "payment_status": payment_status,
+            "submission_id": submission_id,
+        },
     )
+
+
+@router.post("/tickets/submit")
+async def submit_ticket_purchase(request: Request, payload: TicketSubmissionPayload):
+    submission = payload.model_dump(mode="json")
+
+    proof = submission.get("studentProof")
+    if payload.ticket.isStudent:
+        if not proof:
+            raise HTTPException(
+                status_code=400,
+                detail="Student proof is required for student tickets.",
+            )
+
+        mime_type = (proof.get("mimeType") or "").strip().lower()
+        base64_value = (proof.get("base64") or "").strip()
+        if not mime_type or not base64_value:
+            raise HTTPException(
+                status_code=400,
+                detail="Student proof must be a PDF or image file.",
+            )
+        if mime_type not in {"application/pdf", "image/jpeg", "image/jpg", "image/png", "image/webp"}:
+            raise HTTPException(
+                status_code=400,
+                detail="Student proof must be a PDF or image file.",
+            )
+
+    response = await _submet_ticket_purchase_to_api(payload)
+    if response.status_code >= 400:
+        message = "Ticket submission failed"
+        try:
+            body = response.json()
+            message = body.get("message") or body.get("detail") or message
+        except ValueError:
+            message = response.text or message
+        raise HTTPException(
+            status_code=response.status_code,
+            detail=message,
+        )
+    response_payload = {}
+    try:
+        response_payload = response.json()
+    except ValueError:
+        response_payload = {}
+
+    payment_url = _extract_payment_url(
+        response_payload, headers=dict(response.headers))
+    if not payment_url:
+        raise HTTPException(
+            status_code=502,
+            detail="The payment link was not returned by the payment service.",
+        )
+
+    submission_id = hashlib.sha256(
+        json.dumps(submission, sort_keys=True,
+                   separators=(",", ":")).encode("utf-8")
+    ).hexdigest()[:16].upper()
+
+    return {
+        "ok": True,
+        "submission_id": submission_id,
+        "received_at": datetime.now(timezone.utc).isoformat(),
+        "payment_url": payment_url,
+        "return_url": f'{request.url_for("tickets")}?payment_status=success&submission_id={submission_id}',
+        "submission": submission,
+    }
 
 
 @router.get("/registration")

@@ -60,7 +60,7 @@
     outline: none;
   }
 
-  .speaker-card__photo-wrap {
+  .speaker-card_photo-wrap {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -68,7 +68,7 @@
     background: transparent;
   }
 
-  .speaker-card__photo {
+  .speaker-card_photo {
     width: min(196px, 100%);
     aspect-ratio: 1 / 1;
     object-fit: cover;
@@ -78,7 +78,7 @@
     background: #d9e4e8;
   }
 
-  .speaker-card__body {
+  .speaker-card_body {
     padding: 8px 14px 16px;
     display: flex;
     flex-direction: column;
@@ -87,7 +87,7 @@
     text-align: center;
   }
 
-  .speaker-card__name {
+  .speaker-card_name {
     margin: 0;
     font-size: 1.85rem;
     line-height: 1.2;
@@ -95,7 +95,7 @@
     font-family: var(--font-display);
   }
 
-  .speaker-card__title {
+  .speaker-card_title {
     margin: 0;
     color: #2b3139;
     font-size: .95rem;
@@ -103,7 +103,7 @@
     min-height: 42px;
   }
 
-  .speaker-card__footer {
+  .speaker-card_footer {
     margin-top: auto;
     padding-top: 6px;
     min-height: 56px;
@@ -112,7 +112,7 @@
     justify-content: center;
   }
 
-  .speaker-card__company-logo {
+  .speaker-card_company-logo {
     max-height: 52px;
     max-width: 172px;
     object-fit: contain;
@@ -133,7 +133,7 @@
     display: block;
   }
 
-  .speaker-modal__panel {
+  .speaker-modal_panel {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -149,18 +149,18 @@
     transition: transform .2s ease, opacity .2s ease;
   }
 
-  .speaker-modal.is-open .speaker-modal__panel {
+  .speaker-modal.is-open .speaker-modal_panel {
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
   }
 
-  .speaker-modal__backdrop {
+  .speaker-modal_backdrop {
     position: fixed;
     inset: 0;
     z-index: 0;
   }
 
-  .speaker-modal__close {
+  .speaker-modal_close {
     position: absolute;
     top: 0;
     right: 0;
@@ -177,7 +177,7 @@
     box-shadow: none;
   }
 
-  .speaker-modal__header {
+  .speaker-modal_header {
     display: grid;
     grid-template-columns: 220px minmax(0, 1fr);
     gap: 42px;
@@ -189,7 +189,7 @@
     align-items: center;
   }
 
-  .speaker-modal__photo {
+  .speaker-modal_photo {
     width: 196px;
     z-index: 1;
     height: 196px;
@@ -200,7 +200,7 @@
     margin: 0;
   }
 
-  .speaker-modal__header-copy {
+  .speaker-modal_header-copy {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -210,27 +210,27 @@
     align-items: flex-start;
   }
 
-  .speaker-modal__name {
+  .speaker-modal_name {
     margin: 0;
     font-size: clamp(28px, 3vw, 40px);
     line-height: 1.05;
     color: #111111;
   }
 
-  .speaker-modal__title {
+  .speaker-modal_title {
     margin: 0;
     color: #222831;
     font-size: 1.05rem;
   }
 
-  .speaker-modal__bio {
+  .speaker-modal_bio {
     margin: 0;
     color: var(--text-dark);
     line-height: 1.8;
     font-size: 16px;
   }
 
-  .speaker-modal__company-block {
+  .speaker-modal_company-block {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -239,7 +239,7 @@
     max-width: 100%;
   }
 
-  .speaker-modal__company-logo {
+  .speaker-modal_company-logo {
     display: block;
     max-height: 96px;
     max-width: 380px;
@@ -249,7 +249,7 @@
     margin: 0;
   }
 
-  .speaker-modal__body {
+  .speaker-modal_body {
     padding: 18px 36px 34px;
     background: #ffffff;
     width: min(780px, 100%);
@@ -257,28 +257,28 @@
     text-align: left;
   }
 
-  .speaker-modal__sessions {
+  .speaker-modal_sessions {
     margin-top: 30px;
     text-align: left;
   }
 
-  .speaker-modal__sessions-title {
+  .speaker-modal_sessions-title {
     margin: 0 0 16px;
     font-size: 2rem;
     color: var(--green);
     font-family: var(--font-display);
   }
 
-  .speaker-modal__sessions-list {
+  .speaker-modal_sessions-list {
     display: grid;
     gap: 18px;
   }
 
-  .speaker-modal__session-item {
+  .speaker-modal_session-item {
     padding: 0;
   }
 
-  .speaker-modal__session-title {
+  .speaker-modal_session-title {
     margin: 0 0 8px;
     font-weight: 700;
     color: var(--green);
@@ -286,7 +286,7 @@
     line-height: 1.35;
   }
 
-  .speaker-modal__session-meta {
+  .speaker-modal_session-meta {
     margin: 0;
     color: #1d2630;
     font-size: 1.05rem;
@@ -297,11 +297,11 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    .speaker-card__name {
+    .speaker-card_name {
       font-size: 1.55rem;
     }
 
-    .speaker-card__title {
+    .speaker-card_title {
       font-size: .9rem;
     }
   }
@@ -315,55 +315,55 @@
       padding: 20px;
     }
 
-    .speaker-card__name {
+    .speaker-card_name {
       font-size: 1.35rem;
     }
 
-    .speaker-card__title {
+    .speaker-card_title {
       font-size: .88rem;
       min-height: 0;
     }
 
-    .speaker-modal__header {
+    .speaker-modal_header {
       grid-template-columns: 1fr;
       gap: 20px;
       padding: 28px 22px 20px;
     }
 
-    .speaker-modal__photo {
+    .speaker-modal_photo {
       margin: 0 auto;
     }
 
-    .speaker-modal__header-copy {
+    .speaker-modal_header-copy {
       text-align: center;
       align-items: center;
     }
 
-    .speaker-modal__photo {
+    .speaker-modal_photo {
       width: 142px;
       height: 142px;
       margin-left: 0;
     }
 
-    .speaker-modal__company-logo {
+    .speaker-modal_company-logo {
       max-height: 74px;
       margin: 0 auto;
     }
 
-    .speaker-modal__body {
+    .speaker-modal_body {
       padding: 14px 22px 24px;
       text-align: center;
     }
 
-    .speaker-modal__sessions-title {
+    .speaker-modal_sessions-title {
       font-size: 1.6rem;
     }
 
-    .speaker-modal__session-title {
+    .speaker-modal_session-title {
       font-size: 1.1rem;
     }
 
-    .speaker-modal__session-meta {
+    .speaker-modal_session-meta {
       font-size: .95rem;
     }
   }
@@ -382,11 +382,11 @@
       padding: 14px;
     }
 
-    .speaker-card__photo {
+    .speaker-card_photo {
       width: min(170px, 100%);
     }
 
-    .speaker-modal__panel {
+    .speaker-modal_panel {
       width: calc(100vw - 20px);
       max-height: calc(100vh - 20px);
     }
@@ -523,21 +523,21 @@
           data-speaker-photo="{{ speaker.photo_url|default(speaker.image, true)|e }}"
           data-speaker-bio="{{ speaker.bio|e }}"
           data-speaker-sessions='{{ speaker.sessions | tojson if speaker.sessions else "[]" }}'>
-          <div class="speaker-card__photo-wrap">
-            <img class="speaker-card__photo" src="{{ speaker.photo_url|default(speaker.image, true) }}"
+          <div class="speaker-card_photo-wrap">
+            <img class="speaker-card_photo" src="{{ speaker.photo_url|default(speaker.image, true) }}"
               alt="{{ speaker.full_name }}">
           </div>
 
-          <div class="speaker-card__body">
-            <h3 class="speaker-card__name">{{ speaker.full_name }}</h3>
+          <div class="speaker-card_body">
+            <h3 class="speaker-card_name">{{ speaker.full_name }}</h3>
 
             {% if speaker.headline %}
-            <p class="speaker-card__title">{{ speaker.headline }}</p>
+            <p class="speaker-card_title">{{ speaker.headline }}</p>
             {% endif %}
 
-            <div class="speaker-card__footer">
+            <div class="speaker-card_footer">
               {% if speaker.company_logo_url %}
-              <img class="speaker-card__company-logo" src="{{ speaker.company_logo_url }}"
+              <img class="speaker-card_company-logo" src="{{ speaker.company_logo_url }}"
                 alt="{{ speaker.organization }}">
               {% endif %}
             </div>
@@ -676,29 +676,29 @@
 
 
   <div id="speakerModal" class="speaker-modal" aria-hidden="true">
-    <div class="speaker-modal__backdrop" data-modal-close></div>
-    <div class="speaker-modal__panel" role="dialog" aria-modal="true" aria-labelledby="speakerModalName">
-      <button class="speaker-modal__close" type="button" aria-label="Close speaker details"
+    <div class="speaker-modal_backdrop" data-modal-close></div>
+    <div class="speaker-modal_panel" role="dialog" aria-modal="true" aria-labelledby="speakerModalName">
+      <button class="speaker-modal_close" type="button" aria-label="Close speaker details"
         data-modal-close>&times;</button>
 
-      <div class="speaker-modal__header">
-        <img id="speakerModalPhoto" class="speaker-modal__photo" src="" alt="">
-        <div class="speaker-modal__header-copy">
-          <h3 id="speakerModalName" class="speaker-modal__name"></h3>
-          <p id="speakerModalTitle" class="speaker-modal__title"></p>
-          <div id="speakerModalCompanyBlock" class="speaker-modal__company-block" hidden>
-            <img id="speakerModalCompanyLogo" class="speaker-modal__company-logo" src="" alt="">
+      <div class="speaker-modal_header">
+        <img id="speakerModalPhoto" class="speaker-modal_photo" src="" alt="">
+        <div class="speaker-modal_header-copy">
+          <h3 id="speakerModalName" class="speaker-modal_name"></h3>
+          <p id="speakerModalTitle" class="speaker-modal_title"></p>
+          <div id="speakerModalCompanyBlock" class="speaker-modal_company-block" hidden>
+            <img id="speakerModalCompanyLogo" class="speaker-modal_company-logo" src="" alt="">
           </div>
         </div>
       </div>
 
-      <div class="speaker-modal__body">
-        <p id="speakerModalBio" class="speaker-modal__bio"></p>
+      <div class="speaker-modal_body">
+        <p id="speakerModalBio" class="speaker-modal_bio"></p>
 
-        <div id="speakerModalSessionsBlock" class="speaker-modal__sessions" hidden>
-          <h4 class="speaker-modal__sessions-title" data-i18n-en="Conference Sessions"
+        <div id="speakerModalSessionsBlock" class="speaker-modal_sessions" hidden>
+          <h4 class="speaker-modal_sessions-title" data-i18n-en="Conference Sessions"
             data-i18n-fr="Sessions de la conférence">Conference Sessions</h4>
-          <div id="speakerModalSessionsList" class="speaker-modal__sessions-list"></div>
+          <div id="speakerModalSessionsList" class="speaker-modal_sessions-list"></div>
         </div>
       </div>
     </div>
@@ -715,7 +715,7 @@
       const modalBio = document.getElementById('speakerModalBio');
       const sessionsBlock = document.getElementById('speakerModalSessionsBlock');
       const sessionsList = document.getElementById('speakerModalSessionsList');
-      const modalPanel = modal.querySelector('.speaker-modal__panel');
+      const modalPanel = modal.querySelector('.speaker-modal_panel');
 
       if (!modal) return;
 
@@ -749,9 +749,9 @@
         if (sessions.length) {
           sessionsBlock.hidden = false;
           sessionsList.innerHTML = sessions.map(session => `
-            <div class="speaker-modal__session-item">
-              <p class="speaker-modal__session-title">${session.title || ''}</p>
-              <p class="speaker-modal__session-meta">${[session.time, session.room].filter(Boolean).join(' • ')}</p>
+            <div class="speaker-modal_session-item">
+              <p class="speaker-modal_session-title">${session.title || ''}</p>
+              <p class="speaker-modal_session-meta">${[session.time, session.room].filter(Boolean).join(' • ')}</p>
             </div>
           `).join('');
         } else {
