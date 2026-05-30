@@ -267,6 +267,19 @@ def _guess_ticket_limit(ticket_id: str, ticket_name: str) -> int:
     return 4
 
 
+def _ticket_order_priority(ticket_id: str, ticket_name: str, description: str) -> int:
+    label = f"{ticket_id} {ticket_name} {description}".lower()
+    if "student" in label or "etudiant" in label or "etudiante" in label:
+        return 0
+    if "professional" in label or "professionnel" in label or "pro" in label:
+        return 1
+    if "premium" in label or "vip" in label:
+        return 2
+    if "dina" in label:
+        return 3
+    return 4
+
+
 def _is_student_ticket(ticket_id: str, ticket_name: str, description: str) -> bool:
     label = f"{ticket_id} {ticket_name} {description}".lower()
     return "student" in label or "etudiant" in label or "etudiante" in label
@@ -346,7 +359,17 @@ def _normalize_ticket_catalog(rows: list[dict], event: dict) -> list[dict]:
             "salesStatus": ticket_sales_status,
         })
 
-    return catalog
+    return sorted(
+        catalog,
+        key=lambda ticket: (
+            _ticket_order_priority(
+                ticket.get("id", ""),
+                ticket.get("name", {}).get("en", ""),
+                ticket.get("description", {}).get("en", ""),
+            ),
+            ticket.get("name", {}).get("en", ""),
+        ),
+    )
 
 
 async def _fetch_tickets() -> list[dict]:

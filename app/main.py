@@ -115,17 +115,6 @@ async def http_exception_handler(request: Request, exc: HTTPException):
         )
 
 
-@app.get("/talents")
-def talents(request: Request):
-    return template.TemplateResponse(
-        request=request,
-        name="talents.html",
-        context={
-            "year": year,
-        },
-    )
-
-
 @app.post("/contact/send")
 async def send_contact_message(payload: ContactFormPayload):
     normalized_payload = {

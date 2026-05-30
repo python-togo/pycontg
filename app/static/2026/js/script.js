@@ -483,19 +483,55 @@ const defaultTicketCatalog = [
   },
 ];
 
+function ticketOrderPriority(ticket) {
+  const label = `${ticket?.id || ""} ${ticket?.name?.en || ""} ${ticket?.name?.fr || ""} ${ticket?.description?.en || ""} ${ticket?.description?.fr || ""}`.toLowerCase();
+
+  if (label.includes("student") || label.includes("etudiant") || label.includes("etudiante")) return 0;
+  if (label.includes("professional") || label.includes("professionnel") || label.includes("pro")) return 1;
+  if (label.includes("premium") || label.includes("vip")) return 2;
+  if (label.includes("dina")) return 3;
+  return 4;
+}
+
+function sortTicketCatalog(catalog) {
+  return [...catalog].sort((a, b) => {
+    const priorityDiff = ticketOrderPriority(a) - ticketOrderPriority(b);
+    if (priorityDiff !== 0) return priorityDiff;
+
+    const nameA = (a?.name?.[currentLang] || a?.name?.en || "").toLowerCase();
+    const nameB = (b?.name?.[currentLang] || b?.name?.en || "").toLowerCase();
+    return nameA.localeCompare(nameB);
+  });
+}
+
 function readTicketCatalogFromBackend() {
   if (Array.isArray(window.pycontgTicketCatalog) && window.pycontgTicketCatalog.length) {
-    return window.pycontgTicketCatalog;
+    return sortTicketCatalog(window.pycontgTicketCatalog);
   }
 
   const payload = document.getElementById("ticket-catalog-data");
   if (!payload) return defaultTicketCatalog;
 
+  const normalizeCatalog = (value) => {
+    if (Array.isArray(value)) {
+      return value;
+    }
+
+    if (value && typeof value === "object") {
+      if (Array.isArray(value.data)) return value.data;
+      if (Array.isArray(value.items)) return value.items;
+      if (Array.isArray(value.catalog)) return value.catalog;
+    }
+
+    return [];
+  };
+
   try {
     const parsed = JSON.parse(payload.textContent || "[]");
-    return Array.isArray(parsed) && parsed.length ? parsed : defaultTicketCatalog;
+    const catalog = normalizeCatalog(parsed);
+    return catalog.length ? sortTicketCatalog(catalog) : sortTicketCatalog(defaultTicketCatalog);
   } catch (error) {
-    return defaultTicketCatalog;
+    return sortTicketCatalog(defaultTicketCatalog);
   }
 }
 
@@ -730,6 +766,8 @@ function openTicketModal() {
   const modal = document.getElementById("ticket-modal");
   if (!modal) return;
   syncStudentProofField(getTicketById(ticketState.selectedTicketId));
+  const form = document.getElementById("ticket-form");
+  if (form) setTicketFormSubmitting(form, false);
   modal.classList.add("open");
   modal.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
@@ -743,6 +781,8 @@ function closeTicketModal() {
   modal.classList.remove("open");
   modal.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
+  const form = document.getElementById("ticket-form");
+  if (form) setTicketFormSubmitting(form, false);
 }
 
 function showFieldError(fieldId, message) {
@@ -754,6 +794,27 @@ function clearFieldErrors() {
   document.querySelectorAll(".field-error").forEach(el => { el.textContent = ""; });
   const formError = document.getElementById("ticket-form-error");
   if (formError) formError.textContent = "";
+}
+
+function setTicketFormSubmitting(form, isSubmitting) {
+  const submitBtn = form.querySelector("button[type='submit']");
+  if (!submitBtn) return;
+
+  if (isSubmitting) {
+    if (!submitBtn.dataset.defaultLabel) {
+      submitBtn.dataset.defaultLabel = submitBtn.textContent || "";
+    }
+    submitBtn.disabled = true;
+    submitBtn.textContent = currentLang === "fr"
+      ? (submitBtn.getAttribute("data-loading-fr") || "Envoi en cours...")
+      : (submitBtn.getAttribute("data-loading-en") || "Sending...");
+    form.dataset.submitting = "true";
+    return;
+  }
+
+  submitBtn.disabled = false;
+  submitBtn.textContent = submitBtn.dataset.defaultLabel || (currentLang === "fr" ? "Continuer vers le paiement" : "Continue to payment");
+  delete form.dataset.submitting;
 }
 
 function validateTicketForm(form) {
@@ -908,14 +969,15 @@ function initTicketsPage() {
   if (form) {
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
+      if (form.dataset.submitting === "true") return;
       if (!validateTicketForm(form)) return;
 
       const ticket = getTicketById(ticketState.selectedTicketId);
       if (!ticket) return;
       if (!isTicketSalesOpen(ticket) || maxSelectable(ticket) === 0) return;
-      const payload = await buildTicketSubmissionPayload(form, ticket);
-
       try {
+        setTicketFormSubmitting(form, true);
+        const payload = await buildTicketSubmissionPayload(form, ticket);
         const submission = await submitTicketPurchase(payload);
         const paymentUrl = submission.payment_url || submission.paymentUrl;
         if (!paymentUrl) {
@@ -927,6 +989,7 @@ function initTicketsPage() {
         closeTicketModal();
         window.location.assign(paymentUrl);
       } catch (error) {
+        setTicketFormSubmitting(form, false);
         const formError = document.getElementById("ticket-form-error");
         if (formError) {
           formError.textContent = error instanceof Error ? error.message : "Unable to submit ticket data.";
