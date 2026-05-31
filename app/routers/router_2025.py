@@ -1,17 +1,10 @@
 import requests
-from uuid import uuid4, UUID
-from app.utils.validator import (
-    is_valid_email,
-)
+
 
 from app.database.datas import (
     get_swags,
     get_sponsorteirs,
-    get_sponsortirtbytitle,
-    get_something_email,
-    insert_something,
-    # get_everything,
-    # get_everything_where,
+
 )
 from datetime import datetime, timedelta, timezone
 from dotenv import load_dotenv

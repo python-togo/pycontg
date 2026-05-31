@@ -1,5 +1,7 @@
 import typing
 
+from contextlib import asynccontextmanager
+
 from app.schemas.models import ContactFormPayload
 if not hasattr(typing, "_ClassVar") and hasattr(typing, "ClassVar"):
     typing._ClassVar = typing.ClassVar
@@ -16,9 +18,20 @@ from pathlib import Path
 from app.core.settings import settings
 import httpx
 from app.utils.email_validator import validate_email
-
+import redis.asyncio as redis
 
 ENV = settings.env
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+
+    redis_client = redis.from_url(settings.redis_url)
+    app.state.redis_client = redis_client
+
+    yield
+
+    await app.state.redis_client.close()
 
 
 app = FastAPI(
@@ -29,6 +42,7 @@ app = FastAPI(
                                            "local", "development"] else None,
     docs_url="/docs" if ENV in ["dev", "local", "development"] else None,
     redoc_url="/redoc" if ENV in ["dev", "local", "development"] else None,
+    lifespan=lifespan,
 )
 
 BASE_DIR = Path(__file__).resolve().parent

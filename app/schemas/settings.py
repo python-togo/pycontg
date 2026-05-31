@@ -46,3 +46,8 @@ class Settings(BaseModel):
         title="Python Togo Event Code",
         description="Event code used in sponsorship inquiry endpoint path",
     )
+    redis_url: str = Field(
+        "redis://localhost:6379/0",
+        title="Redis URL",
+        description="The URL for connecting to the Redis instance (e.g., redis://localhost:6379/0)",
+    )   

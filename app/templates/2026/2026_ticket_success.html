@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="page active" id="page-ticket-success">
+    <section class="page-hero ticket-status-hero">
+        <div class="container">
+            <span class="eyebrow reveal" data-i18n-en="Tickets" data-i18n-fr="Billetterie">Billetterie</span>
+            <h1 class="reveal reveal-d1" data-i18n-html-en="Payment <em>confirmed</em>"
+                data-i18n-html-fr="Paiement <em>confirme</em>">Paiement <em>confirme</em></h1>
+            <p class="page-hero-sub reveal reveal-d2"
+                data-i18n-en="Your order has been received and your ticket is on the way."
+                data-i18n-fr="Votre commande a ete recue et votre ticket est en route.">
+                Votre commande a ete recue et votre ticket est en route.
+            </p>
+        </div>
+    </section>
+
+    <section class="section ticket-status-wrap">
+        <div class="container">
+            <div class="ticket-status-card reveal reveal-d1">
+                <span class="ticket-status-badge is-success" data-i18n-en="Payment confirmed"
+                    data-i18n-fr="Paiement confirme">Paiement confirme</span>
+                <h2 data-i18n-en="Thank you for your purchase" data-i18n-fr="Merci pour votre achat">Merci pour votre
+                    achat</h2>
+                <p class="ticket-status-copy"
+                    data-i18n-en="We have successfully received your payment. In the next few minutes, you will receive an email with your ticket and the details of your purchase."
+                    data-i18n-fr="Nous avons bien recu votre paiement. Dans les prochaines minutes, vous recevrez un email avec votre ticket et les details de votre achat.">
+                    Nous avons bien recu votre paiement. Dans les prochaines minutes, vous recevrez un email avec votre
+                    ticket et les details de votre achat.
+                </p>
+                <p class="ticket-status-copy"
+                    data-i18n-en="If you do not see the message, please check your spam or promotions folder first."
+                    data-i18n-fr="Si vous ne voyez pas le message, verifiez d'abord vos dossiers spam ou promotions.">
+                    Si vous ne voyez pas le message, verifiez d'abord vos dossiers spam ou promotions.
+                </p>
+                <div class="ticket-status-note"
+                    data-i18n-en="Need help? Write to team@pytogo.org and our team will assist you."
+                    data-i18n-fr="Besoin d'aide ? Ecrivez a team@pytogo.org et notre equipe vous aidera.">
+                    Besoin d'aide ? Ecrivez a team@pytogo.org et notre equipe vous aidera.
+                </div>
+                <div class="ticket-status-actions">
+                    <a class="btn btn-primary" href="/tickets" data-i18n-en="Back to tickets"
+                        data-i18n-fr="Retour aux tickets">Retour aux tickets</a>
+                    <a class="btn btn-ghost" href="mailto:team@pytogo.org" data-i18n-en="Contact the team"
+                        data-i18n-fr="Contacter l'equipe">Contacter l'equipe</a>
+                </div>
+                <div class="ticket-status-footer">
+                    <p data-i18n-en="We will keep things moving and make sure your participation is ready on time."
+                        data-i18n-fr="Nous gardons le rythme pour que votre participation soit prete a temps.">
+                        Nous gardons le rythme pour que votre participation soit prete a temps.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

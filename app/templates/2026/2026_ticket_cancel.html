@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="page active" id="page-ticket-cancel">
+    <section class="page-hero ticket-status-hero">
+        <div class="container">
+            <span class="eyebrow reveal" data-i18n-en="Tickets" data-i18n-fr="Billetterie">Billetterie</span>
+            <h1 class="reveal reveal-d1" data-i18n-html-en="Payment <em>not completed</em>"
+                data-i18n-html-fr="Paiement <em>non termine</em>">Paiement <em>non termine</em></h1>
+            <p class="page-hero-sub reveal reveal-d2"
+                data-i18n-en="No pressure. You can come back when the timing is right."
+                data-i18n-fr="Pas de pression. Vous pouvez revenir quand le moment sera meilleur.">
+                Pas de pression. Vous pouvez revenir quand le moment sera meilleur.
+            </p>
+        </div>
+    </section>
+
+    <section class="section ticket-status-wrap">
+        <div class="container">
+            <div class="ticket-status-card reveal reveal-d1">
+                <span class="ticket-status-badge is-cancel" data-i18n-en="Action needed"
+                    data-i18n-fr="Action requise">Action requise</span>
+                <h2 data-i18n-en="Let's keep it moving" data-i18n-fr="Continuons a avancer">Continuons a avancer</h2>
+                <p class="ticket-status-copy"
+                    data-i18n-en="Your payment was not completed, but that is okay. If you still want to secure your place, you can simply try again when you are ready."
+                    data-i18n-fr="Votre paiement n'a pas ete finalise, mais ce n'est pas grave. Si vous souhaitez toujours reserver votre place, vous pouvez simplement recommencer quand vous serez pret.">
+                    Votre paiement n'a pas ete finalise, mais ce n'est pas grave. Si vous souhaitez toujours reserver
+                    votre place, vous pouvez simplement recommencer quand vous serez pret.
+                </p>
+                <p class="ticket-status-copy"
+                    data-i18n-en="If you need adjustments, support, or a different arrangement, please write to team@pytogo.org and we will help you move forward."
+                    data-i18n-fr="Si vous avez besoin d'ajustements, d'aide ou d'une autre solution, ecrivez a team@pytogo.org et nous vous aiderons a avancer.">
+                    Si vous avez besoin d'ajustements, d'aide ou d'une autre solution, ecrivez a team@pytogo.org et nous
+                    vous aiderons a avancer.
+                </p>
+                <div class="ticket-status-note"
+                    data-i18n-en="Good businesses stay responsive. We are here to make the process smoother if you decide to continue."
+                    data-i18n-fr="Les bonnes affaires restent a l'ecoute. Nous sommes la pour rendre le processus plus fluide si vous decidez de continuer.">
+                    Les bonnes affaires restent a l'ecoute. Nous sommes la pour rendre le processus plus fluide si vous
+                    decidez de continuer.
+                </div>
+                <div class="ticket-status-actions">
+                    <a class="btn btn-primary" href="/tickets" data-i18n-en="Try again"
+                        data-i18n-fr="Reessayer">Reessayer</a>
+                    <a class="btn btn-ghost" href="mailto:team@pytogo.org" data-i18n-en="Write to us"
+                        data-i18n-fr="Nous ecrire">Nous ecrire</a>
+                </div>
+                <div class="ticket-status-footer">
+                    <p data-i18n-en="If your plans change, we will be happy to help you complete the registration later."
+                        data-i18n-fr="Si votre decision change, nous serons heureux de vous aider a finaliser l'inscription plus tard.">
+                        Si votre decision change, nous serons heureux de vous aider a finaliser l'inscription plus tard.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

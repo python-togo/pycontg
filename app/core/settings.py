@@ -22,4 +22,5 @@ settings = Settings(
         "PYTHON_TOGO_API_TIMEOUT_SECONDS", cast=int, default=12
     ),
     python_togo_event_code=config("PYTHON_TOGO_EVENT_CODE"),
+    redis_url=config("REDIS_URL", default="redis://localhost:6379/0")
 )

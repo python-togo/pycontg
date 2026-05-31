@@ -1,11 +1,7 @@
 
-import base64
-import binascii
 from typing import Any, Literal
 import hashlib
-import hmac
 import json
-from threading import Lock
 
 import httpx
 from fastapi import APIRouter, HTTPException, Request
@@ -863,6 +859,7 @@ async def _fetch_featured_speakers() -> list[dict]:
     """Fetch featured speakers from the API. This is a placeholder implementation and should be updated to match the actual API response structure."""
     event_code = getattr(settings, "python_togo_event_code", None)
     url = _build_api_url(f"/speakers/featured/{event_code}")
+
     headers = {"Authorization": f"Bearer {settings.python_togo_api_key}"}
     try:
         async with httpx.AsyncClient(timeout=settings.python_togo_api_timeout_seconds) as client:
@@ -876,18 +873,27 @@ async def _fetch_featured_speakers() -> list[dict]:
     return []
 
 
-async def _submet_ticket_purchase_to_api(submission: TicketSubmissionPayload):
+async def _submit_ticket_purchase_to_api(submission: TicketSubmissionPayload, request):
     event_code = getattr(settings, "python_togo_event_code", None)
+    submission_data = submission.model_dump(mode="json")
+    submission_data.update({
+        "success_page_url": str(request.url_for("ticket_success")),
+        "cancel_page_url": str(request.url_for("ticket_cancel")),
+    })
     url = _build_api_url(f"/helper/ticket/submit/{event_code}")
     headers = {
         "Authorization": f"Bearer {settings.python_togo_api_key}",
         "Content-Type": "application/json",
     }
+    print("Submitting ticket purchase to API:", submission_data)  # Debug log
     try:
         async with httpx.AsyncClient(timeout=settings.python_togo_api_timeout_seconds) as client:
-            response = await client.post(url, headers=headers, json=submission.model_dump(mode="json"))
+            response = await client.post(url, headers=headers, json=submission_data)
         return response
     except Exception as e:
+        print("Error submitting ticket purchase to API:", str(e))  # Debug log
+        import traceback
+        traceback.print_exc()  # Print stack trace for debugging
         if isinstance(e, HTTPException):
             raise e
         raise HTTPException(
@@ -975,6 +981,12 @@ async def venue(request: Request):
 
 @router.get("/tickets")
 async def tickets(request: Request, payment_status: str | None = None, submission_id: str | None = None):
+    status = (payment_status or "").strip().lower()
+    if status == "success":
+        return RedirectResponse(url=str(request.url_for("ticket_success")), status_code=302)
+    if status in {"cancel", "cancelled", "canceled", "failed"}:
+        return RedirectResponse(url=str(request.url_for("ticket_cancel")), status_code=302)
+
     event_context = await _build_event_context()
     ticket_rows = await _fetch_tickets()
     ticket_catalog = _normalize_ticket_catalog(ticket_rows, event_context)
@@ -991,6 +1003,36 @@ async def tickets(request: Request, payment_status: str | None = None, submissio
             "payment_status": payment_status,
             "submission_id": submission_id,
         },
+    )
+
+
+@router.get("/tickets/success")
+async def ticket_success(request: Request, token: str):
+    real_registration_token = await request.app.state.redis_client.get(
+        f"ticket_registration_token:{token}")
+    if not real_registration_token or real_registration_token.decode("utf-8") != token:
+        return RedirectResponse(url=str(request.url_for("tickets")), status_code=302)
+    return render_page(
+        request=request,
+        name="2026_ticket_success.html",
+        active_page="tickets",
+        page_css="ticket-status.css",
+        page_title="PyCon Togo 2026 — Payment confirmed",
+    )
+
+
+@router.get("/tickets/cancel")
+async def ticket_cancel(request: Request, token: str):
+    real_registration_token = await request.app.state.redis_client.get(
+        f"ticket_registration_token:{token}")
+    if not real_registration_token or real_registration_token.decode("utf-8") != token:
+        return RedirectResponse(url=str(request.url_for("tickets")), status_code=302)
+    return render_page(
+        request=request,
+        name="2026_ticket_cancel.html",
+        active_page="tickets",
+        page_css="ticket-status.css",
+        page_title="PyCon Togo 2026 — Payment not completed",
     )
 
 
@@ -1019,7 +1061,7 @@ async def submit_ticket_purchase(request: Request, payload: TicketSubmissionPayl
                 detail="Student proof must be a PDF or image file.",
             )
 
-    response = await _submet_ticket_purchase_to_api(payload)
+    response = await _submit_ticket_purchase_to_api(payload, request)
     if response.status_code >= 400:
         message = "Ticket submission failed"
         try:
@@ -1055,7 +1097,8 @@ async def submit_ticket_purchase(request: Request, payload: TicketSubmissionPayl
         "submission_id": submission_id,
         "received_at": datetime.now(timezone.utc).isoformat(),
         "payment_url": payment_url,
-        "return_url": f'{request.url_for("tickets")}?payment_status=success&submission_id={submission_id}',
+        "return_url": str(request.url_for("ticket_success")),
+        "cancel_url": str(request.url_for("ticket_cancel")),
         "submission": submission,
     }
 
