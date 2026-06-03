@@ -355,6 +355,16 @@ function initNavbarScroll() {
 }
 
 /* ── MOBILE MENU ── */
+function toggleDrawerSection(sectionId) {
+  const section = document.getElementById(sectionId);
+  const trigger = document.querySelector(`[aria-controls="${sectionId}"]`);
+  if (!section || !trigger) return;
+
+  const isOpen = section.classList.toggle("open");
+  trigger.classList.toggle("open", isOpen);
+  trigger.setAttribute("aria-expanded", String(isOpen));
+}
+
 function toggleMenu() {
   const drawer = document.getElementById("drawer");
   const overlay = document.getElementById("drawer-overlay");
@@ -369,6 +379,11 @@ function closeMenu() {
   document.getElementById("drawer").classList.remove("open");
   document.getElementById("drawer-overlay").classList.remove("open");
   document.getElementById("hamburger").classList.remove("open");
+  document.querySelectorAll(".drawer-accordion-panel.open").forEach(panel => panel.classList.remove("open"));
+  document.querySelectorAll(".drawer-accordion-trigger.open").forEach(trigger => {
+    trigger.classList.remove("open");
+    trigger.setAttribute("aria-expanded", "false");
+  });
   document.body.style.overflow = "";
 }
 

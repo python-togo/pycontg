@@ -98,21 +98,37 @@
                 aria-label="Passer en français">FR</button>
         </div>
         <a class="drawer-link" href="/" onclick="closeMenu()" data-i18n-en="Home" data-i18n-fr="Accueil">Home</a>
-        <a class="drawer-link" href="/about" onclick="closeMenu()" data-i18n-en="About"
-            data-i18n-fr="À Propos">About</a>
-        <a class="drawer-link drawer-sublink" href="/about#about-us" onclick="closeMenu()" data-i18n-en="• About us"
-            data-i18n-fr="• À propos de nous">• About us</a>
-        <a class="drawer-link drawer-sublink" href="/coc" onclick="closeMenu()" data-i18n-en="• Code of Conduct"
-            data-i18n-fr="• Code of Conduct">• Code of Conduct</a>
-        <a class="drawer-link drawer-sublink" href="/health_security" onclick="closeMenu()"
-            data-i18n-en="• Health & Safety Policy" data-i18n-fr="• Politique Santé & Sécurité">• Health & Safety
-            Policy</a>
-        <a class="drawer-link" href="/partners" onclick="closeMenu()" data-i18n-en="Sponsors"
-            data-i18n-fr="Sponsors">Sponsors</a>
-        <a class="drawer-link" href="/sponsors" onclick="closeMenu()" data-i18n-en="Become Sponsor"
-            data-i18n-fr="Sponsoriser">Become Sponsor</a>
-        <a class="drawer-link drawer-sublink" href="/team" onclick="closeMenu()" data-i18n-en="• Team"
-            data-i18n-fr="• Équipe">• Team</a>
+        <div class="drawer-section">
+            <button class="drawer-accordion-trigger" type="button" onclick="toggleDrawerSection('drawer-about')"
+                aria-expanded="false" aria-controls="drawer-about">
+                <span class="drawer-accordion-label" data-i18n-en="About" data-i18n-fr="À Propos">About</span>
+                <span class="drawer-accordion-icon" aria-hidden="true">▾</span>
+            </button>
+            <div class="drawer-accordion-panel" id="drawer-about">
+                <a class="drawer-link drawer-sublink" href="/about#about-us" onclick="closeMenu()"
+                    data-i18n-en="About us" data-i18n-fr="À propos de nous">About us</a>
+                <a class="drawer-link drawer-sublink" href="/coc" onclick="closeMenu()" data-i18n-en="Code of Conduct"
+                    data-i18n-fr="Code of Conduct">Code of Conduct</a>
+                <a class="drawer-link drawer-sublink" href="/health_security" onclick="closeMenu()"
+                    data-i18n-en="Health & Safety Policy" data-i18n-fr="Politique Santé & Sécurité">Health & Safety
+                    Policy</a>
+                <a class="drawer-link drawer-sublink" href="/team" onclick="closeMenu()" data-i18n-en="Team"
+                    data-i18n-fr="Équipe">Team</a>
+            </div>
+        </div>
+        <div class="drawer-section">
+            <button class="drawer-accordion-trigger" type="button" onclick="toggleDrawerSection('drawer-sponsors')"
+                aria-expanded="false" aria-controls="drawer-sponsors">
+                <span class="drawer-accordion-label" data-i18n-en="Sponsors" data-i18n-fr="Sponsors">Sponsors</span>
+                <span class="drawer-accordion-icon" aria-hidden="true">▾</span>
+            </button>
+            <div class="drawer-accordion-panel" id="drawer-sponsors">
+                <a class="drawer-link drawer-sublink" href="/partners" onclick="closeMenu()" data-i18n-en="Sponsors"
+                    data-i18n-fr="Sponsors">Sponsors</a>
+                <a class="drawer-link drawer-sublink" href="/sponsors" onclick="closeMenu()"
+                    data-i18n-en="Become Sponsor" data-i18n-fr="Sponsoriser">Become Sponsor</a>
+            </div>
+        </div>
         <a class="drawer-link" href="/contact" onclick="closeMenu()" data-i18n-en="Contact"
             data-i18n-fr="Contact">Contact</a>
         <a class="drawer-link" href="/visit" onclick="closeMenu()" data-i18n-en="Visit Togo"

@@ -251,13 +251,11 @@ p:last-child {
 .btn-primary {
   background: var(--green);
   color: white;
-  box-shadow: 0 4px 14px rgba(87, 182, 127, .28);
+  /*.about-grid: 0 4px 14px rgba(87, 182, 127, .28);*/
 }
 
 .btn-primary:hover {
-  background: var(--green-mid);
-  transform: translateY(-1px);
-  box-shadow: 0 7px 20px rgba(87, 182, 127, .3);
+  /*background: var(--green-mid);*/
 }
 
 .btn-outline {
@@ -612,6 +610,8 @@ p:last-child {
   border-left: 1px solid var(--border);
   box-shadow: -8px 0 32px rgba(0, 0, 0, .1);
   transition: right .3s cubic-bezier(.25, .46, .45, .94);
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .drawer.open {
@@ -665,6 +665,53 @@ p:last-child {
 .drawer-link:hover {
   background: var(--green-dim);
   color: var(--green);
+}
+
+.drawer-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer-accordion-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 13px 14px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transition: all .18s;
+}
+
+.drawer-accordion-trigger:hover,
+.drawer-accordion-trigger.open {
+  background: var(--green-dim);
+  color: var(--green);
+}
+
+.drawer-accordion-icon {
+  transition: transform .2s ease;
+}
+
+.drawer-accordion-trigger.open .drawer-accordion-icon {
+  transform: rotate(180deg);
+}
+
+.drawer-accordion-panel {
+  display: none;
+  flex-direction: column;
+  margin-bottom: 6px;
+}
+
+.drawer-accordion-panel.open {
+  display: flex;
 }
 
 .drawer-sublink {
