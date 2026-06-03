@@ -1472,3 +1472,8 @@ def feedback(request: Request):
 def shop(request: Request):
     # TODO - create a shop page with conference merchandise
     pass
+
+
+@router.get("/30daysofpython")
+def _30daysofpython(request: Request):
+    return RedirectResponse(url="https://fata.app/challenge/pycon-togo-2026", status_code=302)
