@@ -60,18 +60,18 @@ proposal_closing_date = datetime(
     2025, 6, 30, 16).strftime("%d %B %Y at %H:%M UTC")
 
 
-API_ROOT = os.getenv("API_ROOT", "http://127.0.0.1:8000/api")
-speakers_list = requests.get(f"{API_ROOT}/speakers")
-if speakers_list.status_code == 200:
-    speakers_list = speakers_list.json()
-else:
+API_ROOT = os.getenv("API_ROOT", "")
+
+try:
+    _r = requests.get(f"{API_ROOT}/speakers", timeout=5) if API_ROOT else None
+    speakers_list = _r.json() if _r and _r.status_code == 200 else []
+except Exception:
     speakers_list = []
 
-
-paidsponsors = requests.get(f"{API_ROOT}/sponsors")
-if paidsponsors.status_code == 200:
-    paidsponsors = paidsponsors.json()
-else:
+try:
+    _r = requests.get(f"{API_ROOT}/sponsors", timeout=5) if API_ROOT else None
+    paidsponsors = _r.json() if _r and _r.status_code == 200 else []
+except Exception:
     paidsponsors = []
 
 

@@ -1474,6 +1474,35 @@ def shop(request: Request):
     pass
 
 
+async def _fetch_job_offers() -> list[dict]:
+    event_code = getattr(settings, "python_togo_event_code", None)
+    if not event_code:
+        return []
+    headers = {"Authorization": f"Bearer {settings.python_togo_api_key}"}
+    url = _build_api_url(f"/job-offers/list/{event_code}")
+    try:
+        async with httpx.AsyncClient(timeout=settings.python_togo_api_timeout_seconds) as client:
+            response = await client.get(url, headers=headers)
+        if response.status_code < 400:
+            return _extract_partner_rows(response.json())
+    except Exception:
+        return []
+    return []
+
+
+@router.get("/jobs")
+async def jobs(request: Request):
+    job_offers = await _fetch_job_offers()
+    return await _render_page_with_event(
+        request=request,
+        name="2026_jobs.html",
+        active_page="jobs",
+        page_css="jobs.css",
+        page_title="PyCon Togo 2026 — Job Board",
+        extra_context={"job_offers": job_offers},
+    )
+
+
 @router.get("/30daysofpython")
 def _30daysofpython(request: Request):
     return RedirectResponse(url="https://fata.app/challenge/pycon-togo-2026", status_code=302)

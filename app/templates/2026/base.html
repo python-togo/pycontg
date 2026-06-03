@@ -42,7 +42,7 @@
                 <a class="nav-link{% if active_page == 'home' %} active{% endif %}" data-i18n-en="Home"
                     data-i18n-fr="Accueil" href="/">Home</a>
                 <div class="nav-dropdown">
-                    <a class="nav-link nav-dropdown-trigger{% if active_page in ['about', 'team'] %} active{% endif %}"
+                    <a class="nav-link nav-dropdown-trigger{% if active_page in ['about', 'team', 'jobs'] %} active{% endif %}"
                         href="/about">
                         <span class="nav-dropdown-label" data-i18n-en="About" data-i18n-fr="À Propos">About</span>
                         <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
@@ -57,6 +57,8 @@
                         <a class="nav-dropdown-item" href="/team" data-i18n-en="Team" data-i18n-fr="Équipe">Team</a>
                         <a class="nav-dropdown-item" href="/visit" data-i18n-en="Visit Togo"
                             data-i18n-fr="Visiter Togo">Visit Togo</a>
+                        <a class="nav-dropdown-item{% if active_page == 'jobs' %} active{% endif %}" href="/jobs"
+                            data-i18n-en="Job Board" data-i18n-fr="Offres d'emploi">Job Board</a>
                     </div>
                 </div>
                 <a class="nav-link{% if active_page == 'partners' %} active{% endif %}" data-i18n-en="Sponsors"
@@ -114,6 +116,8 @@
                     Policy</a>
                 <a class="drawer-link drawer-sublink" href="/team" onclick="closeMenu()" data-i18n-en="Team"
                     data-i18n-fr="Équipe">Team</a>
+                <a class="drawer-link drawer-sublink" href="/jobs" onclick="closeMenu()"
+                    data-i18n-en="Job Board" data-i18n-fr="Offres d'emploi">Job Board</a>
             </div>
         </div>
         <div class="drawer-section">

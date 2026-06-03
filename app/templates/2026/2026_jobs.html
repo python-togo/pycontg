@@ -1,0 +1,370 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="page active" id="page-jobs">
+
+    <!-- ── HERO ───────────────────────────────────────────────── -->
+    <section class="page-hero">
+        <div class="container">
+            <span class="eyebrow reveal" data-i18n-en="Careers" data-i18n-fr="Carrières">Carrières</span>
+            <h1 class="reveal reveal-d1"
+                data-i18n-html-en="Job <em>Board</em>"
+                data-i18n-html-fr="Offres <em>d'emploi</em>">Offres <em>d'emploi</em></h1>
+            <p class="page-hero-sub reveal reveal-d2"
+                data-i18n-en="Browse opportunities shared by our partners and sponsors."
+                data-i18n-fr="Consultez les opportunités partagées par nos partenaires et sponsors.">
+                Consultez les opportunités partagées par nos partenaires et sponsors.
+            </p>
+        </div>
+    </section>
+
+    {% set active_offers = job_offers | selectattr('is_active') | list if job_offers else [] %}
+
+    {% if active_offers %}
+
+    <!-- ── FILTRES ────────────────────────────────────────────── -->
+    <section class="jobs-filters-section">
+        <div class="container">
+            <div class="jobs-filters">
+                <div class="filter-group">
+                    <span class="filter-label" data-i18n-en="Location" data-i18n-fr="Lieu">Lieu</span>
+                    <div class="filter-btns" id="filter-location">
+                        <button class="filter-btn active" data-filter="location" data-value="all"
+                            data-i18n-en="All" data-i18n-fr="Tous">Tous</button>
+                        <button class="filter-btn" data-filter="location" data-value="remote"
+                            data-i18n-en="Remote" data-i18n-fr="À distance">À distance</button>
+                        <button class="filter-btn" data-filter="location" data-value="onsite"
+                            data-i18n-en="Onsite" data-i18n-fr="Sur site">Sur site</button>
+                        <button class="filter-btn" data-filter="location" data-value="hybrid"
+                            data-i18n-en="Hybrid" data-i18n-fr="Hybride">Hybride</button>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <span class="filter-label" data-i18n-en="Contract" data-i18n-fr="Contrat">Contrat</span>
+                    <div class="filter-btns" id="filter-contract">
+                        <button class="filter-btn active" data-filter="contract" data-value="all"
+                            data-i18n-en="All" data-i18n-fr="Tous">Tous</button>
+                        <button class="filter-btn" data-filter="contract" data-value="full-time"
+                            data-i18n-en="Full-time" data-i18n-fr="Temps plein">Temps plein</button>
+                        <button class="filter-btn" data-filter="contract" data-value="part-time"
+                            data-i18n-en="Part-time" data-i18n-fr="Temps partiel">Temps partiel</button>
+                        <button class="filter-btn" data-filter="contract" data-value="internship"
+                            data-i18n-en="Internship" data-i18n-fr="Stage">Stage</button>
+                        <button class="filter-btn" data-filter="contract" data-value="contract"
+                            data-i18n-en="Contract" data-i18n-fr="Freelance">Freelance</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── SPLIT LAYOUT ──────────────────────────────────────── -->
+    <section class="section jobs-section">
+        <div class="container">
+            <div class="jobs-container" id="jobs-container">
+
+                <!-- Colonne gauche : liste de cards -->
+                <div class="jobs-sidebar" id="jobs-sidebar">
+                    <div class="jobs-grid" id="jobs-grid">
+                        {% for job in active_offers %}
+                        <article class="job-card reveal"
+                            data-job-id="{{ loop.index0 }}"
+                            data-location="{{ job.location }}"
+                            data-contract="{{ job.contract_type }}">
+
+                            <!-- VUE GRILLE (défaut) -->
+                            <div class="job-card-grid-view">
+                                <div class="job-card-header">
+                                    {% if job.logo_url %}
+                                    <img class="job-company-logo" src="{{ job.logo_url }}" alt="{{ job.company }}" loading="lazy" />
+                                    {% else %}
+                                    <div class="job-company-logo-fallback">{{ job.company[:2] | upper }}</div>
+                                    {% endif %}
+                                    <div class="job-meta">
+                                        <h3 class="job-title">{{ job.title }}</h3>
+                                        <span class="job-company">{{ job.company }}</span>
+                                    </div>
+                                </div>
+                                <div class="job-badges">
+                                    <span class="badge badge-location badge-{{ job.location }}">{{ job.location | capitalize }}</span>
+                                    <span class="badge badge-contract">{{ job.contract_type | replace('-',' ') | title }}</span>
+                                    {% if job.salary_range %}<span class="badge badge-salary">{{ job.salary_range }}</span>{% endif %}
+                                </div>
+                                <p class="job-description">{{ job.description | truncate(140, True, '…') }}</p>
+                                {% if job.tags %}
+                                <div class="job-tags">
+                                    {% for tag in job.tags %}<span class="job-tag">{{ tag }}</span>{% endfor %}
+                                </div>
+                                {% endif %}
+                                <div class="job-card-footer">
+                                    <span class="job-discover" data-i18n-en="Discover more" data-i18n-fr="En savoir plus">En savoir plus</span>
+                                    <span class="job-discover-arrow">→</span>
+                                </div>
+                            </div>
+
+                            <!-- VUE COMPACTE (mode split) -->
+                            <div class="job-card-compact-view">
+                                {% if job.logo_url %}
+                                <img class="job-logo-sm" src="{{ job.logo_url }}" alt="{{ job.company }}" loading="lazy" />
+                                {% else %}
+                                <div class="job-logo-sm job-logo-sm-fallback">{{ job.company[:2] | upper }}</div>
+                                {% endif %}
+                                <div class="job-compact-meta">
+                                    <h3 class="job-compact-title">{{ job.title }}</h3>
+                                    <span class="job-compact-company">{{ job.company }}</span>
+                                </div>
+                                <span class="job-compact-arrow">→</span>
+                            </div>
+
+                        </article>
+                        {% endfor %}
+                    </div>
+
+                    <div class="jobs-empty-filter" id="jobs-empty-filter" style="display:none">
+                        <p data-i18n-en="No offers match your filters." data-i18n-fr="Aucune offre ne correspond.">Aucune offre ne correspond.</p>
+                    </div>
+                </div>
+
+                <!-- Colonne droite : panneau de détail -->
+                <div class="jobs-detail-panel" id="jobs-detail-panel" aria-live="polite">
+                    <button class="panel-close-btn" id="panel-close-btn" aria-label="Fermer">✕</button>
+                    <div class="panel-body" id="panel-body"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Données JSON pour le panneau -->
+    <script id="jobs-data" type="application/json">
+    [{% for job in active_offers %}{
+        "id": {{ loop.index0 }},
+        "title": {{ job.title | tojson }},
+        "company": {{ job.company | tojson }},
+        "logo_url": {{ (job.logo_url or '') | tojson }},
+        "location": {{ job.location | tojson }},
+        "contract_type": {{ job.contract_type | tojson }},
+        "description": {{ job.description | tojson }},
+        "apply_url": {{ job.apply_url | tojson }},
+        "salary_range": {{ (job.salary_range or '') | tojson }},
+        "tags": {{ (job.tags or []) | tojson }},
+        "application_deadline": {{ (job.application_deadline | string if job.application_deadline else '') | tojson }}
+    }{% if not loop.last %},{% endif %}{% endfor %}]
+    </script>
+
+    {% else %}
+
+    <!-- ── ÉTAT VIDE ──────────────────────────────────────────── -->
+    <section class="section">
+        <div class="container">
+            <div class="jobs-empty reveal">
+                <div class="jobs-empty-icon">💼</div>
+                <h2 data-i18n-en="No job offers yet" data-i18n-fr="Aucune offre pour le moment">Aucune offre pour le moment</h2>
+                <p data-i18n-en="Our partners haven't posted any positions yet. Check back soon!"
+                   data-i18n-fr="Nos partenaires n'ont pas encore publié d'offres. Revenez bientôt !">
+                    Nos partenaires n'ont pas encore publié d'offres. Revenez bientôt !
+                </p>
+            </div>
+        </div>
+    </section>
+
+    {% endif %}
+
+    <!-- ── CTA ───────────────────────────────────────────────── -->
+    <section class="section jobs-cta-section">
+        <div class="container">
+            <div class="jobs-cta reveal">
+                <h2 data-i18n-en="Want to post a job offer?" data-i18n-fr="Vous souhaitez publier une offre ?">Vous souhaitez publier une offre ?</h2>
+                <p data-i18n-en="Become a partner and reach hundreds of Python developers in Togo and across Africa."
+                   data-i18n-fr="Devenez partenaire et touchez des centaines de développeurs Python au Togo et en Afrique.">
+                    Devenez partenaire et touchez des centaines de développeurs Python au Togo et en Afrique.
+                </p>
+                <a class="btn btn-primary" href="/sponsors"
+                   data-i18n-en="Become a Partner →" data-i18n-fr="Devenir Partenaire →">Devenir Partenaire →</a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<script>
+(function () {
+    /* ── Données ── */
+    var jobsData = [];
+    try { jobsData = JSON.parse(document.getElementById('jobs-data').textContent); } catch(e) {}
+
+    /* ── Éléments ── */
+    var container  = document.getElementById('jobs-container');
+    var panel      = document.getElementById('jobs-detail-panel');
+    var panelBody  = document.getElementById('panel-body');
+    var closeBtn   = document.getElementById('panel-close-btn');
+    var grid       = document.getElementById('jobs-grid');
+    var selectedId = null;
+
+    /* ── Filtres ── */
+    var activeLocation = 'all';
+    var activeContract = 'all';
+
+    function applyFilters() {
+        var cards = grid.querySelectorAll('.job-card');
+        var visible = 0;
+        cards.forEach(function(card) {
+            var show = (activeLocation === 'all' || card.dataset.location === activeLocation)
+                    && (activeContract === 'all' || card.dataset.contract === activeContract);
+            card.style.display = show ? '' : 'none';
+            if (show) visible++;
+        });
+        document.getElementById('jobs-empty-filter').style.display =
+            (visible === 0 && cards.length > 0) ? '' : 'none';
+        if (selectedId !== null) {
+            var sel = grid.querySelector('.job-card[data-job-id="' + selectedId + '"]');
+            if (sel && sel.style.display === 'none') closePanel();
+        }
+    }
+
+    document.querySelectorAll('.filter-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            btn.closest('.filter-btns').querySelectorAll('.filter-btn')
+               .forEach(function(b){ b.classList.remove('active'); });
+            btn.classList.add('active');
+            if (btn.dataset.filter === 'location') activeLocation = btn.dataset.value;
+            if (btn.dataset.filter === 'contract')  activeContract = btn.dataset.value;
+            applyFilters();
+        });
+    });
+
+    /* ── Helpers badges ── */
+    var LOC_LABELS = { remote: { en:'Remote', fr:'À distance' }, onsite: { en:'Onsite', fr:'Sur site' }, hybrid: { en:'Hybrid', fr:'Hybride' } };
+    var CON_LABELS = { 'full-time':{ en:'Full-time', fr:'Temps plein' }, 'part-time':{ en:'Part-time', fr:'Temps partiel' }, internship:{ en:'Internship', fr:'Stage' }, contract:{ en:'Contract', fr:'Freelance' } };
+    var currentLang = document.documentElement.lang || 'fr';
+
+    function badgeLocLabel(loc) { return (LOC_LABELS[loc] || {})[currentLang] || loc; }
+    function badgeConLabel(con) { return (CON_LABELS[con] || {})[currentLang] || con.replace(/-/g,' '); }
+
+    /* ── Rendu du panneau ── */
+    function renderPanel(job) {
+        var tagsHtml = '';
+        if (job.tags && job.tags.length) {
+            tagsHtml = '<div class="panel-tags">'
+                + job.tags.map(function(t){ return '<span class="job-tag">'+t+'</span>'; }).join('')
+                + '</div>';
+        }
+        var deadlineHtml = '';
+        if (job.application_deadline) {
+            var d = String(job.application_deadline).substring(0, 10);
+            deadlineHtml = '<p class="panel-deadline">⏰ <strong>Date limite :</strong> ' + d + '</p>';
+        }
+        var salaryHtml = job.salary_range
+            ? '<span class="badge badge-salary">'+job.salary_range+'</span>'
+            : '';
+        var logoHtml = job.logo_url
+            ? '<img class="panel-logo" src="'+job.logo_url+'" alt="'+job.company+'" />'
+            : '<div class="panel-logo panel-logo-fallback">'+job.company.substring(0,2).toUpperCase()+'</div>';
+
+        panelBody.innerHTML =
+            '<div class="panel-header">'
+            +   logoHtml
+            +   '<div>'
+            +     '<h2 class="panel-title">'+job.title+'</h2>'
+            +     '<span class="panel-company">'+job.company+'</span>'
+            +   '</div>'
+            + '</div>'
+            + '<div class="panel-badges">'
+            +   '<span class="badge badge-location badge-'+job.location+'">'+badgeLocLabel(job.location)+'</span>'
+            +   '<span class="badge badge-contract">'+badgeConLabel(job.contract_type)+'</span>'
+            +   salaryHtml
+            + '</div>'
+            + '<a class="btn btn-primary panel-apply-btn" href="'+job.apply_url+'" target="_blank" rel="noopener noreferrer"'
+            +    ' data-i18n-en="Apply Now →" data-i18n-fr="Postuler →">Postuler →</a>'
+            + '<hr class="panel-divider" />'
+            + '<h3 class="panel-section-title" data-i18n-en="Description &amp; Requirements" data-i18n-fr="Description &amp; Exigences">Description &amp; Exigences</h3>'
+            + '<p class="panel-description">'+job.description+'</p>'
+            + tagsHtml
+            + deadlineHtml;
+    }
+
+    /* ── Ouvrir le panneau ── */
+    function openPanel(id) {
+        var job = jobsData[id];
+        if (!job) return;
+
+        selectedId = id;
+        renderPanel(job);
+
+        /* Marquer la card sélectionnée */
+        grid.querySelectorAll('.job-card').forEach(function(c){
+            c.classList.toggle('is-selected', String(c.dataset.jobId) === String(id));
+        });
+
+        /* Activer le mode split */
+        container.classList.add('has-selection');
+
+        /* Déclencher l'animation du panneau avec un léger délai */
+        requestAnimationFrame(function() {
+            requestAnimationFrame(function() {
+                panel.classList.add('is-visible');
+            });
+        });
+
+        /* Toujours remonter au début du panneau (changement de card) */
+        panel.scrollTop = 0;
+
+        /* Scroll viewport → début du panneau après l'animation */
+        setTimeout(function() {
+            var isDesktopSplit = window.innerWidth >= 768 && container.classList.contains('has-selection');
+            if (isDesktopSplit) {
+                /* Desktop : scroll vers le haut de la section jobs pour que le panneau soit visible */
+                panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } else {
+                /* Mobile/tablette : panneau en dessous, scroll jusqu'à lui */
+                panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 360);
+    }
+
+    /* ── Fermer le panneau ── */
+    function closePanel() {
+        selectedId = null;
+        panel.classList.remove('is-visible');
+        grid.querySelectorAll('.job-card').forEach(function(c){ c.classList.remove('is-selected'); });
+
+        /* Attendre la fin de l'animation avant de retirer has-selection */
+        setTimeout(function() {
+            container.classList.remove('has-selection');
+        }, 320);
+    }
+
+    /* ── Listeners ── */
+    grid.addEventListener('click', function(e) {
+        var card = e.target.closest('.job-card');
+        if (!card) return;
+        var id = parseInt(card.dataset.jobId, 10);
+        if (id === selectedId) { closePanel(); } else { openPanel(id); }
+    });
+
+    closeBtn.addEventListener('click', closePanel);
+
+    /* Fermer sur Escape */
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && selectedId !== null) closePanel();
+    });
+
+    /* Sync langue — patch setLanguage après chargement de script.js */
+    window.addEventListener('load', function() {
+        var _orig = window.setLanguage;
+        if (typeof _orig === 'function') {
+            window.setLanguage = function(lang) {
+                _orig.call(this, lang);
+                currentLang = lang;
+                if (selectedId !== null) renderPanel(jobsData[selectedId]);
+            };
+        }
+        /* Lire la langue active au démarrage */
+        var activeLangBtn = document.getElementById('lang-fr');
+        if (activeLangBtn && activeLangBtn.classList.contains('active')) currentLang = 'fr';
+        var activeLangBtnEn = document.getElementById('lang-en');
+        if (activeLangBtnEn && activeLangBtnEn.classList.contains('active')) currentLang = 'en';
+    });
+})();
+</script>
+{% endblock %}
