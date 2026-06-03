@@ -1477,3 +1477,8 @@ def shop(request: Request):
 @router.get("/30daysofpython")
 def _30daysofpython(request: Request):
     return RedirectResponse(url="https://fata.app/challenge/pycon-togo-2026", status_code=302)
+
+
+@router.get("/30days")
+def _30days(request: Request):
+    return RedirectResponse(url="https://fata.app/challenge/pycon-togo-2026", status_code=302)
