@@ -1,42 +1,70 @@
-__pycache__
+# Python
+__pycache__/
 *.py[cod]
 *.pyo
 *.pyd
-*.egg-info
+*.so
 *.egg
-*.whl
+*.egg-info/
+dist/
+build/
+
+# Environnements virtuels
+.venv/
+venv/
+env/
+ENV/
+
+# Variables d'environnement — ne jamais commiter
+.env
+!.env.example
 *.env
-*.venv
+!*.env.example
+
+# Secrets
+secret*
+*.key
+*.pem
+
+# Bases de données locales
 *.db
 *.sqlite3
+
+# Logs
 *.log
-*.DS_Store
-*.coverage
-*.mypy_cache
-*.pytest_cache
-*.tox
-*.coverage.*
-*.hypothesis
-*.coverage.*
-*.coverage.*
-*.coverage.*
-*.coverage.*
+logs/
+
+# IDEs
+.vscode/
+.idea/
+*.iml
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Tests et données mock
+.coverage
+.pytest_cache/
+.mypy_cache/
+.tox/
+htmlcov/
+coverage.xml
+mock*
+fake*
 fake_data.py
-QRCODE
-env
 test.py
-pycontg25
-*cache*
+test*
+
+# Assets générés
+QRCODE/
 *.bak
 *.tmp
 *.swp
 *.swo
-*.idea
-.vscode
-*.iml
-test.py
-test*
-*.sublime-project
-db.sqlite3
 *.sql
 .gstack/
+pycontg25/
