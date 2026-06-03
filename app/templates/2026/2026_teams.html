@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+﻿{% extends "base.html" %}
 
 {% block content %}
 <main class="page active" id="page-team">
@@ -8,65 +8,309 @@
             <h1 class="reveal reveal-d1" data-i18n-html-en="The people<br /><em>behind PyCon.</em>"
                 data-i18n-html-fr="Les personnes<br /><em>derrière PyCon.</em>">Les personnes<br /><em>derrière
                     PyCon.</em></h1>
-            <p class="page-hero-sub reveal reveal-d2"
-                data-i18n-en="A passionate volunteer team makes PyCon Togo 2026 possible."
-                data-i18n-fr="Une équipe de bénévoles passionnés rend PyCon Togo 2026 possible.">Une équipe de bénévoles
-                passionnés rend PyCon Togo 2026 possible.</p>
+            <p class="page-hero-sub reveal reveal-d2" data-i18n-en="A passionate team makes PyCon Togo 2026 possible."
+                data-i18n-fr="Une équipe passionnée rend PyCon Togo 2026 possible.">Une équipe passionnée rend PyCon
+                Togo 2026 possible.</p>
         </div>
     </section>
     <section class="section">
         <div class="container">
-            <div class="team-grid"
-                style="max-width:1200px;margin:0 auto;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+            <h2 class="team-section-heading" data-i18n-en="Organizing Team" data-i18n-fr="Équipe d'organisation">Équipe
+                d'organisation
+            </h2>
+            <div class="team-grid">
+
                 <article class="team-card reveal">
                     <div class="team-photo"><img src="https://ik.imagekit.io/pythontogo/images/team/wass.jpeg"
                             alt="Wachiou Bouraima"></div>
                     <div class="team-name">Wachiou Bouraima</div>
-                    <div class="team-role">Chair</div>
+                    <div class="team-role">Lead Organizer</div>
+                    <div class="team-socials">
+                        <a href="https://linkedin.com/in/wasscodeur" class="team-social" target="_blank" rel="noopener"
+                            aria-label="LinkedIn of Wachiou Bouraima">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M4.98 3.5C4.98 4.6 4.14 5.5 3 5.5 1.86 5.5 1 4.6 1 3.5 1 2.4 1.86 1.5 3 1.5c1.14 0 1.98.9 1.98 2zm.02 4.5H1v14h4V8zm7 0h-4v14h4v-7c0-3.5 4-3.8 4 0v7h4v-8.5c0-6-6.5-5.8-8 0V8z" />
+                            </svg>
+                        </a>
+                        <a href="https://github.com/wasscodeur" class="team-social" target="_blank" rel="noopener"
+                            aria-label="GitHub of Wachiou Bouraima">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M12 1C5.37 1 0 6.37 0 13c0 5.3 3.438 9.8 8.208 11.387.6.113.82-.26.82-.577v-2.17c-3.34.726-4.04-1.61-4.04-1.61-.546-1.387-1.334-1.757-1.334-1.757-1.09-.746.083-.73.083-.73 1.204.085 1.838 1.24 1.838 1.24 1.07 1.835 2.807 1.305 3.492.998.107-.775.42-1.305.762-1.605-2.665-.305-5.467-1.332-5.467-5.93 0-1.31.47-2.382 1.236-3.222-.124-.304-.536-1.528.118-3.184 0 0 1.01-.323 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.29-1.553 3.3-1.23 3.3-1.23.654 1.656.242 2.88.118 3.184.77.84 1.236 1.91 1.236 3.222 0 4.61-2.807 5.62-5.48 5.92.43.37.82 1.102.82 2.222v3.293c0 .317.22.694.82.576C20.562 22.798 24 18.3 24 13c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                        </a>
+                    </div>
                 </article>
+
 
                 <article class="team-card reveal">
                     <div class="team-photo"><img src="https://avatars.githubusercontent.com/u/52314615?v=4"
                             alt="Geoffrey Logovi"></div>
                     <div class="team-name">Geoffrey Logovi</div>
-                    <div class="team-role">Co-chair</div>
+                    <div class="team-role">Co-Lead Organizer</div>
+                    <div class="team-socials">
+                        <a href="https://linkedin.com/in/geoffreylgv" class="team-social" target="_blank" rel="noopener"
+                            aria-label="LinkedIn of Geoffrey Logovi">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M4.98 3.5C4.98 4.6 4.14 5.5 3 5.5 1.86 5.5 1 4.6 1 3.5 1 2.4 1.86 1.5 3 1.5c1.14 0 1.98.9 1.98 2zm.02 4.5H1v14h4V8zm7 0h-4v14h4v-7c0-3.5 4-3.8 4 0v7h4v-8.5c0-6-6.5-5.8-8 0V8z" />
+                            </svg>
+                        </a>
+                        <a href="https://github.com/geoffreylgv" class="team-social" target="_blank" rel="noopener"
+                            aria-label="GitHub of Geoffrey Logovi">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M12 1C5.37 1 0 6.37 0 13c0 5.3 3.438 9.8 8.208 11.387.6.113.82-.26.82-.577v-2.17c-3.34.726-4.04-1.61-4.04-1.61-.546-1.387-1.334-1.757-1.334-1.757-1.09-.746.083-.73.083-.73 1.204.085 1.838 1.24 1.838 1.24 1.07 1.835 2.807 1.305 3.492.998.107-.775.42-1.305.762-1.605-2.665-.305-5.467-1.332-5.467-5.93 0-1.31.47-2.382 1.236-3.222-.124-.304-.536-1.528.118-3.184 0 0 1.01-.323 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.29-1.553 3.3-1.23 3.3-1.23.654 1.656.242 2.88.118 3.184.77.84 1.236 1.91 1.236 3.222 0 4.61-2.807 5.62-5.48 5.92.43.37.82 1.102.82 2.222v3.293c0 .317.22.694.82.576C20.562 22.798 24 18.3 24 13c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                        </a>
+                    </div>
                 </article>
 
                 <article class="team-card reveal">
-                    <div class="team-photo"><img src="https://ik.imagekit.io/pythontogo/images/team/akinwumi.JPG"
+                    <div class="team-photo"><img
+                            src="https://ik.imagekit.io/pythontogo/images/team/akinwumiogundipe.jpg"
                             alt="Akinwumi Ogundipe"></div>
                     <div class="team-name">Akinwumi Ogundipe</div>
                     <div class="team-role">Product Designer</div>
+                    <div class="team-socials">
+                        <a href="https://github.com/Akinwumi-AO/" class="team-social" target="_blank" rel="noopener"
+                            aria-label="GitHub of Akinwumi Ogundipe">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M12 1C5.37 1 0 6.37 0 13c0 5.3 3.438 9.8 8.208 11.387.6.113.82-.26.82-.577v-2.17c-3.34.726-4.04-1.61-4.04-1.61-.546-1.387-1.334-1.757-1.334-1.757-1.09-.746.083-.73.083-.73 1.204.085 1.838 1.24 1.838 1.24 1.07 1.835 2.807 1.305 3.492.998.107-.775.42-1.305.762-1.605-2.665-.305-5.467-1.332-5.467-5.93 0-1.31.47-2.382 1.236-3.222-.124-.304-.536-1.528.118-3.184 0 0 1.01-.323 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.29-1.553 3.3-1.23 3.3-1.23.654 1.656.242 2.88.118 3.184.77.84 1.236 1.91 1.236 3.222 0 4.61-2.807 5.62-5.48 5.92.43.37.82 1.102.82 2.222v3.293c0 .317.22.694.82.576C20.562 22.798 24 18.3 24 13c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                        </a>
+                        <a href="https://ng.linkedin.com/in/akinwumi-ao" class="team-social" target="_blank"
+                            rel="noopener" aria-label="LinkedIn of Akinwumi Ogundipe">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M4.98 3.5C4.98 4.6 4.14 5.5 3 5.5 1.86 5.5 1 4.6 1 3.5 1 2.4 1.86 1.5 3 1.5c1.14 0 1.98.9 1.98 2zm.02 4.5H1v14h4V8zm7 0h-4v14h4v-7c0-3.5 4-3.8 4 0v7h4v-8.5c0-6-6.5-5.8-8 0V8z" />
+                            </svg>
+                        </a>
+                    </div>
                 </article>
 
                 <article class="team-card reveal">
-                    <div class="team-photo"><img src="https://via.placeholder.com/400?text=Tronka+Diabate"
+                    <div class="team-photo"><img src="https://ik.imagekit.io/pythontogo/images/team/tronkadiabate.jpeg"
                             alt="Tronka Diabate"></div>
                     <div class="team-name">Tronka Diabate</div>
                     <div class="team-role">Lead Communication</div>
+                    <div class="team-socials">
+                        <a href="https://www.linkedin.com/in/tronka-diabat%C3%A9/" class="team-social" target="_blank"
+                            rel="noopener" aria-label="LinkedIn of Tronka Diabate">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M4.98 3.5C4.98 4.6 4.14 5.5 3 5.5 1.86 5.5 1 4.6 1 3.5 1 2.4 1.86 1.5 3 1.5c1.14 0 1.98.9 1.98 2zm.02 4.5H1v14h4V8zm7 0h-4v14h4v-7c0-3.5 4-3.8 4 0v7h4v-8.5c0-6-6.5-5.8-8 0V8z" />
+                            </svg>
+                        </a>
+                        <a href="https://github.com/TronkaD" class="team-social" target="_blank" rel="noopener"
+                            aria-label="GitHub of Tronka Diabate">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M12 1C5.37 1 0 6.37 0 13c0 5.3 3.438 9.8 8.208 11.387.6.113.82-.26.82-.577v-2.17c-3.34.726-4.04-1.61-4.04-1.61-.546-1.387-1.334-1.757-1.334-1.757-1.09-.746.083-.73.083-.73 1.204.085 1.838 1.24 1.838 1.24 1.07 1.835 2.807 1.305 3.492.998.107-.775.42-1.305.762-1.605-2.665-.305-5.467-1.332-5.467-5.93 0-1.31.47-2.382 1.236-3.222-.124-.304-.536-1.528.118-3.184 0 0 1.01-.323 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.29-1.553 3.3-1.23 3.3-1.23.654 1.656.242 2.88.118 3.184.77.84 1.236 1.91 1.236 3.222 0 4.61-2.807 5.62-5.48 5.92.43.37.82 1.102.82 2.222v3.293c0 .317.22.694.82.576C20.562 22.798 24 18.3 24 13c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                        </a>
+                    </div>
                 </article>
 
                 <article class="team-card reveal">
-                    <div class="team-photo"><img src="https://via.placeholder.com/400?text=Mardya+Tchakey"
+                    <!-- <div class="team-photo"><img src="https://ik.imagekit.io/pythontogo/images/team/gift.png" -->
+                    <div class="team-photo"><img
+                            src="https://media.licdn.com/dms/image/v2/D4D03AQHxLljBc9L-ag/profile-displayphoto-scale_200_200/B4DZxnFqD9G8AY-/0/1771256066860?e=2147483647&v=beta&t=2J7guxXjPs3dB03cQvNFWQvTv3XBCrN965b9TVSpEyQ"
+                            alt="Gift Chisom"></div>
+                    <div class="team-name">Gift Chisom Ohanogu</div>
+                    <div class="team-role">Frontend Developer</div>
+                    <div class="team-socials">
+                        <a href="https://github.com/giftchisom" class="team-social" target="_blank" rel="noopener"
+                            aria-label="GitHub of Gift Chisom">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M12 1C5.37 1 0 6.37 0 13c0 5.3 3.438 9.8 8.208 11.387.6.113.82-.26.82-.577v-2.17c-3.34.726-4.04-1.61-4.04-1.61-.546-1.387-1.334-1.757-1.334-1.757-1.09-.746.083-.73.083-.73 1.204.085 1.838 1.24 1.838 1.24 1.07 1.835 2.807 1.305 3.492.998.107-.775.42-1.305.762-1.605-2.665-.305-5.467-1.332-5.467-5.93 0-1.31.47-2.382 1.236-3.222-.124-.304-.536-1.528.118-3.184 0 0 1.01-.323 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.29-1.553 3.3-1.23 3.3-1.23.654 1.656.242 2.88.118 3.184.77.84 1.236 1.91 1.236 3.222 0 4.61-2.807 5.62-5.48 5.92.43.37.82 1.102.82 2.222v3.293c0 .317.22.694.82.576C20.562 22.798 24 18.3 24 13c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/gift-nneji-128172348" class="team-social" target="_blank"
+                            rel="noopener" aria-label="LinkedIn of Gift Chisom">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M4.98 3.5C4.98 4.6 4.14 5.5 3 5.5 1.86 5.5 1 4.6 1 3.5 1 2.4 1.86 1.5 3 1.5c1.14 0 1.98.9 1.98 2zm.02 4.5H1v14h4V8zm7 0h-4v14h4v-7c0-3.5 4-3.8 4 0v7h4v-8.5c0-6-6.5-5.8-8 0V8z" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="team-card reveal">
+                    <!-- <div class="team-photo"><img src="https://ik.imagekit.io/pythontogo/images/team/mardiya.png" -->
+                    <div class="team-photo"><img
+                            src="https://dam.malt.com/c4b73231-facb-4a59-9324-0179d73535e7?gravity=face&func=face&face_margin=70&w=360&h=360&force_format=webp"
                             alt="Mardya Tchakey"></div>
                     <div class="team-name">Mardya Tchakey</div>
-                    <div class="team-role">Communication, Lead Logistics</div>
+                    <div class="team-role">Lead Logistics</div>
+                    <div class="team-socials">
+                        <a href="https://tg.linkedin.com/in/mardiya-tchackey" class="team-social" target="_blank"
+                            rel="noopener" aria-label="LinkedIn of Mardya Tchackey">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M4.98 3.5C4.98 4.6 4.14 5.5 3 5.5 1.86 5.5 1 4.6 1 3.5 1 2.4 1.86 1.5 3 1.5c1.14 0 1.98.9 1.98 2zm.02 4.5H1v14h4V8zm7 0h-4v14h4v-7c0-3.5 4-3.8 4 0v7h4v-8.5c0-6-6.5-5.8-8 0V8z" />
+                            </svg>
+                        </a>
+                    </div>
                 </article>
 
                 <article class="team-card reveal">
-                    <div class="team-photo"><img src="https://via.placeholder.com/400?text=Jephte+Tchamye"
-                            alt="Jephte Tchamye"></div>
-                    <div class="team-name">Jephte Tchamye</div>
-                    <div class="team-role">Graphic Designer</div>
-                </article>
-
-                <article class="team-card reveal">
-                    <div class="team-photo"><img src="https://via.placeholder.com/400?text=David+Kipre"
+                    <!-- <div class="team-photo"><img src="https://ik.imagekit.io/pythontogo/images/team/kipredavid.jpg" -->
+                    <div class="team-photo"><img
+                            src="https://media.licdn.com/dms/image/v2/D4D03AQFF4ma-Rs2UOw/profile-displayphoto-scale_200_200/B4DZkmZ6DyIYAY-/0/1757285952434?e=2147483647&v=beta&t=0uomE3d232h-j9Yp18XM3coDyi0sp4ybNN0fNFsCV4A"
                             alt="David Kipre"></div>
                     <div class="team-name">David Kipre</div>
                     <div class="team-role">Backend Developer</div>
+                    <div class="team-socials">
+                        <a href="https://github.com/kessa99" class="team-social" target="_blank" rel="noopener"
+                            aria-label="GitHub of David Kipre">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M12 1C5.37 1 0 6.37 0 13c0 5.3 3.438 9.8 8.208 11.387.6.113.82-.26.82-.577v-2.17c-3.34.726-4.04-1.61-4.04-1.61-.546-1.387-1.334-1.757-1.334-1.757-1.09-.746.083-.73.083-.73 1.204.085 1.838 1.24 1.838 1.24 1.07 1.835 2.807 1.305 3.492.998.107-.775.42-1.305.762-1.605-2.665-.305-5.467-1.332-5.467-5.93 0-1.31.47-2.382 1.236-3.222-.124-.304-.536-1.528.118-3.184 0 0 1.01-.323 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.29-1.553 3.3-1.23 3.3-1.23.654 1.656.242 2.88.118 3.184.77.84 1.236 1.91 1.236 3.222 0 4.61-2.807 5.62-5.48 5.92.43.37.82 1.102.82 2.222v3.293c0 .317.22.694.82.576C20.562 22.798 24 18.3 24 13c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                        </a>
+                    </div>
                 </article>
 
+                <article class="team-card reveal">
+                    <div class="team-photo"><img src="https://ik.imagekit.io/pythontogo/images/team/jephtetchamye.jpeg"
+                            alt="Jephte Tchamye"></div>
+                    <div class="team-name">Jephte Tchamye</div>
+                    <div class="team-role">Graphic Designer</div>
+                    <div class="team-socials">
+                        <a href="https://www.linkedin.com/in/jefto2/" class="team-social" target="_blank" rel="noopener"
+                            aria-label="LinkedIn of Jephte Tchamye">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M4.98 3.5C4.98 4.6 4.14 5.5 3 5.5 1.86 5.5 1 4.6 1 3.5 1 2.4 1.86 1.5 3 1.5c1.14 0 1.98.9 1.98 2zm.02 4.5H1v14h4V8zm7 0h-4v14h4v-7c0-3.5 4-3.8 4 0v7h4v-8.5c0-6-6.5-5.8-8 0V8z" />
+                            </svg>
+                        </a>
+                        <a href="https://github.com/jefto" class="team-social" target="_blank" rel="noopener"
+                            aria-label="GitHub of Jephte Tchamye">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M12 1C5.37 1 0 6.37 0 13c0 5.3 3.438 9.8 8.208 11.387.6.113.82-.26.82-.577v-2.17c-3.34.726-4.04-1.61-4.04-1.61-.546-1.387-1.334-1.757-1.334-1.757-1.09-.746.083-.73.083-.73 1.204.085 1.838 1.24 1.838 1.24 1.07 1.835 2.807 1.305 3.492.998.107-.775.42-1.305.762-1.605-2.665-.305-5.467-1.332-5.467-5.93 0-1.31.47-2.382 1.236-3.222-.124-.304-.536-1.528.118-3.184 0 0 1.01-.323 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.29-1.553 3.3-1.23 3.3-1.23.654 1.656.242 2.88.118 3.184.77.84 1.236 1.91 1.236 3.222 0 4.61-2.807 5.62-5.48 5.92.43.37.82 1.102.82 2.222v3.293c0 .317.22.694.82.576C20.562 22.798 24 18.3 24 13c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+            <br />
+            <h2 class="team-section-heading" data-i18n-en="Volunteers PyCon Togo 2026"
+                data-i18n-fr="Volontaires PyCon Togo 2026">
+                Volontaires PyCon Togo 2026</h2>
+            <div class="team-grid">
+                <article class="team-card reveal">
+                    <div class="team-photo"><img src="https://ik.imagekit.io/pythontogo/images/team/michelyovo.jpg"
+                            alt="Martino Yovo"></div>
+                    <div class="team-name">Martino Yovo</div>
+                    <div class="team-role">Graphic Designer & Developer</div>
+                    <div class="team-socials">
+                        <a href="https://www.linkedin.com/in/michel-yovo-0b353228a" class="team-social" target="_blank"
+                            rel="noopener" aria-label="LinkedIn of Martino Yovo">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M4.98 3.5C4.98 4.6 4.14 5.5 3 5.5 1.86 5.5 1 4.6 1 3.5 1 2.4 1.86 1.5 3 1.5c1.14 0 1.98.9 1.98 2zm.02 4.5H1v14h4V8zm7 0h-4v14h4v-7c0-3.5 4-3.8 4 0v7h4v-8.5c0-6-6.5-5.8-8 0V8z" />
+                            </svg>
+                        </a>
+                        <a href="https://github.com/MichelYovo" class="team-social" target="_blank" rel="noopener"
+                            aria-label="GitHub of Martino Yovo">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M12 1C5.37 1 0 6.37 0 13c0 5.3 3.438 9.8 8.208 11.387.6.113.82-.26.82-.577v-2.17c-3.34.726-4.04-1.61-4.04-1.61-.546-1.387-1.334-1.757-1.334-1.757-1.09-.746.083-.73.083-.73 1.204.085 1.838 1.24 1.838 1.24 1.07 1.835 2.807 1.305 3.492.998.107-.775.42-1.305.762-1.605-2.665-.305-5.467-1.332-5.467-5.93 0-1.31.47-2.382 1.236-3.222-.124-.304-.536-1.528.118-3.184 0 0 1.01-.323 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.29-1.553 3.3-1.23 3.3-1.23.654 1.656.242 2.88.118 3.184.77.84 1.236 1.91 1.236 3.222 0 4.61-2.807 5.62-5.48 5.92.43.37.82 1.102.82 2.222v3.293c0 .317.22.694.82.576C20.562 22.798 24 18.3 24 13c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+                <article class="team-card reveal">
+                    <div class="team-photo"><img src="https://ik.imagekit.io/pythontogo/images/team/gnimtoualfred.jpg"
+                            alt="Alfred Gnimtou"></div>
+                    <div class="team-name">Alfred Gnimtou</div>
+                    <div class="team-role">Graphic Designer and Data Scientist</div>
+                    <div class="team-socials">
+                        <a href="https://www.linkedin.com/in/gnimtou-alfreid-m-bom-952b02255" class="team-social"
+                            target="_blank" rel="noopener" aria-label="LinkedIn of Alfred Gnimtou">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M4.98 3.5C4.98 4.6 4.14 5.5 3 5.5 1.86 5.5 1 4.6 1 3.5 1 2.4 1.86 1.5 3 1.5c1.14 0 1.98.9 1.98 2zm.02 4.5H1v14h4V8zm7 0h-4v14h4v-7c0-3.5 4-3.8 4 0v7h4v-8.5c0-6-6.5-5.8-8 0V8z" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+                <article class="team-card reveal">
+                    <div class="team-photo"><img src="https://ik.imagekit.io/pythontogo/images/team/theodore.jpg"
+                            alt="DORVI Yao Théodore"></div>
+                    <div class="team-name">DORVI Yao Théodore</div>
+                    <div class="team-role">Registration and Check-in</div>
+                    <div class="team-socials">
+                        <a href="https://www.linkedin.com/in/thedy09" class="team-social" target="_blank" rel="noopener"
+                            aria-label="LinkedIn of DORVI Yao Théodore">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M4.98 3.5C4.98 4.6 4.14 5.5 3 5.5 1.86 5.5 1 4.6 1 3.5 1 2.4 1.86 1.5 3 1.5c1.14 0 1.98.9 1.98 2zm.02 4.5H1v14h4V8zm7 0h-4v14h4v-7c0-3.5 4-3.8 4 0v7h4v-8.5c0-6-6.5-5.8-8 0V8z" />
+                            </svg>
+                        </a>
+                        <a href="https://github.com/Thedy09" class="team-social" target="_blank" rel="noopener"
+                            aria-label="GitHub of DORVI Yao Théodore">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M12 1C5.37 1 0 6.37 0 13c0 5.3 3.438 9.8 8.208 11.387.6.113.82-.26.82-.577v-2.17c-3.34.726-4.04-1.61-4.04-1.61-.546-1.387-1.334-1.757-1.334-1.757-1.09-.746.083-.73.083-.73 1.204.085 1.838 1.24 1.838 1.24 1.07 1.835 2.807 1.305 3.492.998.107-.775.42-1.305.762-1.605-2.665-.305-5.467-1.332-5.467-5.93 0-1.31.47-2.382 1.236-3.222-.124-.304-.536-1.528.118-3.184 0 0 1.01-.323 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.29-1.553 3.3-1.23 3.3-1.23.654 1.656.242 2.88.118 3.184.77.84 1.236 1.91 1.236 3.222 0 4.61-2.807 5.62-5.48 5.92.43.37.82 1.102.82 2.222v3.293c0 .317.22.694.82.576C20.562 22.798 24 18.3 24 13c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="team-card reveal">
+                    <!-- <div class="team-photo"><img src="https://ik.imagekit.io/pythontogo/images/team/salomon.jpg" -->
+                    <div class="team-photo"><img
+                            src="https://media.licdn.com/dms/image/v2/D5603AQFwqeEMUvUl2g/profile-displayphoto-scale_200_200/B56Ze4wSEVGoAY-/0/1751151357328?e=2147483647&v=beta&t=kmT28c98Q7_LF51_1EP4vnakWg-yMUfnlI0Wt2qr_Ck"
+                            alt="BIATE Salomon"></div>
+                    <div class="team-name">BIATE Salomon</div>
+                    <div class="team-role">Technical and Installation Pole</div>
+                    <div class="team-socials">
+                        <a href="https://www.linkedin.com/in/salomon-biate-b6aa3433a" class="team-social"
+                            target="_blank" rel="noopener" aria-label="LinkedIn of BIATE Salomon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M4.98 3.5C4.98 4.6 4.14 5.5 3 5.5 1.86 5.5 1 4.6 1 3.5 1 2.4 1.86 1.5 3 1.5c1.14 0 1.98.9 1.98 2zm.02 4.5H1v14h4V8zm7 0h-4v14h4v-7c0-3.5 4-3.8 4 0v7h4v-8.5c0-6-6.5-5.8-8 0V8z" />
+                            </svg>
+                        </a>
+                        <a href="https://github.com/SalomonBiate" class="team-social" target="_blank" rel="noopener"
+                            aria-label="GitHub of BIATE Salomon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M12 1C5.37 1 0 6.37 0 13c0 5.3 3.438 9.8 8.208 11.387.6.113.82-.26.82-.577v-2.17c-3.34.726-4.04-1.61-4.04-1.61-.546-1.387-1.334-1.757-1.334-1.757-1.09-.746.083-.73.083-.73 1.204.085 1.838 1.24 1.838 1.24 1.07 1.835 2.807 1.305 3.492.998.107-.775.42-1.305.762-1.605-2.665-.305-5.467-1.332-5.467-5.93 0-1.31.47-2.382 1.236-3.222-.124-.304-.536-1.528.118-3.184 0 0 1.01-.323 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.29-1.553 3.3-1.23 3.3-1.23.654 1.656.242 2.88.118 3.184.77.84 1.236 1.91 1.236 3.222 0 4.61-2.807 5.62-5.48 5.92.43.37.82 1.102.82 2.222v3.293c0 .317.22.694.82.576C20.562 22.798 24 18.3 24 13c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="team-card reveal">
+                    <div class="team-photo"><img src="https://ik.imagekit.io/pythontogo/images/team/alidou.jpg"
+                            alt="Alidou Aboubacar"></div>
+                    <div class="team-name">Alidou Aboubacar</div>
+                    <div class="team-role">Social Media Manager</div>
+                    <div class="team-socials">
+                        <a href="https://www.linkedin.com/in/alidou-aboubacar-b427093ab" class="team-social"
+                            target="_blank" rel="noopener" aria-label="LinkedIn of Alidou Aboubacar">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M4.98 3.5C4.98 4.6 4.14 5.5 3 5.5 1.86 5.5 1 4.6 1 3.5 1 2.4 1.86 1.5 3 1.5c1.14 0 1.98.9 1.98 2zm.02 4.5H1v14h4V8zm7 0h-4v14h4v-7c0-3.5 4-3.8 4 0v7h4v-8.5c0-6-6.5-5.8-8 0V8z" />
+                            </svg>
+                        </a>
+                        <a href="https://github.com/Araumusk" class="team-social" target="_blank" rel="noopener"
+                            aria-label="GitHub of Alidou Aboubacar">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M12 1C5.37 1 0 6.37 0 13c0 5.3 3.438 9.8 8.208 11.387.6.113.82-.26.82-.577v-2.17c-3.34.726-4.04-1.61-4.04-1.61-.546-1.387-1.334-1.757-1.334-1.757-1.09-.746.083-.73.083-.73 1.204.085 1.838 1.24 1.838 1.24 1.07 1.835 2.807 1.305 3.492.998.107-.775.42-1.305.762-1.605-2.665-.305-5.467-1.332-5.467-5.93 0-1.31.47-2.382 1.236-3.222-.124-.304-.536-1.528.118-3.184 0 0 1.01-.323 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.29-1.553 3.3-1.23 3.3-1.23.654 1.656.242 2.88.118 3.184.77.84 1.236 1.91 1.236 3.222 0 4.61-2.807 5.62-5.48 5.92.43.37.82 1.102.82 2.222v3.293c0 .317.22.694.82.576C20.562 22.798 24 18.3 24 13c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
