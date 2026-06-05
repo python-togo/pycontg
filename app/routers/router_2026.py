@@ -1475,11 +1475,8 @@ def shop(request: Request):
 
 
 async def _fetch_job_offers() -> list[dict]:
-    event_code = getattr(settings, "python_togo_event_code", None)
-    if not event_code:
-        return []
     headers = {"Authorization": f"Bearer {settings.python_togo_api_key}"}
-    url = _build_api_url(f"/job-offers/list/{event_code}")
+    url = _build_api_url("/job-offers/list/active")
     try:
         async with httpx.AsyncClient(timeout=settings.python_togo_api_timeout_seconds) as client:
             response = await client.get(url, headers=headers)

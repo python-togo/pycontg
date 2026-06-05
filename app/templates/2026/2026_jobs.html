@@ -88,7 +88,8 @@
                                 <div class="job-badges">
                                     <span class="badge badge-location badge-{{ job.location }}">{{ job.location | capitalize }}</span>
                                     <span class="badge badge-contract">{{ job.contract_type | replace('-',' ') | title }}</span>
-                                    {% if job.salary_range %}<span class="badge badge-salary">{{ job.salary_range }}</span>{% endif %}
+                                    {% if job.country %}<span class="badge badge-country">{{ job.country }}</span>{% endif %}
+                                    {% if job.salary_range and job.salary_range | lower not in ['non spécifié', 'non specifie', 'n/a', '-', ''] %}<span class="badge badge-salary">{{ job.salary_range }}</span>{% endif %}
                                 </div>
                                 <p class="job-description">{{ job.description | truncate(140, True, '…') }}</p>
                                 {% if job.tags %}
@@ -144,6 +145,7 @@
         "logo_url": {{ (job.logo_url or '') | tojson }},
         "location": {{ job.location | tojson }},
         "contract_type": {{ job.contract_type | tojson }},
+        "country": {{ (job.country or '') | tojson }},
         "description": {{ job.description | tojson }},
         "apply_url": {{ job.apply_url | tojson }},
         "salary_range": {{ (job.salary_range or '') | tojson }},
@@ -252,9 +254,13 @@
         var deadlineHtml = '';
         if (job.application_deadline) {
             var d = String(job.application_deadline).substring(0, 10);
-            deadlineHtml = '<p class="panel-deadline">⏰ <strong>Date limite :</strong> ' + d + '</p>';
+            deadlineHtml = '<p class="panel-deadline"><strong>Date limite :</strong> ' + d + '</p>';
         }
-        var salaryHtml = job.salary_range
+        var countryHtml = job.country
+            ? '<span class="badge badge-country">'+job.country+'</span>'
+            : '';
+        var _salary = (job.salary_range || '').trim().toLowerCase();
+        var salaryHtml = (_salary && _salary !== 'non spécifié' && _salary !== 'non specifie' && _salary !== 'n/a' && _salary !== '-')
             ? '<span class="badge badge-salary">'+job.salary_range+'</span>'
             : '';
         var logoHtml = job.logo_url
@@ -272,6 +278,7 @@
             + '<div class="panel-badges">'
             +   '<span class="badge badge-location badge-'+job.location+'">'+badgeLocLabel(job.location)+'</span>'
             +   '<span class="badge badge-contract">'+badgeConLabel(job.contract_type)+'</span>'
+            +   countryHtml
             +   salaryHtml
             + '</div>'
             + '<a class="btn btn-primary panel-apply-btn" href="'+job.apply_url+'" target="_blank" rel="noopener noreferrer"'

@@ -184,6 +184,7 @@
 .badge-location.badge-hybrid  { background: #fff3cd; color: #856404; }
 .badge-location.badge-onsite  { background: #d4edda; color: #155724; }
 .badge-contract               { background: #f0f0f0; color: #4a4a4a; }
+.badge-country                { background: #f0f4ff; color: #3730a3; border: 1px solid #c7d2fe; }
 .badge-salary                 { background: #fef9ec; color: #8a6800; border: 1px solid #f5d76e; }
 
 .job-description { font-size: 0.9rem; color: #555; line-height: 1.65; flex-grow: 1; margin: 0; }
