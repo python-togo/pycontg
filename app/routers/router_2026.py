@@ -1249,27 +1249,20 @@ async def sponsors_inquiry(payload: SponsorInquiryPayload):
         "Authorization": f"Bearer {settings.python_togo_api_key}",
         "Content-Type": "application/json",
     }
-
     try:
-        payload = payload.model_dump(mode="json")
+        payload = payload.model_dump()
         async with httpx.AsyncClient(timeout=settings.python_togo_api_timeout_seconds) as client:
             response = await client.post(url, headers=headers, json=payload)
+            if response.status_code >= 400:
+                message = "Failed to submit sponsorship inquiry"
+                raise HTTPException(
+                    status_code=response.status_code, detail=message)
+
     except httpx.RequestError as exc:
-        #   TODO  - LOG ERROR
+        if isinstance(exc, HTTPException):
+            raise exc
         raise HTTPException(
             status_code=502, detail=f"unreachable")
-
-    if response.status_code >= 400:
-        message = "Sponsor API error"
-        try:
-            body = response.json()
-            message = body.get("message") or body.get("detail") or message
-        except ValueError:
-            message = response.text or message
-        return JSONResponse(
-            status_code=response.status_code,
-            content={"ok": False, "message": message},
-        )
 
     return {"ok": True, "message": "Sponsorship inquiry sent"}
 
@@ -1508,3 +1501,8 @@ def _30daysofpython(request: Request):
 @router.get("/30days")
 def _30days(request: Request):
     return RedirectResponse(url="https://fata.app/challenge/pycon-togo-2026", status_code=302)
+
+
+@router.get("/road-to-pycon")
+def _road_to_pycon(request: Request):
+    return RedirectResponse(url="https://forms.cloud.microsoft/r/k8rkr0sEjr", status_code=302)
