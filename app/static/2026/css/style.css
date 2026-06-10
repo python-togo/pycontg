@@ -265,7 +265,7 @@ p:last-child {
 }
 
 .btn-outline:hover {
-  background: var(--green-dim);
+  /*background: var(--green-dim); */
   transform: translateY(-2px);
 }
 
@@ -1948,20 +1948,20 @@ p:last-child {
 }
 
 .sponsor-cta-banner {
-  background: var(--green);
+  border: 1px solid var(--green);
   border-radius: var(--radius-lg);
   padding: 56px;
   text-align: center;
 }
 
 .sponsor-cta-banner h3 {
-  color: white;
+  color: black;
   font-size: 28px;
   margin-bottom: 10px;
 }
 
 .sponsor-cta-banner p {
-  color: rgba(255, 255, 255, .7);
+  color: rgba(0, 0, 0, .7);
   margin-bottom: 28px;
 }
 

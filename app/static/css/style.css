@@ -90,6 +90,7 @@ a {
     color: var(--dark-gray);
     cursor: not-allowed;
 }
+
 .text-center {
     text-align: center;
 }
@@ -171,6 +172,7 @@ header {
 .main-nav .has-dropdown:hover .dropdown {
     display: block;
 }
+
 .main-nav .dropdown li {
     text-align: left;
     width: 100%;
@@ -1075,6 +1077,7 @@ footer {
         text-align: center;
         border-bottom: 1px solid var(--medium-gray);
     }
+
     .main-nav li ul li {
         margin-right: 0;
         padding: 15px;
