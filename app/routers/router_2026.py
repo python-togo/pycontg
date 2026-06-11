@@ -1505,4 +1505,4 @@ def _30days(request: Request):
 
 @router.get("/road-to-pycon")
 def _road_to_pycon(request: Request):
-    return RedirectResponse(url="https://www.youtube.com/live/7INUs1LIEH8?si=Ym85GUiMpxdcgOPH", status_code=302)
+    return RedirectResponse(url="https://www.youtube.com/live/RhfX4ACNQn0?si=lMrwhVpQBdwYNi0Z", status_code=302)
