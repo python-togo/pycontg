@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="page active" id="page-donate">
+
+  <section class="donate-hero">
+    <div class="container">
+      <span class="eyebrow reveal"
+            data-i18n-en="Support PyCon Togo" data-i18n-fr="Soutenir PyCon Togo">
+        Support PyCon Togo
+      </span>
+      <h1 class="reveal reveal-d1">
+        <span data-i18n-en="Choose your" data-i18n-fr="Choisissez votre">Choose your</span>
+        <em data-i18n-en="payment method" data-i18n-fr="mode de paiement">payment method</em>
+      </h1>
+      <p class="donate-hero-sub reveal reveal-d2"
+         data-i18n-en="Select the option that works best for you. Every contribution matters."
+         data-i18n-fr="Choisissez l'option qui vous convient. Chaque contribution compte.">
+        Select the option that works best for you. Every contribution matters.
+      </p>
+    </div>
+  </section>
+
+  <section class="section donate-section">
+    <div class="container">
+      <div class="donate-layout">
+
+        <div class="donate-options reveal reveal-d1">
+
+          <!-- Mobile Money -->
+          <a class="donate-option"
+             href="https://oneqr.paydunya.com/qr-code/019eacae-8e90-72f5-9222-b4c9be8894fa/payments/create"
+             target="_blank" rel="noopener noreferrer">
+            <div class="donate-option-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="5" y="2" width="14" height="20" rx="3" stroke="currentColor" stroke-width="1.8"/>
+                <circle cx="12" cy="18" r="1" fill="currentColor"/>
+                <line x1="8" y1="6" x2="16" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="9" y1="9" x2="15" y2="9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="donate-option-body">
+              <span class="donate-option-title"
+                    data-i18n-en="Local payment" data-i18n-fr="Paiement local">
+                Local payment
+              </span>
+              <span class="donate-option-sub">Mobile Money</span>
+              <span class="donate-option-desc"
+                    data-i18n-en="Flooz, TMoney, Wave, MTN, .... Fast and easy across West Africa."
+                    data-i18n-fr="Flooz, TMoney, Wave, MTN, .... Rapide et simple en Afrique de l'Ouest.">
+                Flooz, TMoney, Wave, MTN ...<br>
+                Fast and easy across West Africa.
+              </span>
+            </div>
+            <span class="donate-option-arrow" aria-hidden="true">&#8599;</span>
+          </a>
+
+          <!-- International -->
+          <a class="donate-option"
+             href="https://donate.pytogo.org"
+             target="_blank" rel="noopener noreferrer">
+            <div class="donate-option-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="5" width="20" height="14" rx="3" stroke="currentColor" stroke-width="1.8"/>
+                <line x1="2" y1="9" x2="22" y2="9" stroke="currentColor" stroke-width="1.8"/>
+                <line x1="6" y1="13" x2="10" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <rect x="14" y="12" width="5" height="3" rx="1" stroke="currentColor" stroke-width="1.2"/>
+              </svg>
+            </div>
+            <div class="donate-option-body">
+              <span class="donate-option-title"
+                    data-i18n-en="International payment" data-i18n-fr="Paiement international">
+                International payment
+              </span>
+              <span class="donate-option-sub">Visa / Mastercard / PayPal</span>
+              <span class="donate-option-desc"
+                    data-i18n-en="Credit card, PayPal, bank transfer. Ideal for supporters outside West Africa."
+                    data-i18n-fr="Carte bancaire, PayPal, virement. Ideal pour les soutiens hors Afrique de l'Ouest.">
+                Credit card, PayPal, bank transfer.<br>
+                Ideal for supporters outside West Africa.
+              </span>
+            </div>
+            <span class="donate-option-arrow" aria-hidden="true">&#8599;</span>
+          </a>
+
+        </div>
+
+        <p class="donate-back reveal reveal-d2">
+
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+{% endblock %}

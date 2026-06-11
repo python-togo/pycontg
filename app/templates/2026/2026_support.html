@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="page active" id="page-support">
+
+  <section class="support-qr-section">
+    <div class="support-qr-inner">
+
+
+
+      <div class="support-qr-card reveal">
+        <img
+          src="{{ url_for('static', path='2026/images/support_qr.png') }}"
+          alt="QR code — Soutenir PyCon Togo"
+          class="support-qr-img"
+        />
+      </div>
+
+      <p class="support-qr-hint reveal reveal-d1"
+         data-i18n-en="Scan with your phone camera"
+         data-i18n-fr="Scannez avec votre appareil photo">
+        Scan with your phone camera
+      </p>
+
+    </div>
+  </section>
+
+</main>
+{% endblock %}

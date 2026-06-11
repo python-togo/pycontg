@@ -1493,6 +1493,28 @@ async def jobs(request: Request):
     )
 
 
+@router.get("/support")
+async def support(request: Request):
+    return await _render_page_with_event(
+        request=request,
+        name="2026_support.html",
+        active_page="support",
+        page_css="support.css",
+        page_title="PyCon Togo 2026 — Support",
+    )
+
+
+@router.get("/donate")
+async def donate(request: Request):
+    return await _render_page_with_event(
+        request=request,
+        name="2026_donate.html",
+        active_page="support",
+        page_css="support.css",
+        page_title="PyCon Togo 2026 — Soutenir PyCon",
+    )
+
+
 @router.get("/30daysofpython")
 def _30daysofpython(request: Request):
     return RedirectResponse(url="https://fata.app/challenge/pycon-togo-2026", status_code=302)

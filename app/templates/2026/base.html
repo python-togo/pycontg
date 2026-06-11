@@ -42,7 +42,7 @@
                 <a class="nav-link{% if active_page == 'home' %} active{% endif %}" data-i18n-en="Home"
                     data-i18n-fr="Accueil" href="/">Home</a>
                 <div class="nav-dropdown">
-                    <a class="nav-link nav-dropdown-trigger{% if active_page in ['about', 'team', 'jobs'] %} active{% endif %}"
+                    <a class="nav-link nav-dropdown-trigger{% if active_page in ['about', 'team', 'jobs', 'support'] %} active{% endif %}"
                         href="/about">
                         <span class="nav-dropdown-label" data-i18n-en="About" data-i18n-fr="À Propos">About</span>
                         <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
@@ -59,6 +59,8 @@
                             data-i18n-fr="Visiter Togo">Visit Togo</a>
                         <a class="nav-dropdown-item{% if active_page == 'jobs' %} active{% endif %}" href="/jobs"
                             data-i18n-en="Job Board" data-i18n-fr="Offres d'emploi">Job Board</a>
+                        <a class="nav-dropdown-item" href="/call-for-speakers"
+                            data-i18n-en="{{ cfp_nav_en }}" data-i18n-fr="{{ cfp_nav_fr }}">{{ cfp_nav_en }}</a>
                     </div>
                 </div>
                 <a class="nav-link{% if active_page == 'partners' %} active{% endif %}" data-i18n-en="Sponsors"
@@ -69,8 +71,8 @@
                     data-i18n-fr="Contact" href="/contact">Contact</a>
             </nav>
             <div class="nav-actions">
-                <a class="btn btn-ghost" href="/call-for-speakers" data-i18n-en="{{ cfp_nav_en }}"
-                    data-i18n-fr="{{ cfp_nav_fr }}">{{ cfp_nav_en }}</a>
+                <a class="btn btn-ghost" href="/support" data-i18n-en="Support PyCon"
+                    data-i18n-fr="Soutenir PyCon">Support PyCon</a>
                 <a class="btn btn-primary" href="/tickets" data-i18n-en="Take your ticket"
                     data-i18n-fr="Prendre votre ticket">Take your ticket</a>
                 <div class="lang-toggle" role="group" aria-label="Language switcher">
@@ -118,6 +120,8 @@
                     data-i18n-fr="Équipe">Team</a>
                 <a class="drawer-link drawer-sublink" href="/jobs" onclick="closeMenu()"
                     data-i18n-en="Job Board" data-i18n-fr="Offres d'emploi">Job Board</a>
+                <a class="drawer-link drawer-sublink" href="/call-for-speakers" onclick="closeMenu()"
+                    data-i18n-en="{{ cfp_nav_en }}" data-i18n-fr="{{ cfp_nav_fr }}">{{ cfp_nav_en }}</a>
             </div>
         </div>
         <div class="drawer-section">
@@ -140,8 +144,8 @@
         <div class="drawer-actions">
             <a class="btn btn-primary" href="/tickets" onclick="closeMenu()" data-i18n-en="Take your ticket →"
                 data-i18n-fr="Prendre votre ticket →">Take your ticket →</a>
-            <a class="btn btn-ghost" href="/call-for-speakers" onclick="closeMenu()" data-i18n-en="{{ cfp_nav_en }}"
-                data-i18n-fr="{{ cfp_nav_fr }}">{{ cfp_nav_en }}</a>
+            <a class="btn btn-ghost" href="/support" onclick="closeMenu()" data-i18n-en="Support PyCon"
+                data-i18n-fr="Soutenir PyCon">Support PyCon</a>
         </div>
     </div>
 
@@ -215,6 +219,7 @@
                     <a href="/tickets" data-i18n-en="Ticketing opens soon"
                         data-i18n-fr="Ouverture billetterie (bientôt)">Ticketing opens soon</a>
                     <a href="/sponsors" data-i18n-en="Become Sponsor" data-i18n-fr="Sponsoriser">Become Sponsor</a>
+                    <a href="/support" data-i18n-en="Support PyCon" data-i18n-fr="Soutenir PyCon">Support PyCon</a>
                     <a href="/contact" data-i18n-en="Volunteer" data-i18n-fr="Bénévolat">Volunteer</a>
                     {% if cfp_state == 'closed' %}
                     <a href="/call-for-speakers" data-i18n-en="CFP closed" data-i18n-fr="CFP ferme">CFP closed</a>
