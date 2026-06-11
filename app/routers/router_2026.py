@@ -1506,3 +1506,8 @@ def _30days(request: Request):
 @router.get("/road-to-pycon")
 def _road_to_pycon(request: Request):
     return RedirectResponse(url="https://www.youtube.com/live/RhfX4ACNQn0?si=lMrwhVpQBdwYNi0Z", status_code=302)
+
+
+@router.get("/streamyard")
+def _streamyard(request: Request):
+    return RedirectResponse(url="https://streamyard.com/v8ehixw7x2", status_code=302)
