@@ -1532,4 +1532,4 @@ def _road_to_pycon(request: Request):
 
 @router.get("/streamyard")
 def _streamyard(request: Request):
-    return RedirectResponse(url="https://streamyard.com/v8ehixw7x2", status_code=302)
+    return RedirectResponse(url="https://streamyard.com/cufepuecix", status_code=302)
