@@ -34,7 +34,5 @@ def send_email(to, org_name="Python Community", subject=f"Support Request from {
     context = ssl.create_default_context()
 
     with SMTP_SSL(host=settings.smtp_server, port=settings.smtp_port, context=context) as server:
-        print(
-            f"Attempting login for: {SENDER_EMAIL} on {settings.smtp_server}")
         server.login(user=SENDER_EMAIL, password=SENDER_EMAIL_PASSWORD)
         server.send_message(msg=msg)
