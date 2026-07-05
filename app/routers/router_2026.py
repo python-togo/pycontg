@@ -885,13 +885,11 @@ async def _submit_ticket_purchase_to_api(submission: TicketSubmissionPayload, re
         "Authorization": f"Bearer {settings.python_togo_api_key}",
         "Content-Type": "application/json",
     }
-    print("Submitting ticket purchase to API:", submission_data)  # Debug log
     try:
         async with httpx.AsyncClient(timeout=settings.python_togo_api_timeout_seconds) as client:
             response = await client.post(url, headers=headers, json=submission_data)
         return response
     except Exception as e:
-        print("Error submitting ticket purchase to API:", str(e))  # Debug log
         import traceback
         traceback.print_exc()  # Print stack trace for debugging
         if isinstance(e, HTTPException):

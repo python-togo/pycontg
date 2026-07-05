@@ -29,8 +29,6 @@ def send_email(to, first_message, second_message, subject, action_url, action_te
     context = ssl.create_default_context()
 
     with SMTP_SSL(host=settings.smtp_server, port=settings.smtp_port, context=context) as server:
-        print(
-            f"Attempting login for: {settings.smtp_user} on {settings.smtp_server}")
         server.login(user=settings.smtp_user, password=settings.smtp_pass)
         server.send_message(msg=msg)
 
