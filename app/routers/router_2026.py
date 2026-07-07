@@ -258,7 +258,9 @@ def _window_status(now: datetime, start: datetime | None, end: datetime | None) 
 
 def _guess_ticket_limit(ticket_id: str, ticket_name: str) -> int:
     label = f"{ticket_id} {ticket_name}".lower()
-    if "student" in label or "vip" in label:
+    if "student" in label:
+        return 1
+    if "vip" in label:
         return 2
     return 4
 
@@ -344,9 +346,14 @@ def _normalize_ticket_catalog(rows: list[dict], event: dict) -> list[dict]:
             "id": ticket_id,
             "name": {"en": ticket_name, "fr": ticket_name},
             "description": {"en": description, "fr": description},
+            "advantages": [
+                advantage.strip()
+                for advantage in (row.get("advantages") or [])
+                if isinstance(advantage, str) and advantage.strip()
+            ],
             "earlyBirdPrice": early_price,
             "regularPrice": regular_price,
-            "earlyBirdEndDate": event.get("early_bird_close_at_en") or event.get("early_bird_close_at_fr") or None,
+            "earlyBirdEndDate": event.get("early_bird_close_at_iso") or event.get("early_bird_close_at_en") or event.get("early_bird_close_at_fr") or None,
             "quantityAvailable": quantity_available,
             "maxPerUser": max_per_user,
             "isStudent": is_student_ticket,
@@ -575,6 +582,9 @@ async def _build_event_context() -> dict:
     early_bird_open_at_fr = _format_datetime(early_bird_open_at, "fr")
     early_bird_close_at_en = _format_datetime(early_bird_close_at, "en")
     early_bird_close_at_fr = _format_datetime(early_bird_close_at, "fr")
+    early_bird_open_at_iso = early_bird_open_at.isoformat() if early_bird_open_at else None
+    early_bird_close_at_iso = early_bird_close_at.isoformat(
+    ) if early_bird_close_at else None
     ticket_sales_open_at_en = _format_datetime(ticket_sales_open_at, "en")
     ticket_sales_open_at_fr = _format_datetime(ticket_sales_open_at, "fr")
     ticket_sales_close_at_en = _format_datetime(ticket_sales_close_at, "en")
@@ -601,8 +611,10 @@ async def _build_event_context() -> dict:
         "early_bird_status": early_bird_status,
         "early_bird_open_at_en": early_bird_open_at_en,
         "early_bird_open_at_fr": early_bird_open_at_fr,
+        "early_bird_open_at_iso": early_bird_open_at_iso,
         "early_bird_close_at_en": early_bird_close_at_en,
         "early_bird_close_at_fr": early_bird_close_at_fr,
+        "early_bird_close_at_iso": early_bird_close_at_iso,
         "ticket_sales_status": ticket_sales_status,
         "ticket_sales_open_at_en": ticket_sales_open_at_en,
         "ticket_sales_open_at_fr": ticket_sales_open_at_fr,
