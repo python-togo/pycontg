@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════
-   PYCON TOGO 2026 — SCRIPT.JS
+   PyCon Togo 2026 - SCRIPT.JS
 ═══════════════════════════════════════════════ */
 
 /* ── TRANSLATIONS ── */
@@ -118,12 +118,12 @@ function applyLanguage(lang) {
   document.documentElement.lang = lang;
 
   const titleByLang = {
-    en: "PyCon Togo 2026 — The Python Conference of Togo",
-    fr: "PyCon Togo 2026 — La Conférence Python du Togo",
+    en: "PyCon Togo 2026 - The Python Conference of Togo",
+    fr: "PyCon Togo 2026 - La Conférence Python du Togo",
   };
   const descriptionByLang = {
-    en: "PyCon Togo 2026 — The national conference for the Python community in Togo. Lome, Togo.",
-    fr: "PyCon Togo 2026 — La conférence nationale de la communauté Python du Togo. Lomé, Togo.",
+    en: "PyCon Togo 2026 - The national conference for the Python community in Togo. Lome, Togo.",
+    fr: "PyCon Togo 2026 - La conférence nationale de la communauté Python du Togo. Lomé, Togo.",
   };
 
   document.title = titleByLang[lang] || titleByLang.en;

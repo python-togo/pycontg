@@ -945,7 +945,7 @@ async def home(request: Request):
         name="index.html",
         active_page="home",
         page_css="home.css",
-        page_title="PyCon Togo 2026 — Home",
+        page_title="PyCon Togo 2026 - Home",
         extra_context={"speakers": speakers},
     )
 
@@ -959,7 +959,7 @@ async def speakers(request: Request):
             name="2026_call_for_speakers_coming_soon.html",
             active_page="speakers",
             page_css="coming-soon.css",
-            page_title="PyCon Togo 2026 — Call for Speakers",
+            page_title="PyCon Togo 2026 - Call for Speakers",
             extra_context=event_context,
         )
 
@@ -970,7 +970,7 @@ async def speakers(request: Request):
         name="2026_call_for_speakers.html",
         active_page="speakers",
         page_css="call-for-speakers.css",
-        page_title="PyCon Togo 2026 — Call for Speakers",
+        page_title="PyCon Togo 2026 - Call for Speakers",
         extra_context={
             **event_context,
             "topics": topics,
@@ -1006,7 +1006,7 @@ async def tickets(request: Request, payment_status: str | None = None, submissio
         name="2026_tickets_coming_soon.html",
         active_page="tickets",
         page_css="tickets.css",
-        page_title="PyCon Togo 2026 — Tickets",
+        page_title="PyCon Togo 2026 - Tickets",
         extra_context={
             **event_context,
             "ticket_catalog": ticket_catalog,
@@ -1027,7 +1027,7 @@ async def ticket_success(request: Request, token: str):
         name="2026_ticket_success.html",
         active_page="tickets",
         page_css="ticket-status.css",
-        page_title="PyCon Togo 2026 — Payment confirmed",
+        page_title="PyCon Togo 2026 - Payment confirmed",
     )
 
 
@@ -1042,7 +1042,7 @@ async def ticket_cancel(request: Request, token: str):
         name="2026_ticket_cancel.html",
         active_page="tickets",
         page_css="ticket-status.css",
-        page_title="PyCon Togo 2026 — Payment not completed",
+        page_title="PyCon Togo 2026 - Payment not completed",
     )
 
 
@@ -1125,7 +1125,7 @@ async def contact(request: Request):
         name="2026_contact.html",
         active_page="contact",
         page_css="contact.css",
-        page_title="PyCon Togo 2026 — Contact",
+        page_title="PyCon Togo 2026 - Contact",
     )
 
 
@@ -1136,7 +1136,7 @@ async def about(request: Request):
         name="2026_about.html",
         active_page="about",
         page_css="about.css",
-        page_title="PyCon Togo 2026 — About",
+        page_title="PyCon Togo 2026 - About",
     )
 
 
@@ -1147,7 +1147,7 @@ async def team(request: Request):
         name="2026_teams.html",
         active_page="team",
         page_css="team.css",
-        page_title="PyCon Togo 2026 — Team",
+        page_title="PyCon Togo 2026 - Team",
     )
 
 
@@ -1163,7 +1163,7 @@ async def visit(request: Request):
         name="2026_visit.html",
         active_page="visit",
         page_css="visit.css",
-        page_title="PyCon Togo 2026 — Visit Togo",
+        page_title="PyCon Togo 2026 - Visit Togo",
     )
 
 
@@ -1174,7 +1174,7 @@ async def coc(request: Request):
         name="2026_coc.html",
         active_page="about",
         page_css="about.css",
-        page_title="PyCon Togo 2026 — Code of Conduct",
+        page_title="PyCon Togo 2026 - Code of Conduct",
     )
 
 
@@ -1190,7 +1190,7 @@ async def health_security(request: Request):
         name="2026_health_security.html",
         active_page="about",
         page_css="about.css",
-        page_title="PyCon Togo 2026 — Health & Safety Policy",
+        page_title="PyCon Togo 2026 - Health & Safety Policy",
     )
 
 
@@ -1206,7 +1206,7 @@ async def privacy_policy(request: Request):
         name="2026_privacy_policy.html",
         active_page="about",
         page_css="about.css",
-        page_title="PyCon Togo 2026 — Privacy Policy",
+        page_title="PyCon Togo 2026 - Privacy Policy",
     )
 
 
@@ -1222,7 +1222,7 @@ async def sponsors(request: Request):
         name="2026_sponsors.html",
         active_page="sponsors",
         page_css="sponsors.css",
-        page_title="PyCon Togo 2026 — Sponsors",
+        page_title="PyCon Togo 2026 - Sponsors",
     )
 
 
@@ -1235,7 +1235,7 @@ async def partners(request: Request):
         name="2026_partners.html",
         active_page="partners",
         page_css="partners.css",
-        page_title="PyCon Togo 2026 — Partners Directory",
+        page_title="PyCon Togo 2026 - Partners Directory",
         extra_context={"partner_sections": grouped},
     )
 
@@ -1498,7 +1498,7 @@ async def jobs(request: Request):
         name="2026_jobs.html",
         active_page="jobs",
         page_css="jobs.css",
-        page_title="PyCon Togo 2026 — Job Board",
+        page_title="PyCon Togo 2026 - Job Board",
         extra_context={"job_offers": job_offers},
     )
 
@@ -1510,7 +1510,7 @@ async def support(request: Request):
         name="2026_support.html",
         active_page="support",
         page_css="support.css",
-        page_title="PyCon Togo 2026 — Support",
+        page_title="PyCon Togo 2026 - Support",
     )
 
 
@@ -1521,7 +1521,7 @@ async def donate(request: Request):
         name="2026_donate.html",
         active_page="support",
         page_css="support.css",
-        page_title="PyCon Togo 2026 — Soutenir PyCon",
+        page_title="PyCon Togo 2026 - Soutenir PyCon",
     )
 
 
