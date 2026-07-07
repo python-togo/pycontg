@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ page_title or 'PyCon Togo 2026 — The Python Conference of Togo' }}</title>
+    <title>{{ page_title or 'PyCon Togo 2026 - The Python Conference of Togo' }}</title>
     <meta name="description"
-        content="{{ page_description or 'PyCon Togo 2026 — The national conference for the Python community in Togo. Lome, Togo.' }}">
+        content="{{ page_description or 'PyCon Togo 2026 - The national conference for the Python community in Togo. Lome, Togo.' }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
@@ -82,6 +82,12 @@
                         aria-label="Passer en français">FR</button>
                 </div>
             </div>
+            <div class="mobile-lang-toggle nav-lang-inline" role="group" aria-label="Language switcher">
+                <button id="lang-en-inline" type="button" onclick="setLanguage('en')"
+                    aria-label="Switch to English">EN</button>
+                <button id="lang-fr-inline" type="button" onclick="setLanguage('fr')"
+                    aria-label="Passer en français">FR</button>
+            </div>
             <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
                 <span></span><span></span><span></span>
             </button>
@@ -94,12 +100,6 @@
             <img src="{{ url_for('static', path='images/PyContg26_png/2.png') }}" alt="PyCon Togo" class="logo-img"
                 style="height:36px" />
             <button class="drawer-close" onclick="closeMenu()">✕</button>
-        </div>
-        <div class="lang-toggle drawer-lang-toggle" role="group" aria-label="Language switcher">
-            <button id="lang-en-mobile" type="button" onclick="setLanguage('en')"
-                aria-label="Switch to English">EN</button>
-            <button id="lang-fr-mobile" type="button" onclick="setLanguage('fr')"
-                aria-label="Passer en français">FR</button>
         </div>
         <a class="drawer-link" href="/" onclick="closeMenu()" data-i18n-en="Home" data-i18n-fr="Accueil">Home</a>
         <div class="drawer-section">
