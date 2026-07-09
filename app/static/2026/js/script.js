@@ -560,8 +560,184 @@ const ticketState = {
   activeStep: "selection",
 };
 
+const voucherState = {
+  code: "",
+  voucher: null,
+  loading: false,
+  messageType: "",
+  message: "",
+};
+
+function getCurrentEventId() {
+  return String(document.getElementById("page-tickets")?.dataset.eventId || "").trim();
+}
+
+function getCouponInput() {
+  return document.getElementById("coupon");
+}
+
+function getCouponFeedback() {
+  return document.querySelector(".coupon-help");
+}
+
+function normalizeIdList(value) {
+  if (!Array.isArray(value)) return [];
+  return value.map(item => String(item)).filter(item => item.trim());
+}
+
+function getVoucherPrice(ticket) {
+  const basePrice = getTicketBasePrice(ticket);
+  const voucher = voucherState.voucher;
+  if (!voucher || !ticket) {
+    return { basePrice, discount: 0, finalPrice: basePrice, label: "" };
+  }
+
+  const ticketId = String(ticket.id);
+  const allowedTicketIds = normalizeIdList(voucher.applicable_ticket_ids);
+  if (allowedTicketIds.length && !allowedTicketIds.some(id => String(id) === ticketId)) {
+    return { basePrice, discount: 0, finalPrice: basePrice, label: "" };
+  }
+
+  const percentage = Number(voucher.discount_percentage || 0);
+  const amount = Number(voucher.discount_amount || 0);
+  const discount = percentage > 0 ? Math.round(basePrice * (percentage / 100)) : Math.round(amount);
+  const safeDiscount = Math.min(Math.max(discount, 0), basePrice);
+  const finalPrice = basePrice - safeDiscount;
+  const label = percentage > 0 ? `-${percentage}%` : `-${safeDiscount.toLocaleString(currentLang === "fr" ? "fr-FR" : "en-US")} XOF`;
+
+  return { basePrice, discount: safeDiscount, finalPrice, label };
+}
+
+function validateVoucher(voucher) {
+  if (!voucher) return currentLang === "fr" ? "Code promo introuvable." : "Coupon not found.";
+  if (!voucher.is_active) return currentLang === "fr" ? "Ce code promo est inactif." : "This coupon is inactive.";
+
+  const endDate = voucher.end_date ? new Date(voucher.end_date) : null;
+  if (endDate && !Number.isNaN(endDate.getTime()) && endDate.getTime() < Date.now()) {
+    return currentLang === "fr" ? "Ce code promo a expire." : "This coupon has expired.";
+  }
+
+  const eventId = getCurrentEventId();
+  const allowedEventIds = normalizeIdList(voucher.applicable_event_ids);
+  if (allowedEventIds.length && eventId && !allowedEventIds.some(id => String(id) === String(eventId))) {
+    return currentLang === "fr" ? "Ce code promo ne correspond pas a cet evenement." : "This coupon does not match the current event.";
+  }
+
+  const hasPercentage = Number(voucher.discount_percentage || 0) > 0;
+  const hasAmount = Number(voucher.discount_amount || 0) > 0;
+  if (!hasPercentage && !hasAmount) {
+    return currentLang === "fr" ? "Ce code promo ne contient aucune reduction." : "This coupon has no discount.";
+  }
+
+  return "";
+}
+
+function renderVoucherFeedback() {
+  const feedback = getCouponFeedback();
+  if (!feedback) return;
+
+  if (!feedback.dataset.defaultText) {
+    feedback.dataset.defaultText = feedback.textContent || "";
+  }
+
+  if (voucherState.loading) {
+    feedback.textContent = currentLang === "fr" ? "Verification du code..." : "Checking coupon...";
+    return;
+  }
+
+  if (voucherState.message) {
+    feedback.textContent = voucherState.message;
+    return;
+  }
+
+  if (!voucherState.code) {
+    feedback.textContent = feedback.dataset.defaultText || feedback.textContent || "";
+    return;
+  }
+
+  feedback.textContent = currentLang === "fr"
+    ? `Code promo ${voucherState.code} applique.`
+    : `Coupon ${voucherState.code} applied.`;
+}
+
+function clearVoucherState() {
+  voucherState.code = "";
+  voucherState.voucher = null;
+  voucherState.loading = false;
+  voucherState.messageType = "";
+  voucherState.message = "";
+  const feedback = getCouponFeedback();
+  if (feedback && feedback.dataset.defaultText) {
+    feedback.textContent = feedback.dataset.defaultText;
+  }
+  renderVoucherFeedback();
+}
+
+async function fetchVoucher(code) {
+  const response = await fetch(`/tickets/voucher?code=${encodeURIComponent(code)}`, {
+    headers: {
+      Accept: "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    return null;
+  }
+
+  const payload = await response.json().catch(() => null);
+  if (!payload) return null;
+  return payload.data || payload.item || payload.voucher || payload;
+}
+
+function applyVoucherFromInput() {
+  const input = getCouponInput();
+  if (!input) return;
+
+  const code = input.value.trim();
+  if (!code) {
+    clearVoucherState();
+    renderTicketList();
+    updateSummary();
+    return;
+  }
+
+  voucherState.loading = true;
+  voucherState.message = "";
+  renderVoucherFeedback();
+
+  fetchVoucher(code).then(voucher => {
+    const validationMessage = validateVoucher(voucher);
+    if (validationMessage) {
+      voucherState.code = "";
+      voucherState.voucher = null;
+      voucherState.message = validationMessage;
+      return;
+    }
+
+    voucherState.code = String(voucher.code || code);
+    voucherState.voucher = voucher;
+    voucherState.message = currentLang === "fr"
+      ? `Code promo ${voucherState.code} applique.`
+      : `Coupon ${voucherState.code} applied.`;
+  }).catch(() => {
+    voucherState.code = "";
+    voucherState.voucher = null;
+    voucherState.message = currentLang === "fr" ? "Impossible de verifier le code promo." : "Unable to verify the coupon code.";
+  }).finally(() => {
+    voucherState.loading = false;
+    renderVoucherFeedback();
+    renderTicketList();
+    updateSummary();
+  });
+}
+
 function getTicketById(id) {
   return ticketCatalog.find(ticket => ticket.id === id);
+}
+
+function getTicketBasePrice(ticket) {
+  if (isEarlyBirdActive(ticket)) return ticket.earlyBirdPrice;
+  return ticket.regularPrice;
 }
 
 function getEarlyBirdState(ticket) {
@@ -634,8 +810,7 @@ function isStudentTicket(ticket) {
 }
 
 function getTicketPrice(ticket) {
-  if (isEarlyBirdActive(ticket)) return ticket.earlyBirdPrice;
-  return ticket.regularPrice;
+  return getVoucherPrice(ticket).finalPrice;
 }
 
 function renderTicketPreview() {
@@ -643,6 +818,7 @@ function renderTicketPreview() {
   if (!container) return;
 
   container.innerHTML = ticketCatalog.map(ticket => {
+    const voucherPrice = getVoucherPrice(ticket);
     const earlyBirdState = getEarlyBirdState(ticket);
     const soldOut = maxSelectable(ticket) === 0;
     const salesOpen = isTicketSalesOpen(ticket);
@@ -661,7 +837,7 @@ function renderTicketPreview() {
     const title = ticket.name[currentLang] || ticket.name.en;
     const description = ticket.description[currentLang] || ticket.description.en;
     const earlyBirdPrice = earlyBirdState.active ? formatCfa(ticket.earlyBirdPrice) : "";
-    const standardPrice = formatCfa(ticket.regularPrice);
+    const standardPrice = voucherPrice.discount > 0 ? `<del>${formatCfa(voucherPrice.basePrice)}</del> <span class="price-main">${formatCfa(voucherPrice.finalPrice)}</span>` : formatCfa(ticket.regularPrice);
     const ctaLabel = currentLang === "fr" ? "Choisir ce ticket" : "Choose this ticket";
     const ticketTypeLabel = currentLang === "fr" ? "Catégorie" : "Category";
     const earlyBirdLabel = currentLang === "fr" ? "Tarif Early Bird" : "Early Bird price";
@@ -768,6 +944,7 @@ function renderTicketList() {
   if (!container) return;
 
   container.innerHTML = ticketCatalog.map(ticket => {
+    const voucherPrice = getVoucherPrice(ticket);
     const earlyActive = isEarlyBirdActive(ticket);
     const earlyLabel = getEarlyBirdLabel(ticket);
     const salesOpen = isTicketSalesOpen(ticket);
@@ -779,9 +956,11 @@ function renderTicketList() {
       ? `<span class="ticket-badge">${currentLang === "fr" ? "Early Bird" : "Early Bird"}</span>`
       : "";
 
-    const priceBlock = earlyActive
-      ? `<div class="ticket-price"><del>${formatCfa(ticket.regularPrice)}</del><span class="price-main">${formatCfa(ticket.earlyBirdPrice)}</span></div>`
-      : `<div class="ticket-price"><span class="price-main">${formatCfa(ticket.regularPrice)}</span></div>`;
+    const priceBlock = voucherPrice.discount > 0
+      ? `<div class="ticket-price"><del>${formatCfa(voucherPrice.basePrice)}</del><span class="price-main">${formatCfa(voucherPrice.finalPrice)}</span></div>`
+      : (earlyActive
+        ? `<div class="ticket-price"><del>${formatCfa(ticket.regularPrice)}</del><span class="price-main">${formatCfa(ticket.earlyBirdPrice)}</span></div>`
+        : `<div class="ticket-price"><span class="price-main">${formatCfa(ticket.regularPrice)}</span></div>`);
 
     const statusBadge = soldOut
       ? `<span class="ticket-badge ticket-badge-early">${currentLang === "fr" ? "Sold out" : "Sold out"}</span>`
@@ -888,15 +1067,17 @@ function updateSummary(selectedId = ticketState.selectedTicketId) {
   const summaryTicket = document.getElementById("modal-summary-ticket");
   const summaryQty = document.getElementById("modal-summary-qty");
   const summarySubtotal = document.getElementById("modal-summary-subtotal");
+  const summaryDiscount = document.getElementById("modal-summary-discount");
   const summaryTotal = document.getElementById("modal-summary-total");
   const nextBtn = document.getElementById("ticket-step-next");
 
-  if (!summaryTicket || !summaryQty || !summarySubtotal || !summaryTotal || !nextBtn) return;
+  if (!summaryTicket || !summaryQty || !summarySubtotal || !summaryDiscount || !summaryTotal || !nextBtn) return;
 
   if (!selectedId) {
     summaryTicket.textContent = currentLang === "fr" ? "Choisissez un ticket" : "Select a ticket";
     summaryQty.textContent = "0";
     summarySubtotal.textContent = formatCfa(0);
+    summaryDiscount.textContent = formatCfa(0);
     summaryTotal.textContent = formatCfa(0);
     nextBtn.disabled = true;
     return;
@@ -907,7 +1088,10 @@ function updateSummary(selectedId = ticketState.selectedTicketId) {
   const ticket = getTicketById(selectedId);
   if (!ticket) return;
   const qty = ensureQuantity(ticket);
-  const price = getTicketPrice(ticket);
+  const voucherPrice = getVoucherPrice(ticket);
+  const price = voucherPrice.finalPrice;
+  const subtotal = getTicketBasePrice(ticket) * qty;
+  const discount = voucherPrice.discount * qty;
   const total = price * qty;
   const salesOpen = isTicketSalesOpen(ticket);
 
@@ -915,23 +1099,26 @@ function updateSummary(selectedId = ticketState.selectedTicketId) {
 
   summaryTicket.textContent = ticket.name[currentLang] || ticket.name.en;
   summaryQty.textContent = qty;
-  summarySubtotal.textContent = formatCfa(total);
+  summarySubtotal.textContent = formatCfa(subtotal);
+  summaryDiscount.textContent = voucherPrice.discount > 0 ? `-${formatCfa(discount)}` : formatCfa(0);
   summaryTotal.textContent = formatCfa(total);
   nextBtn.disabled = !salesOpen || maxSelectable(ticket) === 0 || qty === 0;
 
-  updateModalSummary(ticket, qty, total);
+  updateModalSummary(ticket, qty, subtotal, discount, total);
 }
 
-function updateModalSummary(ticket, qty, total) {
+function updateModalSummary(ticket, qty, subtotal, discount, total) {
   const modalTicket = document.getElementById("modal-summary-ticket");
   const modalQty = document.getElementById("modal-summary-qty");
   const modalSubtotal = document.getElementById("modal-summary-subtotal");
+  const modalDiscount = document.getElementById("modal-summary-discount");
   const modalTotal = document.getElementById("modal-summary-total");
   const modalTotalCompact = document.getElementById("modal-summary-total-compact");
-  if (!modalTicket || !modalQty || !modalSubtotal || !modalTotal) return;
+  if (!modalTicket || !modalQty || !modalSubtotal || !modalDiscount || !modalTotal) return;
   modalTicket.textContent = ticket ? (ticket.name[currentLang] || ticket.name.en) : "-";
   modalQty.textContent = qty || 0;
-  modalSubtotal.textContent = formatCfa(total || 0);
+  modalSubtotal.textContent = formatCfa(subtotal || 0);
+  modalDiscount.textContent = discount > 0 ? `-${formatCfa(discount)}` : formatCfa(0);
   modalTotal.textContent = formatCfa(total || 0);
   if (modalTotalCompact) {
     modalTotalCompact.textContent = formatCfa(total || 0);
@@ -1143,6 +1330,7 @@ async function buildTicketSubmissionPayload(form, ticket) {
   const quantity = ensureQuantity(ticket);
   const unitPrice = getTicketPrice(ticket);
   const consentCoc = form.querySelector("#consent-coc").checked;
+  const appliedVoucherCode = voucherState.code || null;
 
   const payload = {
     ticket: {
@@ -1171,6 +1359,10 @@ async function buildTicketSubmissionPayload(form, ticket) {
     coupon: (document.getElementById("coupon")?.value || "").trim() || null,
     studentProof: null,
   };
+
+  if (appliedVoucherCode) {
+    payload.discount_code = appliedVoucherCode;
+  }
 
   if (isStudentTicket(ticket) && studentFile) {
     payload.studentProof = {
@@ -1214,6 +1406,32 @@ function initTicketsPage() {
   renderTicketPreview();
   updateEarlyBirdCountdown();
   updateSummary();
+  const couponFeedback = getCouponFeedback();
+  if (couponFeedback && !couponFeedback.dataset.defaultText) {
+    couponFeedback.dataset.defaultText = couponFeedback.textContent || "";
+  }
+  renderVoucherFeedback();
+
+  const couponInput = getCouponInput();
+  const couponButton = document.querySelector(".coupon-row button");
+  if (couponButton) {
+    couponButton.addEventListener("click", applyVoucherFromInput);
+  }
+  if (couponInput) {
+    couponInput.addEventListener("input", () => {
+      if (voucherState.code && couponInput.value.trim() !== voucherState.code) {
+        clearVoucherState();
+        renderTicketList();
+        updateSummary();
+      }
+    });
+    couponInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        applyVoucherFromInput();
+      }
+    });
+  }
 
   document.querySelectorAll("[data-open-ticket-modal]").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -1300,6 +1518,11 @@ function initTicketsPage() {
     renderTicketPreview();
     updateEarlyBirdCountdown();
     updateSummary(ticketState.selectedTicketId);
+    const couponFeedback = getCouponFeedback();
+    if (couponFeedback && !voucherState.code && !voucherState.message && !voucherState.loading) {
+      couponFeedback.dataset.defaultText = couponFeedback.textContent || couponFeedback.dataset.defaultText || "";
+    }
+    renderVoucherFeedback();
     setTicketStep(ticketState.activeStep, { focus: false });
   });
 }

@@ -591,6 +591,7 @@ async def _build_event_context() -> dict:
     ticket_sales_close_at_fr = _format_datetime(ticket_sales_close_at, "fr")
 
     return {
+        "event_id": str(event.get("id") or event.get("event_id") or "").strip(),
         "event_name": name,
         "event_location": location_value,
         "event_date_range_en": date_range_en,
@@ -885,7 +886,7 @@ async def _fetch_featured_speakers() -> list[dict]:
     return []
 
 
-async def _submit_ticket_purchase_to_api(submission: TicketSubmissionPayload, request):
+async def _submit_ticket_purchase_to_api(submission: TicketSubmissionPayload, request, discount_code: str | None = None):
     event_code = getattr(settings, "python_togo_event_code", None)
     submission_data = submission.model_dump(mode="json")
     submission_data.update({
@@ -893,6 +894,8 @@ async def _submit_ticket_purchase_to_api(submission: TicketSubmissionPayload, re
         "cancel_page_url": str(request.url_for("ticket_cancel")),
     })
     url = _build_api_url(f"/helper/ticket/submit/{event_code}")
+    if discount_code:
+        url += f"?discount_code={discount_code.strip().replace(' ', '-').upper()}"
     headers = {
         "Authorization": f"Bearer {settings.python_togo_api_key}",
         "Content-Type": "application/json",
@@ -910,6 +913,34 @@ async def _submit_ticket_purchase_to_api(submission: TicketSubmissionPayload, re
             status_code=500,
             detail="An error occurred while submitting the ticket purchase.",
         )
+
+
+async def _fetch_voucher_from_api(code: str) -> dict | None:
+    if not code:
+        return None
+
+    headers = {"Authorization": f"Bearer {settings.python_togo_api_key}"}
+    code = code.strip().replace(' ', '-').upper()
+    url = _build_api_url(f"/vouchers/?couponCode={code}")
+
+    try:
+        async with httpx.AsyncClient(timeout=settings.python_togo_api_timeout_seconds) as client:
+            response = await client.get(url, headers=headers)
+        if response.status_code >= 400:
+            return None
+        payload = response.json()
+        if isinstance(payload, dict):
+            if isinstance(payload.get("data"), dict):
+                return payload["data"]
+            if isinstance(payload.get("item"), dict):
+                return payload["item"]
+            if isinstance(payload.get("voucher"), dict):
+                return payload["voucher"]
+            return payload
+    except Exception:
+        return None
+
+    return None
 
 
 def _extract_payment_url(data: object, headers: dict[str, str] | None = None) -> str | None:
@@ -1016,6 +1047,14 @@ async def tickets(request: Request, payment_status: str | None = None, submissio
     )
 
 
+@router.get("/tickets/voucher")
+async def tickets_voucher(request: Request, code: str):
+    voucher = await _fetch_voucher_from_api(code.strip())
+    if not voucher:
+        raise HTTPException(status_code=404, detail="Voucher not found.")
+    return JSONResponse(content=voucher)
+
+
 @router.get("/tickets/success")
 async def ticket_success(request: Request, token: str):
     real_registration_token = await request.app.state.redis_client.get(
@@ -1071,7 +1110,10 @@ async def submit_ticket_purchase(request: Request, payload: TicketSubmissionPayl
                 detail="Student proof must be a PDF or image file.",
             )
 
-    response = await _submit_ticket_purchase_to_api(payload, request)
+    # Debugging line
+    print(f"Submitting ticket purchase: {json.dumps(submission, indent=2)}")
+
+    response = await _submit_ticket_purchase_to_api(payload, request, submission.get("coupon"))
     if response.status_code >= 400:
         message = "Ticket submission failed"
         try:
