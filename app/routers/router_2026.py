@@ -106,7 +106,7 @@ class TicketConsentPayload(BaseModel):
 class TicketPayload(BaseModel):
     id: str
     name: str
-    unitPrice: int = Field(gt=0)
+    unitPrice: float = Field(gte=0.0)
     currency: str
     isStudent: bool = False
 
@@ -114,7 +114,7 @@ class TicketPayload(BaseModel):
 class TicketSubmissionPayload(BaseModel):
     ticket: TicketPayload
     quantity: int = Field(gt=0)
-    total: int = Field(gt=0)
+    total: float = Field(gte=0.0)
     buyer: TicketBuyerPayload
     consent: TicketConsentPayload
     coupon: str | None = None
@@ -905,8 +905,6 @@ async def _submit_ticket_purchase_to_api(submission: TicketSubmissionPayload, re
             response = await client.post(url, headers=headers, json=submission_data)
         return response
     except Exception as e:
-        import traceback
-        traceback.print_exc()  # Print stack trace for debugging
         if isinstance(e, HTTPException):
             raise e
         raise HTTPException(
@@ -1109,9 +1107,6 @@ async def submit_ticket_purchase(request: Request, payload: TicketSubmissionPayl
                 status_code=400,
                 detail="Student proof must be a PDF or image file.",
             )
-
-    # Debugging line
-    print(f"Submitting ticket purchase: {json.dumps(submission, indent=2)}")
 
     response = await _submit_ticket_purchase_to_api(payload, request, submission.get("coupon"))
     if response.status_code >= 400:

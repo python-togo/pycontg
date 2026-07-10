@@ -193,6 +193,8 @@ function updateContactFormLabels(lang) {
       form_email_placeholder: "kofi@example.com",
       form_org: "Organization (optional)",
       form_org_placeholder: "Your company or university",
+
+
       form_subject: "Subject",
       form_message: "Message",
       form_message_placeholder: "Tell us how we can help you...",
@@ -446,58 +448,7 @@ function handleNewsletter(e) {
 
 /* ── TICKETS PAGE ── */
 const defaultTicketCatalog = [
-  {
-    id: "early-standard",
-    name: { en: "Early Bird Standard", fr: "Standard Early Bird" },
-    description: {
-      en: "Full conference access for individual attendees.",
-      fr: "Acces complet a la conference pour les participants individuels.",
-    },
-    earlyBirdPrice: 3000,
-    regularPrice: 3500,
-    earlyBirdEndDate: "2026-06-30T23:59:59+00:00",
-    quantityAvailable: 220,
-    maxPerUser: 4,
-  },
-  {
-    id: "early-student",
-    name: { en: "Early Bird Student", fr: "Etudiant Early Bird" },
-    description: {
-      en: "Discounted ticket for students with a valid ID.",
-      fr: "Tarif reduit pour les etudiants avec carte valide.",
-    },
-    earlyBirdPrice: 2000,
-    regularPrice: 2500,
-    earlyBirdEndDate: "2026-06-30T23:59:59+00:00",
-    quantityAvailable: 160,
-    maxPerUser: 2,
-  },
-  {
-    id: "regular-standard",
-    name: { en: "Regular Standard", fr: "Standard" },
-    description: {
-      en: "Standard access once Early Bird ends.",
-      fr: "Acces standard apres la fin de l'Early Bird.",
-    },
-    earlyBirdPrice: null,
-    regularPrice: 3500,
-    earlyBirdEndDate: null,
-    quantityAvailable: 300,
-    maxPerUser: 4,
-  },
-  {
-    id: "vip",
-    name: { en: "VIP Ticket", fr: "Ticket VIP" },
-    description: {
-      en: "Priority seating, VIP lounge access, and premium kit.",
-      fr: "Places prioritaires, lounge VIP et kit premium.",
-    },
-    earlyBirdPrice: null,
-    regularPrice: 10000,
-    earlyBirdEndDate: null,
-    quantityAvailable: 40,
-    maxPerUser: 2,
-  },
+
 ];
 
 function ticketOrderPriority(ticket) {
@@ -527,7 +478,7 @@ function readTicketCatalogFromBackend() {
   }
 
   const payload = document.getElementById("ticket-catalog-data");
-  if (!payload) return defaultTicketCatalog;
+  // if (!payload) return defaultTicketCatalog;
 
   const normalizeCatalog = (value) => {
     if (Array.isArray(value)) {
@@ -1360,10 +1311,6 @@ async function buildTicketSubmissionPayload(form, ticket) {
     studentProof: null,
   };
 
-  if (appliedVoucherCode) {
-    payload.discount_code = appliedVoucherCode;
-  }
-
   if (isStudentTicket(ticket) && studentFile) {
     payload.studentProof = {
       fileName: studentFile.name,
@@ -1387,7 +1334,7 @@ async function submitTicketPurchase(payload) {
 
   const data = await response.json().catch(() => ({}));
   if (!response.ok) {
-    throw new Error(data.detail || data.message || "Unable to submit ticket data.");
+    throw new Error(data.detail || data.message || "Impossible de finaliser votre inscription. Vérifiez vos informations et votre connexion Internet, puis réessayez. Si le problème persiste, contactez notre équipe à contact@pytogo.org");
   }
 
   return data;
@@ -1507,7 +1454,7 @@ function initTicketsPage() {
         setTicketFormSubmitting(form, false);
         const formError = document.getElementById("ticket-form-error");
         if (formError) {
-          formError.textContent = error instanceof Error ? error.message : "Unable to submit ticket data.";
+          formError.textContent = error instanceof Error ? error.message : "Impossible de finaliser votre inscription. Vérifiez vos informations et votre connexion Internet, puis réessayez. Si le problème persiste, contactez notre équipe à contact@pytogo.org";
         }
       }
     });
