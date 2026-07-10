@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<main class="page active" id="page-tickets">
+<main class="page active" id="page-tickets" data-event-id="{{ event_id | default('', true) }}">
     {% if payment_status == 'success' %}
     <section class="section ticket-payment-status">
         <div class="container">
@@ -94,7 +94,7 @@ Les billets sont disponibles sur notre plateforme officielle de billetterie. Sé
                         Comparez les tickets disponibles</h2>
                     <p data-i18n-en="Secure your spot at PyCon TOogo 2026 Lome, Togo"
                         data-i18n-fr="Réservez votre place à PyCon TOogo 2026 à Lomé, au Togo">
-                        Réservez votre place à PyCon TOogo 2026 à Lomé, au Togo
+                        Réservez votre place à PyCon Togo 2026 à Lomé, au Togo
                     </p>
                 </div>
                 <div id="ticket-preview-grid" class="ticket-preview-grid" aria-live="polite"></div>
@@ -365,6 +365,10 @@ Les billets sont disponibles sur notre plateforme officielle de billetterie. Sé
                                 <div class="summary-line">
                                     <span data-i18n-en="Subtotal" data-i18n-fr="Sous-total">Sous-total</span>
                                     <strong id="modal-summary-subtotal">0 F CFA</strong>
+                                </div>
+                                <div class="summary-line">
+                                    <span data-i18n-en="Discount" data-i18n-fr="Reduction">Reduction</span>
+                                    <strong id="modal-summary-discount">0 F CFA</strong>
                                 </div>
                             </div>
 

@@ -182,21 +182,3 @@ def validate_email(email: str, smtp: bool = True) -> ValidationResult:
 # ── Validation en masse ───────────────────────────────────────────────────────
 def validate_emails(emails: list, smtp: bool = True) -> list:
     return [validate_email(e, smtp=smtp) for e in emails]
-
-
-# ── Demo ──────────────────────────────────────────────────────────────────────
-if __name__ == "__main__":
-    test_emails = [
-        "contact@python.org",            # valide, SMTP vérifiable
-        "fakexyz123456@pythonghana.org",      # username inexistant
-        "fakeuser99999@gmail.com",       # format ok mais on ne peut pas vérifier
-        "test@tempmail.com",             # jetable
-        "notanema@pytogo.org",                    # format invalide
-        "fake@domaine-inexistant.xyz",   # MX introuvable
-    ]
-
-    print("=" * 55)
-    print("  Validation d'emails (avec SMTP check)")
-    print("=" * 55)
-    result = validate_email("test@python.org", smtp=True)
-    print(f"{result.is_valid} — {result.email} — {result.reason} (SMTP vérifié: {result.smtp_checked})")
