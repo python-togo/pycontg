@@ -261,8 +261,8 @@ def _guess_ticket_limit(ticket_id: str, ticket_name: str) -> int:
     if "student" in label:
         return 1
     if "vip" in label:
-        return 2
-    return 4
+        return 1
+    return 1
 
 
 def _ticket_order_priority(ticket_id: str, ticket_name: str, description: str) -> int:
@@ -273,7 +273,7 @@ def _ticket_order_priority(ticket_id: str, ticket_name: str, description: str) -
         return 1
     if "premium" in label or "vip" in label:
         return 2
-    if "dina" in label:
+    if "dinner" in label:
         return 3
     return 4
 
