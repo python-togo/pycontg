@@ -893,7 +893,7 @@ async def _submit_ticket_purchase_to_api(submission: TicketSubmissionPayload, re
         "success_page_url": str(request.url_for("ticket_success")),
         "cancel_page_url": str(request.url_for("ticket_cancel")),
     })
-    url = _build_api_url(f"/helper/ticket/submit/{event_code}")
+    url = _build_api_url(f"/register/{event_code}")
     if discount_code:
         url += f"?discount_code={discount_code.strip().replace(' ', '-').upper()}"
     headers = {
