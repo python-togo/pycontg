@@ -395,6 +395,30 @@ async def _fetch_tickets() -> list[dict]:
     return []
 
 
+async def _fetch_team_members() -> list[dict]:
+    event_code = getattr(settings, "python_togo_event_code", None)
+    url = _build_api_url(f"/teams/{event_code}")
+    if not event_code:
+        return []
+
+    headers = {"Authorization": f"Bearer {settings.python_togo_api_key}"}
+
+    try:
+        async with httpx.AsyncClient(timeout=settings.python_togo_api_timeout_seconds) as client:
+            response = await client.get(url, headers=headers)
+        if response.status_code < 400:
+            payload = response.json()
+            if isinstance(payload, dict):
+                if isinstance(payload.get("data"), list):
+                    return [row for row in payload["data"] if isinstance(row, dict)]
+                if isinstance(payload.get("items"), list):
+                    return [row for row in payload["items"] if isinstance(row, dict)]
+            elif isinstance(payload, list):
+                return [row for row in payload if isinstance(row, dict)]
+    except Exception:
+        return []
+
+
 def _format_datetime(value: datetime | None, lang: str) -> str:
     if not value:
         return ""
@@ -1179,12 +1203,14 @@ async def about(request: Request):
 
 @router.get("/team")
 async def team(request: Request):
+    team_members = await _fetch_team_members()
     return await _render_page_with_event(
         request=request,
         name="2026_teams.html",
         active_page="team",
         page_css="team.css",
         page_title="PyCon Togo 2026 - Team",
+        extra_context={"team_members": team_members}
     )
 
 
