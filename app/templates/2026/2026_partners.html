@@ -7,7 +7,7 @@
             <span class="eyebrow reveal" data-i18n-en="Sponsors & Partners"
                 data-i18n-fr="Sponsors & partenaires">Sponsors & partenaires</span>
             <h1 class="reveal reveal-d1" data-i18n-html-en="Our Sponsors<br /><em>& Partners</em>"
-                data-i18n-html-fr="Nos sponsors<br /><em>et partenaires</em>">Nos sponsors<br /><em>et partenaires</em>
+                data-i18n-html-fr="Nos sponsors<br/><em>et partenaires</em>">Nos sponsors<br /><em>et partenaires</em>
             </h1>
             <p class="page-hero-sub reveal reveal-d2"
                 data-i18n-en="Driving the Python revolution in Africa. We are proud to collaborate with industry leaders to amplify the local developer ecosystem and bridge the digital gap."
@@ -20,9 +20,13 @@
 
     <section class="section partners-directory">
         <div class="container">
+
+
             {% set partners = partner_sections if partner_sections is defined else {} %}
             {% set sponsors = partners.get('sponsors', []) %}
             {% set partnership = partners.get('partnership_partners', []) %}
+            {% set institutional = partners.get('institutional_support', []) %}
+            {% set venue_support = partners.get('venue_support', []) %}
             {% set community = partners.get('community_partners', []) %}
             {% set python_community = partners.get('python_community_partners', []) %}
             {% set media = partners.get('media_partners', []) %}
@@ -71,6 +75,7 @@
                     {% endif %}
                 </div>
                 {% endif %}
+                {% if item.package_tier in ['platinum', 'gold', 'silver', 'bronze'] %}
                 <h4>{{ item.name }}</h4>
                 {% if item.description %}
                 <p class="partner-description">{{ item.description | truncate(100, True, '...') }}</p>
@@ -79,7 +84,35 @@
                 <a class="partner-link" href="{{ item.website_url }}" target="_blank" rel="noopener noreferrer"
                     data-i18n-en="See more" data-i18n-fr="Voir plus">Voir plus</a>
                 {% endif %}
+                {% endif %}
             </article>
+            {%- endmacro %}
+
+
+            {% macro institution_logo(item) -%}
+            {% if item.website_url %}
+            <a class="institution-logo" href="{{ item.website_url }}" target="_blank" rel="noopener noreferrer"
+                aria-label="{{ item.name }}">
+                <img src="{{ item.logo_url }}" alt="{{ item.name }}" loading="lazy">
+            </a>
+            {% else %}
+            <div class="institution-logo">
+                <img src="{{ item.logo_url }}" alt="{{ item.name }}" loading="lazy">
+            </div>
+            {% endif %}
+            {%- endmacro %}
+
+            {% macro institution_banner(item) -%}
+            {% if item.website_url %}
+            <a class="institution-banner" href="{{ item.website_url }}" target="_blank" rel="noopener noreferrer"
+                aria-label="{{ item.name }}">
+                <img src="{{ item.logo_url }}" alt="{{ item.name }}" loading="lazy">
+            </a>
+            {% else %}
+            <div class="institution-banner">
+                <img src="{{ item.logo_url }}" alt="{{ item.name }}" loading="lazy">
+            </div>
+            {% endif %}
             {%- endmacro %}
 
             {% if sponsors %}
@@ -95,6 +128,32 @@
             {{ render_tier_block('heart', 'Heart', 'Heart', s_heart) }}
             {{ render_tier_block('custom', 'Custom', 'Custom', s_custom) }}
             {{ render_tier_block('sponsors', 'Sponsors', 'Sponsors', s_untyped) }}
+            {% endif %}
+
+            {% if institutional or venue_support %}
+
+            <div class="section-head section-head--institution reveal">
+                <h3 data-i18n-en="Institutional Support" data-i18n-fr="Soutien institutionnel">
+                    Soutien institutionnel
+                </h3>
+            </div>
+
+            {% if institutional %}
+            <div class="institution-grid ">
+                {% for item in institutional %}
+                {{ institution_logo(item) }}
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if venue_support %}
+            <div class="institution-banner-grid reveal reveal-d2">
+                {% for item in venue_support %}
+                {{ institution_banner(item) }}
+                {% endfor %}
+            </div>
+            {% endif %}
+
             {% endif %}
 
             {% if partnership %}

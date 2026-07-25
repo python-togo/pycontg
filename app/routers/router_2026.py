@@ -33,6 +33,8 @@ PartnerType = Literal[
     "sponsorship",
     "python_community_partner",
     "community_partner",
+    "institutional_support",
+    "venue_support",
     "other",
 ]
 
@@ -680,6 +682,8 @@ async def _render_page_with_event(
 def _group_confirmed_partners(rows: list[dict]) -> dict:
     grouped = {
         "sponsors": [],
+        "institutional_support": [],
+        "venue_support": [],
         "partnership_partners": [],
         "community_partners": [],
         "python_community_partners": [],
@@ -711,6 +715,10 @@ def _group_confirmed_partners(rows: list[dict]) -> dict:
             grouped["python_community_partners"].append(item)
         elif partner_type in {"media_partner", "media-partner", "media"}:
             grouped["media_partners"].append(item)
+        elif partner_type in {"institutional_support", "institutional-support", "institutional"}:
+            grouped["institutional_support"].append(item)
+        elif partner_type in {"venue_support", "venue-support", "venue"}:
+            grouped["venue_support"].append(item)
         else:
             grouped["other_partners"].append(item)
 
@@ -802,6 +810,8 @@ async def _fetch_partner_sections() -> dict:
     event_code = getattr(settings, "python_togo_event_code", None)
     grouped = {
         "sponsors": [],
+        "institutional_support": [],
+        "venue_support": [],
         "partnership_partners": [],
         "community_partners": [],
         "python_community_partners": [],

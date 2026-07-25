@@ -533,6 +533,7 @@
         }
 
         try {
+            console.log("Submitting sponsorship inquiry with payload:", payload);
             const response = await fetch("/sponsors/inquiry", {
                 method: "POST",
                 headers: {

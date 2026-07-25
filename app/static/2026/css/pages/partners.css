@@ -126,7 +126,7 @@
 }
 
 .partner-logo-box {
-    height: 94px;
+    height: 150px;
     border-radius: 10px;
     border: 1px dashed #cad8cf;
     background: #f7fbf9;
@@ -141,7 +141,7 @@
 }
 
 .partner-logo-box img {
-    max-height: 62px;
+    max-height: 100px;
     max-width: 100%;
     width: auto;
     object-fit: contain;
@@ -203,6 +203,37 @@
 
 .directory-cta {
     margin-top: 40px;
+}
+
+
+/* ===========================
+   Institutional Support
+=========================== */
+
+.institution-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin: 24px 0;
+}
+
+
+@media(max-width:768px) {
+
+    .institution-grid {
+        gap: 20px;
+    }
+
+    .institution-logo {
+        width: 170px;
+        height: 95px;
+    }
+
+    .institution-banner {
+        padding: 16px;
+    }
+
 }
 
 @media (max-width: 980px) {
