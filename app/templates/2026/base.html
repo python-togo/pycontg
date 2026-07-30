@@ -61,24 +61,41 @@
                             data-i18n-en="Job Board" data-i18n-fr="Offres d'emploi">Job Board</a>
                         <a class="nav-dropdown-item" href="/call-for-speakers" data-i18n-en="{{ cfp_nav_en }}"
                             data-i18n-fr="{{ cfp_nav_fr }}">{{ cfp_nav_en }}</a>
+                        <a class="nav-dropdown-item" data-i18n-en="Contact" data-i18n-fr="Contact"
+                            href="/contact">Contact</a>
                     </div>
                 </div>
+
+
+
+
+
                 <a class="nav-link{% if active_page == 'speakers' %} active{% endif %}" data-i18n-en="Speakers"
                     data-i18n-fr="Speakers" href="/speakers">Speakers</a>
                 <a class="nav-link{% if active_page == 'schedule' %} active{% endif %}" data-i18n-en="Schedule"
                     data-i18n-fr="Programme" href="/schedule">Schedule</a>
-                <a class="nav-link{% if active_page == 'partners' %} active{% endif %}" data-i18n-en="Sponsors"
-                    data-i18n-fr="Sponsors" href="/partners">Sponsors</a>
-                <a class="nav-link{% if active_page == 'sponsors' %} active{% endif %}" data-i18n-en="Become Sponsor"
-                    data-i18n-fr="Sponsoriser" href="/sponsors">Become Sponsor</a>
-                <a class="nav-link{% if active_page == 'contact' %} active{% endif %}" data-i18n-en="Contact"
-                    data-i18n-fr="Contact" href="/contact">Contact</a>
+
+                <div class="nav-dropdown">
+                    <a class="nav-link nav-dropdown-trigger{% if active_page in ['sponsors', 'partners', 'support'] %} active{% endif %}"
+                        href="/partners">
+                        <span class="nav-dropdown-label" data-i18n-en="Sponsors" data-i18n-fr="Sponsors">Sponsors</span>
+                        <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
+                    </a>
+
+                    <div class="nav-dropdown-menu" role="menu" aria-label="Sponsors submenu">
+                        <a class="nav-link{% if active_page == 'partners' %} active{% endif %}" data-i18n-en="Sponsors"
+                            data-i18n-fr="nos Sponsors" href="/partners">Our Sponsors</a>
+                        <a class="nav-link{% if active_page == 'sponsors' %} active{% endif %}"
+                            data-i18n-en="Become Sponsor" data-i18n-fr="Sponsoriser" href="/sponsors">Become Sponsor</a>
+                    </div>
+                </div>
+
             </nav>
             <div class="nav-actions">
                 <a class="btn btn-ghost" href="/donate" data-i18n-en="Support PyCon"
                     data-i18n-fr="Soutenir PyCon">Support PyCon</a>
-                <a class="btn btn-primary" href="/tickets" data-i18n-en="Take your ticket"
-                    data-i18n-fr="Prendre votre ticket">Take your ticket</a>
+                <a class="btn btn-primary" href="/tickets" data-i18n-en="Register"
+                    data-i18n-fr="S'inscrire">Register</a>
                 <div class="lang-toggle" role="group" aria-label="Language switcher">
                     <button id="lang-en" type="button" onclick="setLanguage('en')"
                         aria-label="Switch to English">EN</button>
@@ -145,9 +162,13 @@
             data-i18n-fr="Contact">Contact</a>
         <a class="drawer-link" href="/visit" onclick="closeMenu()" data-i18n-en="Visit Togo"
             data-i18n-fr="Visiter Togo">Visit Togo</a>
+        <a class="drawer-link" href="/speakers" data-i18n-en="Our Speakers" data-i18n-fr="Nos Intervenants"
+            onclick="closeMenu()">Our Speakers</a>
+        <a class="drawer-link" data-i18n-en="Schedule" data-i18n-fr="Programme" href="/schedule"
+            onclick="closeMenu()">Schedule</a>
         <div class="drawer-actions">
-            <a class="btn btn-primary" href="/tickets" onclick="closeMenu()" data-i18n-en="Take your ticket →"
-                data-i18n-fr="Prendre votre ticket →">Take your ticket →</a>
+            <a class="btn btn-primary" href="/tickets" onclick="closeMenu()" data-i18n-en="Register →"
+                data-i18n-fr="S'inscrire →">Register →</a>
             <a class="btn btn-ghost" href="/donate" onclick="closeMenu()" data-i18n-en="Support PyCon"
                 data-i18n-fr="Soutenir PyCon">Support PyCon</a>
         </div>
