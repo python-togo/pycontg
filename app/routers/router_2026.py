@@ -28,7 +28,8 @@ today = datetime.now(timezone.utc)
 year = today.year
 
 grant_application_open_at = datetime(2026, 8, 1, 0, 0, tzinfo=timezone.utc)
-grant_application_deadline_at = datetime(2026, 8, 12, 18, 0, tzinfo=timezone.utc)
+grant_application_deadline_at = datetime(
+    2026, 8, 12, 18, 0, tzinfo=timezone.utc)
 
 grant_results_date = date(2026, 8, 15)
 
@@ -1743,7 +1744,7 @@ async def access_grant(request: Request):
     return await _render_page_with_event(
         request=request,
         name="2026_access_grant.html",
-        active_page="support",
+        active_page="access-grant",
         page_css="access-grant.css",
         page_title="PyCon Togo 2026 - Community Access Grant",
         extra_context={
@@ -1775,7 +1776,7 @@ async def submit_access_grant(payload: AccessGrantSubmissionPayload):
 
     is_student = bool(form_data.is_student)
 
-    if is_student:
+    if is_student and form_data.student_proof:
         student_proof = form_data.student_proof.model_dump(mode="json")
 
         mime_type = str(student_proof.get("mimeType") or "").strip().lower()
