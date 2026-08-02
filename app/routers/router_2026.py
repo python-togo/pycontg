@@ -28,8 +28,8 @@ today = datetime.now(timezone.utc)
 year = today.year
 
 grant_application_open_at = datetime(2026, 8, 1, 0, 0, tzinfo=timezone.utc)
-grant_application_deadline_at = datetime(
-    2026, 8, 12, 18, 0, tzinfo=timezone.utc)
+grant_application_deadline_at = datetime(2026, 8, 12, 18, 0, tzinfo=timezone.utc)
+
 grant_results_date = date(2026, 8, 15)
 
 
