@@ -8,7 +8,7 @@ from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import JSONResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, EmailStr, Field, model_validator
-from datetime import datetime, timezone
+from datetime import datetime, date, timezone
 from pathlib import Path
 
 from app.core.settings import settings
@@ -26,6 +26,11 @@ router = APIRouter(tags=["2026"])
 today = datetime.now(timezone.utc)
 
 year = today.year
+
+grant_application_open_at = datetime(2026, 8, 1, 0, 0, tzinfo=timezone.utc)
+grant_application_deadline_at = datetime(
+    2026, 8, 12, 18, 0, tzinfo=timezone.utc)
+grant_results_date = date(2026, 8, 15)
 
 
 PartnerType = Literal[
@@ -166,6 +171,11 @@ def _build_api_url(path: str) -> str:
     if base.endswith("/api/v2"):
         return f"{base}{path}"
     return f"{base}/api/v2{path}"
+
+
+def _grant_application_is_open() -> bool:
+    current_time = datetime.now(timezone.utc)
+    return grant_application_open_at <= current_time < grant_application_deadline_at
 
 
 def render_page(
@@ -868,13 +878,15 @@ def _group_sessions_by_day(sessions: list[dict]) -> list[dict]:
 
     ordered_days = sorted(days.values(), key=lambda day: day["date"])
     for day in ordered_days:
-        day["sessions"].sort(key=lambda session: session.get("starts_at") or "")
+        day["sessions"].sort(
+            key=lambda session: session.get("starts_at") or "")
         day["label_en"] = _format_day_label(day["date"], "en")
         day["label_fr"] = _format_day_label(day["date"], "fr")
         for session in day["sessions"]:
             session_start = _parse_date(session.get("starts_at"))
             session_end = _parse_date(session.get("ends_at"))
-            start_label = session_start.strftime("%H:%M") if session_start else ""
+            start_label = session_start.strftime(
+                "%H:%M") if session_start else ""
             end_label = session_end.strftime("%H:%M") if session_end else ""
             session["time_label"] = (
                 f"{start_label} – {end_label}" if start_label and end_label else start_label
@@ -1700,6 +1712,108 @@ async def support(request: Request):
         page_css="support.css",
         page_title="PyCon Togo 2026 - Support",
     )
+
+
+class GrantSubmissionFormData(BaseModel):
+    email: str
+    first_name: str
+    last_name: str
+    whatsapp: str
+    location: str
+    country: str
+    is_student: bool
+    gender: str
+    python_journey: str
+    need_ticket: bool
+    need_transport: bool
+    need_accommodation: bool
+    support_details: str | None = None
+    grant_consent: bool
+    student_proof:  TicketStudentProofPayload | None = None
+
+
+class AccessGrantSubmissionPayload(BaseModel):
+    agreed_to_code_of_conduct: bool
+    agreed_to_privacy_policy: bool
+    form_data: GrantSubmissionFormData
+
+
+@router.get("/access-grant")
+async def access_grant(request: Request):
+    return await _render_page_with_event(
+        request=request,
+        name="2026_access_grant.html",
+        active_page="support",
+        page_css="access-grant.css",
+        page_title="PyCon Togo 2026 - Community Access Grant",
+        extra_context={
+            "grant_application_is_open": _grant_application_is_open(),
+            "grant_application_open_at": grant_application_open_at,
+            "grant_application_deadline_at": grant_application_deadline_at,
+            "grant_results_date": grant_results_date,
+        },
+    )
+
+
+@router.post("/access-grant/submit")
+async def submit_access_grant(payload: AccessGrantSubmissionPayload):
+    if not _grant_application_is_open():
+        raise HTTPException(
+            status_code=403,
+            detail="The community access grant application window closes on 12 August 2026 at 18:00 GMT.",
+        )
+
+    if not payload.agreed_to_code_of_conduct:
+        raise HTTPException(
+            status_code=400, detail="You must agree to the Code of Conduct.")
+    if not payload.agreed_to_privacy_policy:
+        raise HTTPException(
+            status_code=400, detail="You must agree to the Privacy Policy.")
+
+    form_data = payload.form_data
+    form_data.grant_consent = bool(form_data.grant_consent)
+
+    is_student = bool(form_data.is_student)
+
+    if is_student:
+        student_proof = form_data.student_proof.model_dump(mode="json")
+
+        mime_type = str(student_proof.get("mimeType") or "").strip().lower()
+        base64_value = str(student_proof.get("base64") or "").strip()
+        if not mime_type or not base64_value:
+            raise HTTPException(
+                status_code=400, detail="Student proof must be a PDF or image file.")
+        if mime_type not in {"application/pdf", "image/jpeg", "image/jpg", "image/png", "image/webp"}:
+            raise HTTPException(
+                status_code=400, detail="Student proof must be a PDF or image file.")
+
+    event_code = getattr(settings, "python_togo_event_code", None)
+    if not event_code:
+        raise HTTPException(
+            status_code=403, detail="Unauthorized.")
+
+    url = _build_api_url(f"/access-grants/{event_code}")
+    headers = {
+        "Authorization": f"Bearer {settings.python_togo_api_key}",
+        "Content-Type": "application/json",
+    }
+
+    try:
+        async with httpx.AsyncClient(timeout=settings.python_togo_api_timeout_seconds) as client:
+            response = await client.post(url, headers=headers, json=form_data.model_dump(mode="json"))
+    except httpx.RequestError as exc:
+        raise HTTPException(
+            status_code=502, detail="Oups! Something went wrong while submitting your application. Please try again later.")
+
+    if response.status_code >= 400:
+        message = "Oups! Something went wrong while submitting your application. Please try again later."
+
+        return JSONResponse(
+            status_code=response.status_code,
+            content={"ok": False, "message": message},
+        )
+
+    return {"ok": True, "message": "Access Grant application submitted successfully"}
 
 
 @router.get("/donate")

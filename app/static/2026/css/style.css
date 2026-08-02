@@ -234,7 +234,6 @@ p:last-child {
   align-items: center;
   gap: 8px;
   padding: 12px 26px;
-  border-radius: var(--radius-pill);
   font-family: var(--font-display);
   font-size: 15px;
   font-weight: 700;
@@ -293,26 +292,8 @@ p:last-child {
   border-color: var(--green);
 }
 
-.btn-cta-sponsor {
-  box-shadow: 0 8px 24px rgba(87, 182, 127, .4);
-  animation: sponsorPulse 2.2s ease-in-out infinite;
-}
 
-.btn-cta-sponsor:hover {
-  animation-play-state: paused;
-}
 
-@keyframes sponsorPulse {
-
-  0%,
-  100% {
-    box-shadow: 0 8px 24px rgba(87, 182, 127, .35);
-  }
-
-  50% {
-    box-shadow: 0 10px 30px rgba(87, 182, 127, .52);
-  }
-}
 
 .btn-text {
   background: none;
@@ -2983,6 +2964,7 @@ footer::after {
 
   .legacy-trust {
     padding: 62px 0 66px;
+    margin-bottom: 10px;
   }
 
   .legacy-trust-grid {

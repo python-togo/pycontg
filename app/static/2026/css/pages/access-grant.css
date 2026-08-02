@@ -1,0 +1,798 @@
+/* ═══════════════════════════════════════════════
+   PyCon Togo 2026 — Community Access Grant Page
+   Charte graphique: Deep Green · Gold · White
+═══════════════════════════════════════════════ */
+
+/* ── BANNER FONDS LIMITÉS ─────────────────────── */
+.grant-limited-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+
+    padding: 22px 26px;
+    margin: 0 auto 48px;
+    max-width: 860px;
+}
+
+.grant-limited-banner .limited-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.grant-limited-banner .limited-text strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+}
+
+.grant-limited-banner .limited-text p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.grant-deadline-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 20px 24px;
+    margin: 0 auto 28px;
+    max-width: 860px;
+    border: 1px solid #d7e0dc;
+    background: #fbfcfb;
+}
+
+.grant-deadline-banner .deadline-icon {
+    font-size: 26px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.grant-deadline-banner .deadline-content {
+    min-width: 0;
+    width: 100%;
+}
+
+.grant-deadline-banner .deadline-content strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin-bottom: 12px;
+}
+
+.deadline-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.deadline-item {
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    background: #ffffff;
+}
+
+.deadline-item span {
+    display: block;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+    font-weight: 700;
+}
+
+.deadline-item strong {
+    display: block;
+    font-size: 15px;
+    color: var(--text);
+    text-transform: none;
+    letter-spacing: 0;
+    margin: 0;
+}
+
+.grant-deadline-banner p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-mid);
+}
+
+/* ── INTRO / PRIORITÉS ────────────────────────── */
+.grant-intro-section {
+    padding: 72px 0 48px;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fbf9 100%);
+}
+
+.grant-intro {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.grant-intro h2 {
+    font-size: clamp(24px, 3vw, 38px);
+    color: var(--text);
+    margin-bottom: 14px;
+}
+
+.grant-intro-sub {
+    max-width: 720px;
+    margin: 0 auto 40px;
+    font-size: 15px;
+    color: var(--text-mid);
+    line-height: 1.7;
+}
+
+/* ── CARDS PRIORITÉS ──────────────────────────── */
+.grant-benefits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 24px;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.grant-benefits .benefit-card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 32px 26px;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(90, 108, 125, .06);
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+
+.grant-benefits .benefit-icon {
+    font-size: 36px;
+    margin-bottom: 14px;
+    display: block;
+}
+
+.grant-benefits .benefit-card h4 {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 10px;
+}
+
+.grant-benefits .benefit-card p {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.65;
+    margin: 0;
+}
+
+/* ── NOTE TICKET ──────────────────────────────── */
+.grant-ticket-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    border: 1.5px solid #9ed7b2;
+    padding: 24px 28px;
+    max-width: 860px;
+    margin: 32px auto 0;
+}
+
+
+.grant-ticket-note .ticket-note-text strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    color: #0b5c34;
+    margin-bottom: 4px;
+}
+
+.grant-ticket-note .ticket-note-text p {
+    font-size: 14px;
+    color: #336b4b;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ── SECTION FORMULAIRE ───────────────────────── */
+.grant-form-section {
+    padding: 64px 0 80px;
+    background: linear-gradient(135deg, rgba(0, 133, 76, .04) 0%, rgba(0, 133, 76, .01) 100%);
+}
+
+.grant-form-wrapper {
+    max-width: 780px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 0;
+    padding: 36px 0 0;
+    border: 1px solid var(--border);
+    box-shadow: none;
+}
+
+.grant-form-wrapper.grant-form-locked {
+    border-color: #d9e2de;
+}
+
+.grant-closed-banner {
+    margin: 0 28px 24px;
+    padding: 16px 18px;
+    border: 1px solid #e4c6c6;
+    background: #fff8f8;
+}
+
+.grant-closed-banner strong {
+    display: block;
+    margin-bottom: 4px;
+    color: #8b1d1d;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+.grant-closed-banner p {
+    margin: 0;
+    color: #7a2b2b;
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.grant-form.is-locked {
+    pointer-events: none;
+    opacity: .82;
+}
+
+.grant-form.is-locked .form-consent,
+.grant-form.is-locked .grant-status,
+.grant-form.is-locked .grant-closed-banner {
+    pointer-events: auto;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 36px;
+}
+
+.form-header h2 {
+    font-size: 28px;
+    color: var(--text);
+    margin-bottom: 10px;
+}
+
+.form-header p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ── FORMULAIRE ───────────────────────────────── */
+.grant-form {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 0 28px 34px;
+}
+
+.form-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.form-fieldset legend {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 22px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+    display: block;
+    width: 100%;
+}
+
+.fieldset-note {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    line-height: 1.6;
+    background: var(--off-white);
+    border-radius: 10px;
+    padding: 14px 16px;
+}
+
+/* ── ROWS / GROUPS ────────────────────────────── */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.required-star {
+    color: var(--red);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 12px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-size: 14.5px;
+    font-family: inherit;
+    transition: border-color .25s ease, box-shadow .25s ease, background .25s ease;
+    background-color: #fafcfa;
+    width: 100%;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--green);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(0, 133, 76, .10);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 110px;
+    line-height: 1.55;
+}
+
+.form-group select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23334155' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 18px;
+    padding-right: 38px;
+}
+
+.form-group small {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    line-height: 1.5;
+    display: block;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #b0bcc6;
+}
+
+/* ── FILE UPLOAD ──────────────────────────────── */
+.form-group input[type="file"] {
+    padding: 10px 12px;
+    cursor: pointer;
+    background: var(--off-white);
+    border-style: dashed;
+    border-width: 2px;
+}
+
+.form-group input[type="file"]:hover {
+    border-color: var(--green-light);
+    background: var(--green-pale);
+}
+
+.file-preview {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: var(--green-pale);
+    border-radius: 8px;
+    border: 1px solid #c5e6d4;
+    font-size: 13px;
+    font-weight: 600;
+    color: #0b5c34;
+    word-break: break-all;
+}
+
+/* ── BESOINS (NEEDS) ──────────────────────────── */
+.grant-needs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 14px;
+}
+
+.need-check {
+    position: relative;
+    display: flex;
+    cursor: pointer;
+    min-height: 100%;
+}
+
+.need-check input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    margin: 0;
+}
+
+.need-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 18px 18px 16px;
+    border: 1.5px solid #d7e0dc;
+    border-radius: 8px;
+    background: #ffffff;
+    text-align: left;
+    transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease, background .25s ease;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.need-check:hover .need-box {
+    border-color: var(--green-light);
+    background: #fcfffd;
+}
+
+.need-check input:checked+.need-box {
+    border-color: var(--green);
+    background: var(--green-pale);
+    box-shadow: inset 0 0 0 1px rgba(0, 133, 76, .18);
+}
+
+.need-toggle {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    border: 2px solid #9fb5a8;
+    background: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.need-toggle::after {
+    content: '';
+    width: 9px;
+    height: 5px;
+    border-left: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    transform: rotate(-45deg) translateY(-1px);
+}
+
+.need-check input:checked+.need-box .need-toggle {
+    background: var(--green);
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(0, 133, 76, .10);
+}
+
+.need-check input:checked+.need-box .need-toggle::after {
+    border-left-color: #ffffff;
+    border-bottom-color: #ffffff;
+}
+
+.need-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #edf7f1;
+    color: var(--green);
+    flex-shrink: 0;
+}
+
+.need-check input:checked+.need-box .need-icon {
+    background: var(--green);
+    color: #ffffff;
+}
+
+.need-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
+    margin-top: 2px;
+}
+
+.need-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.need-desc-highlight {
+    color: #0b5c34;
+    font-weight: 700;
+    background: #e8f7ee;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11.5px;
+}
+
+.field-note.callout-note {
+    margin: 0 0 16px;
+    padding: 12px 14px;
+    background: #f5f8f6;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.field-note.callout-note strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 13px;
+    color: var(--text);
+}
+
+.field-note.callout-note p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text-muted);
+}
+
+.grant-need-details {
+    margin-top: 18px;
+}
+
+.grant-need-details textarea {
+    min-height: 120px;
+}
+
+/* ── CONSENT ──────────────────────────────────── */
+.form-consent {
+    background: var(--off-white);
+    border-radius: 12px;
+    padding: 18px 20px;
+    border: 1px solid var(--border);
+}
+
+.consent-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.55;
+}
+
+.consent-check input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--green);
+    margin-top: 2px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.consent-note {
+    margin: 12px 0 0 30px;
+    font-size: 12.5px;
+    color: var(--text-muted);
+}
+
+.consent-note a {
+    color: var(--green);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.consent-note a:hover {
+    text-decoration: underline;
+}
+
+/* ── BOUTON SOUMISSION ────────────────────────── */
+.grant-form .btn-lg {
+    margin-top: 8px;
+}
+
+/* ── STATUS ───────────────────────────────────── */
+.grant-status {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--green);
+    min-height: 0;
+}
+
+.grant-status.error {
+    color: var(--red);
+}
+
+/* ── SUCCESS ──────────────────────────────────── */
+.form-success {
+    text-align: center;
+    padding: 44px 24px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #f0fff7 0%, #e8fff0 100%);
+    border: 1.5px solid #a8f5d0;
+}
+
+.success-check {
+    font-size: 60px;
+    margin-bottom: 18px;
+    animation: grantBounce .6s ease-out;
+}
+
+@keyframes grantBounce {
+    0% {
+        transform: scale(.3) translateY(-10px);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.form-success h3 {
+    font-size: 24px;
+    color: var(--text);
+    margin-bottom: 12px;
+}
+
+.form-success p {
+    color: var(--text-mid);
+    font-size: 14.5px;
+    line-height: 1.65;
+    margin-bottom: 24px;
+}
+
+/* ── FAQ ──────────────────────────────────────── */
+.grant-faq h2 {
+    font-size: 28px;
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 44px;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.faq-item {
+    background: #ffffff;
+    padding: 24px 26px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+}
+
+.faq-item:hover {
+    box-shadow: 0 5px 10px rgba(64, 73, 82, 0.1);
+}
+
+.faq-item h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+}
+
+.faq-item p {
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.65;
+    margin: 0;
+}
+
+/* ── RESPONSIVE ───────────────────────────────── */
+@media (max-width: 768px) {
+    .grant-form-wrapper {
+        padding: 24px 0 0;
+        border-radius: 0;
+    }
+
+    .grant-closed-banner {
+        margin: 0 18px 20px;
+    }
+
+    .grant-deadline-banner {
+        flex-direction: column;
+        gap: 10px;
+        padding: 18px 20px;
+    }
+
+    .deadline-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .grant-form {
+        padding: 0 18px 24px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .grant-benefits {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .grant-needs {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .grant-limited-banner,
+    .grant-ticket-note {
+        flex-direction: column;
+        gap: 10px;
+        padding: 18px 20px;
+    }
+
+    .form-header h2 {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 480px) {
+    .grant-form-wrapper {
+        padding: 20px 0 0;
+        border-radius: 0;
+    }
+
+    .grant-closed-banner {
+        margin: 0 14px 18px;
+    }
+
+    .grant-form {
+        padding: 0 14px 20px;
+    }
+
+    .form-fieldset legend {
+        font-size: 16px;
+    }
+
+    .need-box {
+        padding: 18px 14px 16px;
+    }
+
+    .grant-form .btn-lg {
+        width: 100%;
+    }
+}
+
+/* ── Hidden ───────────────────────────────────── */
+.hidden {
+    display: none !important;
+}
