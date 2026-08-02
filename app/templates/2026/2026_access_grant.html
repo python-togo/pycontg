@@ -1,0 +1,762 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="page active" id="page-access-grant">
+
+    <section class="page-hero">
+        <div class="container">
+            <span class="eyebrow reveal" data-i18n-en="Community Support" data-i18n-fr="Soutien Communautaire">Soutien
+                Communautaire</span>
+            <h1 class="reveal reveal-d1">
+                <span data-i18n-en="PyCon Togo" data-i18n-fr="PyCon Togo">PyCon Togo</span>
+                <em data-i18n-en="Community Access Grant" data-i18n-fr="Bourse d'Accès Communautaire">Bourse d'Accès
+                    Communautaire</em>
+            </h1>
+            <p class="page-hero-sub reveal reveal-d2"
+                data-i18n-en="Thanks to the funds raised during Road to PyCon, we are giving back to the community. Apply for support to attend PyCon Togo 2026."
+                data-i18n-fr="Grâce aux fonds collectés pendant Road to PyCon, nous redonnons à la communauté. Candidaturez pour être soutenu(e) et participer à PyCon Togo 2026.">
+                Grâce aux fonds collectés pendant Road to PyCon, nous redonnons à la communauté. Candidaturez pour être
+                soutenu(e) et participer à PyCon Togo 2026.
+            </p>
+        </div>
+    </section>
+
+    <section class="section grant-intro-section">
+        <div class="container">
+
+            <div class="grant-limited-banner reveal">
+                <div class="limited-icon">⚠️</div>
+                <div class="limited-text">
+                    <strong data-i18n-en="Limited funds, read carefully"
+                        data-i18n-fr="Fonds limités, lisez attentivement">Fonds limités, lisez attentivement</strong>
+                    <p data-i18n-en="Our funds are limited, so we cannot cover 100% of every request. We will do our best with what we have."
+                        data-i18n-fr="Nos fonds sont limités, nous ne pouvons donc pas couvrir 100% de chaque demande. Nous ferons de notre mieux avec ce que nous avons.">
+                        Nos fonds sont limités, nous ne pouvons donc pas couvrir 100% de chaque demande. Nous ferons de
+                        notre mieux avec ce que nous avons.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grant-deadline-banner reveal reveal-d1">
+                <div class="deadline-icon">📅</div>
+                <div class="deadline-content">
+                    <strong data-i18n-en="Application timeline" data-i18n-fr="Calendrier de candidature">Calendrier de
+                        candidature</strong>
+                    <div class="deadline-grid">
+                        <div class="deadline-item">
+                            <span data-i18n-en="Open now" data-i18n-fr="Ouvert maintenant">Ouvert maintenant</span>
+                            <strong data-i18n-en="1 August 2026" data-i18n-fr="1er août 2026">1er août 2026</strong>
+                        </div>
+                        <div class="deadline-item">
+                            <span data-i18n-en="Deadline" data-i18n-fr="Date limite">Date limite</span>
+                            <strong data-i18n-en="12 August 2026 at 18:00 GMT"
+                                data-i18n-fr="12 août 2026 à 18h00 GMT">12 août 2026 à 18h00 GMT</strong>
+                        </div>
+                        <div class="deadline-item">
+                            <span data-i18n-en="Results announced" data-i18n-fr="Résultats annoncés">Résultats
+                                annoncés</span>
+                            <strong data-i18n-en="15 August 2026" data-i18n-fr="15 août 2026">15 août 2026</strong>
+                        </div>
+                    </div>
+                    <p data-i18n-en="Applications close on 12 August 2026 and selected applicants will be notified on 15 August 2026."
+                        data-i18n-fr="Les candidatures se ferment le 12 août 2026 à 18h00 GMT et les personnes sélectionnées seront notifiées le 15 août 2026.">
+                        Les candidatures se ferment le 12 août 2026 à 18h00 GMT et les personnes sélectionnées seront
+                        notifiées le 15 août 2026.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grant-intro reveal">
+                <h2 data-i18n-en="Our priorities for this edition" data-i18n-fr="Nos priorités pour cette édition">Nos
+                    priorités pour cette édition</h2>
+                <p class="grant-intro-sub"
+                    data-i18n-en="To make the most impact with limited resources, we prioritize the following profiles for PyCon Togo 2026. This doesn't mean others won't be selected, everyone is encouraged to apply."
+                    data-i18n-fr="Pour maximiser l'impact avec des ressources limitées, nous privilégions les profils suivants pour PyCon Togo 2026. Cela ne signifie pas que les autres ne seront pas sélectionnés, tout le monde est encouragé à candidater.">
+                    Pour maximiser l'impact avec des ressources limitées, nous privilégions les profils suivants pour
+                    PyCon Togo 2026. Cela ne signifie pas que les autres ne seront pas sélectionnés , tout le monde est
+                    encouragé à candidater.
+                </p>
+                <div class="grant-benefits">
+
+                    <div class="benefit-card reveal reveal-d1">
+                        <h4 data-i18n-en="Local attendees" data-i18n-fr="Participants locaux">Participants locaux</h4>
+                        <p data-i18n-en="Priority goes to attendees based in Togo, especially around Lomé. We want to support our local community first."
+                            data-i18n-fr="La priorité est donnée aux participants basés au Togo, surtout autour de Lomé. Nous voulons d'abord soutenir notre communauté locale.">
+                            La priorité est donnée aux participants basés au Togo, surtout autour de Lomé. Nous voulons
+                            d'abord soutenir notre communauté locale.
+                        </p>
+                    </div>
+
+                    <div class="benefit-card reveal reveal-d2">
+                        <h4 data-i18n-en="Women in tech" data-i18n-fr="Les femmes dans la tech">Les femmes dans la tech
+                        </h4>
+                        <p data-i18n-en="We actively encourage applications from women. Supporting women in tech is a key priority for this edition."
+                            data-i18n-fr="Nous encourageons activement les candidatures féminines. Soutenir les femmes dans la tech est une priorité clé pour cette édition.">
+                            Nous encourageons activement les candidatures féminines. Soutenir les femmes dans la tech
+                            est
+                            une priorité clé pour cette édition.
+                        </p>
+                    </div>
+
+                    <div class="benefit-card reveal reveal-d3">
+                        <h4 data-i18n-en="Students" data-i18n-fr="Étudiants">Étudiants</h4>
+                        <p data-i18n-en="Students and learners are a priority for this edition. If you are a student, make sure to upload your proof."
+                            data-i18n-fr="Les étudiants et apprenants sont une priorité pour cette édition. Si vous êtes étudiant(e), pensez à téléverser votre justificatif.">
+                            Les étudiants et apprenants sont une priorité pour cette édition. Si vous êtes étudiant(e),
+                            pensez à téléverser votre justificatif.
+                        </p>
+                    </div>
+
+                    <div class="benefit-card reveal reveal-d4">
+                        <h4 data-i18n-en="People living with disabilities"
+                            data-i18n-fr="Personnes vivant avec un handicap">Personnes vivant avec un handicap</h4>
+                        <p data-i18n-en="We want to make the event as accessible as possible, and we give attention to applicants living with disabilities or accessibility needs."
+                            data-i18n-fr="Nous voulons rendre l'événement aussi accessible que possible, et nous accordons une attention particulière aux personnes vivant avec un handicap ou ayant des besoins d'accessibilité.">
+                            Nous voulons rendre l'événement aussi accessible que possible, et nous accordons une
+                            attention
+                            particulière aux personnes vivant avec un handicap ou ayant des besoins d'accessibilité.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="grant-ticket-note reveal reveal-d2">
+                <div class="ticket-note-text">
+                    <strong data-i18n-en="Ticket requests have the highest chance"
+                        data-i18n-fr="Les demandes de ticket ont le plus de chances">Les demandes de ticket ont le plus
+                        de chances</strong>
+                    <p data-i18n-en="Due to limited funds, applicants requesting only ticket support are more likely to be selected. For international attendees, we can only cover the conference ticket, not travel or accommodation."
+                        data-i18n-fr="En raison de fonds limités, les candidats demandant uniquement un ticket ont plus de chances d'être sélectionnés. Pour les participants internationaux, nous ne pouvons couvrir que le ticket de la conférence, pas le voyage ni l'hébergement.">
+                        En raison de fonds limités, les candidats demandant uniquement un ticket ont plus de chances
+                        d'être sélectionnés. Pour les participants internationaux, nous ne pouvons couvrir que le ticket
+                        de la conférence, pas le voyage ni l'hébergement.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section grant-form-section">
+        <div class="container">
+            <div class="grant-form-wrapper {% if not grant_application_is_open %}grant-form-locked{% endif %}">
+                <div class="form-header reveal">
+                    <h2 data-i18n-en="Apply for the Grant" data-i18n-fr="Candidater à la Bourse">Candidater à la Bourse
+                    </h2>
+                    <p data-i18n-en="Fill in your information below. All fields are required unless marked optional."
+                        data-i18n-fr="Remplissez vos informations ci-dessous. Tous les champs sont obligatoires sauf s'ils sont marqués comme optionnels.">
+                        Remplissez vos informations ci-dessous. Tous les champs sont obligatoires sauf s'ils sont
+                        marqués comme optionnels.
+                    </p>
+                </div>
+
+                {% if not grant_application_is_open %}
+                <div class="grant-closed-banner" role="status" aria-live="polite">
+                    <strong data-i18n-en="Applications are closed" data-i18n-fr="Les candidatures sont fermées">Les
+                        candidatures sont fermées</strong>
+                    <p data-i18n-en="The grant form is no longer accepting submissions. Results will be announced on 15 August 2026."
+                        data-i18n-fr="Le formulaire de bourse n'accepte plus de soumissions. Les résultats seront annoncés le 15 août 2026.">
+                        Le formulaire de bourse n'accepte plus de soumissions. Les résultats seront annoncés le 15 août
+                        2026.
+                    </p>
+                </div>
+                {% endif %}
+
+                <form id="access-grant-form" class="grant-form reveal reveal-d1"
+                    data-grant-open="{{ 'true' if grant_application_is_open else 'false' }}"
+                    data-grant-deadline="2026-08-12T18:00:00Z" onsubmit="handleGrantSubmit(event)">
+                    <!-- About You Section -->
+                    <fieldset class="form-fieldset">
+                        <legend data-i18n-en="About You" data-i18n-fr="À Propos de Vous">À Propos de Vous</legend>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label data-i18n-en="First Name *" data-i18n-fr="Prénom *">Prénom <span
+                                        class="required-star">*</span></label>
+                                <input type="text" name="first_name" placeholder="Kofi" data-i18n-placeholder-en="Kofi"
+                                    data-i18n-placeholder-fr="Kofi" required maxlength="100" />
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n-en="Last Name *" data-i18n-fr="Nom *">Nom <span
+                                        class="required-star">*</span></label>
+                                <input type="text" name="last_name" placeholder="Mensah"
+                                    data-i18n-placeholder-en="Mensah" data-i18n-placeholder-fr="Mensah" required
+                                    maxlength="100" />
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label data-i18n-en="Email Address *" data-i18n-fr="Adresse Email *">Adresse Email <span
+                                        class="required-star">*</span></label>
+                                <input type="email" name="email" placeholder="kofi@exemple.com"
+                                    data-i18n-placeholder-en="kofi@example.com"
+                                    data-i18n-placeholder-fr="kofi@exemple.com" required />
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n-en="WhatsApp Number *" data-i18n-fr="Numéro WhatsApp *">Numéro WhatsApp
+                                    <span class="required-star">*</span></label>
+                                <input type="tel" name="whatsapp" placeholder="+228 90 00 00 00"
+                                    data-i18n-placeholder-en="+228 90 00 00 00"
+                                    data-i18n-placeholder-fr="+228 90 00 00 00" required />
+                                <small data-i18n-en="We will use this to contact you if you are selected."
+                                    data-i18n-fr="Nous utiliserons ce numéro pour vous contacter si vous êtes sélectionné(e).">
+                                    Nous utiliserons ce numéro pour vous contacter si vous êtes sélectionné(e).
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label data-i18n-en="City / Location *" data-i18n-fr="Ville / Localité *">Ville /
+                                    Localité <span class="required-star">*</span></label>
+                                <input type="text" name="location" placeholder="Lomé, Togo"
+                                    data-i18n-placeholder-en="Lomé, Togo" data-i18n-placeholder-fr="Lomé, Togo" required
+                                    maxlength="150" />
+                                <small data-i18n-en="Where are you based? This helps us prioritize local applicants."
+                                    data-i18n-fr="Où êtes-vous basé(e) ? Cela nous aide à prioriser les candidats locaux.">
+                                    Où êtes-vous basé(e) ? Cela nous aide à prioriser les candidats locaux.
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n-en="Are you a student? *"
+                                    data-i18n-fr="Êtes-vous étudiant(e) ? *">Êtes-vous étudiant(e) ? <span
+                                        class="required-star">*</span></label>
+                                <select id="student-status" name="is_student" required>
+                                    <option value="" data-i18n-en="-- Select --" data-i18n-fr="-- Sélectionnez --">--
+                                        Sélectionnez --</option>
+                                    <option value="yes" data-i18n-en="Yes" data-i18n-fr="Oui">Oui</option>
+                                    <option value="no" data-i18n-en="No" data-i18n-fr="Non">Non</option>
+                                </select>
+                                <small data-i18n-en="Students are a priority for this edition."
+                                    data-i18n-fr="Les étudiants sont une priorité pour cette édition.">
+                                    Les étudiants sont une priorité pour cette édition.
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label data-i18n-en="Country *" data-i18n-fr="Pays *">Pays <span
+                                        class="required-star">*</span></label>
+                                <select id="grant-country" name="country" required>
+                                    <option value="" data-i18n-en="-- Select your country --"
+                                        data-i18n-fr="-- Sélectionnez votre pays --">-- Sélectionnez votre pays --
+                                    </option>
+                                </select>
+                                <small data-i18n-en="Select the country where you are currently based or coming from."
+                                    data-i18n-fr="Sélectionnez le pays dans lequel vous êtes basé(e) ou depuis lequel vous venez.">
+                                    Sélectionnez le pays dans lequel vous êtes basé(e) ou depuis lequel vous venez.
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n-en="Gender *" data-i18n-fr="Genre *">Genre <span
+                                        class="required-star">*</span></label>
+                                <select name="gender" required>
+                                    <option value="" data-i18n-en="-- Select --" data-i18n-fr="-- Sélectionnez --">--
+                                        Sélectionnez --</option>
+                                    <option value="female" data-i18n-en="Female" data-i18n-fr="Féminin">Féminin</option>
+                                    <option value="male" data-i18n-en="Male" data-i18n-fr="Masculin">Masculin</option>
+                                    <option value="other" data-i18n-en="Other / Prefer to self-describe"
+                                        data-i18n-fr="Autre / Je préfère préciser">Autre / Je préfère préciser</option>
+                                </select>
+                                <small data-i18n-en="This helps us understand who we are serving."
+                                    data-i18n-fr="Cela nous aide à mieux comprendre le public que nous servons.">
+                                    Cela nous aide à mieux comprendre le public que nous servons.
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="student-proof-group" style="display: none;">
+                            <label data-i18n-en="Student Proof Document *"
+                                data-i18n-fr="Justificatif Étudiant *">Justificatif Étudiant <span
+                                    class="required-star">*</span></label>
+                            <input type="file" id="student-proof" name="student_proof"
+                                accept=".pdf,.jpg,.jpeg,.png,.webp" />
+                            <small
+                                data-i18n-en="Upload your student ID, enrollment certificate, or any official document proving your student status. (PDF or image, max 5MB)"
+                                data-i18n-fr="Téléversez votre carte étudiante, certificat d'inscription, ou tout document officiel prouvant votre statut étudiant. (PDF ou image, max 5 Mo)">
+                                Téléversez votre carte étudiante, certificat d'inscription, ou tout document officiel
+                                prouvant votre statut étudiant. (PDF ou image, max 5 Mo)
+                            </small>
+                            <div id="student-proof-preview" class="file-preview hidden"></div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Your Python Journey Section -->
+                    <fieldset class="form-fieldset">
+                        <legend data-i18n-en="Your Python Journey" data-i18n-fr="Votre Parcours Python">Votre Parcours
+                            Python</legend>
+
+                        <div class="form-group">
+                            <label data-i18n-en="Tell us about your Python journey *"
+                                data-i18n-fr="Parlez-nous de votre parcours Python *">Parlez-nous de votre parcours
+                                Python <span class="required-star">*</span></label>
+                            <textarea name="python_journey"
+                                placeholder="Comment avez-vous commencé avec Python ? Qu'est-ce qui vous passionne ?"
+                                data-i18n-placeholder-en="How did you start with Python? What excites you about it?"
+                                data-i18n-placeholder-fr="Comment avez-vous commencé avec Python ? Qu'est-ce qui vous passionne ?"
+                                rows="4" required minlength="30"></textarea>
+                            <small
+                                data-i18n-en="This is not a test, we simply want to know who you are. Python experience is not required to apply."
+                                data-i18n-fr="Ce n'est pas un test, nous voulons simplement savoir qui vous êtes. L'expérience Python n'est pas requise pour candidater.">
+                                Ce n'est pas un test, nous voulons simplement savoir qui vous êtes. L'expérience Python
+                                n'est pas requise pour candidater.
+                            </small>
+                        </div>
+                    </fieldset>
+
+                    <!-- Support Needed Section -->
+                    <fieldset class="form-fieldset">
+                        <legend data-i18n-en="Support Needed" data-i18n-fr="Soutien Nécessaire">Soutien Nécessaire
+                        </legend>
+                        <p class="fieldset-note"
+                            data-i18n-en="Select what you need. Requests for ticket support have the highest chance of being selected. Due to limited funds, we cannot cover 100% of every request."
+                            data-i18n-fr="Sélectionnez ce dont vous avez besoin. Les demandes de ticket ont le plus de chances d'être sélectionnées. En raison de fonds limités, nous ne pouvons pas couvrir 100% de chaque demande.">
+                            Sélectionnez ce dont vous avez besoin. Les demandes de ticket ont le plus de chances d'être
+                            sélectionnées. En raison de fonds limités, nous ne pouvons pas couvrir 100% de chaque
+                            demande.
+                        </p>
+                        <div class="field-note callout-note">
+                            <strong data-i18n-en="Choose one or more options"
+                                data-i18n-fr="Choisissez une ou plusieurs options">Choisissez une ou plusieurs
+                                options</strong>
+                            <p data-i18n-en="Tick the support types you need, then optionally explain your situation in the text box below."
+                                data-i18n-fr="Cochez les types de soutien dont vous avez besoin, puis expliquez éventuellement votre situation dans le champ ci-dessous.">
+                                Cochez les types de soutien dont vous avez besoin, puis expliquez éventuellement votre
+                                situation dans le champ ci-dessous.
+                            </p>
+                        </div>
+
+                        <div class="grant-needs">
+                            <label class="need-check">
+                                <input type="checkbox" name="need_ticket" value="ticket" />
+                                <span class="need-box">
+                                    <span class="need-toggle" aria-hidden="true"></span>
+                                    <span class="need-label" data-i18n-en="Conference Ticket"
+                                        data-i18n-fr="Ticket de la Conférence">Ticket de la Conférence</span>
+                                    <span class="need-desc" data-i18n-en="Highest chance of selection"
+                                        data-i18n-fr="Plus de chances d'être sélectionné">Highest chance of
+                                        selection</span>
+                                </span>
+                            </label>
+
+                            <label class="need-check">
+                                <input type="checkbox" name="need_transport" value="transport" />
+                                <span class="need-box">
+                                    <span class="need-toggle" aria-hidden="true"></span>
+
+                                    <span class="need-label" data-i18n-en="Transport within Lomé"
+                                        data-i18n-fr="Déplacement à Lomé">Déplacement à Lomé</span>
+                                    <span class="need-desc" data-i18n-en="Local transport support"
+                                        data-i18n-fr="Soutien au transport local">Soutien au transport local</span>
+                                </span>
+                            </label>
+
+                            <label class="need-check">
+                                <input type="checkbox" name="need_accommodation" value="accommodation" />
+                                <span class="need-box">
+                                    <span class="need-toggle" aria-hidden="true"></span>
+
+                                    <span class="need-label" data-i18n-en="Accommodation"
+                                        data-i18n-fr="Hébergement">Hébergement</span>
+                                    <span class="need-desc" data-i18n-en="Subject to fund availability"
+                                        data-i18n-fr="Sous réserve de disponibilité des fonds">Sous réserve de
+                                        disponibilité des fonds</span>
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="form-group grant-need-details">
+                            <label data-i18n-en="Support details (optional)"
+                                data-i18n-fr="Détails du soutien (optionnel)">Détails du soutien (optionnel)</label>
+                            <textarea name="support_details"
+                                placeholder="Dites-nous ce que vous souhaitez vraiment et pourquoi, si vous voulez préciser votre demande."
+                                data-i18n-placeholder-en="Tell us what you really need and why, if you want to add context."
+                                data-i18n-placeholder-fr="Dites-nous ce que vous souhaitez vraiment et pourquoi, si vous voulez préciser votre demande."
+                                rows="4"></textarea>
+                        </div>
+                    </fieldset>
+
+                    <div class="form-consent">
+                        <label class="consent-check">
+                            <input type="checkbox" id="grant-consent" name="grant_consent" required />
+                            <span
+                                data-i18n-en="I agree to the Code of Conduct and the Privacy Policy before submitting my application. *"
+                                data-i18n-fr="J'accepte le Code de conduite et la politique de confidentialité avant de soumettre ma candidature. *">J'accepte
+                                le Code de conduite et la politique de confidentialité avant de soumettre ma
+                                candidature.
+                                <span class="required-star">*</span></span>
+                        </label>
+                        <p class="consent-note">
+                            <a href="/coc" target="_blank" rel="noopener noreferrer"
+                                data-i18n-en="Read the Code of Conduct" data-i18n-fr="Lire le Code de conduite">Lire le
+                                Code de conduite</a>
+                            <span aria-hidden="true">·</span>
+                            <a href="/privacy-policy" target="_blank" rel="noopener noreferrer"
+                                data-i18n-en="Read the Privacy Policy"
+                                data-i18n-fr="Lire la politique de confidentialité">Lire la politique de
+                                confidentialité</a>
+                        </p>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg" id="grant-submit-btn" {% if not
+                        grant_application_is_open %}disabled aria-disabled="true" {% endif %}
+                        data-i18n-en="Submit My Application" data-i18n-fr="Soumettre Ma Candidature"
+                        data-loading-en="Sending..." data-loading-fr="Envoi en cours...">Soumettre Ma
+                        Candidature</button>
+                </form>
+
+                <div id="grant-success" class="form-success hidden" style="display: none;">
+                    <div class="success-check">✓</div>
+                    <h3 data-i18n-en="Thank You!" data-i18n-fr="Merci !">Merci !</h3>
+                    <p data-i18n-en="Your application has been received. Our team will review it and contact you if you are selected."
+                        data-i18n-fr="Votre candidature a été reçue. Notre équipe l'examinera et vous contactera si vous êtes sélectionné(e).">
+                        Votre candidature a été reçue. Notre équipe l'examinera et vous contactera si vous êtes
+                        sélectionné(e).
+                    </p>
+                    <a class="btn btn-primary" href="/" data-i18n-en="Back to Home"
+                        data-i18n-fr="Retour à l'Accueil">Retour à l'Accueil</a>
+                </div>
+
+                <p class="grant-status" id="grant-status" aria-live="polite"></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section grant-faq" style="background-color: #f8f9fa;">
+        <div class="container">
+            <h2 class="reveal" data-i18n-en="Frequently Asked Questions" data-i18n-fr="Questions Fréquemment Posées">
+                Questions Fréquemment Posées</h2>
+
+            <div class="faq-grid reveal reveal-d1">
+                <div class="faq-item">
+                    <h4 data-i18n-en="Who can apply?" data-i18n-fr="Qui peut candidater ?">Qui peut candidater ?</h4>
+                    <p data-i18n-en="Anyone who wants to attend PyCon Togo 2026. Priority is given to attendees based in Togo (especially around Lomé), women, and students. But everyone is encouraged to apply!"
+                        data-i18n-fr="Toute personne souhaitant participer à PyCon Togo 2026. La priorité est donnée aux participants basés au Togo (surtout autour de Lomé), aux femmes et aux étudiants. Mais tout le monde est encouragé à candidater !">
+                        Toute personne souhaitant participer à PyCon Togo 2026. La priorité est donnée aux participants
+                        basés au Togo (surtout autour de Lomé), aux femmes et aux étudiants. Mais tout le monde est
+                        encouragé à candidater !
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <h4 data-i18n-en="Do I need Python experience?" data-i18n-fr="Faut-il de l'expérience Python ?">
+                        Faut-il de l'expérience Python ?</h4>
+                    <p data-i18n-en="No. Python experience is not required. We want to support anyone genuinely interested in attending and learning."
+                        data-i18n-fr="Non. L'expérience Python n'est pas requise. Nous voulons soutenir toute personne réellement intéressée à participer et à apprendre.">
+                        Non. L'expérience Python n'est pas requise. Nous voulons soutenir toute personne réellement
+                        intéressée à participer et à apprendre.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <h4 data-i18n-en="Can international attendees apply?"
+                        data-i18n-fr="Les participants internationaux peuvent-ils candidater ?">Les participants
+                        internationaux peuvent-ils candidater ?</h4>
+                    <p data-i18n-en="Yes. For international applicants, we can only cover the conference ticket, not travel or accommodation."
+                        data-i18n-fr="Oui. Pour les candidats internationaux, nous ne pouvons couvrir que le ticket de la conférence, pas le voyage ni l'hébergement.">
+                        Oui. Pour les candidats internationaux, nous ne pouvons couvrir que le ticket de la conférence,
+                        pas le voyage ni l'hébergement.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <h4 data-i18n-en="Will my request be fully covered?"
+                        data-i18n-fr="Ma demande sera-t-elle entièrement couverte ?">Ma demande sera-t-elle entièrement
+                        couverte ?</h4>
+                    <p data-i18n-en="Not necessarily. Due to limited funds, we cannot cover 100% of every request. We will do our best with the funds available."
+                        data-i18n-fr="Pas nécessairement. En raison de fonds limités, nous ne pouvons pas couvrir 100% de chaque demande. Nous ferons de notre mieux avec les fonds disponibles.">
+                        Pas nécessairement. En raison de fonds limités, nous ne pouvons pas couvrir 100% de chaque
+                        demande. Nous ferons de notre mieux avec les fonds disponibles.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <h4 data-i18n-en="How will I be contacted?" data-i18n-fr="Comment serai-je contacté(e) ?">Comment
+                        serai-je contacté(e) ?</h4>
+                    <p data-i18n-en="If you are selected, we will contact you via email or WhatsApp using the details you provided."
+                        data-i18n-fr="Si vous êtes sélectionné(e), nous vous contacterons par email ou WhatsApp en utilisant les informations que vous avez fournies.">
+                        Si vous êtes sélectionné(e), nous vous contacterons par email ou WhatsApp en utilisant les
+                        informations que vous avez fournies.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <h4 data-i18n-en="Contact & Questions" data-i18n-fr="Contact et Questions">Contact & Questions</h4>
+                    <p data-i18n-en="Email us at team@pytogo.org with any questions about the grant."
+                        data-i18n-fr="Envoyez-nous un email à team@pytogo.org pour toute question sur la bourse.">
+                        Envoyez-nous un email à team@pytogo.org pour toute question sur la bourse.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const grantForm = document.getElementById('access-grant-form');
+        const grantSubmitBtn = document.getElementById('grant-submit-btn');
+        const grantCountrySelect = document.getElementById('grant-country');
+        const studentStatus = document.getElementById('student-status');
+        const studentProofGroup = document.getElementById('student-proof-group');
+        const studentProofInput = document.getElementById('student-proof');
+        const proofPreview = document.getElementById('student-proof-preview');
+        const grantIsOpen = grantForm ? grantForm.dataset.grantOpen === 'true' : true;
+
+        if (!grantIsOpen) {
+            if (grantForm) {
+                grantForm.classList.add('is-locked');
+                grantForm.setAttribute('aria-disabled', 'true');
+                grantForm.querySelectorAll('input, select, textarea, button').forEach((control) => {
+                    control.disabled = true;
+                });
+            }
+            if (grantSubmitBtn) {
+                grantSubmitBtn.textContent = document.documentElement.lang === 'fr' ? 'Candidatures fermées' : 'Applications closed';
+            }
+        }
+
+        function getCountryEntries(lang) {
+            const regionCodes = [
+                'AF', 'AL', 'DZ', 'AD', 'AO', 'AG', 'AR', 'AM', 'AU', 'AT', 'AZ', 'BS', 'BH', 'BD', 'BB', 'BY', 'BE', 'BZ', 'BJ', 'BT', 'BO', 'BA', 'BW', 'BR', 'BN', 'BG', 'BF', 'BI', 'CV', 'KH', 'CM', 'CA', 'CF', 'TD', 'CL', 'CN', 'CO', 'KM', 'CG', 'CD', 'CR', 'CI', 'HR', 'CU', 'CY', 'CZ', 'DK', 'DJ', 'DM', 'DO', 'EC', 'EG', 'SV', 'GQ', 'ER', 'EE', 'SZ', 'ET', 'FJ', 'FI', 'FR', 'GA', 'GM', 'GE', 'DE', 'GH', 'GR', 'GD', 'GT', 'GN', 'GW', 'GY', 'HT', 'HN', 'HU', 'IS', 'IN', 'ID', 'IR', 'IQ', 'IE', 'IL', 'IT', 'JM', 'JP', 'JO', 'KZ', 'KE', 'KI', 'KP', 'KR', 'KW', 'KG', 'LA', 'LV', 'LB', 'LS', 'LR', 'LY', 'LI', 'LT', 'LU', 'MG', 'MW', 'MY', 'MV', 'ML', 'MT', 'MH', 'MR', 'MU', 'MX', 'FM', 'MD', 'MC', 'MN', 'ME', 'MA', 'MZ', 'MM', 'NA', 'NR', 'NP', 'NL', 'NZ', 'NI', 'NE', 'NG', 'MK', 'NO', 'OM', 'PK', 'PW', 'PA', 'PG', 'PY', 'PE', 'PH', 'PL', 'PT', 'QA', 'RO', 'RU', 'RW', 'KN', 'LC', 'VC', 'WS', 'SM', 'ST', 'SA', 'SN', 'RS', 'SC', 'SL', 'SG', 'SK', 'SI', 'SB', 'SO', 'ZA', 'SS', 'ES', 'LK', 'SD', 'SR', 'SE', 'CH', 'SY', 'TW', 'TJ', 'TZ', 'TH', 'TL', 'TG', 'TO', 'TT', 'TN', 'TR', 'TM', 'TV', 'UG', 'UA', 'AE', 'GB', 'US', 'UY', 'UZ', 'VU', 'VA', 'VE', 'VN', 'YE', 'ZM', 'ZW'
+            ];
+
+            const displayNames = typeof Intl.DisplayNames === 'function'
+                ? new Intl.DisplayNames([lang], { type: 'region' })
+                : null;
+
+            return regionCodes
+                .map((code) => {
+                    const label = displayNames ? displayNames.of(code) : code;
+                    return { code, label };
+                })
+                .filter((entry) => entry.label && entry.label !== entry.code)
+                .sort((a, b) => a.label.localeCompare(b.label));
+        }
+
+        function populateGrantCountries() {
+            if (!grantCountrySelect) return;
+
+            const lang = document.documentElement.lang === 'fr' ? 'fr' : 'en';
+            const selectedValue = grantCountrySelect.value;
+            const placeholder = lang === 'fr' ? '-- Sélectionnez votre pays --' : '-- Select your country --';
+            const countries = getCountryEntries(lang);
+
+            grantCountrySelect.innerHTML = `<option value="">${placeholder}</option>` + countries
+                .map((country) => `<option value="${country.label}" data-country-code="${country.code}">${country.label}</option>`)
+                .join('');
+
+            if (selectedValue) {
+                const exists = Array.from(grantCountrySelect.options).some((option) => option.value === selectedValue);
+                if (!exists) {
+                    const customOption = document.createElement('option');
+                    customOption.value = selectedValue;
+                    customOption.textContent = selectedValue;
+                    grantCountrySelect.appendChild(customOption);
+                }
+                grantCountrySelect.value = selectedValue;
+            }
+        }
+
+        populateGrantCountries();
+        document.addEventListener('pycontg:language-changed', populateGrantCountries);
+
+        if (studentStatus && studentProofGroup) {
+            const toggleStudentProof = () => {
+                const isStudent = studentStatus.value === 'yes';
+                studentProofGroup.style.display = isStudent ? 'flex' : 'none';
+                studentProofInput.required = isStudent;
+                if (!isStudent) {
+                    studentProofInput.value = '';
+                    proofPreview.classList.add('hidden');
+                    proofPreview.style.display = 'none';
+                }
+            };
+
+            studentStatus.addEventListener('change', toggleStudentProof);
+            toggleStudentProof();
+        }
+
+        if (studentProofInput && proofPreview) {
+            studentProofInput.addEventListener('change', () => {
+                const file = studentProofInput.files[0];
+                if (!file) {
+                    proofPreview.classList.add('hidden');
+                    proofPreview.style.display = 'none';
+                    return;
+                }
+
+                const maxSize = 5 * 1024 * 1024; // 5MB
+                if (file.size > maxSize) {
+                    alert('File is too large. Maximum size is 5MB.');
+                    studentProofInput.value = '';
+                    proofPreview.classList.add('hidden');
+                    proofPreview.style.display = 'none';
+                    return;
+                }
+
+                const allowedTypes = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+                if (!allowedTypes.includes(file.type)) {
+                    alert('Please upload a PDF or image file (JPG, PNG, WEBP).');
+                    studentProofInput.value = '';
+                    proofPreview.classList.add('hidden');
+                    proofPreview.style.display = 'none';
+                    return;
+                }
+
+                proofPreview.textContent = `📎 ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
+                proofPreview.classList.remove('hidden');
+                proofPreview.style.display = 'block';
+            });
+        }
+    });
+
+    function setGrantStatus(messageFr, messageEn, isError = false) {
+        const status = document.getElementById('grant-status');
+        if (!status) return;
+        const lang = document.documentElement.lang === 'fr' ? 'fr' : 'en';
+        status.textContent = lang === 'fr' ? messageFr : messageEn;
+        status.classList.toggle('error', isError);
+    }
+
+    function showGrantSuccess() {
+        const form = document.getElementById('access-grant-form');
+        const success = document.getElementById('grant-success');
+        const status = document.getElementById('grant-status');
+
+        if (form) form.style.display = 'none';
+        if (success) {
+            success.classList.remove('hidden');
+            success.style.display = 'block';
+        }
+        if (status) {
+            status.textContent = '';
+            status.classList.remove('error');
+        }
+    }
+
+    function readFileAsBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => {
+                const base64 = String(reader.result || '').split(',')[1] || '';
+                resolve(base64);
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
+    }
+
+    async function handleGrantSubmit(e) {
+        e.preventDefault();
+        const form = document.getElementById('access-grant-form');
+        if (form && form.dataset.grantOpen !== 'true') {
+            setGrantStatus(
+                'Les candidatures sont fermées.',
+                'Applications are closed.',
+                true
+            );
+            return;
+        }
+        const btn = document.getElementById('grant-submit-btn');
+        const consent = document.getElementById('grant-consent');
+        const lang = document.documentElement.lang === 'fr' ? 'fr' : 'en';
+
+        if (form && !form.checkValidity()) {
+            form.reportValidity();
+            setGrantStatus(
+                'Veuillez corriger les champs obligatoires avant de soumettre.',
+                'Please correct the required fields before submitting.',
+                true
+            );
+            return;
+        }
+
+        if (consent && !consent.checked) {
+            consent.focus();
+            setGrantStatus(
+                'Veuillez accepter le Code de conduite et la politique de confidentialité avant de soumettre.',
+                'Please accept the Code of Conduct and Privacy Policy before submitting.',
+                true
+            );
+            return;
+        }
+
+        const formData = new FormData(form);
+        const payload = {};
+        formData.forEach((value, key) => {
+            payload[key] = value;
+        });
+
+        // Normalize needs checkboxes
+        payload.need_ticket = form.querySelector('input[name="need_ticket"]')?.checked || false;
+        payload.need_transport = form.querySelector('input[name="need_transport"]')?.checked || false;
+        payload.need_accommodation = form.querySelector('input[name="need_accommodation"]')?.checked || false;
+        payload.is_student = payload.is_student === 'yes';
+        payload.gender = String(payload.gender || '').trim();
+        payload.country = String(payload.country || '').trim();
+        payload.support_details = String(payload.support_details || '').trim();
+
+        // Handle student proof file
+        const proofFile = document.getElementById('student-proof')?.files?.[0];
+        if (payload.is_student && proofFile) {
+            try {
+                const base64 = await readFileAsBase64(proofFile);
+                payload.student_proof = {
+                    fileName: proofFile.name,
+                    mimeType: proofFile.type,
+                    base64,
+                };
+            } catch (error) {
+                setGrantStatus(
+                    'Erreur lors de la lecture du fichier. Veuillez réessayer.',
+                    'Error reading the file. Please try again.',
+                    true
+                );
+                return;
+            }
+        } else {
+            payload.student_proof = null;
+        }
+
+        const submissionPayload = {
+            form_data: payload,
+            agreed_to_code_of_conduct: Boolean(consent && consent.checked),
+            agreed_to_privacy_policy: Boolean(consent && consent.checked),
+        };
+
+        if (btn) {
+            btn.textContent = lang === 'fr' ? (btn.dataset.loadingFr || 'Envoi en cours...') : (btn.dataset.loadingEn || 'Sending...');
+            btn.disabled = true;
+        }
+
+        try {
+            const response = await fetch("/access-grant/submit", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(submissionPayload),
+            });
+
+            const payload = await response.json().catch(() => ({}));
+            if (!response.ok) {
+                const detail = payload.detail || payload.message || 'Unable to submit your application. Please try again later.';
+                throw new Error(String(detail));
+            }
+
+            setTimeout(() => {
+                showGrantSuccess();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 900);
+        } catch (error) {
+            setGrantStatus(
+                `Erreur d'envoi : ${error.message}`,
+                `Submission error: ${error.message}`,
+                true
+            );
+            if (btn) {
+                btn.textContent = lang === 'fr' ? 'Soumettre Ma Candidature' : 'Submit My Application';
+                btn.disabled = false;
+            }
+        }
+    }
+</script>
+
+{% endblock %}

@@ -63,6 +63,8 @@
                             data-i18n-fr="{{ cfp_nav_fr }}">{{ cfp_nav_en }}</a>
                         <a class="nav-dropdown-item" data-i18n-en="Contact" data-i18n-fr="Contact"
                             href="/contact">Contact</a>
+                        <a class="nav-link{% if active_page == 'donate' %} active{% endif %}" data-i18n-en="Support"
+                            data-i18n-fr="soutenir" href="/donate">Support</a>
                     </div>
                 </div>
 
@@ -82,6 +84,8 @@
                         <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
                     </a>
 
+
+
                     <div class="nav-dropdown-menu" role="menu" aria-label="Sponsors submenu">
                         <a class="nav-link{% if active_page == 'partners' %} active{% endif %}" data-i18n-en="Sponsors"
                             data-i18n-fr="nos Sponsors" href="/partners">Our Sponsors</a>
@@ -90,10 +94,13 @@
                     </div>
                 </div>
 
+
+
             </nav>
             <div class="nav-actions">
-                <a class="btn btn-ghost" href="/donate" data-i18n-en="Support PyCon"
-                    data-i18n-fr="Soutenir PyCon">Support PyCon</a>
+                <a class="btn btn-ghost" href="/access-grant" data-i18n-en="Access Grants"
+                    data-i18n-fr="Bourses d'accès">Access
+                    Grants</a>
                 <a class="btn btn-primary" href="/tickets" data-i18n-en="Register"
                     data-i18n-fr="S'inscrire">Register</a>
                 <div class="lang-toggle" role="group" aria-label="Language switcher">
@@ -143,6 +150,11 @@
                     data-i18n-fr="Offres d'emploi">Job Board</a>
                 <a class="drawer-link drawer-sublink" href="/call-for-speakers" onclick="closeMenu()"
                     data-i18n-en="{{ cfp_nav_en }}" data-i18n-fr="{{ cfp_nav_fr }}">{{ cfp_nav_en }}</a>
+
+                <a class="drawer-link drawer-sublink" href="/visit" onclick="closeMenu()" data-i18n-en="Visit Togo"
+                    data-i18n-fr="Visiter Togo">Visit Togo</a>
+                <a class="drawer-link drawer-sublink" href="/contact" onclick="closeMenu()" data-i18n-en="Contact"
+                    data-i18n-fr="Contact">Contact</a>
             </div>
         </div>
         <div class="drawer-section">
@@ -158,10 +170,6 @@
                     data-i18n-en="Become Sponsor" data-i18n-fr="Sponsoriser">Become Sponsor</a>
             </div>
         </div>
-        <a class="drawer-link" href="/contact" onclick="closeMenu()" data-i18n-en="Contact"
-            data-i18n-fr="Contact">Contact</a>
-        <a class="drawer-link" href="/visit" onclick="closeMenu()" data-i18n-en="Visit Togo"
-            data-i18n-fr="Visiter Togo">Visit Togo</a>
         <a class="drawer-link" href="/speakers" data-i18n-en="Our Speakers" data-i18n-fr="Nos Intervenants"
             onclick="closeMenu()">Our Speakers</a>
         <a class="drawer-link" data-i18n-en="Schedule" data-i18n-fr="Programme" href="/schedule"
@@ -169,8 +177,8 @@
         <div class="drawer-actions">
             <a class="btn btn-primary" href="/tickets" onclick="closeMenu()" data-i18n-en="Register →"
                 data-i18n-fr="S'inscrire →">Register →</a>
-            <a class="btn btn-ghost" href="/donate" onclick="closeMenu()" data-i18n-en="Support PyCon"
-                data-i18n-fr="Soutenir PyCon">Support PyCon</a>
+            <a class="btn btn-ghost" href="/access-grant" onclick="closeMenu()" data-i18n-en="Access Grant"
+                data-i18n-fr="Bourse d'Access">Access Grant</a>
         </div>
     </div>
 
@@ -241,8 +249,7 @@
                 </div>
                 <div class="footer-col">
                     <h5 data-i18n-en="Get Involved" data-i18n-fr="Participer">Get Involved</h5>
-                    <a href="/tickets" data-i18n-en="Ticketing opens soon"
-                        data-i18n-fr="Ouverture billetterie (bientôt)">Ticketing opens soon</a>
+                    <a href="/tickets" data-i18n-en="Register" data-i18n-fr="S'inscrire">Register</a>
                     <a href="/sponsors" data-i18n-en="Become Sponsor" data-i18n-fr="Sponsoriser">Become Sponsor</a>
                     <a href="/donate" data-i18n-en="Support PyCon" data-i18n-fr="Soutenir PyCon">Support PyCon</a>
                     <a href="/contact" data-i18n-en="Volunteer" data-i18n-fr="Bénévolat">Volunteer</a>
