@@ -735,9 +735,9 @@
                 body: JSON.stringify(submissionPayload),
             });
 
-            const payload = await response.json().catch(() => ({}));
+            const ResponsePayload = await response.json().catch(() => ({}));
             if (!response.ok) {
-                const detail = payload.detail || payload.message || 'Unable to submit your application. Please try again later.';
+                const detail = ResponsePayload.detail || ResponsePayload.message || 'Unable to submit your application. Please try again later.';
                 throw new Error(String(detail));
             }
 

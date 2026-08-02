@@ -249,9 +249,8 @@
     opacity: .82;
 }
 
-.grant-form.is-locked .form-consent,
-.grant-form.is-locked .grant-status,
-.grant-form.is-locked .grant-closed-banner {
+
+.grant-form.is-locked .form-consent {
     pointer-events: auto;
 }
 
