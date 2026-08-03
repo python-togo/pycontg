@@ -640,6 +640,20 @@ async function fetchVoucher(code) {
   return payload.data || payload.item || payload.voucher || payload;
 }
 
+function getVoucherCodeFromQueryParams() {
+  const params = new URLSearchParams(window.location.search || "");
+  const candidateKeys = ["voucher", "coupon", "code"];
+
+  for (const key of candidateKeys) {
+    const value = (params.get(key) || "").trim();
+    if (value) {
+      return value;
+    }
+  }
+
+  return "";
+}
+
 function applyVoucherFromInput() {
   const input = getCouponInput();
   if (!input) return;
@@ -648,6 +662,7 @@ function applyVoucherFromInput() {
   if (!code) {
     clearVoucherState();
     renderTicketList();
+    renderTicketPreview();
     updateSummary();
     return;
   }
@@ -678,6 +693,7 @@ function applyVoucherFromInput() {
     voucherState.loading = false;
     renderVoucherFeedback();
     renderTicketList();
+    renderTicketPreview();
     updateSummary();
   });
 }
@@ -1369,6 +1385,7 @@ function initTicketsPage() {
       if (voucherState.code && couponInput.value.trim() !== voucherState.code) {
         clearVoucherState();
         renderTicketList();
+        renderTicketPreview();
         updateSummary();
       }
     });
@@ -1378,6 +1395,12 @@ function initTicketsPage() {
         applyVoucherFromInput();
       }
     });
+  }
+
+  const voucherCodeFromUrl = getVoucherCodeFromQueryParams();
+  if (voucherCodeFromUrl && couponInput) {
+    couponInput.value = voucherCodeFromUrl;
+    applyVoucherFromInput();
   }
 
   document.querySelectorAll("[data-open-ticket-modal]").forEach(btn => {
