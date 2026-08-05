@@ -44,8 +44,9 @@
 
             <div class="speaker-card_footer">
               {% if speaker.company_logo_url %}
-              <img class="speaker-card_company-logo" src="{{ speaker.company_logo_url }}"
-                alt="{{ speaker.organization }}">
+              <img class="speaker-card_company-logo" src="{{ speaker.company_logo_url }}" alt="company logo">
+              {% elif speaker.organization %}
+              <p class="speaker-card_company">{{ speaker.organization }}</p>
               {% endif %}
             </div>
           </div>
