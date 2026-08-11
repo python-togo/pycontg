@@ -724,7 +724,7 @@ def _group_confirmed_partners(rows: list[dict]) -> dict:
             grouped["community_partners"].append(item)
         elif partner_type == "python_community_partner":
             grouped["python_community_partners"].append(item)
-        elif partner_type in {"media_partner", "media-partner", "media"}:
+        elif partner_type in {"media_partner", "media_partner", "media"}:
             grouped["media_partners"].append(item)
         elif partner_type in {"institutional_support", "institutional-support", "institutional"}:
             grouped["institutional_support"].append(item)
@@ -917,6 +917,7 @@ async def _fetch_partner_sections() -> dict:
     try:
         async with httpx.AsyncClient(timeout=settings.python_togo_api_timeout_seconds) as client:
             response = await client.get(url, headers=headers)
+            print(f"Response status code: {response}")
         if response.status_code < 400:
             payload = response.json()
             rows = _extract_partner_rows(payload)

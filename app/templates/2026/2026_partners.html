@@ -28,8 +28,9 @@
             {% set institutional = partners.get('institutional_support', []) %}
             {% set venue_support = partners.get('venue_support', []) %}
             {% set community = partners.get('community_partners', []) %}
-            {% set python_community = partners.get('python_community_partners', []) %}
             {% set media = partners.get('media_partners', []) %}
+            {% set python_community = partners.get('python_community_partners', []) %}
+
             {% set other = partners.get('other_partners', []) %}
 
             {% set s_headline = sponsors | selectattr('package_tier', 'equalto', 'headline') | list %}
@@ -168,6 +169,18 @@
             </div>
             {% endif %}
 
+
+            {% if media %}
+            <div class="section-head section-head--media reveal">
+                <h3 data-i18n-en="Media Partners" data-i18n-fr="Partenaires media">Partenaires media</h3>
+
+            </div>
+            <div class="partner-grid reveal reveal-d1">
+                {% for item in media %}
+                {{ partner_card(item) }}
+                {% endfor %}
+            </div>
+            {% endif %}
             {% if python_community %}
             <div class="section-head section-head--python reveal">
                 <h3 data-i18n-en="Python Community Partners" data-i18n-fr="Partenaires communaute Python">Partenaires
@@ -194,17 +207,7 @@
             </div>
             {% endif %}
 
-            {% if media %}
-            <div class="section-head section-head--media reveal">
-                <h3 data-i18n-en="Media Partners" data-i18n-fr="Partenaires media">Partenaires media</h3>
 
-            </div>
-            <div class="partner-grid reveal reveal-d1">
-                {% for item in media %}
-                {{ partner_card(item) }}
-                {% endfor %}
-            </div>
-            {% endif %}
 
             {% if other %}
             <div class="section-head section-head--other reveal">
