@@ -13,7 +13,22 @@
                     </p>
                 </div>
 
-                <form id="feedbackForm" class="feedback-form" novalidate>
+                <div class="feedback-form-wrapper {% if not feedback_is_open %}feedback-form-locked{% endif %}"
+                     data-feedback-open="{{ 'true' if feedback_is_open else 'false' }}">
+                    {% if not feedback_is_open %}
+                    <div class="feedback-closed-banner" role="status" aria-live="polite">
+                        <strong data-i18n-en="Feedback form not yet open"
+                            data-i18n-fr="Le formulaire de retour n'est pas encore ouvert">Le formulaire de retour
+                            n'est pas encore ouvert</strong>
+                        <p data-i18n-en="The feedback form will be available from August 28, 2026 at 12:00 UTC. Please check back later!"
+                            data-i18n-fr="Le formulaire de retour d'expérience sera disponible à partir du 28 août 2026 à 12h00 UTC. Revenez plus tard !">
+                            Le formulaire de retour d'expérience sera disponible à partir du 28 août 2026 à 12h00 UTC.
+                            Revenez plus tard !
+                        </p>
+                    </div>
+                    {% endif %}
+
+                    <form id="feedbackForm" class="feedback-form" novalidate>
                     <div class="feedback-grid">
                         <div class="feedback-field">
                             <label class="feedback-label" data-i18n-en="Sex" data-i18n-fr="Sexe">Sexe</label>
@@ -144,8 +159,9 @@
                     </div>
 
                     <div class="feedback-actions">
-                        <button type="submit" class="btn btn-primary" id="submitBtn"
-                                data-i18n-en="Send Feedback" data-i18n-fr="Envoyer le retour">Envoyer le retour</button>
+                        <button type="submit" class="btn btn-primary" id="submitBtn"{% if not feedback_is_open %} disabled aria-disabled="true"{% endif %}
+                                data-i18n-en="Send Feedback" data-i18n-fr="Envoyer le retour"
+                                data-locked-en="Form not yet open" data-locked-fr="Formulaire non ouvert">Envoyer le retour</button>
                         <button type="reset" class="btn btn-ghost" id="resetBtn"
                                 data-i18n-en="Reset" data-i18n-fr="Réinitialiser">Réinitialiser</button>
                     </div>
@@ -154,6 +170,7 @@
                         <div class="feedback-status-msg"></div>
                     </div>
                 </form>
+                </div>
             </div>
         </div>
     </section>

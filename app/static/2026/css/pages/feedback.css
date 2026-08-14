@@ -102,6 +102,43 @@
     color: #800;
 }
 .feedback-status-msg { flex: 1; }
+.feedback-coming-soon-text {
+    color: #444;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0;
+    text-align: center;
+}
+.feedback-coming-soon-date {
+    color: #2D5016;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 16px 0 0;
+    text-align: center;
+}
+.feedback-form-wrapper.feedback-form-locked {
+    position: relative;
+    pointer-events: none;
+}
+.feedback-form-wrapper.feedback-form-locked .feedback-form * {
+    pointer-events: none;
+}
+.feedback-form-wrapper.feedback-form-locked .feedback-form .feedback-status {
+    pointer-events: auto;
+}
+.feedback-closed-banner {
+    margin-bottom: 20px;
+    padding: 16px 20px;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 0, 0, 0.12);
+    background: rgba(255, 0, 0, 0.04);
+    color: #800;
+}
+.feedback-closed-banner strong {
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+}
 @media (max-width: 720px) {
     .feedback-card { padding: 20px; }
     .feedback-grid { grid-template-columns: 1fr; }

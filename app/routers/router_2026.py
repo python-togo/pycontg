@@ -33,6 +33,12 @@ grant_application_deadline_at = datetime(
 
 grant_results_date = date(2026, 8, 15)
 
+feedback_open_at = datetime(2026, 8, 28, 12, 0, tzinfo=timezone.utc)
+
+
+def _feedback_is_open() -> bool:
+    return datetime.now(timezone.utc) >= feedback_open_at
+
 
 PartnerType = Literal[
     "partnership",
@@ -1669,12 +1675,17 @@ def volunteers(request: Request):
 
 @router.get("/feedback")
 async def feedback(request: Request):
+    feedback_is_open = _feedback_is_open()
     return await _render_page_with_event(
         request=request,
         name="2026_feedback.html",
         active_page="feedback",
         page_css="feedback.css",
         page_title="PyCon Togo 2026 - Feedback",
+        extra_context={
+            "feedback_is_open": feedback_is_open,
+            "feedback_open_at": feedback_open_at,
+        },
     )
 
 

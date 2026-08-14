@@ -1,17 +1,21 @@
 (function() {
     "use strict";
 
-    var apiUrl = "https://api.pycontg.pytogo.org/api/feedback/";
     var form = document.getElementById("feedbackForm");
+    if (!form) return;
+
+    var apiUrl = "https://api.pycontg.pytogo.org/api/feedback/";
     var submitBtn = document.getElementById("submitBtn");
     var resetBtn = document.getElementById("resetBtn");
     var statusEl = document.getElementById("formStatus");
     var statusMsg = statusEl.querySelector(".feedback-status-msg");
+    var feedbackIsOpen = form.dataset.feedbackOpen === "true";
 
     var i18n = {
         fr: {
             required: "Veuillez remplir les champs requis.",
             days_required: "Veuillez sélectionner au moins un jour.",
+            not_open: "Le formulaire n'est pas encore ouvert.",
             sending: "Envoi…",
             success: "Merci ! Votre retour a été envoyé.",
             error: "Une erreur est survenue. Veuillez réessayer plus tard.",
@@ -20,6 +24,7 @@
         en: {
             required: "Please fill in the required fields.",
             days_required: "Please select at least one day.",
+            not_open: "The feedback form is not yet open.",
             sending: "Sending…",
             success: "Thank you! Your feedback has been sent.",
             error: "An error occurred. Please try again later.",
@@ -28,7 +33,8 @@
     };
 
     function getLang() {
-        return (window.currentLang || "fr").toLowerCase().startsWith("en") ? "en" : "fr";
+        var docLang = (document.documentElement.lang || "fr").toLowerCase();
+        return docLang.startsWith("en") ? "en" : (docLang.startsWith("fr") ? "fr" : "fr");
     }
 
     function showStatus(success, text) {
@@ -71,9 +77,15 @@
         e.preventDefault();
         hideStatus();
 
-        var fd = new FormData(form);
         var lang = getLang();
         var t = i18n[lang] || i18n.en;
+
+        if (!feedbackIsOpen) {
+            showStatus(false, t.not_open);
+            return;
+        }
+
+        var fd = new FormData(form);
 
         var payload = {
             sex: fd.get("sex") || null,

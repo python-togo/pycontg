@@ -42,7 +42,7 @@
                 <a class="nav-link{% if active_page == 'home' %} active{% endif %}" data-i18n-en="Home"
                     data-i18n-fr="Accueil" href="/">Home</a>
                 <div class="nav-dropdown">
-                    <a class="nav-link nav-dropdown-trigger{% if active_page in ['about', 'team', 'jobs', 'support'] %} active{% endif %}"
+                    <a class="nav-link nav-dropdown-trigger{% if active_page in ['about', 'team', 'jobs', 'support', 'feedback'] %} active{% endif %}"
                         href="/about">
                         <span class="nav-dropdown-label" data-i18n-en="About" data-i18n-fr="À Propos">About</span>
                         <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
@@ -65,6 +65,8 @@
                             href="/contact">Contact</a>
                         <a class="nav-dropdown-item" data-i18n-en="Support" data-i18n-fr="soutenir"
                             href="/donate">Support</a>
+                        <a class="nav-dropdown-item{% if active_page == 'feedback' %} active{% endif %}"
+                            href="/feedback" data-i18n-en="Feedback" data-i18n-fr="Retour d'expérience">Feedback</a>
                     </div>
                 </div>
 
@@ -76,8 +78,6 @@
                     data-i18n-fr="Speakers" href="/speakers">Speakers</a>
                 <a class="nav-link{% if active_page == 'schedule' %} active{% endif %}" data-i18n-en="Schedule"
                     data-i18n-fr="Programme" href="/schedule">Schedule</a>
-                <a class="nav-link{% if active_page == 'feedback' %} active{% endif %}" data-i18n-en="Feedback"
-                    data-i18n-fr="Retour d'expérience" href="/feedback">Feedback</a>
 
                 <div class="nav-dropdown">
                     <a class="nav-link nav-dropdown-trigger{% if active_page in ['sponsors', 'partners', 'support'] %} active{% endif %}"
@@ -157,6 +157,9 @@
                     data-i18n-fr="Visiter Togo">Visit Togo</a>
                 <a class="drawer-link drawer-sublink" href="/contact" onclick="closeMenu()" data-i18n-en="Contact"
                     data-i18n-fr="Contact">Contact</a>
+                <a class="drawer-link drawer-sublink{% if active_page == 'feedback' %} active{% endif %}"
+                    href="/feedback" onclick="closeMenu()" data-i18n-en="Feedback"
+                    data-i18n-fr="Retour d'expérience">Feedback</a>
             </div>
         </div>
         <div class="drawer-section">
@@ -176,8 +179,6 @@
             onclick="closeMenu()">Our Speakers</a>
         <a class="drawer-link" data-i18n-en="Schedule" data-i18n-fr="Programme" href="/schedule"
             onclick="closeMenu()">Schedule</a>
-        <a class="drawer-link" data-i18n-en="Feedback" data-i18n-fr="Retour d'expérience"
-            href="/feedback" onclick="closeMenu()">Feedback</a>
         <div class="drawer-actions">
             <a class="btn btn-primary" href="/tickets" onclick="closeMenu()" data-i18n-en="Register →"
                 data-i18n-fr="S'inscrire →">Register →</a>
@@ -249,6 +250,7 @@
                     <a href="/partners" data-i18n-en="Sponsors" data-i18n-fr="Sponsors">Sponsors</a>
                     <a href="/team" data-i18n-en="Team" data-i18n-fr="Équipe">Team</a>
                     <a href="/jobs" data-i18n-en="Job Board" data-i18n-fr="Offres d'emploi">Job Board</a>
+                    <a href="/feedback" data-i18n-en="Feedback" data-i18n-fr="Retour d'expérience">Feedback</a>
                     <a href="mailto:contact@pytogo.org" data-i18n-en="Contact" data-i18n-fr="Contact">Contact</a>
                 </div>
                 <div class="footer-col">
