@@ -1668,9 +1668,14 @@ def volunteers(request: Request):
 
 
 @router.get("/feedback")
-def feedback(request: Request):
-    # TODO - create a feedback page with a form to submit feedback
-    pass
+async def feedback(request: Request):
+    return await _render_page_with_event(
+        request=request,
+        name="2026_feedback.html",
+        active_page="feedback",
+        page_css="feedback.css",
+        page_title="PyCon Togo 2026 - Feedback",
+    )
 
 
 @router.get("/shop")

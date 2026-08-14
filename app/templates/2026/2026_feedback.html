@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="page active" id="page-feedback">
+    <section class="section">
+        <div class="container">
+            <div class="feedback-card reveal">
+                <div class="feedback-header">
+                    <h1 class="feedback-title" data-i18n-en="PyCon 2026 Feedback" data-i18n-fr="Retour d'expérience PyCon 2026">Retour d'expérience PyCon 2026</h1>
+                    <p class="feedback-subtitle" data-i18n-en="We value your opinion. Tell us what you loved and how we can improve. Your response is anonymous."
+                       data-i18n-fr="Nous apprécions votre opinion. Dites-nous ce que vous avez aimé et comment nous pourrions nous améliorer. Votre réponse restera anonyme.">
+                        Nous apprécions votre opinion. Dites-nous ce que vous avez aimé et comment nous pourrions nous améliorer. Votre réponse restera anonyme.
+                    </p>
+                </div>
+
+                <form id="feedbackForm" class="feedback-form" novalidate>
+                    <div class="feedback-grid">
+                        <div class="feedback-field">
+                            <label class="feedback-label" data-i18n-en="Sex" data-i18n-fr="Sexe">Sexe</label>
+                            <div class="feedback-radio-group">
+                                <label class="feedback-radio-item">
+                                    <input type="radio" name="sex" value="male" checked>
+                                    <span data-i18n-en="Male" data-i18n-fr="Homme">Homme</span>
+                                </label>
+                                <label class="feedback-radio-item">
+                                    <input type="radio" name="sex" value="female">
+                                    <span data-i18n-en="Female" data-i18n-fr="Femme">Femme</span>
+                                </label>
+                                <label class="feedback-radio-item">
+                                    <input type="radio" name="sex" value="other">
+                                    <span data-i18n-en="Other" data-i18n-fr="Autre">Autre</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="feedback-field">
+                            <label class="feedback-label" for="age" data-i18n-en="Average Age" data-i18n-fr="Âge">Âge</label>
+                            <select id="age" name="age" required>
+                                <option value="" data-i18n-en="Select" data-i18n-fr="Sélectionner">Sélectionner</option>
+                                <option value="under-18" data-i18n-en="&lt; 18" data-i18n-fr="&lt; 18">&lt; 18</option>
+                                <option value="18-25" data-i18n-en="18-25" data-i18n-fr="18-25">18-25</option>
+                                <option value="26-35" data-i18n-en="26-35" data-i18n-fr="26-35">26-35</option>
+                                <option value="36-50" data-i18n-en="36-50" data-i18n-fr="36-50">36-50</option>
+                                <option value="50+" data-i18n-en="50+" data-i18n-fr="50+">50+</option>
+                            </select>
+                        </div>
+
+                        <div class="feedback-field">
+                            <label class="feedback-label" for="profession" data-i18n-en="Profession" data-i18n-fr="Profession">Profession</label>
+                            <input id="profession" name="profession" type="text"
+                                   data-i18n-placeholder-en="e.g. Student, Developer"
+                                   data-i18n-placeholder-fr="ex : Étudiant, Développeur"
+                                   placeholder="ex : Étudiant, Développeur" required />
+                        </div>
+
+                        <div class="feedback-field">
+                            <label class="feedback-label" for="country" data-i18n-en="Country" data-i18n-fr="Pays">Pays</label>
+                            <input id="country" name="country" type="text"
+                                   data-i18n-placeholder-en="e.g. Togo"
+                                   data-i18n-placeholder-fr="ex : Togo"
+                                   placeholder="ex : Togo" required />
+                        </div>
+
+                        <div class="feedback-field">
+                            <label class="feedback-label" for="python_level" data-i18n-en="Python level" data-i18n-fr="Niveau en Python">Niveau en Python</label>
+                            <select id="python_level" name="python_level" required>
+                                <option value="" data-i18n-en="Select" data-i18n-fr="Sélectionner">Sélectionner</option>
+                                <option value="beginner" data-i18n-en="Beginner" data-i18n-fr="Débutant">Débutant</option>
+                                <option value="intermediate" data-i18n-en="Intermediate" data-i18n-fr="Intermédiaire">Intermédiaire</option>
+                                <option value="advanced" data-i18n-en="Advanced" data-i18n-fr="Avancé">Avancé</option>
+                                <option value="other" data-i18n-en="Other" data-i18n-fr="Autre">Autre</option>
+                            </select>
+                        </div>
+
+                        <div class="feedback-field">
+                            <label class="feedback-label" data-i18n-en="Day(s) attended" data-i18n-fr="Jour(s) assisté(s)">Jour(s) assisté(s)</label>
+                            <div class="feedback-checkbox-group">
+                                <label class="feedback-checkbox-item">
+                                    <input type="checkbox" name="days" value="day_1">
+                                    <span data-i18n-en="Day 1" data-i18n-fr="Jour 1">Jour 1</span>
+                                </label>
+                                <label class="feedback-checkbox-item">
+                                    <input type="checkbox" name="days" value="day_2">
+                                    <span data-i18n-en="Day 2" data-i18n-fr="Jour 2">Jour 2</span>
+                                </label>
+                                <label class="feedback-checkbox-item">
+                                    <input type="checkbox" name="days" value="day_3">
+                                    <span data-i18n-en="Day 3" data-i18n-fr="Jour 3">Jour 3</span>
+                                </label>
+                            </div>
+                            <div class="feedback-checkbox-error" style="display:none; color:#800; font-size:0.85rem; margin-top:4px;" data-i18n-en="Please select at least one day." data-i18n-fr="Veuillez sélectionner au moins un jour."></div>
+                        </div>
+
+                        <div class="feedback-field">
+                            <label class="feedback-label" for="heard" data-i18n-en="How did you hear about us?" data-i18n-fr="Comment avez-vous entendu parler ?">Comment avez-vous entendu parler ?</label>
+                            <select id="heard" name="heard" required>
+                                <option value="" data-i18n-en="Select" data-i18n-fr="Sélectionner">Sélectionner</option>
+                                <option value="social" data-i18n-en="Social Media" data-i18n-fr="Réseaux sociaux">Réseaux sociaux</option>
+                                <option value="friend" data-i18n-en="Friend" data-i18n-fr="Ami(e)">Ami(e)</option>
+                                <option value="newsletter" data-i18n-en="Newsletter" data-i18n-fr="Bulletin">Bulletin</option>
+                                <option value="other" data-i18n-en="Other" data-i18n-fr="Autre">Autre</option>
+                            </select>
+                        </div>
+
+                        <div class="feedback-field">
+                            <label class="feedback-label" for="rating" data-i18n-en="Rating (1–5)" data-i18n-fr="Note (1–5)">Note (1–5)</label>
+                            <input id="rating" name="rating" type="number" min="1" max="5"
+                                   data-i18n-placeholder-en="Optional"
+                                   data-i18n-placeholder-fr="Facultatif"
+                                   placeholder="Facultatif" />
+                        </div>
+
+                        <div class="feedback-field feedback-full">
+                            <label class="feedback-label" for="overall" data-i18n-en="Overall Experience" data-i18n-fr="Expérience globale">Expérience globale</label>
+                            <textarea id="overall" name="overall" rows="4"
+                                      data-i18n-placeholder-en="Tell us about your overall experience..."
+                                      data-i18n-placeholder-fr="Parlez-nous de votre expérience globale..."
+                                      placeholder="Parlez-nous de votre expérience globale..." required></textarea>
+                        </div>
+
+                        <div class="feedback-field feedback-full">
+                            <label class="feedback-label" for="favorite" data-i18n-en="Favorite Part" data-i18n-fr="Partie préférée">Partie préférée</label>
+                            <textarea id="favorite" name="favorite" rows="4"
+                                      data-i18n-placeholder-en="What did you like most?"
+                                      data-i18n-placeholder-fr="Qu'avez-vous le plus aimé ?"
+                                      placeholder="Qu'avez-vous le plus aimé ?" required></textarea>
+                        </div>
+
+                        <div class="feedback-field feedback-full">
+                            <label class="feedback-label" for="improvements" data-i18n-en="Improvements (optional)" data-i18n-fr="Améliorations (facultatif)">Améliorations (facultatif)</label>
+                            <textarea id="improvements" name="improvements" rows="3"
+                                      data-i18n-placeholder-en="How can we improve?"
+                                      data-i18n-placeholder-fr="Comment pouvons-nous nous améliorer ?"
+                                      placeholder="Comment pouvons-nous nous améliorer ?"></textarea>
+                        </div>
+
+                        <div class="feedback-field feedback-full">
+                            <label class="feedback-label" for="comments" data-i18n-en="Additional Comments (optional)" data-i18n-fr="Commentaires additionnels (facultatif)">Commentaires additionnels (facultatif)</label>
+                            <textarea id="comments" name="comments" rows="3"
+                                      data-i18n-placeholder-en="Anything else you want to share?"
+                                      data-i18n-placeholder-fr="Autre chose à partager ?"
+                                      placeholder="Autre chose à partager ?"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="feedback-actions">
+                        <button type="submit" class="btn btn-primary" id="submitBtn"
+                                data-i18n-en="Send Feedback" data-i18n-fr="Envoyer le retour">Envoyer le retour</button>
+                        <button type="reset" class="btn btn-ghost" id="resetBtn"
+                                data-i18n-en="Reset" data-i18n-fr="Réinitialiser">Réinitialiser</button>
+                    </div>
+
+                    <div id="formStatus" class="feedback-status" role="status" aria-live="polite" style="display:none;">
+                        <div class="feedback-status-msg"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', path='2026/js/feedback.js') }}"></script>
+{% endblock %}

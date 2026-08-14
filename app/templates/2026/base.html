@@ -76,6 +76,8 @@
                     data-i18n-fr="Speakers" href="/speakers">Speakers</a>
                 <a class="nav-link{% if active_page == 'schedule' %} active{% endif %}" data-i18n-en="Schedule"
                     data-i18n-fr="Programme" href="/schedule">Schedule</a>
+                <a class="nav-link{% if active_page == 'feedback' %} active{% endif %}" data-i18n-en="Feedback"
+                    data-i18n-fr="Retour d'expérience" href="/feedback">Feedback</a>
 
                 <div class="nav-dropdown">
                     <a class="nav-link nav-dropdown-trigger{% if active_page in ['sponsors', 'partners', 'support'] %} active{% endif %}"
@@ -174,6 +176,8 @@
             onclick="closeMenu()">Our Speakers</a>
         <a class="drawer-link" data-i18n-en="Schedule" data-i18n-fr="Programme" href="/schedule"
             onclick="closeMenu()">Schedule</a>
+        <a class="drawer-link" data-i18n-en="Feedback" data-i18n-fr="Retour d'expérience"
+            href="/feedback" onclick="closeMenu()">Feedback</a>
         <div class="drawer-actions">
             <a class="btn btn-primary" href="/tickets" onclick="closeMenu()" data-i18n-en="Register →"
                 data-i18n-fr="S'inscrire →">Register →</a>
@@ -286,6 +290,7 @@
     </footer>
 
     <script src="{{ url_for('static', path='2026/js/script.js') }}"></script>
+    {% block scripts %}{% endblock %}
 </body>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-L483GG33RG"></script>
