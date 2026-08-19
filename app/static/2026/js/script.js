@@ -1363,7 +1363,11 @@ async function submitTicketPurchase(payload) {
 
   const data = await response.json().catch(() => ({}));
   if (!response.ok) {
-    throw new Error(data.detail || data.message || "Impossible de finaliser votre inscription. Vérifiez vos informations et votre connexion Internet, puis réessayez. Si le problème persiste, contactez notre équipe à contact@pytogo.org");
+    throw new Error(
+      data.detail ||
+      data.message ||
+      "Impossible de finaliser votre inscription. Vérifiez vos informations et réessayez. Si vous utilisez un code coupon (code de réduction), vérifiez qu’il est valide, applicable à votre inscription et qu’il vous est bien attribué. Un code non attribué ou non éligible à votre profil ne pourra pas être utilisé. Si le problème persiste, contactez notre équipe à contact@pytogo.org"
+    );
   }
 
   return data;
@@ -1490,7 +1494,7 @@ function initTicketsPage() {
         setTicketFormSubmitting(form, false);
         const formError = document.getElementById("ticket-form-error");
         if (formError) {
-          formError.textContent = error instanceof Error ? error.message : "Impossible de finaliser votre inscription. Vérifiez vos informations et votre connexion Internet, puis réessayez. Si le problème persiste, contactez notre équipe à contact@pytogo.org";
+          formError.textContent = error instanceof Error ? error.message : "Impossible de finaliser votre inscription. Vérifiez vos informations et réessayez. Si vous utilisez un code coupon (code de réduction), vérifiez qu’il est valide, applicable à votre inscription et qu’il vous est bien attribué. Un code non attribué ou non éligible à votre profil ne pourra pas être utilisé. Si le problème persiste, contactez notre équipe à contact@pytogo.org";
         }
       }
     });
