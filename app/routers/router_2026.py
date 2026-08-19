@@ -1847,3 +1847,13 @@ def _road_to_pycon(request: Request):
 @router.get("/streamyard")
 def _streamyard(request: Request):
     return RedirectResponse(url="https://streamyard.com/phrvxehbva", status_code=302)
+
+
+@router.get("/pykids")
+def _pykids(request: Request):
+    return RedirectResponse(url="https://docs.google.com/forms/d/e/1FAIpQLSeEkb6TpivL7QPYte5AelaQD0JVMP7RK8ZxUP-s-kadiANSSg/viewform", status_code=302)
+
+
+@router.get("/room")
+def _room_speaker(request: Request):
+    return RedirectResponse(url="https://pycon.pytogo.org/speakers", status_code=302)
