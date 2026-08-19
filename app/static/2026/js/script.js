@@ -1275,6 +1275,11 @@ function validateTicketForm(form) {
   return valid;
 }
 
+
+
+
+
+
 function fileToBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -1328,6 +1333,14 @@ async function buildTicketSubmissionPayload(form, ticket) {
   };
 
   if (isStudentTicket(ticket) && studentFile) {
+
+    const MAX_FILE_SIZE = 4 * 1024 * 1024; // 4 MB
+
+    if (studentFile.size >= MAX_FILE_SIZE) {
+      throw new Error(currentLang === "fr"
+        ? "Le fichier de preuve étudiante dépasse la taille maximale autorisée de 4 Mo."
+        : "The student proof file exceeds the maximum allowed size of 4 MB.");
+    }
     payload.studentProof = {
       fileName: studentFile.name,
       mimeType: studentFile.type || "application/octet-stream",
