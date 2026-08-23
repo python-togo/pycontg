@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="page active" id="page-admin-registrations">
+    <section class="section">
+        <div class="container">
+            <div class="admin-header reveal">
+                <h1 class="admin-title" data-i18n-en="Registrations" data-i18n-fr="Inscriptions">Inscriptions</h1>
+                <p class="admin-subtitle" data-i18n-en="List of registered attendees" data-i18n-fr="Liste des participants inscrits">Liste des participants inscrits</p>
+            </div>
+
+            <div class="admin-toolbar reveal">
+                <div class="admin-filter">
+                    <label for="ticketTypeFilter" data-i18n-en="Filter by ticket type" data-i18n-fr="Filtrer par type de billet">Filtrer par type de billet</label>
+                    <select id="ticketTypeFilter">
+                        <option value="" data-i18n-en="All" data-i18n-fr="Tous">Tous</option>
+                    </select>
+                </div>
+                <div class="admin-meta">
+                    <span id="registrationsCount" class="admin-count" data-i18n-en="0 registrations" data-i18n-fr="0 inscriptions">0 inscriptions</span>
+                </div>
+            </div>
+
+            <div class="admin-table-wrapper reveal">
+                <table class="admin-table" id="registrationsTable">
+                    <thead>
+                        <tr>
+                            <th data-i18n-en="Participant" data-i18n-fr="Participant">Participant</th>
+                            <th data-i18n-en="Access" data-i18n-fr="Accès">Accès</th>
+                            <th data-i18n-en="Ticket type" data-i18n-fr="Type de billet">Type de billet</th>
+                            <th data-i18n-en="Quantity" data-i18n-fr="Quantité">Quantité</th>
+                            <th data-i18n-en="Payment status" data-i18n-fr="Statut paiement">Statut paiement</th>
+                            <th data-i18n-en="Payment reference" data-i18n-fr="Réf. paiement">Réf. paiement</th>
+                            <th data-i18n-en="Created at" data-i18n-fr="Créé le">Créé le</th>
+                        </tr>
+                    </thead>
+                    <tbody id="registrationsBody">
+                        <tr id="registrationsLoading">
+                            <td colspan="7" class="admin-loading" data-i18n-en="Loading registrations..." data-i18n-fr="Chargement des inscriptions...">Chargement des inscriptions...</td>
+                        </tr>
+                        <tr id="registrationsError" class="admin-error-row" style="display:none">
+                            <td colspan="7" class="admin-error" id="registrationsErrorText"></td>
+                        </tr>
+                        <tr id="registrationsEmpty" style="display:none">
+                            <td colspan="7" class="admin-empty" data-i18n-en="No registrations found." data-i18n-fr="Aucune inscription trouvée.">Aucune inscription trouvée.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="{{ url_for('static', path='2026/js/admin-registrations.js') }}"></script>
+{% endblock %}

@@ -46,6 +46,11 @@ class Settings(BaseModel):
         title="Python Togo Event Code",
         description="Event code used in sponsorship inquiry endpoint path",
     )
+    admin_api_key: str = Field(
+        "",
+        title="Admin API Key",
+        description="Secret key used to authenticate admin requests to the Python Togo API",
+    )
     redis_url: str = Field(
         "redis://localhost:6379/0",
         title="Redis URL",

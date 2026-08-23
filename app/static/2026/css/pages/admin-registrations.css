@@ -1,0 +1,192 @@
+/* Admin registrations page specific styling */
+.admin-header {
+  margin-bottom: 28px;
+}
+
+.admin-title {
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.admin-subtitle {
+  color: #555;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.admin-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.admin-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-filter label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.admin-filter select {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid #d6dbe6;
+  background: #fff;
+  font-size: 0.95rem;
+  min-width: 220px;
+}
+
+.admin-meta {
+  display: flex;
+  align-items: center;
+}
+
+.admin-count {
+  font-weight: 600;
+  color: #333;
+  background: #eef2ff;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+}
+
+.admin-table-wrapper {
+  overflow-x: auto;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(14, 22, 40, 0.08);
+  padding: 4px;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.admin-table thead {
+  background: #f7f9ff;
+}
+
+.admin-table th {
+  text-align: left;
+  padding: 14px 16px;
+  font-weight: 700;
+  color: #334155;
+  white-space: nowrap;
+  border-bottom: 1px solid #e5e9f2;
+}
+
+.admin-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #1f2937;
+  vertical-align: middle;
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.admin-cell-primary {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.admin-cell-secondary {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-top: 2px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.badge-status {
+  background: #eef2ff;
+  color: #1e3a8a;
+}
+
+.badge-ticket {
+  background: #eef2ff;
+  color: #1e3a8a;
+}
+
+.badge-ticket-student {
+  background: #eef2ff;
+  color: #1e3a8a;
+}
+
+.badge-ticket-standard {
+  background: #eef2ff;
+  color: #1e3a8a;
+}
+
+.badge-ticket-premium {
+  background: #eef2ff;
+  color: #1e3a8a;
+}
+
+.badge-ticket-dinner {
+  background: #eef2ff;
+  color: #1e3a8a;
+}
+
+.badge-payment {
+  background: #fff7ed;
+  color: #7c2d12;
+}
+
+.admin-loading,
+.admin-error,
+.admin-empty {
+  text-align: center;
+  padding: 28px 16px;
+  color: #6b7280;
+}
+
+.admin-error {
+  color: #b91c1c;
+  background: #fef2f2;
+}
+
+@media (max-width: 768px) {
+  .admin-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-filter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-filter select {
+    width: 100%;
+  }
+
+  .admin-meta {
+    justify-content: flex-start;
+  }
+}

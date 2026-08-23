@@ -1863,3 +1863,40 @@ def _road_to_pycon(request: Request):
 @router.get("/streamyard")
 def _streamyard(request: Request):
     return RedirectResponse(url="https://streamyard.com/phrvxehbva", status_code=302)
+
+
+@router.get("/api/v2/registrations")
+async def api_v2_registrations(request: Request):
+    event_id = request.query_params.get("event_id")
+    url = _build_api_url("/registrations")
+    if event_id:
+        url = f"{url}?event_id={event_id}"
+
+    headers = {
+        "X-Admin-Secret": settings.admin_api_key,
+        "Accept": "application/json",
+    }
+
+    try:
+        async with httpx.AsyncClient(timeout=settings.python_togo_api_timeout_seconds) as client:
+            response = await client.get(url, headers=headers)
+    except httpx.RequestError:
+        raise HTTPException(status_code=500, detail="Error retrieving registrations")
+
+    if response.status_code == 403:
+        raise HTTPException(status_code=403, detail="Admin access required")
+    if response.status_code >= 400:
+        raise HTTPException(status_code=500, detail="Error retrieving registrations")
+
+    return JSONResponse(status_code=response.status_code, content=response.json())
+
+
+@router.get("/admin/registrations")
+async def admin_registrations(request: Request):
+    return await _render_page_with_event(
+        request=request,
+        name="2026_admin_registrations.html",
+        active_page="support",
+        page_css="admin-registrations.css",
+        page_title="PyCon Togo 2026 - Admin - Inscriptions",
+    )
