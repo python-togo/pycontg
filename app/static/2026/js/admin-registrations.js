@@ -31,7 +31,7 @@
     if (emptyRow) emptyRow.style.display = "none";
 
     try {
-      const res = await fetch(API_URL, {
+      const res = await AdminAuth.authedFetch(API_URL, {
         headers: { "Accept": "application/json" },
       });
 
@@ -182,9 +182,22 @@
   }
 
   function init() {
+    if (!AdminAuth.isAuthenticated()) {
+      window.location.href = "/admin/login";
+      return;
+    }
+
     loadRegistrations().then(() => {
       populateTicketTypeFilter(allRegistrations);
     });
+
+    const logoutBtn = document.getElementById("adminLogoutBtn");
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", async () => {
+        await AdminAuth.logout();
+        window.location.href = "/admin/login";
+      });
+    }
   }
 
   if (document.readyState === "loading") {

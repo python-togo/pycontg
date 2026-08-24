@@ -7,6 +7,7 @@ if not hasattr(typing, "_ClassVar") and hasattr(typing, "ClassVar"):
     typing._ClassVar = typing.ClassVar
 
 from fastapi import FastAPI, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
 from app.routers.router_2025 import router_2025
 from app.routers.router_2026 import router as router_2026
 from fastapi import FastAPI, Request, HTTPException, status
@@ -44,6 +45,81 @@ app = FastAPI(
     redoc_url="/redoc" if ENV in ["dev", "local", "development"] else None,
     lifespan=lifespan,
 )
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+def _build_api_proxy_url(path: str) -> str:
+    base = settings.python_togo_api_base_url.rstrip("/")
+    if base.endswith("/api/v2"):
+        return f"{base}/{path}"
+    return f"{base}/api/v2/{path}"
+
+
+@app.api_route("/api/v2/{path:path}", methods=["GET", "POST", "PUT", "PATCH", "DELETE"])
+async def _proxy_api_v2(request: Request, path: str):
+    backend_url = _build_api_proxy_url(path)
+    query_string = request.url.query
+    target = f"{backend_url}?{query_string}" if query_string else backend_url
+
+    headers = dict(request.headers)
+    headers.pop("host", None)
+    headers["X-API-Key"] = settings.python_togo_api_key
+    body = await request.body()
+
+    async with httpx.AsyncClient(
+        timeout=settings.python_togo_api_timeout_seconds
+    ) as client:
+        response = await client.request(
+            method=request.method,
+            url=target,
+            headers=headers,
+            content=body if body else None,
+            follow_redirects=False,
+        )
+
+    return Response(
+        content=response.content,
+        status_code=response.status_code,
+        headers=dict(response.headers),
+    )
+
+
+@app.api_route("/api/feedback", methods=["POST"])
+@app.api_route("/api/feedback/", methods=["POST"])
+async def _proxy_feedback(request: Request):
+    base = settings.python_togo_api_base_url.rstrip("/").removesuffix("/api/v2")
+    backend_url = f"{base}/api/feedback/"
+    query_string = request.url.query
+    target = f"{backend_url}?{query_string}" if query_string else backend_url
+
+    headers = dict(request.headers)
+    headers.pop("host", None)
+    headers["X-API-Key"] = settings.python_togo_api_key
+    body = await request.body()
+
+    async with httpx.AsyncClient(
+        timeout=settings.python_togo_api_timeout_seconds
+    ) as client:
+        response = await client.post(
+            target,
+            headers=headers,
+            content=body if body else None,
+            follow_redirects=False,
+        )
+
+    return Response(
+        content=response.content,
+        status_code=response.status_code,
+        headers=dict(response.headers),
+    )
+
 
 BASE_DIR = Path(__file__).resolve().parent
 template = Jinja2Templates(directory=str(BASE_DIR / "templates"))
@@ -203,4 +279,4 @@ async def send_contact_message(payload: ContactFormPayload):
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app, host="127.0.0.1", port=8800)
+    uvicorn.run(app, host="127.0.0.1", port=8000)

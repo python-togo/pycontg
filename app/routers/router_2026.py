@@ -1873,9 +1873,12 @@ async def api_v2_registrations(request: Request):
         url = f"{url}?event_id={event_id}"
 
     headers = {
-        "X-Admin-Secret": settings.admin_api_key,
         "Accept": "application/json",
     }
+
+    authorization = request.headers.get("authorization")
+    if authorization:
+        headers["Authorization"] = authorization
 
     try:
         async with httpx.AsyncClient(timeout=settings.python_togo_api_timeout_seconds) as client:
@@ -1883,12 +1886,25 @@ async def api_v2_registrations(request: Request):
     except httpx.RequestError:
         raise HTTPException(status_code=500, detail="Error retrieving registrations")
 
+    if response.status_code == 401:
+        raise HTTPException(status_code=401, detail="Not authenticated")
     if response.status_code == 403:
         raise HTTPException(status_code=403, detail="Admin access required")
     if response.status_code >= 400:
         raise HTTPException(status_code=500, detail="Error retrieving registrations")
 
     return JSONResponse(status_code=response.status_code, content=response.json())
+
+
+@router.get("/admin/login")
+async def admin_login(request: Request):
+    return await _render_page_with_event(
+        request=request,
+        name="2026_admin_login.html",
+        active_page="support",
+        page_css="admin-registrations.css",
+        page_title="PyCon Togo 2026 - Admin - Connexion",
+    )
 
 
 @router.get("/admin/registrations")

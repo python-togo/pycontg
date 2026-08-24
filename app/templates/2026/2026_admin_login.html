@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="page active" id="page-admin-login">
+    <section class="section">
+        <div class="container">
+            <div class="admin-login-card reveal">
+                <div class="admin-login-header">
+                    <h1 class="admin-login-title" data-i18n-en="Admin Login" data-i18n-fr="Connexion Admin">Connexion Admin</h1>
+                    <p class="admin-login-subtitle" data-i18n-en="Sign in to manage registrations" data-i18n-fr="Connectez-vous pour gérer les inscriptions">Connectez-vous pour gérer les inscriptions</p>
+                </div>
+
+                <form id="adminLoginForm" class="admin-login-form" novalidate>
+                    <div class="admin-field">
+                        <label for="adminEmail" data-i18n-en="Email" data-i18n-fr="Email">Email</label>
+                        <input id="adminEmail" type="email" required autocomplete="email" />
+                    </div>
+
+                    <div class="admin-field">
+                        <label for="adminPassword" data-i18n-en="Password" data-i18n-fr="Mot de passe">Mot de passe</label>
+                        <input id="adminPassword" type="password" required autocomplete="current-password" />
+                    </div>
+
+                    <div class="admin-login-actions">
+                        <button type="submit" class="btn btn-primary admin-login-submit" data-i18n-en="Sign in" data-i18n-fr="Se connecter">Se connecter</button>
+                    </div>
+
+                    <div id="adminLoginError" class="admin-login-error" style="display:none" role="alert"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="{{ url_for('static', path='2026/js/admin-auth.js') }}"></script>
+<script src="{{ url_for('static', path='2026/js/admin-login.js') }}"></script>
+{% endblock %}
