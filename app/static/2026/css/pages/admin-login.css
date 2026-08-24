@@ -1,0 +1,160 @@
+/* ═══════════════════════════════════════════════
+   PyCon Togo 2026 - Admin Login
+   ═══════════════════════════════════════════════ */
+
+.admin-login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: linear-gradient(135deg, var(--green-pale) 0%, var(--cream) 50%, var(--gold-pale) 100%);
+}
+
+.admin-login-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  padding: 40px 36px;
+  border: 1px solid var(--border);
+}
+
+.admin-login-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.admin-login-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius);
+  background: var(--green);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  color: var(--white);
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.admin-login-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+}
+
+.admin-login-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.admin-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.admin-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.admin-field input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--off-white);
+  color: var(--text);
+  font-size: 1rem;
+  font-family: var(--font-body);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  outline: none;
+}
+
+.admin-field input:hover {
+  border-color: var(--border-mid);
+  background: var(--white);
+}
+
+.admin-field input:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px var(--green-dim);
+  background: var(--white);
+}
+
+.admin-login-actions {
+  margin-top: 6px;
+}
+
+.admin-login-submit {
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--green);
+  color: var(--white);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.admin-login-submit:hover {
+  background: var(--green-mid);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.admin-login-submit:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+.admin-login-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.admin-login-error {
+  margin-top: 4px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--red-pale);
+  color: var(--red);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  border: 1px solid rgba(206, 17, 38, 0.15);
+}
+
+@media (max-width: 480px) {
+  .admin-login-card {
+    padding: 28px 20px;
+    border-radius: var(--radius);
+  }
+
+  .admin-login-title {
+    font-size: 1.25rem;
+  }
+}
