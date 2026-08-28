@@ -122,7 +122,7 @@ function applyLanguage(lang) {
     fr: "PyCon Togo 2026 - La Conférence Python du Togo",
   };
   const descriptionByLang = {
-    en: "PyCon Togo 2026 - The national conference for the Python community in Togo. Lome, Togo.",
+    en: "PyCon Togo 2026 - The national conference for the Python community in Togo. Unipod, Université de Lomé.",
     fr: "PyCon Togo 2026 - La conférence nationale de la communauté Python du Togo. Lomé, Togo.",
   };
 
