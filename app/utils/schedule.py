@@ -74,12 +74,12 @@ def get_fallback_description(item, description_type='short'):
             'full': f"Moment convivial pour se détendre et échanger avec les autres participants."
         },
         'opening': {
-            'short': f"Ouverture officielle par {item.get('speaker', 'l\'équipe organisatrice')}",
-            'full': f"Ouverture officielle de PyCon Togo 2025 par {item.get('speaker', 'l\'équipe organisatrice')}."
+            'short': f"Ouverture officielle par {item.get('speaker', 'la team organisatrice')}",
+            'full': f"Ouverture officielle de PyCon Togo 2025 par {item.get('speaker', 'la team organisatrice')}."
         },
         'closing': {
-            'short': f"Clôture officielle par {item.get('speaker', 'l\'équipe organisatrice')}",
-            'full': f"Clôture officielle de PyCon Togo 2025 par {item.get('speaker', 'l\'équipe organisatrice')}."
+            'short': f"Clôture officielle par {item.get('speaker', 'la team organisatrice')}",
+            'full': f"Clôture officielle de PyCon Togo 2025 par {item.get('speaker', 'la team organisatrice')}."
         }
     }
 

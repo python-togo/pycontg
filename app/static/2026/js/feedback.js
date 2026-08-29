@@ -1,15 +1,13 @@
-(function() {
+(function () {
     "use strict";
 
     var form = document.getElementById("feedbackForm");
     if (!form) return;
 
-    var apiUrl = "https://api.pycontg.pytogo.org/api/feedback/";
-    var submitBtn = document.getElementById("submitBtn");
-    var resetBtn = document.getElementById("resetBtn");
-    var statusEl = document.getElementById("formStatus");
-    var statusMsg = statusEl.querySelector(".feedback-status-msg");
-    var feedbackIsOpen = form.dataset.feedbackOpen === "true";
+    let submitBtn = document.getElementById("submitBtn");
+    let resetBtn = document.getElementById("resetBtn");
+    let statusEl = document.getElementById("formStatus");
+    let statusMsg = statusEl.querySelector(".feedback-status-msg");
 
     var i18n = {
         fr: {
@@ -59,35 +57,30 @@
     }
 
     var dayCheckboxes = document.querySelectorAll('input[type="checkbox"][name="days"]');
-    dayCheckboxes.forEach(function(cb) {
-        cb.addEventListener("change", function() {
+    dayCheckboxes.forEach(function (cb) {
+        cb.addEventListener("change", function () {
             if (daysSelected(new FormData(form))) setDaysError(false);
         });
     });
 
     if (resetBtn) {
-        resetBtn.addEventListener("click", function() {
+        resetBtn.addEventListener("click", function () {
             form.reset();
             setDaysError(false);
             hideStatus();
         });
     }
 
-    form.addEventListener("submit", async function(e) {
+    form.addEventListener("submit", async function (e) {
         e.preventDefault();
         hideStatus();
 
-        var lang = getLang();
-        var t = i18n[lang] || i18n.en;
+        let lang = getLang();
+        let t = i18n[lang] || i18n.en;
 
-        if (!feedbackIsOpen) {
-            showStatus(false, t.not_open);
-            return;
-        }
+        let fd = new FormData(form);
 
-        var fd = new FormData(form);
-
-        var payload = {
+        const payload = {
             sex: fd.get("sex") || null,
             age: fd.get("age") || null,
             profession: (fd.get("profession") || "").trim() || null,
@@ -120,7 +113,7 @@
         submitBtn.textContent = t.sending;
 
         try {
-            var res = await fetch(apiUrl, {
+            var res = await fetch("/feedback/submit", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload)
@@ -135,7 +128,7 @@
                 try {
                     var data = await res.json();
                     if (data && data.message) msg = data.message + " - " + msg;
-                } catch (err) {}
+                } catch (err) { }
                 showStatus(false, msg);
             }
         } catch (err) {
