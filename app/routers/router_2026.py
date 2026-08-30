@@ -1690,6 +1690,8 @@ def volunteers(request: Request):
 
 @router.get("/feedback")
 async def feedback(request: Request):
+
+    return RedirectResponse(url="https://docs.google.com/forms/d/e/1FAIpQLSf34-tx189ozkd9yDSLwo0RtryhTwS9hmbDmQ0dtBo9yPi__w/viewform?usp=header", status_code=302)
     feedback_is_open = _feedback_is_open()
     return await _render_page_with_event(
         request=request,
