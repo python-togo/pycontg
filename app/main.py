@@ -7,8 +7,10 @@ if not hasattr(typing, "_ClassVar") and hasattr(typing, "ClassVar"):
     typing._ClassVar = typing.ClassVar
 
 from fastapi import FastAPI, HTTPException, Request
+from app.routers.router_2024 import router as router_2024
 from app.routers.router_2025 import router_2025
 from app.routers.router_2026 import router as router_2026
+from app.routers.router_2027 import router as router_2027
 from fastapi import FastAPI, Request, HTTPException, status
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse, Response
@@ -87,8 +89,10 @@ def talents(request: Request):
     )
 
 
+app.include_router(router_2027)
 app.include_router(router_2025, prefix="/2025")
-app.include_router(router_2026)
+app.include_router(router_2026, prefix="/2026")
+app.include_router(router_2024, prefix="/2024")
 
 
 @app.exception_handler(HTTPException)

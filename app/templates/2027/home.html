@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyCon Togo 2026 - C'est terminé</title>
+    <meta name="description"
+        content="PyCon Togo 2026 is a wrap. Watch the recap and join the Python Togo community while we prepare PyCon Togo 2027.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <link rel="shortcut icon" href="{{ url_for('static', path='images/Py.png') }}" type="image/x-icon">
+
+    <link rel="stylesheet" href="{{ url_for('static', path='2027/css/style.css') }}">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="https://www.pytogo.org/" aria-label="PyCon Togo">
+                <img class="brand-mark" src="{{ url_for('static', path='images/Py.png') }}" alt="PyCon Togo" with="50"
+                    height="50">
+            </a>
+
+            <div class="lang-switch" role="group" aria-label="Language / Langue">
+                <button type="button" class="lang-btn is-active" data-lang-btn="fr">FR</button>
+                <span class="lang-sep" aria-hidden="true">/</span>
+                <button type="button" class="lang-btn" data-lang-btn="en">EN</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="hero">
+            <div class="hero-inner">
+                <p class="hero-sub"
+                    data-fr="PyCon Togo 2026 est désormais terminé. Merci à tous les intervenants, participants, partenaires, sponsors et membres de la communauté qui ont rendu cette édition possible."
+                    data-en="PyCon Togo 2026 has come to an end. Thank you to all the speakers, participants, partners, sponsors, and community members who made this edition possible.">
+                    PyCon Togo 2026 est désormais terminé. Merci à tous les intervenants, participants, partenaires,
+                    sponsors et membres de la communauté qui ont rendu cette édition possible.
+
+                </p>
+                <div class="hero_actions">
+                    <a class="cta" href="https://www.youtube.com/live/tw3tBxmMxxU?si=NxM9R6iTJ-pfaeia" target="_blank"
+                        rel="noopener noreferrer" data-fr="Regarder les enregistrements" data-en="Watch the Recordings">
+                        Regarder les enregistrements
+                    </a>
+
+
+                    <a class="cta" href="/2026" data-fr="Découvrez l'édition 2026" data-en="Explore the 2026 Edition"
+                        target="_blank" rel="noopener noreferrer">
+                        Découvrez l'édition 2026
+
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="recap">
+            <div class="recap-inner">
+                <div class="recap-frame">
+                    <iframe width="560" height="315"
+                        src="https://www.youtube.com/embed/Xh7Ue4kCNOg?autoplay=1&mute=1&playsinline=1&controls=1&rel=0"
+                        title="PyCon Togo 2026 — Récap" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+                        allowfullscreen loading="lazy"></iframe>
+                </div>
+                <p class="recap-caption" data-fr="Trois jours de conférence, en un peu moins de trois minutes."
+                    data-en="Three days of conference, in just under three minutes.">
+                    Trois jours de conférence, en un peu moins de trois minutes.
+                </p>
+            </div>
+        </section>
+
+
+        <section class="relive">
+
+
+
+            <div class="relive-inner">
+
+                <h2 class="section-title" data-fr="Revivez PyCon Togo 2026" data-en="Relive PyCon Togo 2026">Revivez
+                    PyCon
+                    Togo 2026</h2>
+                <p class="section-text"
+                    data-fr="Les enregistrements, les photos et les ressources de l'événement resteront disponibles afin que la communauté puisse revoir les interventions et revivre les moments forts de cette édition."
+                    data-en="The recordings, photos, and resources from the event will remain available so the community can revisit the talks and moments from this edition.">
+
+                    Les enregistrements, les photos et les ressources de l'événement resteront disponibles afin que la
+                    communauté puisse revoir les interventions et revivre les moments forts de cette édition.
+
+                </p>
+
+                <a class="cta"
+                    href="https://drive.google.com/drive/folders/1HpOysx6sCgdlf-IMZlzPq-DpmdcT_HpW?usp=sharing"
+                    data-fr="Voir les photos" data-en="View the Photos">
+                    Voir les photos
+                </a>
+
+            </div>
+
+        </section>
+
+        <section class="community">
+            <div class="community-inner">
+                <h2 data-fr="Python Togo continue" data-en="Python Togo goes on">Python Togo continue</h2>
+                <p data-fr="La communauté Python Togo continue ses activités toute l'année. Rejoignez-nous, échangez avec la communauté et découvrez nos prochaines activités."
+                    data-en="The Python Togo community continues its activities throughout the year. Join us, connect with the community, and discover our upcoming activities.">
+                    La communauté Python Togo continue ses activités toute l'année. Rejoignez-nous, échangez avec la
+                    communauté et découvrez nos prochaines activités.
+                </p>
+
+
+                <a class="cta" href="https://www.pytogo.org/" data-fr="Découvrir la communauté →"
+                    data-en="Discover the community →">
+                    Découvrir la communauté →
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p class="footer-name">PyCon Togo · Python Togo</p>
+            <nav class="footer-links" aria-label="Footer">
+                <a href="https://www.pytogo.org/">pytogo.org</a>
+                <a href="https://pytogo.org/discord">Discord</a>
+                <a href="mailto:team@pytogo.org">team@pytogo.org</a>
+            </nav>
+            <p class="footer-copy" data-fr="© 2026 Python Software Community Togo"
+                data-en="© 2026 Python Software Community Togo">© 2026 Python Software Community Togo</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', path='2027/js/script.js') }}"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L483GG33RG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-L483GG33RG');
+    </script>
+
+</body>
+
+</html>
