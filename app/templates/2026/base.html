@@ -40,59 +40,62 @@
             </a>
             <nav class="nav-links" id="nav-links">
                 <a class="nav-link{% if active_page == 'home' %} active{% endif %}" data-i18n-en="Home"
-                    data-i18n-fr="Accueil" href="/">Home</a>
+                    data-i18n-fr="Accueil" href="/2026">Home</a>
                 <div class="nav-dropdown">
                     <a class="nav-link nav-dropdown-trigger{% if active_page in ['about', 'team', 'jobs', 'support', 'feedback'] %} active{% endif %}"
-                        href="/about">
+                        href="/2026/about">
                         <span class="nav-dropdown-label" data-i18n-en="About" data-i18n-fr="À Propos">About</span>
                         <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
                     </a>
                     <div class="nav-dropdown-menu" role="menu" aria-label="About submenu">
-                        <a class="nav-dropdown-item" href="/about#about-us" data-i18n-en="About us"
+                        <a class="nav-dropdown-item" href="/2026/about#about-us" data-i18n-en="About us"
                             data-i18n-fr="À propos de nous">About us</a>
-                        <a class="nav-dropdown-item" href="/coc" data-i18n-en="Code of Conduct"
+                        <a class="nav-dropdown-item" href="/2026/coc" data-i18n-en="Code of Conduct"
                             data-i18n-fr="Code of Conduct">Code of Conduct</a>
-                        <a class="nav-dropdown-item" href="/health_security" data-i18n-en="Health & Safety Policy"
+                        <a class="nav-dropdown-item" href="/2026/health_security" data-i18n-en="Health & Safety Policy"
                             data-i18n-fr="Politique Santé & Sécurité">Health & Safety Policy</a>
-                        <a class="nav-dropdown-item" href="/team" data-i18n-en="Team" data-i18n-fr="Équipe">Team</a>
-                        <a class="nav-dropdown-item" href="/visit" data-i18n-en="Visit Togo"
+                        <a class="nav-dropdown-item" href="/2026/team" data-i18n-en="Team"
+                            data-i18n-fr="Équipe">Team</a>
+                        <a class="nav-dropdown-item" href="/2026/visit" data-i18n-en="Visit Togo"
                             data-i18n-fr="Visiter Togo">Visit Togo</a>
                         <a class="nav-dropdown-item{% if active_page == 'jobs' %} active{% endif %}" href="/jobs"
                             data-i18n-en="Job Board" data-i18n-fr="Offres d'emploi">Job Board</a>
-                        <a class="nav-dropdown-item" href="/call-for-speakers" data-i18n-en="{{ cfp_nav_en }}"
+                        <a class="nav-dropdown-item" href="/2026/call-for-speakers" data-i18n-en="{{ cfp_nav_en }}"
                             data-i18n-fr="{{ cfp_nav_fr }}">{{ cfp_nav_en }}</a>
                         <a class="nav-dropdown-item" data-i18n-en="Contact" data-i18n-fr="Contact"
-                            href="/contact">Contact</a>
+                            href="/2026/contact">Contact</a>
                         <a class="nav-dropdown-item" data-i18n-en="Support" data-i18n-fr="soutenir"
-                            href="/donate">Support</a>
+                            href="/2026/donate">Support</a>
                         <a class="nav-dropdown-item{% if active_page == 'feedback' %} active{% endif %}"
-                            href="/feedback" data-i18n-en="Feedback" data-i18n-fr="Retour d'expérience">Feedback</a>
+                            href="/2026/feedback" data-i18n-en="Feedback"
+                            data-i18n-fr="Retour d'expérience">Feedback</a>
                     </div>
                 </div>
                 <a class="nav-link{% if active_page == 'speakers' %} active{% endif %}" data-i18n-en="Speakers"
-                    data-i18n-fr="Speakers" href="/speakers">Speakers</a>
+                    data-i18n-fr="Speakers" href="/2026/speakers">Speakers</a>
                 <a class="nav-link{% if active_page == 'schedule' %} active{% endif %}" data-i18n-en="Schedule"
-                    data-i18n-fr="Programme" href="/schedule">Schedule</a>
+                    data-i18n-fr="Programme" href="/2026/schedule">Schedule</a>
 
                 <div class="nav-dropdown">
                     <a class="nav-link nav-dropdown-trigger{% if active_page in ['sponsors', 'partners', 'support'] %} active{% endif %}"
-                        href="/partners">
+                        href="/2026/partners">
                         <span class="nav-dropdown-label" data-i18n-en="Sponsors" data-i18n-fr="Sponsors">Sponsors</span>
                         <span class="nav-dropdown-arrow" aria-hidden="true">▾</span>
                     </a>
                     <div class="nav-dropdown-menu" role="menu" aria-label="Sponsors submenu">
                         <a class="nav-link{% if active_page == 'partners' %} active{% endif %}" data-i18n-en="Sponsors"
-                            data-i18n-fr="nos Sponsors" href="/partners">Our Sponsors</a>
+                            data-i18n-fr="nos Sponsors" href="/2026/partners">Our Sponsors</a>
                         <a class="nav-link{% if active_page == 'sponsors' %} active{% endif %}"
-                            data-i18n-en="Become Sponsor" data-i18n-fr="Sponsoriser" href="/sponsors">Become Sponsor</a>
+                            data-i18n-en="Become Sponsor" data-i18n-fr="Sponsoriser" href="/2026/sponsors">Become
+                            Sponsor</a>
                     </div>
                 </div>
             </nav>
             <div class="nav-actions">
-                <a class="btn btn-ghost" href="/access-grant" data-i18n-en="Access Grants"
+                <a class="btn btn-ghost" href="/2026/access-grant" data-i18n-en="Access Grants"
                     data-i18n-fr="Bourses d'accès">Access
                     Grants</a>
-                <a class="btn btn-primary" href="/tickets" data-i18n-en="Register"
+                <a class="btn btn-primary" href="/2026/tickets" data-i18n-en="Register"
                     data-i18n-fr="S'inscrire">Register</a>
                 <div class="lang-toggle" role="group" aria-label="Language switcher">
                     <button id="lang-en" type="button" onclick="setLanguage('en')"
@@ -128,26 +131,26 @@
                 <span class="drawer-accordion-icon" aria-hidden="true">▾</span>
             </button>
             <div class="drawer-accordion-panel" id="drawer-about">
-                <a class="drawer-link drawer-sublink" href="/about#about-us" onclick="closeMenu()"
+                <a class="drawer-link drawer-sublink" href="/2026/about#about-us" onclick="closeMenu()"
                     data-i18n-en="About us" data-i18n-fr="À propos de nous">About us</a>
-                <a class="drawer-link drawer-sublink" href="/coc" onclick="closeMenu()" data-i18n-en="Code of Conduct"
-                    data-i18n-fr="Code of Conduct">Code of Conduct</a>
-                <a class="drawer-link drawer-sublink" href="/health_security" onclick="closeMenu()"
+                <a class="drawer-link drawer-sublink" href="/2026/coc" onclick="closeMenu()"
+                    data-i18n-en="Code of Conduct" data-i18n-fr="Code of Conduct">Code of Conduct</a>
+                <a class="drawer-link drawer-sublink" href="/2026/health_security" onclick="closeMenu()"
                     data-i18n-en="Health & Safety Policy" data-i18n-fr="Politique Santé & Sécurité">Health & Safety
                     Policy</a>
-                <a class="drawer-link drawer-sublink" href="/team" onclick="closeMenu()" data-i18n-en="Team"
+                <a class="drawer-link drawer-sublink" href="/2026/team" onclick="closeMenu()" data-i18n-en="Team"
                     data-i18n-fr="Équipe">Team</a>
-                <a class="drawer-link drawer-sublink" href="/jobs" onclick="closeMenu()" data-i18n-en="Job Board"
+                <a class="drawer-link drawer-sublink" href="/2026/jobs" onclick="closeMenu()" data-i18n-en="Job Board"
                     data-i18n-fr="Offres d'emploi">Job Board</a>
-                <a class="drawer-link drawer-sublink" href="/call-for-speakers" onclick="closeMenu()"
+                <a class="drawer-link drawer-sublink" href="/2026/call-for-speakers" onclick="closeMenu()"
                     data-i18n-en="{{ cfp_nav_en }}" data-i18n-fr="{{ cfp_nav_fr }}">{{ cfp_nav_en }}</a>
 
-                <a class="drawer-link drawer-sublink" href="/visit" onclick="closeMenu()" data-i18n-en="Visit Togo"
+                <a class="drawer-link drawer-sublink" href="/2026/visit" onclick="closeMenu()" data-i18n-en="Visit Togo"
                     data-i18n-fr="Visiter Togo">Visit Togo</a>
-                <a class="drawer-link drawer-sublink" href="/contact" onclick="closeMenu()" data-i18n-en="Contact"
+                <a class="drawer-link drawer-sublink" href="/2026/contact" onclick="closeMenu()" data-i18n-en="Contact"
                     data-i18n-fr="Contact">Contact</a>
                 <a class="drawer-link drawer-sublink{% if active_page == 'feedback' %} active{% endif %}"
-                    href="/feedback" onclick="closeMenu()" data-i18n-en="Feedback"
+                    href="/2026/feedback" onclick="closeMenu()" data-i18n-en="Feedback"
                     data-i18n-fr="Retour d'expérience">Feedback</a>
             </div>
         </div>
@@ -158,20 +161,20 @@
                 <span class="drawer-accordion-icon" aria-hidden="true">▾</span>
             </button>
             <div class="drawer-accordion-panel" id="drawer-sponsors">
-                <a class="drawer-link drawer-sublink" href="/partners" onclick="closeMenu()" data-i18n-en="Sponsors"
-                    data-i18n-fr="Sponsors">Sponsors</a>
-                <a class="drawer-link drawer-sublink" href="/sponsors" onclick="closeMenu()"
+                <a class="drawer-link drawer-sublink" href="/2026/partners" onclick="closeMenu()"
+                    data-i18n-en="Sponsors" data-i18n-fr="Sponsors">Sponsors</a>
+                <a class="drawer-link drawer-sublink" href="/2026/sponsors" onclick="closeMenu()"
                     data-i18n-en="Become Sponsor" data-i18n-fr="Sponsoriser">Become Sponsor</a>
             </div>
         </div>
-        <a class="drawer-link" href="/speakers" data-i18n-en="Our Speakers" data-i18n-fr="Nos Intervenants"
+        <a class="drawer-link" href="/2026/speakers" data-i18n-en="Our Speakers" data-i18n-fr="Nos Intervenants"
             onclick="closeMenu()">Our Speakers</a>
-        <a class="drawer-link" data-i18n-en="Schedule" data-i18n-fr="Programme" href="/schedule"
+        <a class="drawer-link" data-i18n-en="Schedule" data-i18n-fr="Programme" href="/2026/schedule"
             onclick="closeMenu()">Schedule</a>
         <div class="drawer-actions">
-            <a class="btn btn-primary" href="/tickets" onclick="closeMenu()" data-i18n-en="Register →"
+            <a class="btn btn-primary" href="/2026/tickets" onclick="closeMenu()" data-i18n-en="Register →"
                 data-i18n-fr="S'inscrire →">Register →</a>
-            <a class="btn btn-ghost" href="/access-grant" onclick="closeMenu()" data-i18n-en="Access Grants"
+            <a class="btn btn-ghost" href="/2026/access-grant" onclick="closeMenu()" data-i18n-en="Access Grants"
                 data-i18n-fr="Bourses d'Access">Access Grants</a>
         </div>
     </div>
@@ -234,27 +237,29 @@
                 </div>
                 <div class="footer-col">
                     <h5 data-i18n-en="Navigation" data-i18n-fr="Navigation">Navigation</h5>
-                    <a href="/" data-i18n-en="Home" data-i18n-fr="Accueil">Home</a>
-                    <a href="/about" data-i18n-en="About" data-i18n-fr="À Propos">About</a>
-                    <a href="/partners" data-i18n-en="Sponsors" data-i18n-fr="Sponsors">Sponsors</a>
-                    <a href="/team" data-i18n-en="Team" data-i18n-fr="Équipe">Team</a>
-                    <a href="/jobs" data-i18n-en="Job Board" data-i18n-fr="Offres d'emploi">Job Board</a>
-                    <a href="/feedback" data-i18n-en="Feedback" data-i18n-fr="Retour d'expérience">Feedback</a>
+                    <a href="/2026" data-i18n-en="Home" data-i18n-fr="Accueil">Home</a>
+                    <a href="/2026/about" data-i18n-en="About" data-i18n-fr="À Propos">About</a>
+                    <a href="/2026/partners" data-i18n-en="Sponsors" data-i18n-fr="Sponsors">Sponsors</a>
+                    <a href="/2026/team" data-i18n-en="Team" data-i18n-fr="Équipe">Team</a>
+                    <a href="/2026/jobs" data-i18n-en="Job Board" data-i18n-fr="Offres d'emploi">Job Board</a>
+                    <a href="/2026/feedback" data-i18n-en="Feedback" data-i18n-fr="Retour d'expérience">Feedback</a>
                     <a href="mailto:contact@pytogo.org" data-i18n-en="Contact" data-i18n-fr="Contact">Contact</a>
                 </div>
                 <div class="footer-col">
                     <h5 data-i18n-en="Get Involved" data-i18n-fr="Participer">Get Involved</h5>
-                    <a href="/tickets" data-i18n-en="Register" data-i18n-fr="S'inscrire">Register</a>
-                    <a href="/sponsors" data-i18n-en="Become Sponsor" data-i18n-fr="Sponsoriser">Become Sponsor</a>
-                    <a href="/donate" data-i18n-en="Support PyCon" data-i18n-fr="Soutenir PyCon">Support PyCon</a>
-                    <a href="/contact" data-i18n-en="Volunteer" data-i18n-fr="Bénévolat">Volunteer</a>
+                    <a href="/2026/tickets" data-i18n-en="Register" data-i18n-fr="S'inscrire">Register</a>
+                    <a href="/2026/sponsors" data-i18n-en="Become Sponsor" data-i18n-fr="Sponsoriser">Become Sponsor</a>
+                    <a href="/2026/donate" data-i18n-en="Support PyCon" data-i18n-fr="Soutenir PyCon">Support PyCon</a>
+                    <a href="/2026/contact" data-i18n-en="Volunteer" data-i18n-fr="Bénévolat">Volunteer</a>
                     {% if cfp_state == 'closed' %}
-                    <a href="/call-for-speakers" data-i18n-en="CFP closed" data-i18n-fr="CFP ferme">CFP closed</a>
+                    <a href="/2026/call-for-speakers" data-i18n-en="CFP closed" data-i18n-fr="CFP ferme">CFP closed</a>
                     {% elif cfp_state == 'upcoming' %}
-                    <a href="/call-for-speakers" data-i18n-en="CFP opens soon" data-i18n-fr="CFP bientot ouvert">CFP
+                    <a href="/2026/call-for-speakers" data-i18n-en="CFP opens soon"
+                        data-i18n-fr="CFP bientot ouvert">CFP
                         opens soon</a>
                     {% else %}
-                    <a href="/call-for-speakers" data-i18n-en="Submit a Talk" data-i18n-fr="Proposer un Talk">Submit a
+                    <a href="/2026/call-for-speakers" data-i18n-en="Submit a Talk"
+                        data-i18n-fr="Proposer un Talk">Submit a
                         Talk</a>
                     {% endif %}
                 </div>

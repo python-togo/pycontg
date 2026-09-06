@@ -89,29 +89,59 @@ def talents(request: Request):
     )
 
 
-app.include_router(router_2027)
-app.include_router(router_2025, prefix="/2025")
-app.include_router(router_2026, prefix="/2026")
-app.include_router(router_2024, prefix="/2024")
+@app.exception_handler(404)
+async def http_exception_handler(request: Request, exc: HTTPException):
+    """Handle HTTP exceptions with custom error templates."""
+
+    return RedirectResponse(url="/", status_code=301)
 
 
 @app.exception_handler(HTTPException)
 async def http_exception_handler(request: Request, exc: HTTPException):
-    """Handle HTTP exceptions with custom error templates"""
+    """Handle HTTP exceptions with custom error templates."""
+
     status_code = exc.status_code
 
     error_map = {
-        400: ("400.html", "Bad Request: The server could not understand the request due to invalid syntax."),
-        403: ("403.html", "Forbidden: You don't have access to this resource."),
-        404: ("404.html", "Oops! The page you're looking for seems to have disappeared or doesn't exist. Perhaps it has gone off to discover the wild python in Africa!"),
-        422: ("422.html", "Unprocessable Entity: The server understands the content type of the request entity, but was unable to process the contained instructions."),
-        500: ("500.html", "Oops! Something went wrong on our end."),
-        502: ("502.html", "Bad Gateway: The server received an invalid response."),
-        503: ("503.html", "Service Unavailable: The server is temporarily unable to handle the request."),
+        400: (
+            "400.html",
+            "Bad Request: The server could not understand the request due to invalid syntax.",
+        ),
+        403: (
+            "403.html",
+            "Forbidden: You don't have access to this resource.",
+        ),
+        404: (
+            "404.html",
+            "Oops! The page you're looking for seems to have disappeared "
+            "or doesn't exist. Perhaps it has gone off to discover the wild "
+            "Python in Africa!",
+        ),
+        422: (
+            "422.html",
+            "Unprocessable Entity: The server understands the request "
+            "but was unable to process it.",
+        ),
+        500: (
+            "500.html",
+            "Oops! Something went wrong on our end.",
+        ),
+        502: (
+            "502.html",
+            "Bad Gateway: The server received an invalid response.",
+        ),
+        503: (
+            "503.html",
+            "Service Unavailable: The server is temporarily unable to handle the request.",
+        ),
     }
 
     template_name, default_message = error_map.get(
-        status_code, ("404.html", "An error occurred."))
+        status_code,
+        ("404.html", "An error occurred."),
+    )
+
+    message = exc.detail or default_message
 
     try:
         return template.TemplateResponse(
@@ -120,14 +150,16 @@ async def http_exception_handler(request: Request, exc: HTTPException):
             status_code=status_code,
             context={
                 "year": year,
-                "message": exc.detail or default_message,
+                "message": message,
                 "status_code": status_code,
             },
         )
-    except Exception:
-        # Fallback to plain text if template rendering fails
+
+    except Exception as template_error:
+        print(f"Error rendering {template_name}: {template_error}")
+
         return Response(
-            content=f"{status_code}: {exc.detail or default_message}",
+            content=f"{status_code}: {message}",
             status_code=status_code,
             media_type="text/plain",
         )
@@ -203,6 +235,10 @@ async def send_contact_message(payload: ContactFormPayload):
         content={"ok": True, "message": success_message},
     )
 
+app.include_router(router_2027)
+app.include_router(router_2025, prefix="/2025")
+app.include_router(router_2026, prefix="/2026")
+app.include_router(router_2024, prefix="/2024")
 
 if __name__ == "__main__":
     import uvicorn
