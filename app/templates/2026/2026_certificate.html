@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="page active" id="page-certificate">
+    <section class="page-hero certificate-hero">
+        <div class="container">
+            <span class="eyebrow" data-i18n-en="Certificate verification"
+                data-i18n-fr="Vérification de certificat">Vérification de certificat</span>
+            <h1 data-i18n-html-en="PyCon Togo <em>certificate</em>" data-i18n-html-fr="<em>Certificat</em> PyCon Togo">
+                <em>Certificat</em> PyCon Togo</h1>
+            <p class="page-hero-sub" data-i18n-en="Check the authenticity and current status of this certificate."
+                data-i18n-fr="Vérifiez l'authenticité et le statut actuel de ce certificat.">
+                Vérifiez l'authenticité et le statut actuel de ce certificat.
+            </p>
+        </div>
+    </section>
+
+    <section class="section certificate-section">
+        <div class="container">
+            <article class="certificate-card" aria-live="polite">
+                {% if verification_status == 'verified' %}
+                <div class="certificate-status is-verified">
+                    <span class="certificate-status-icon" aria-hidden="true">✓</span>
+                    <div>
+                        <strong data-i18n-en="Certificate verified" data-i18n-fr="Certificat vérifié">Certificat
+                            vérifié</strong>
+                        <span data-i18n-en="This certificate is authentic and has not been revoked."
+                            data-i18n-fr="Ce certificat est authentique et n'a pas été révoqué.">Ce certificat est
+                            authentique et n'a pas été révoqué.</span>
+                    </div>
+                </div>
+                {% elif verification_status == 'revoked' %}
+                <div class="certificate-status is-revoked">
+                    <span class="certificate-status-icon" aria-hidden="true">!</span>
+                    <div>
+                        <strong data-i18n-en="Certificate revoked" data-i18n-fr="Certificat révoqué">Certificat
+                            révoqué</strong>
+                        <span data-i18n-en="This certificate is no longer valid."
+                            data-i18n-fr="Ce certificat n'est plus valide.">Ce certificat n'est plus valide.</span>
+                    </div>
+                </div>
+                {% else %}
+                <div class="certificate-status is-invalid">
+                    <span class="certificate-status-icon" aria-hidden="true">×</span>
+                    <div>
+                        <strong data-i18n-en="Certificate not found" data-i18n-fr="Certificat introuvable">Certificat
+                            introuvable</strong>
+                        <span data-i18n-en="This code does not match an issued certificate."
+                            data-i18n-fr="Ce code ne correspond à aucun certificat délivré.">Ce code ne correspond à
+                            aucun certificat délivré.</span>
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="certificate-code-block">
+                    <span data-i18n-en="Certificate code" data-i18n-fr="Code du certificat">Code du certificat</span>
+                    <strong>{{ certificate_code }}</strong>
+                </div>
+
+                {% if certificate %}
+                <dl class="certificate-details">
+                    <div>
+                        <dt data-i18n-en="Holder" data-i18n-fr="Titulaire">Titulaire</dt>
+                        <dd>{{ certificate.get('full_name') or '—' }}</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n-en="Certificate type" data-i18n-fr="Type de certificat">Type de certificat</dt>
+                        <dd>{{ certificate.get('type') or '—' }}</dd>
+                    </div>
+                    {% if certificate.get('description') %}
+                    <div class="certificate-detail-wide">
+                        <dt data-i18n-en="Description" data-i18n-fr="Description">Description</dt>
+                        <dd>{{ certificate.get('description') }}</dd>
+                    </div>
+                    {% endif %}
+                    <div>
+                        <dt data-i18n-en="Issued on" data-i18n-fr="Délivré le">Délivré le</dt>
+                        <dd>{{ certificate.get('issued_at') or '—' }}</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n-en="Checked on" data-i18n-fr="Vérifié le">Vérifié le</dt>
+                        <dd>{{ verified_at.strftime('%d/%m/%Y %H:%M UTC') }}</dd>
+                    </div>
+                </dl>
+
+                {% if verification_status == 'verified' and certificate.get('pdf_url') %}
+                <a class="btn btn-primary certificate-download" href="{{ certificate.get('pdf_url') }}" target="_blank"
+                    rel="noopener noreferrer" data-i18n-en="Download certificate"
+                    data-i18n-fr="Télécharger le certificat">Télécharger le certificat</a>
+                {% endif %}
+                {% endif %}
+            </article>
+        </div>
+    </section>
+</main>
+{% endblock %}
