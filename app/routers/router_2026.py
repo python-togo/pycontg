@@ -1049,6 +1049,32 @@ async def _fetch_all_speakers() -> list[dict]:
     return []
 
 
+async def _fetch_certificate_details(token: str) -> dict | None:
+    """Fetch certificate details from the API using the provided token."""
+    event_code = getattr(settings, "python_togo_event_code", None)
+    url = _build_api_url(f"/certificates/{event_code}/{token}")
+
+    headers = {"Authorization": f"Bearer {settings.python_togo_api_key}"}
+    try:
+        async with httpx.AsyncClient(timeout=settings.python_togo_api_timeout_seconds) as client:
+            response = await client.get(url, headers=headers)
+        if response.status_code < 400:
+            payload = response.json()
+            if isinstance(payload, dict):
+                return payload
+    except Exception:
+        return None
+
+    return None
+
+
+def _certificate_is_revoked(certificate: dict) -> bool:
+    value = certificate.get("is_revoked", False)
+    if isinstance(value, str):
+        return value.strip().lower() in {"true", "1", "yes"}
+    return bool(value)
+
+
 async def _submit_ticket_purchase_to_api(submission: TicketSubmissionPayload, request, discount_code: str | None = None):
     event_code = getattr(settings, "python_togo_event_code", None)
     submission_data = submission.model_dump(mode="json")
@@ -1139,6 +1165,33 @@ async def home(request: Request):
         page_css="home.css",
         page_title="PyCon Togo 2026 - Home",
         extra_context={"speakers": speakers},
+    )
+
+
+@router.get("/certificat/{token}")
+@router.get("/certificate/{token}")
+async def certificat(request: Request, token: str):
+    certificate_code = token.strip()
+    certificate_details = await _fetch_certificate_details(certificate_code)
+    if certificate_details and _certificate_is_revoked(certificate_details):
+        verification_status = "revoked"
+    elif certificate_details:
+        verification_status = "verified"
+    else:
+        verification_status = "invalid"
+
+    return render_page(
+        request=request,
+        name="2026_certificate.html",
+        active_page="certificate",
+        page_css="certificate.css",
+        page_title="PyCon Togo 2026 - Certificate",
+        extra_context={
+            "certificate": certificate_details,
+            "certificate_code": certificate_code,
+            "verification_status": verification_status,
+            "verified_at": datetime.now(timezone.utc),
+        },
     )
 
 
