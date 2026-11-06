@@ -1,0 +1,98 @@
+[
+  {
+    "id": 10,
+    "company": "Black Python Devs ",
+    "website": "https://blackpythondevs.com/",
+    "level": "bronze",
+    "paid": true,
+    "logo_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751558100/bpd_stacked_us5ika.png"
+  },
+  {
+    "id": 11,
+    "company": "TAHAGA",
+    "website": "https://tahaga.com",
+    "level": "bronze",
+    "paid": true,
+    "logo_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753966042/Logo_TAHAGA_02_Plan_de_travail_1_5_rh5s9g.jpg"
+  },
+  {
+    "id": 12,
+    "company": "Python Software Foundation",
+    "website": "https://python.org/psf",
+    "level": "headline",
+    "paid": true,
+    "logo_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1750463364/psf-logo_gqppfi.png"
+  },
+  {
+    "id": 13,
+    "company": "Association Francophone Python",
+    "website": "https://www.afpy.org/",
+    "level": "gold",
+    "paid": true,
+    "logo_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751537496/afpy_logo_ypyatx.svg"
+  },
+  {
+    "id": 14,
+    "company": "Github",
+    "website": "https://github.com/",
+    "level": "educational",
+    "paid": true,
+    "logo_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1752712570/GitHub_Logo_pn7gcn.png"
+  },
+  {
+    "id": 15,
+    "company": "TEDX VIT Chennai",
+    "website": "https://www.ted.com/tedx/events/19414",
+    "level": "inkind",
+    "paid": true,
+    "logo_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1754246473/tedxVitchennai_d5bkda.png"
+  },
+  {
+    "id": 16,
+    "company": "Django Software Foundation",
+    "website": "https://www.djangoproject.com/",
+    "level": "silver",
+    "paid": true,
+    "logo_url": "https://static.djangoproject.com/img/logos/django-logo-positive.png"
+  },
+  {
+    "id": 23,
+    "company": "Kweku Tech",
+    "website": "https://www.youtube.com/@KwekuTech",
+    "level": "inkind",
+    "paid": true,
+    "logo_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1765584014/1765559148522_npuagi.jpg"
+  },
+  {
+    "id": 24,
+    "company": "Microsoft Student Ambassadors Togo",
+    "website": "https://www.youtube.com/@mlsatogo",
+    "level": "inkind",
+    "paid": true,
+    "logo_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1754294585/msftatogo_qrtxl9.png\n"
+  },
+  {
+    "id": 25,
+    "company": "IJEAF",
+    "website": "https://www.linkedin.com/company/ijeaf/",
+    "level": "inkind",
+    "paid": true,
+    "logo_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1755768049/ijeaf_qjqsmf.jpg"
+  },
+  {
+    "id": 26,
+    "company": "DigiJob",
+    "website": "https://wearedigijob.com",
+    "level": "bronze",
+    "paid": true,
+    "logo_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1755176153/digijoblogo_tkbhns.png"
+  },
+  {
+    "id": 27,
+    "company": "AllDotPy",
+    "website": "https://alldotpy.com",
+    "level": "inkind",
+    "paid": true,
+    "logo_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1755768009/dotpy_blue_transparent_irvs5g.png"
+  }
+]

@@ -15,6 +15,7 @@ from fastapi import APIRouter, HTTPException, status, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import RedirectResponse
 from app.core.settings import settings
+from json import dumps, loads
 
 
 router_2025 = APIRouter(tags=["2025"])
@@ -51,8 +52,8 @@ opening_in = registration_date - datetime.now(timezone.utc)
 opening_in_days = opening_in.days
 
 sponsor_tiers = {}
-if settings.env in ['prod', 'production']:
-    sponsor_tiers = get_sponsorteirs()
+# if settings.env in ['prod', 'production']:
+sponsor_tiers = get_sponsorteirs()
 
 proposal_opining_date = datetime(
     2025, 6, 3, 16).strftime("%d %B %Y at %H:%M UTC")
@@ -60,19 +61,11 @@ proposal_closing_date = datetime(
     2025, 6, 30, 16).strftime("%d %B %Y at %H:%M UTC")
 
 
-API_ROOT = os.getenv("API_ROOT", "")
+with open("app/database/speakers.json", "r") as f:
+    speakers_list = loads(f.read())
 
-try:
-    _r = requests.get(f"{API_ROOT}/speakers", timeout=5) if API_ROOT else None
-    speakers_list = _r.json() if _r and _r.status_code == 200 else []
-except Exception:
-    speakers_list = []
-
-try:
-    _r = requests.get(f"{API_ROOT}/sponsors", timeout=5) if API_ROOT else None
-    paidsponsors = _r.json() if _r and _r.status_code == 200 else []
-except Exception:
-    paidsponsors = []
+with open("app/database/sponsors.json", "r") as f:
+    paidsponsors = loads(f.read())
 
 
 gold_sponsors = [
@@ -118,7 +111,7 @@ def home_25(request: Request):
 
 @router_2025.get("/report")
 def report_2025():
-    return RedirectResponse(url="https://report.pytogo.org/")
+    return RedirectResponse(url="https://report.pytogo.org/pycon-togo-2025-post-conference-report")
 
 
 @router_2025.get("/livestreaming")

@@ -1,6 +1,7 @@
 from app.database.config import supabase
 from app.database.migration import create_sponsor_tiers
 from app.utils.logger import setup_logger
+from json import dumps, loads
 
 logger = setup_logger()
 
@@ -219,17 +220,22 @@ def get_sponsorteirs():
     """
     Fetch all sponsor tiers from the database.
     """
-    create_sponsor_tiers()
-    response = supabase.table("sponsortiers").select("*").execute()
-    data = response.data
-    if len(data) == 0:
-        logger.info("No sponsor tiers found.")
-        return []
+    try:
+        with open("app/database/sponsortiers.json", "r") as file:
+            data = loads(file.read())
+            if len(data) == 0:
+                logger.info("No sponsor tiers found in JSON file.")
+                return []
+            for tier in data:
+                tier["amount_cfa"] = int(tier["amount_cfa"])
+                tier["amount_usd"] = int(float(tier["amount_usd"]))
+                tier["availability"] = int(tier["availability"])
+                tier["advantages"] = loads(tier["advantages"]) if isinstance(
+                    tier["advantages"], str) else tier["advantages"]
 
-    for tier in data:
-        tier["amount_cfa"] = int(tier["amount_cfa"])
-        tier["amount_usd"] = int(float(tier["amount_usd"]))
-        tier["availability"] = int(tier["availability"])
+    except Exception as e:
+        logger.error(f"Error occurred while fetching sponsor tiers: {e}")
+        return []
 
     return data
 

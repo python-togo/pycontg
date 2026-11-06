@@ -1,0 +1,68 @@
+[
+    {
+        "id": 38,
+        "name": "Community Supporter",
+        "amount_cfa": "50000",
+        "amount_usd": "85.0",
+        "advantages": "[\"Logo on website\",\"Mention during opening ceremony\",\"Social media recognition\"]",
+        "created_at": "2025-05-16 00:13:38.267934+00",
+        "title": "community",
+        "availability": 255,
+        "available": 255
+    },
+    {
+        "id": 39,
+        "name": "Bronze Sponsor",
+        "amount_cfa": "150000",
+        "amount_usd": "255.0",
+        "advantages": "[\"Logo on website and printed materials\",\"Mention during opening ceremony\",\"Social media recognition\",\"Distribution of company materials\"]",
+        "created_at": "2025-05-16 00:13:38.996398+00",
+        "title": "bronze",
+        "availability": 10,
+        "available": 10
+    },
+    {
+        "id": 40,
+        "name": "Silver Sponsor",
+        "amount_cfa": "300000",
+        "amount_usd": "500.0",
+        "advantages": "[\"Logo on website and printed materials\",\"Mention during opening ceremony\",\"Enhanced social media recognition\",\"Distribution of company materials\",\"Banner placement at venue\",\"Brief company introduction (2 min)\"]",
+        "created_at": "2025-05-16 00:13:39.763568+00",
+        "title": "silver",
+        "availability": 5,
+        "available": 5
+    },
+    {
+        "id": 41,
+        "name": "Gold Sponsor",
+        "amount_cfa": "600000",
+        "amount_usd": "1000.0",
+        "advantages": "[\"Premium logo placement on all materials\",\"Special recognition during ceremonies\",\"Comprehensive social media campaign\",\"Small exhibit space\",\"Multiple banner placements\",\"3-minute speaking opportunity\"]",
+        "created_at": "2025-05-16 00:13:41.542637+00",
+        "title": "gold",
+        "availability": 3,
+        "available": 3
+    },
+    {
+        "id": 42,
+        "name": "Headline Sponsor",
+        "amount_cfa": "2160000",
+        "amount_usd": "3750",
+        "advantages": "[\"Event naming rights: \\\"PyCon Togo 2025 powered by [Your Company]\\\"\",\"Prominent logo placement on all conference materials and website\",\"Dedicated social media campaign highlighting your support\",\"Premium exhibit space at the venue entrance\",\"Opening keynote opportunity (10 minutes)\",\"Four banners placed strategically throughout the venue\",\"Opportunity to distribute branded items to all attendees\",\"First access to recruitment opportunities with participants\"]",
+        "created_at": "2025-05-16 00:13:42.592066+00",
+        "title": "headline",
+        "availability": 2,
+        "available": 2
+    },
+    {
+        "id": 43,
+        "name": "In-Kind Sponsor",
+        "amount_cfa": "0",
+        "amount_usd": "0.0",
+        "advantages": "[\"Recognition on website and conference materials\",\"Social media recognition\",\"Mention during opening ceremony\",\"Custom benefits based on contribution value\"]",
+        "created_at": "2025-05-16 00:13:43.282641+00",
+        "title": "inkind",
+        "availability": 255,
+        "available": 255
+    }
+]
