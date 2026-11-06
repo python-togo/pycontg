@@ -1558,6 +1558,11 @@ async def cfp(request: Request):
     return await call_for_speakers_form(request)
 
 
+@router.get("/report")
+async def report(request: Request):
+    return RedirectResponse(url="https://report.pytogo.org/", status_code=302)
+
+
 @router.get("/call-for-speakers")
 async def call_for_speakers(request: Request):
     return await call_for_speakers_form(request)
